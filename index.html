@@ -508,7 +508,7 @@
       <a href="#" id="navAnalysis" class="vlink" data-k="nav.analysis">Analysis</a>
     </div>
     <div class="ctrls">
-      <div class="langwrap"><button class="btn on" id="enBtn">EN</button><button class="btn" id="deBtn">DE</button></div>
+      <div class="langwrap"><button class="btn on" id="enBtn">EN</button><button class="btn" id="deBtn">DE</button><button class="btn" id="esBtn">ES</button><button class="btn" id="itBtn">IT</button></div>
       <button class="btn" id="themeBtn">Dark</button>
     </div>
   </div>
@@ -982,6 +982,216 @@ const DE={
 };
 const DEPH={'r.slph':'du@email.com'};
 
+// ---------- Spanish dictionary ----------
+const ES={
+'nav.home':'Inicio','nav.lineup':'Modelos','nav.analysis':'Análisis','nav.dream':'Dream 7',
+'mg.zoom':'Zoom','m.view':'360° · Zoom','m.viewfull':'Ver showcase',
+'s.l1':'Imagina 110 km/h.','s.l2':'150 km con una carga.','s.l3':'Por 5.999 €.','s.q':'Un auténtico buque insignia apto para autopista a ese precio. ¿Demasiado bueno para ser verdad?','s.enter':'Seguir →',
+'p.lead':'Tres formas de entrar — elige la tuya',
+'p.line.t':'La nueva gama de modelos','p.line.s':'Liderada por el buque insignia Dream 7 — nueve modelos, hasta el ciclomotor urbano de 1.699 €. Gira cada uno en 360° y acércate.','p.line.g':'Descubrir la gama →',
+'p.quiz.tag':'Solo 200 plazas','p.quiz.t':'¿Cumples los requisitos para la reserva?','p.quiz.s':'Un test de 60 segundos encuentra tu modelo ideal y desbloquea el precio de acceso anticipado. Unidades limitadas.','p.quiz.g':'Comprobar elegibilidad →',
+'p.ana.t':'Análisis competitivo','p.ana.s':'Cómo cada modelo SFM supera a la competencia en precio y tecnología — el informe competitivo completo para DACH.','p.ana.g':'Abrir informe →',
+'d7.ey':'El buque insignia','d7.sub':'La cara visible apta para autopista de la gama. Arrastra para rodearla, toca un ángulo, haz clic en el vehículo para el zoom de detalle.','d7.uvp':'PVP recomendado, IVA incl.','d7.zoom':'⤢ <span>Haz clic para ampliar</span>','d7.auto':'Rotación automática','d7.s1':'km/h máx.','d7.s2':'km de autonomía','d7.s4':'al 80%','d7.cta1':'Comprobar elegibilidad →','d7.cta2':'Así se compara','d7.lbhint':'Desplázate o pellizca para ampliar · arrastra para mover · Esc cierra',
+'a.k':'SFM E-Mobility 2027',
+'r.u1':'hasta fijar tu precio preferente','r.u2':'plazas · solo candidatos cualificados',
+'r.slnote':'✓ Sin pago, sin compromiso — tu email solo reserva tu plaza. Reservar fija tu precio de acceso anticipado.',
+'r.scroll':'↓ Así se enfrenta tu match al mercado',
+'r.ceyebrow':'La prueba de tu precio','r.strh':'Dónde supera a la competencia',
+'r.altsh':'Otros modelos para los que también cumples requisitos','r.altsub':'Tus respuestas encajan con varios — aquí los siguientes mejores. Toca uno para girarlo.',
+'r.actah':'Ver la gama 2027 completa','r.actap':'Seis modelos, cada uno comparado con su clase — las ventajas competitivas más fuertes primero.','r.actabtn':'Descubrir la gama →',
+'a.h':'¿Estás listo para el<br><span class="grad">futuro de la movilidad?</span>',
+'a.sub':'El <b>buque insignia Dream&nbsp;7</b>: 110&nbsp;km/h · 150&nbsp;km de autonomía · ~2&nbsp;h de carga rápida — 5.999&nbsp;€, muy por debajo de los nombres premium.',
+'hg.range':'Autonomía · más es mejor','hg.price':'Precio · menos es mejor','hg.us':'Buque insignia SFM','hg.them':'Rival premium típico','hg.us2':'Buque insignia SFM','hg.them2':'Rival premium típico',
+'a.cta':'Comprobar elegibilidad de reserva →','a.meta':'200 plazas anticipadas · termina el 1 de octubre · Alemania · Austria · Suiza',
+'t.k':'Acceso anticipado · Primavera 2027 · DE · AT · CH',
+'t.h':'¿Estás listo para el <span class="g">futuro</span><br>de la movilidad de dos ruedas?',
+'t.sub':'La gama eléctrica 2027 de SFM ofrece hasta 80&nbsp;km/h a la mitad del precio de los grandes nombres. Haz el test de 60 segundos para ver si cumples los requisitos de acceso anticipado — y encuentra tu modelo ideal.',
+'t.c1':'200','t.c1b':'plazas anticipadas','t.c2':'Hasta el 1 oct.','t.c3':'Hasta <b>–50%</b> vs. premium',
+'t.scroll':'↓ Empieza con una pregunta rápida',
+'q.eyebrow':'Reserva limitada · Comprobación de elegibilidad','q.title':'¿Cumples los requisitos para una reserva limitada?',
+'q.lead':'Solo 200 plazas de reserva, primero DE/AT/CH — este test confirma tu elegibilidad, te asigna el modelo ideal y muestra el precio y el rendimiento reales frente a la competencia. Seis preguntas breves.',
+'q.submit':'Ver resultado y cifras','q.count':'Responde las 6 para continuar','q.back':'Atrás',
+'r.eyebrow':'Tu resultado','r.match':'Tu mejor match',
+'r.cn':'Precio de venta en la misma clase de permiso — más bajo es más barato. Datos bajo cada columna.',
+'r.slt1':'plazas anticipadas — solo para candidatos cualificados','r.slt2':'La solicitud termina el 1 de octubre de 2027 · por orden de llegada',
+'r.slh':'A la lista de reserva','r.slp':'Solo se aceptarán <b>200 reservas cualificadas</b> antes del 1 de octubre de 2027. Los conductores en lista reciben las primeras fechas de entrega en primavera, un precio de lanzamiento fijo y una segunda batería gratis. Sin pago ahora — confirmas tu pedido cuando se anuncien los precios finales en febrero.',
+'r.slph':'tu@email.com','r.slbtn':'Reservar plaza',
+'r.sldisc':'Puedes salir en cualquier momento — esto reserva una plaza, no es una compra ni un pedido vinculante. Te enviaremos un email de confirmación cuando abra la reserva.',
+'e.eyebrow':'Los datos detrás','e.title':'Por qué «hasta la mitad de precio» es real, no un eslogan',
+'e.lead':'Tres comparaciones directas que muestran la diferencia con más claridad. Cada cifra es un precio real de mercado 2025–26; los precios SFM son PVP de fábrica.',
+'e.f1t':'Clase 80 km/h · el golpe de gracia','e.f1a':'SFM E2H Sport','e.f1b':'Rival más barato','e.f1s':'1.000&nbsp;€ menos — y el <b>scooter eléctrico de 80 km/h más barato de todo DACH</b>.',
+'e.f2t':'Clase estilo · contra el icono','e.f2a':'SFM E2H Sport','e.f2b':'Vespa Elettrica 70','e.f2s':'Prácticamente <b>la mitad del precio de la Vespa</b> — por un vehículo más rápido con batería extraíble.',
+'e.f3t':'La tecnología que nadie más tiene','e.f3a':'SFM Future 5','e.f3b':'Todos los rivales','e.f3s':'<b>Sodio-ion</b>: mejor en frío, sin historial de incendios del litio, larga vida útil. <b>Ningún competidor en el mercado lo tiene.</b>',
+'e.mvt':'Precio de entrada más barato en cada clase','e.mvs':'Precio de entrada, € · SFM (azul) vs. rival más barato conocido (gris)',
+'e.mv1':'25 km/h ciclomotor','e.mv2':'45 km/h ciclomotor','e.mv3':'75–80 km/h · A1',
+'w.eyebrow':'Sin rodeos','w.title':'Cinco razones por las que gana',
+'w.a1h':'Precio honesto','w.a1p':'Por debajo del mercado en cada clase de permiso — y el scooter de 80 km/h homologado más barato de DACH.',
+'w.a2h':'Estreno del sodio-ion','w.a2p':'Una batería más segura, resistente al frío y duradera en la Future 5, que ningún rival ofrece en el mercado.',
+'w.a3h':'Carga en casa','w.a3p':'Baterías extraíbles en toda la gama — súbelas y cárgalas en el escritorio. Sin garaje.',
+'w.a4h':'Servicio de verdad','w.a4p':'Una marca con red de concesionarios y garantía detrás — no una importación online sin rostro.',
+'w.a5h':'Un modelo para cada permiso','w.a5p':'Desde el primer ciclomotor de 25 km/h a los 15 años hasta el A1 de 80 km/h — una marca que crece contigo.',
+'w.a6h':'Diseño que te gusta aparcar','w.a6p':'La retro Prima E te da un look cercano a la Vespa por una fracción del precio.',
+'d.label':'Análisis en profundidad','d.title':'El informe competitivo y de salida al mercado completo',
+'d.p':'Todo lo de abajo es la base de evidencia detallada — toda la gama, benchmarks contra cada rival por clase, la estrategia de distribución DACH y el plan de pre-marketing.',
+'lineup.eyebrow':'La gama','lineup.title':'La gama SFM 2027',
+'lineup.lead':'Nueve modelos: tres ciclomotores de 25 km/h (incl. el E2H de alto par), un estreno de sodio-ion, un ciclomotor de 45 km/h con batería grande, un scooter urbano retro, dos máquinas de rendimiento L3e y el buque insignia Dream&nbsp;7. Baterías intercambiables en casi toda la gama. Los precios son PVP de fábrica, IVA incl.',
+'m.em1.c':'Ciclomotor 25 km/h — desde 15 años','m.em1.u':'<li><span>Motor</span><b>500 W · 80 Nm</b></li><li><span>Batería</span><b>60V · 1.440 Wh Li-Ion</b></li><li><span>Autonomía</span><b>hasta 80 km</b></li><li><span>Batería extraíble</span><b>Sí</b></li><li><span>Clase</span><b>Ciclomotor 25 km/h</b></li>','m.em1.b':'El precio más bajo de la clase',
+'m.e2hstd.c':'Retro · 25 km/h · alto par','m.e2hstd.u':'<li><span>Motor</span><b>3.000 W · 165 Nm</b></li><li><span>Batería</span><b>72V · 1.728 Wh</b></li><li><span>Vel. máx.</span><b>25 km/h</b></li><li><span>Batería extraíble</span><b>Sí</b></li><li><span>Clase</span><b>Ciclomotor 25 km/h</b></li>','m.e2hstd.b':'El par más fuerte de la clase',
+'m.e2hplus.c':'Retro · 25 km/h · batería doble','m.e2hplus.u':'<li><span>Motor</span><b>3.000 W · 165 Nm</b></li><li><span>Batería</span><b>2× 72V · 3.456 Wh</b></li><li><span>Vel. máx.</span><b>25 km/h</b></li><li><span>Baterías extraíbles</span><b>Sí</b></li><li><span>Clase</span><b>Ciclomotor 25 km/h</b></li>','m.e2hplus.b':'Batería doble — gran autonomía',
+'m.fut5.c':'Ciclomotor 45 km/h — sodio-ion','m.fut5.u':'<li><span>Batería</span><b>⚛ Sodio-ion · 1.260 Wh</b></li><li><span>Ciclos de carga</span><b>~1.200</b></li><li><span>Autonomía</span><b>hasta 45 km</b></li><li><span>Batería extraíble</span><b>Sí</b></li><li><span>Clase</span><b>Ciclomotor 45 km/h</b></li>','m.fut5.b':'⚛ Estreno del sodio-ion',
+'m.fut3.c':'Ciclomotor 45 km/h — batería grande','m.fut3.u':'<li><span>Motor</span><b>2.000 W</b></li><li><span>Batería</span><b>72V · 2.160 Wh</b></li><li><span>Autonomía</span><b>fuerte para la clase</b></li><li><span>Batería extraíble</span><b>Sí</b></li><li><span>Clase</span><b>Ciclomotor 45 km/h</b></li>','m.fut3.b':'Batería grande por menos',
+'m.pri.c':'Retro · 25 o 45 km/h','m.pri.u':'<li><span>Motor</span><b>1.000 W · ruedas 14″</b></li><li><span>Batería</span><b>48V · 960 Wh Li-Ion</b></li><li><span>Autonomía</span><b>hasta 65 km (25)</b></li><li><span>Batería extraíble</span><b>Sí · 7 kg</b></li><li><span>Peso</span><b>~51 kg</b></li>','m.pri.b':'Retro / lifestyle',
+'m.pris.c':'Scooter rápido — 75 km/h · A1','m.pris.u':'<li><span>Motor</span><b>3.000 W / 3.800 W · 150 Nm</b></li><li><span>Batería</span><b>2× · 2.400 Wh Li-Ion</b></li><li><span>Autonomía</span><b>hasta 90 km</b></li><li><span>Frenos</span><b>Freno combinado CBS</b></li><li><span>Peso</span><b>~103 kg</b></li>','m.pris.b':'75 km/h a precio de ciclomotor',
+'m.e2h.c':'Motocicleta L3e — 80 km/h · A1','m.e2h.u':'<li><span>Motor</span><b>3.000 W / 5.000 W pico</b></li><li><span>Batería</span><b>2× 72V · 3.456 Wh</b></li><li><span>Autonomía</span><b>hasta 75 km</b></li><li><span>Baterías extraíbles</span><b>Sí</b></li><li><span>Peso</span><b>~106 kg</b></li>','m.e2h.b':'El L3e de 80 km/h más barato de DACH',
+'m.dream7.c':'Buque insignia L3e — 110 km/h · A1','m.dream7.u':'<li><span>Vel. máx.</span><b>110 km/h</b></li><li><span>Batería</span><b>BYD LFP · 5,18 kWh</b></li><li><span>Autonomía</span><b>hasta 150 km</b></li><li><span>Carga</span><b>~2 h al 80%</b></li><li><span>Seguridad</span><b>ABS + TCS</b></li>','m.dream7.b':'★ Buque insignia en autonomía y velocidad',
+'pos.eyebrow':'Dónde se sitúa SFM','pos.title':'Posicionamiento competitivo por clase',
+'pos.lead':'Cada modelo SFM comparado con los vehículos que un comprador DACH realmente considera en la misma clase de permiso. Las barras muestran el precio de venta (más bajo = más barato). Pasa el cursor sobre una barra para ver detalles. Los precios de la competencia son precios de calle/PVP actuales 2025–26.',
+'pos.c1t':'Ciclomotor 45 km/h / L1e — el campo de batalla del volumen','pos.c1n':'Precio de venta, € · más bajo es más barato · SFM azul, buque insignia sodio-ion naranja',
+'pos.lg.sfm':'SFM','pos.lg.fut':'SFM · Future 5','pos.lg.comp':'Competidores',
+'pos.call1':'<b>Lectura:</b> El campo mayoritario de 45 km/h está en 2.250–3.200&nbsp;€, las marcas retro alemanas en 3.900–6.500&nbsp;€. La EM1 y la Prima E de SFM arrancan en <b>1.699–1.999&nbsp;€</b> — por debajo de toda la franja mayoritaria y aproximadamente la mitad que la clase retro — con baterías extraíbles y, en la EM1, 80&nbsp;km de autonomía.',
+'pos.c3t':'L3e 75–80 km/h / clase rápida — donde el recorte es mayor','pos.c3n':'Precio de venta, € · los dos modelos de rendimiento de SFM vs. el campo L3e actual',
+'pos.lg.pris':'SFM · Prima E Sport','pos.lg.e2h':'SFM · E2H Sport','pos.lg.comp3':'Competidores',
+'pos.call3':'<b>El titular:</b> Con <b>2.999&nbsp;€</b>, la E2H Sport sería el <b>scooter L3e de la clase 80 km/h más barato de DACH</b> — unos 1.000&nbsp;€ por debajo de la Super Soco TC Max y la Horwin SK3, y menos de la mitad que una Vespa Elettrica 70. Lo que hay que gestionar es la <b>autonomía</b> (75–90&nbsp;km vs. 110–130&nbsp;km de NIU/Super Soco).',
+'pos.c4t':'Buque insignia apto para autopista — Dream 7 vs. el campo de 100+ km/h','pos.c4n':'Precio de venta, € · Dream 7 contra la clase L3e premium de larga distancia/rápida','pos.lg.dream':'SFM · Dream 7','pos.lg.comp4':'Competidores',
+'pos.call4':'<b>El as del buque insignia:</b> Con <b>5.999&nbsp;€</b>, la Dream&nbsp;7 combina auténticos <b>110&nbsp;km/h</b> de punta y <b>150&nbsp;km</b> de autonomía — la mayor de este campo — con una batería BYD LFP y ~2&nbsp;h de carga rápida. Se sitúa ~2.800&nbsp;€ por debajo de la Silence S01+ y a la par de la Super Soco CPx, de menor autonomía, mientras que una NIU MQi GT es más lenta y de menor alcance. La respuesta de SFM a los compradores que, de otro modo, dejarían la marca por una máquina «de verdad» apta para autopista.',
+'pos.tabt':'Comparación completa de especificaciones',
+'pos.th.model':'Modelo','pos.th.class':'Clase','pos.th.speed':'Vel. máx.','pos.th.motor':'Motor nom.','pos.th.batt':'Batería','pos.th.range':'Autonomía','pos.th.swap':'Batería extraíble',
+'edge.eyebrow':'Valoración honesta','edge.title':'Dónde gana SFM — y dónde es vulnerable',
+'edge.lead':'La gama gana en precio y amplitud. Para que eso se convierta en ventas y no solo en imagen de marca barata, hay que cerrar las siguientes brechas antes del lanzamiento.',
+'edge.winh':'▲ Ventajas estructurales','edge.winu':'<li><b>Liderazgo en precio en cada clase</b> — por debajo del grueso del mercado a 25 y 45 km/h, el L3e más barato del mercado.</li><li><b>Cobertura de todas las clases</b> — desde el primer ciclomotor hasta el A1 de 80 km/h.</li><li><b>Historia del sodio-ion (Future 5)</b> — primicia del sector: frío, sin historial de incendios, ~1.200 ciclos, sostenibilidad.</li><li><b>Baterías extraíbles en toda la gama</b> — incl. el pack doble para cargar en casa.</li><li><b>Diseño retro (Prima E)</b> — look cercano a la Vespa por una fracción del precio.</li>',
+'edge.gaph':'▼ Brechas antes del lanzamiento','edge.gapu':'<li><b>Confianza en marca y posventa</b> — la razón nº 1 de rechazo de los scooters eléctricos baratos es un servicio débil.</li><li><b>Autonomía en tres modelos</b> — Future 5 (45), E2H (75), Prima E Sport (90) por detrás de rivales con 110–130 km.</li><li><b>Sin app/conectividad</b> — NIU y unu venden con GPS y app.</li><li><b>Clasificación suiza</b> — 45 km/h = motocicleta ligera A1 en CH.</li><li><b>Sin viento a favor de ayudas</b> — AT expirada, DE ninguna, CH cantonal.</li>',
+'edge.call':'<b>Conclusión estratégica:</b> SFM es un <b>retador de valor creíble frente a NIU</b> con dos ganchos reales — precio L3e imbatible y estreno del sodio-ion. Se gana con <b>confianza</b>: usar la ventana previa al lanzamiento para comprar credibilidad (concesionarios, servicio, pruebas, garantía).',
+'str.eyebrow':'Salida al mercado','str.title':'Estrategia de distribución para Alemania, Austria y Suiza',
+'str.lead':'Un posicionamiento — <b>«la marca de dos ruedas eléctricas con precio honesto y servicio de verdad»</b> — mediante un modelo híbrido: red selectiva de concesionarios/servicio más configurador directo online. Cada mercado necesita un enfoque distinto.',
+'str.de.s':'Mayor mercado UE · ~23% · dominado por NIU',
+'str.de.b':'<div class="row"><div class="rl">Prioridad</div><div class="rt">Mercado de volumen. Ganar la guerra de precios de <b>45 km/h</b> con EM1/Prima/Future 5, hacer de la <b>E2H Sport 2.999&nbsp;€</b> la historia de precio L3e y de la <b>Dream 7</b> el escaparate.</div></div><div class="row"><div class="rl">Canal</div><div class="rt"><b>Primero red de concesionarios/servicio</b> — la respuesta de confianza frente a NIU. D2C online por encima.</div></div><div class="row"><div class="rl">Palanca</div><div class="rt"><b>THG-Quote</b> para propietarios L3e, <b>regla del 0,25% de coche de empresa</b> para flotas, ciclomotor a los 15 para jóvenes.</div></div>',
+'str.at.s':'Más pequeño · AM a 45 km/h es la entrada',
+'str.at.b':'<div class="row"><div class="rl">Prioridad</div><div class="rt">Sin clase de 25 km/h — la entrada juvenil es <b>AM 45 km/h desde los 15</b>. Liderar con EM1 45, Prima E 45, Future 5.</div></div><div class="row"><div class="rl">Canal</div><div class="rt"><b>Importador + concesionarios regionales</b>; apoyarse en la credibilidad del ÖAMTC.</div></div><div class="row"><div class="rl">Palanca</div><div class="rt">Ayudas <b>expiradas</b>. <b>Ventaja alpina en frío</b> del sodio-ion de la Future 5.</div></div>',
+'str.ch.s':'Disposición premium · clases distintas',
+'str.ch.b':'<div class="row"><div class="rl">Prioridad</div><div class="rt">Scooter de gasolina de 45 km/h = <b>motocicleta ligera A1</b>. Apostar por <b>Prima E Sport y E2H Sport</b> y la clase de 25 km/h.</div></div><div class="row"><div class="rl">Canal</div><div class="rt">Requiere <b>homologación suiza (ASTRA)</b> + importador local. El encuadre premium sostiene el margen.</div></div><div class="row"><div class="rl">Palanca</div><div class="rt">Ayudas <b>cantonales</b>. Vender por diseño, calidad y coste de uso.</div></div>',
+'cmp.eyebrow':'El plan','cmp.title':'Campaña de pre-marketing — del teaser al pico de primavera',
+'cmp.lead':'Sincronizada con un hecho: <b>el mercado de dos ruedas DACH alcanza su máximo en marzo–mayo</b>. Todo adelanta la demanda al Q1 2027 — primero concesionarios, luego clientes finales, más una vía de prensa especializada para la historia del sodio-ion.',
+'cmp.ph0':'<div class="ptag">Base — en silencio</div><h4>Montar el arsenal</h4><ul><li>Completar la homologación de tipo UE + la suiza; fijar la entrega feb–mar 2027.</li><li>Identidad de marca, foto/vídeo de los 6 modelos, web + configurador, sistema de reservas.</li><li>Dossier de venta para concesionarios, condiciones de mayorista; kit de prensa con los dos ángulos hero.</li></ul>',
+'cmp.ph1':'<div class="ptag">Calentamiento de concesionarios — solo canal</div><h4>Firmar la red antes de que los clientes oigan una palabra</h4><ul><li>Roadshow de concesionarios por DE/AT + citas con importadores CH; pruebas de conducción.</li><li>Briefings de prensa especializada bajo embargo; presencia en ferias a finales de 2026.</li><li>Objetivo: LOIs firmadas de concesionarios + socios de servicio nombrados antes de la presentación.</li></ul>',
+'cmp.ph2':'<div class="ptag">Teaser de cliente + lista de espera</div><h4>«Primavera 2027» — construir el pipeline</h4><ul><li>Lista de espera de reservas (este test de elegibilidad) con una pequeña señal reembolsable; primeras plazas + ventajas.</li><li>Teasers en redes, micro-influencers, paid social + search geosegmentados.</li><li>Presentar el «estreno mundial asequible» del sodio-ion a la prensa tech/EV.</li></ul>',
+'cmp.ph3':'<div class="ptag">Presentación y reserva</div><h4>Soltar el precio. Abrir reservas.</h4><ul><li>Presentación completa con el <b>precio como titular</b>; convertir la lista en reservas.</li><li>Bundle de edición de lanzamiento (2ª batería gratis, sin descuento).</li><li>Enviar unidades de prueba para que los análisis salgan en marzo.</li></ul>',
+'cmp.ph4':'<div class="ptag">Lanzamiento y venta — el pico</div><h4>Entregar en la ola de primavera</h4><ul><li>Comienzan las entregas; tour de pruebas de primavera + pop-ups urbanos + acciones en campus.</li><li>Reorientar a los no convertidos; co-op local de concesionarios; reforzar los análisis.</li><li>Programas piloto de flota/reparto sobre la historia de TCO + batería extraíble.</li></ul>',
+'cmp.pih':'Pilares del mensaje',
+'cmp.pi1h':'Precio honesto','cmp.pi1p':'Misma clase, cientos menos.','cmp.pi2h':'Estreno del sodio-ion','cmp.pi2p':'Una batería que nadie ofrece.','cmp.pi3h':'Carga en casa','cmp.pi3p':'Baterías extraíbles, sin garaje.','cmp.pi4h':'Servicio de verdad','cmp.pi4p':'Red de concesionarios y garantía.','cmp.pi5h':'Cada permiso','cmp.pi5p':'Del primer ciclomotor al A1 de 80 km/h.',
+'rsk.eyebrow':'A tener en cuenta','rsk.title':'Riesgos clave y su mitigación',
+'rsk.rh':'▼ Riesgos','rsk.ru':'<li><b>«Barato = arriesgado»</b> frente a las consolidadas NIU/Vespa.</li><li><b>Déficit de autonomía</b> en Future 5 / E2H en las pruebas.</li><li><b>Retraso de homologación</b> empuja el lanzamiento fuera de la ventana de primavera.</li><li><b>Red de servicio escasa</b> al lanzamiento → quejas.</li><li><b>Clasificación suiza</b> confunde en los modelos de 45 km/h.</li>',
+'rsk.mh':'▲ Contramedidas','rsk.mu':'<li>Comprar credibilidad pronto: pruebas, garantía, servicio visible, concesionarios reales.</li><li>Nunca anunciar por autonomía; coste, tecnología, cambiar-y-cargar; ofrecer 2ª batería.</li><li>Proteger la fecha de presentación de feb/entrega de mar como única deadline dura.</li><li>Nombrar socios de servicio por región <i>antes</i> del lanzamiento al cliente.</li><li>Avisos de permiso por país en el configurador + formación de concesionarios.</li>',
+'rsk.call':'<b>Conclusión:</b> SFM arranca 2027 con la escalera de precios más agresiva de DACH y una historia tecnológica real. Se vende si la ventana previa al lanzamiento convierte el precio en <b>confianza</b> — concesionarios firmados, servicio visible, pruebas positivas, lista caliente.',
+'ft.h':'Fuentes y notas','ft.p':'Datos y precios SFM de las seis fichas técnicas. Los precios de la competencia son valores de calle/PVP actuales 2025–2026 y varían según concesionario/configuración; trátalos como benchmarks indicativos. El test de elegibilidad y la lista son un concepto ilustrativo de pre-marketing.',
+'ft.disc':'Creado para SFM · salida al mercado DACH 2027. Las cifras de la competencia son los mejores datos públicos disponibles a agosto de 2026 y deben verificarse antes de su uso externo.'
+};
+const ESPH={'r.slph':'tu@email.com'};
+
+// ---------- Italian dictionary ----------
+const IT={
+'nav.home':'Home','nav.lineup':'Modelli','nav.analysis':'Analisi','nav.dream':'Dream 7',
+'mg.zoom':'Zoom','m.view':'360° · Zoom','m.viewfull':'Vai allo showcase',
+'s.l1':'Immagina 110 km/h.','s.l2':'150 km con una carica.','s.l3':'A 5.999 €.','s.q':'Un\'ammiraglia adatta all\'autostrada a quel prezzo. Troppo bello per essere vero?','s.enter':'Avanti →',
+'p.lead':'Tre modi per entrare — scegli il tuo',
+'p.line.t':'La nuova gamma di modelli','p.line.s':'Guidata dall\'ammiraglia Dream 7 — nove modelli, fino al ciclomotore urbano da 1.699 €. Ruota ognuno a 360° e ingrandisci.','p.line.g':'Scopri la gamma →',
+'p.quiz.tag':'Solo 200 posti','p.quiz.t':'Hai i requisiti per il preordine?','p.quiz.s':'Un test di 60 secondi trova il modello giusto per te e sblocca il prezzo ad accesso anticipato. Unità limitate.','p.quiz.g':'Verifica l\'idoneità →',
+'p.ana.t':'Analisi competitiva','p.ana.s':'Come ogni modello SFM batte la concorrenza su prezzo e tecnologia — il report competitivo completo per la regione DACH.','p.ana.g':'Apri il report →',
+'d7.ey':'L\'ammiraglia','d7.sub':'Il volto adatto all\'autostrada della gamma. Trascina per girarle intorno, tocca un\'angolazione, clicca sul veicolo per lo zoom di dettaglio.','d7.uvp':'Prezzo consigliato IVA incl.','d7.zoom':'⤢ <span>Clicca per ingrandire</span>','d7.auto':'Rotazione automatica','d7.s1':'km/h max','d7.s2':'km di autonomia','d7.s4':'all\'80%','d7.cta1':'Verifica l\'idoneità →','d7.cta2':'Ecco come si posiziona','d7.lbhint':'Scorri o pizzica per ingrandire · trascina per spostare · Esc chiude',
+'a.k':'SFM E-Mobility 2027',
+'r.u1':'finché il tuo prezzo agevolato è fissato','r.u2':'posti · solo candidati idonei',
+'r.slnote':'✓ Nessun pagamento, nessun impegno — la tua email prenota solo il posto. Prenotare fissa il tuo prezzo ad accesso anticipato.',
+'r.scroll':'↓ Ecco come il tuo match affronta il mercato',
+'r.ceyebrow':'La prova del tuo prezzo','r.strh':'Dove batte la concorrenza',
+'r.altsh':'Altri modelli per cui sei idoneo','r.altsub':'Le tue risposte si adattano a diversi — ecco i migliori successivi. Tocca uno per ruotarlo.',
+'r.actah':'Guarda l\'intera gamma 2027','r.actap':'Sei modelli, ciascuno confrontato con la sua classe — i vantaggi competitivi più forti per primi.','r.actabtn':'Scopri la gamma →',
+'a.h':'Sei pronto per il<br><span class="grad">futuro della mobilità?</span>',
+'a.sub':'L\'<b>ammiraglia Dream&nbsp;7</b>: 110&nbsp;km/h · 150&nbsp;km di autonomia · ~2&nbsp;h di ricarica rapida — 5.999&nbsp;€, ben sotto i nomi premium.',
+'hg.range':'Autonomia · più è meglio','hg.price':'Prezzo · meno è meglio','hg.us':'Ammiraglia SFM','hg.them':'Rivale premium tipico','hg.us2':'Ammiraglia SFM','hg.them2':'Rivale premium tipico',
+'a.cta':'Verifica l\'idoneità al preordine →','a.meta':'200 posti anticipati · termina il 1° ottobre · Germania · Austria · Svizzera',
+'t.k':'Accesso anticipato · Primavera 2027 · DE · AT · CH',
+'t.h':'Sei pronto per il <span class="g">futuro</span><br>della mobilità a due ruote?',
+'t.sub':'La gamma elettrica 2027 di SFM offre fino a 80&nbsp;km/h alla metà del prezzo dei grandi nomi. Fai il test di 60 secondi per scoprire se hai i requisiti per l\'accesso anticipato — e trova il modello giusto per te.',
+'t.c1':'200','t.c1b':'posti anticipati','t.c2':'Entro il 1° ott.','t.c3':'Fino a <b>–50%</b> vs. premium',
+'t.scroll':'↓ Inizia con una domanda veloce',
+'q.eyebrow':'Preordine limitato · Verifica di idoneità','q.title':'Hai i requisiti per un preordine limitato?',
+'q.lead':'Solo 200 posti di preordine, prima DE/AT/CH — questo test conferma la tua idoneità, ti abbina al modello giusto e mostra prezzo e prestazioni reali rispetto alla concorrenza. Sei brevi domande.',
+'q.submit':'Vedi risultato e cifre','q.count':'Rispondi a tutte e 6 per continuare','q.back':'Indietro',
+'r.eyebrow':'Il tuo risultato','r.match':'Il tuo miglior match',
+'r.cn':'Prezzo di vendita nella stessa classe di patente — più basso è più conveniente. Dati sotto ogni colonna.',
+'r.slt1':'posti anticipati — solo per candidati idonei','r.slt2':'Le candidature terminano il 1° ottobre 2027 · chi prima arriva, prima viene abbinato',
+'r.slh':'Nella shortlist del preordine','r.slp':'Solo <b>200 preordini idonei</b> saranno accettati prima del 1° ottobre 2027. I guidatori in shortlist ricevono le prime date di consegna in primavera, un prezzo di lancio fisso e una seconda batteria gratis. Nessun pagamento ora — confermi l\'ordine all\'annuncio dei prezzi finali a febbraio.',
+'r.slph':'tu@email.com','r.slbtn':'Prenota il posto',
+'r.sldisc':'Puoi uscire in qualsiasi momento — questo riserva un posto, non è un acquisto né un ordine vincolante. Ti invieremo un\'email di conferma quando aprirà il preordine.',
+'e.eyebrow':'I dati dietro','e.title':'Perché «fino a metà prezzo» è reale, non uno slogan',
+'e.lead':'Tre confronti diretti che mostrano il divario più chiaramente. Ogni cifra è un prezzo di mercato reale 2025–26; i prezzi SFM sono prezzi consigliati dal produttore.',
+'e.f1t':'Classe 80 km/h · il colpo del KO','e.f1a':'SFM E2H Sport','e.f1b':'Rivale più economico','e.f1s':'1.000&nbsp;€ in meno — e lo <b>scooter elettrico da 80 km/h più economico di tutta la DACH</b>.',
+'e.f2t':'Classe stile · contro l\'icona','e.f2a':'SFM E2H Sport','e.f2b':'Vespa Elettrica 70','e.f2s':'Praticamente <b>metà del prezzo della Vespa</b> — per un veicolo più veloce con batteria estraibile.',
+'e.f3t':'La tecnologia che nessun altro ha','e.f3a':'SFM Future 5','e.f3b':'Ogni rivale','e.f3s':'<b>Sodio-ione</b>: migliore al freddo, nessuna storia di incendi del litio, lunga durata. <b>Nessun concorrente in commercio ce l\'ha.</b>',
+'e.mvt':'Prezzo d\'ingresso più basso in ogni classe','e.mvs':'Prezzo d\'ingresso, € · SFM (blu) vs. rivale più economico noto (grigio)',
+'e.mv1':'25 km/h ciclomotore','e.mv2':'45 km/h ciclomotore','e.mv3':'75–80 km/h · A1',
+'w.eyebrow':'Parole chiare','w.title':'Cinque motivi per cui vince',
+'w.a1h':'Prezzo onesto','w.a1p':'Sotto il mercato in ogni classe di patente — e lo scooter da 80 km/h omologato più economico della DACH.',
+'w.a2h':'Prima del sodio-ione','w.a2p':'Una batteria più sicura, resistente al freddo e duratura sulla Future 5, che nessun rivale offre in commercio.',
+'w.a3h':'Ricarica in casa','w.a3p':'Batterie estraibili su tutta la gamma — portale su e ricarica alla scrivania. Nessun garage necessario.',
+'w.a4h':'Assistenza vera','w.a4p':'Un marchio con rete di concessionari e garanzia alle spalle — non un import online senza volto.',
+'w.a5h':'Un modello per ogni patente','w.a5p':'Dal primo ciclomotore da 25 km/h a 15 anni fino all\'A1 da 80 km/h — un marchio che cresce con te.',
+'w.a6h':'Design che ti piace parcheggiare','w.a6p':'La retro Prima E ti dà un look vicino alla Vespa a una frazione del prezzo.',
+'d.label':'Analisi approfondita','d.title':'Il briefing competitivo e di go-to-market completo',
+'d.p':'Tutto qui sotto è la base di prove dettagliata — l\'intera gamma, benchmark contro ogni rivale per classe, la strategia di distribuzione DACH e il piano di pre-marketing.',
+'lineup.eyebrow':'La gamma','lineup.title':'La gamma SFM 2027',
+'lineup.lead':'Nove modelli: tre ciclomotori da 25 km/h (incl. l\'E2H ad alta coppia), una prima del sodio-ione, un ciclomotore da 45 km/h con batteria grande, uno scooter urbano retro, due macchine performance L3e e l\'ammiraglia Dream&nbsp;7. Batterie intercambiabili su quasi tutta la gamma. I prezzi sono consigliati dal produttore, IVA incl.',
+'m.em1.c':'Ciclomotore 25 km/h — dai 15 anni','m.em1.u':'<li><span>Motore</span><b>500 W · 80 Nm</b></li><li><span>Batteria</span><b>60V · 1.440 Wh Li-Ion</b></li><li><span>Autonomia</span><b>fino a 80 km</b></li><li><span>Batteria estraibile</span><b>Sì</b></li><li><span>Classe</span><b>Ciclomotore 25 km/h</b></li>','m.em1.b':'Il prezzo minimo della classe',
+'m.e2hstd.c':'Retro · 25 km/h · alta coppia','m.e2hstd.u':'<li><span>Motore</span><b>3.000 W · 165 Nm</b></li><li><span>Batteria</span><b>72V · 1.728 Wh</b></li><li><span>Vel. max</span><b>25 km/h</b></li><li><span>Batteria estraibile</span><b>Sì</b></li><li><span>Classe</span><b>Ciclomotore 25 km/h</b></li>','m.e2hstd.b':'La coppia più forte della classe',
+'m.e2hplus.c':'Retro · 25 km/h · doppia batteria','m.e2hplus.u':'<li><span>Motore</span><b>3.000 W · 165 Nm</b></li><li><span>Batteria</span><b>2× 72V · 3.456 Wh</b></li><li><span>Vel. max</span><b>25 km/h</b></li><li><span>Batterie estraibili</span><b>Sì</b></li><li><span>Classe</span><b>Ciclomotore 25 km/h</b></li>','m.e2hplus.b':'Doppia batteria — grande autonomia',
+'m.fut5.c':'Ciclomotore 45 km/h — sodio-ione','m.fut5.u':'<li><span>Batteria</span><b>⚛ Sodio-ione · 1.260 Wh</b></li><li><span>Cicli di carica</span><b>~1.200</b></li><li><span>Autonomia</span><b>fino a 45 km</b></li><li><span>Batteria estraibile</span><b>Sì</b></li><li><span>Classe</span><b>Ciclomotore 45 km/h</b></li>','m.fut5.b':'⚛ Prima del sodio-ione',
+'m.fut3.c':'Ciclomotore 45 km/h — batteria grande','m.fut3.u':'<li><span>Motore</span><b>2.000 W</b></li><li><span>Batteria</span><b>72V · 2.160 Wh</b></li><li><span>Autonomia</span><b>forte per la classe</b></li><li><span>Batteria estraibile</span><b>Sì</b></li><li><span>Classe</span><b>Ciclomotore 45 km/h</b></li>','m.fut3.b':'Batteria grande per meno',
+'m.pri.c':'Retro · 25 o 45 km/h','m.pri.u':'<li><span>Motore</span><b>1.000 W · ruote 14″</b></li><li><span>Batteria</span><b>48V · 960 Wh Li-Ion</b></li><li><span>Autonomia</span><b>fino a 65 km (25)</b></li><li><span>Batteria estraibile</span><b>Sì · 7 kg</b></li><li><span>Peso</span><b>~51 kg</b></li>','m.pri.b':'Retro / lifestyle',
+'m.pris.c':'Scooter veloce — 75 km/h · A1','m.pris.u':'<li><span>Motore</span><b>3.000 W / 3.800 W · 150 Nm</b></li><li><span>Batteria</span><b>2× · 2.400 Wh Li-Ion</b></li><li><span>Autonomia</span><b>fino a 90 km</b></li><li><span>Freni</span><b>Freno combinato CBS</b></li><li><span>Peso</span><b>~103 kg</b></li>','m.pris.b':'75 km/h a prezzo da ciclomotore',
+'m.e2h.c':'Motocicletta L3e — 80 km/h · A1','m.e2h.u':'<li><span>Motore</span><b>3.000 W / 5.000 W picco</b></li><li><span>Batteria</span><b>2× 72V · 3.456 Wh</b></li><li><span>Autonomia</span><b>fino a 75 km</b></li><li><span>Batterie estraibili</span><b>Sì</b></li><li><span>Peso</span><b>~106 kg</b></li>','m.e2h.b':'Il L3e da 80 km/h più economico della DACH',
+'m.dream7.c':'Ammiraglia L3e — 110 km/h · A1','m.dream7.u':'<li><span>Vel. max</span><b>110 km/h</b></li><li><span>Batteria</span><b>BYD LFP · 5,18 kWh</b></li><li><span>Autonomia</span><b>fino a 150 km</b></li><li><span>Ricarica</span><b>~2 h all\'80%</b></li><li><span>Sicurezza</span><b>ABS + TCS</b></li>','m.dream7.b':'★ Ammiraglia per autonomia e velocità',
+'pos.eyebrow':'Dove si colloca SFM','pos.title':'Posizionamento competitivo per classe',
+'pos.lead':'Ogni modello SFM confrontato con i veicoli che un acquirente DACH considera davvero nella stessa classe di patente. Le barre mostrano il prezzo di vendita (più basso = più conveniente). Passa il mouse su una barra per i dettagli. I prezzi della concorrenza sono prezzi di listino/strada attuali 2025–26.',
+'pos.c1t':'Ciclomotore 45 km/h / L1e — il campo di battaglia dei volumi','pos.c1n':'Prezzo di vendita, € · più basso è più conveniente · SFM blu, ammiraglia sodio-ione arancione',
+'pos.lg.sfm':'SFM','pos.lg.fut':'SFM · Future 5','pos.lg.comp':'Concorrenti',
+'pos.call1':'<b>Lettura:</b> Il campo mainstream dei 45 km/h è a 2.250–3.200&nbsp;€, i marchi retro tedeschi a 3.900–6.500&nbsp;€. La EM1 e la Prima E di SFM partono da <b>1.699–1.999&nbsp;€</b> — sotto l\'intera fascia mainstream e circa la metà della classe retro — con batterie estraibili e, sulla EM1, 80&nbsp;km di autonomia.',
+'pos.c3t':'L3e 75–80 km/h / classe veloce — dove il taglio è maggiore','pos.c3n':'Prezzo di vendita, € · i due modelli performance di SFM vs. l\'attuale campo L3e',
+'pos.lg.pris':'SFM · Prima E Sport','pos.lg.e2h':'SFM · E2H Sport','pos.lg.comp3':'Concorrenti',
+'pos.call3':'<b>Il titolo:</b> A <b>2.999&nbsp;€</b>, la E2H Sport sarebbe lo <b>scooter L3e della classe 80 km/h più economico della DACH</b> — circa 1.000&nbsp;€ sotto la Super Soco TC Max e la Horwin SK3 e meno della metà di una Vespa Elettrica 70. Da gestire è l\'<b>autonomia</b> (75–90&nbsp;km vs. 110–130&nbsp;km di NIU/Super Soco).',
+'pos.c4t':'Ammiraglia adatta all\'autostrada — Dream 7 vs. il campo dei 100+ km/h','pos.c4n':'Prezzo di vendita, € · Dream 7 contro la classe L3e premium a lunga percorrenza/veloce','pos.lg.dream':'SFM · Dream 7','pos.lg.comp4':'Concorrenti',
+'pos.call4':'<b>L\'asso dell\'ammiraglia:</b> A <b>5.999&nbsp;€</b>, la Dream&nbsp;7 unisce veri <b>110&nbsp;km/h</b> di punta e <b>150&nbsp;km</b> di autonomia — la maggiore di questo campo — con una batteria BYD LFP e ~2&nbsp;h di ricarica rapida. Si colloca ~2.800&nbsp;€ sotto la Silence S01+ e alla pari con la Super Soco CPx, di minore autonomia, mentre una NIU MQi GT è più lenta e con meno respiro. La risposta di SFM agli acquirenti che altrimenti lascerebbero il marchio per una macchina «vera» adatta all\'autostrada.',
+'pos.tabt':'Confronto completo delle specifiche',
+'pos.th.model':'Modello','pos.th.class':'Classe','pos.th.speed':'Vel. max','pos.th.motor':'Motore nom.','pos.th.batt':'Batteria','pos.th.range':'Autonomia','pos.th.swap':'Batteria estraibile',
+'edge.eyebrow':'Valutazione onesta','edge.title':'Dove SFM vince — e dove è vulnerabile',
+'edge.lead':'La gamma vince su prezzo e ampiezza. Perché ciò diventi vendite e non solo un\'immagine di marchio economico, le seguenti lacune vanno colmate al lancio.',
+'edge.winh':'▲ Vantaggi strutturali','edge.winu':'<li><b>Leadership di prezzo in ogni classe</b> — sotto il mainstream a 25 e 45 km/h, il L3e più economico sul mercato.</li><li><b>Copertura di tutte le classi</b> — dal primo ciclomotore all\'A1 da 80 km/h.</li><li><b>Storia del sodio-ione (Future 5)</b> — primato di settore: freddo, nessuna storia di incendi, ~1.200 cicli, sostenibilità.</li><li><b>Batterie estraibili su tutta la gamma</b> — incl. il pacco doppio da ricaricare in casa.</li><li><b>Design retro (Prima E)</b> — look vicino alla Vespa a una frazione del prezzo.</li>',
+'edge.gaph':'▼ Lacune prima del lancio','edge.gapu':'<li><b>Fiducia nel marchio e post-vendita</b> — il motivo n. 1 di rifiuto degli scooter elettrici economici è un servizio debole.</li><li><b>Autonomia su tre modelli</b> — Future 5 (45), E2H (75), Prima E Sport (90) dietro rivali con 110–130 km.</li><li><b>Nessuna app/connettività</b> — NIU e unu vendono con GPS e app.</li><li><b>Classificazione svizzera</b> — 45 km/h = motoleggera A1 in CH.</li><li><b>Nessun vento a favore di incentivi</b> — AT scaduti, DE nessuno, CH cantonale.</li>',
+'edge.call':'<b>Conclusione strategica:</b> SFM è uno <b>sfidante di valore credibile rispetto a NIU</b> con due ganci reali — prezzo L3e imbattibile e prima del sodio-ione. Si vince con la <b>fiducia</b>: usare la finestra pre-lancio per comprare credibilità (concessionari, assistenza, test, garanzia).',
+'str.eyebrow':'Go-to-market','str.title':'Strategia di distribuzione per Germania, Austria e Svizzera',
+'str.lead':'Un posizionamento — <b>«il marchio di due ruote elettriche dal prezzo onesto e assistenza vera»</b> — tramite un modello ibrido: rete selettiva di concessionari/assistenza più configuratore diretto online. Ogni mercato richiede un focus diverso.',
+'str.de.s':'Maggior mercato UE · ~23% · dominato da NIU',
+'str.de.b':'<div class="row"><div class="rl">Priorità</div><div class="rt">Mercato di volume. Vincere la guerra dei prezzi a <b>45 km/h</b> con EM1/Prima/Future 5, fare della <b>E2H Sport 2.999&nbsp;€</b> la storia di prezzo L3e e della <b>Dream 7</b> la vetrina.</div></div><div class="row"><div class="rl">Canale</div><div class="rt"><b>Prima rete di concessionari/assistenza</b> — la risposta di fiducia contro NIU. D2C online sopra.</div></div><div class="row"><div class="rl">Leva</div><div class="rt"><b>THG-Quote</b> per proprietari L3e, <b>regola dello 0,25% per auto aziendali</b> per le flotte, ciclomotore a 15 anni per i giovani.</div></div>',
+'str.at.s':'Più piccolo · l\'AM a 45 km/h è l\'ingresso',
+'str.at.b':'<div class="row"><div class="rl">Priorità</div><div class="rt">Nessuna classe 25 km/h — l\'ingresso giovanile è <b>AM 45 km/h dai 15 anni</b>. Guidare con EM1 45, Prima E 45, Future 5.</div></div><div class="row"><div class="rl">Canale</div><div class="rt"><b>Importatore + concessionari regionali</b>; agganciarsi alla credibilità dell\'ÖAMTC.</div></div><div class="row"><div class="rl">Leva</div><div class="rt">Incentivi <b>scaduti</b>. <b>Vantaggio alpino al freddo</b> del sodio-ione della Future 5.</div></div>',
+'str.ch.s':'Disponibilità premium · classi diverse',
+'str.ch.b':'<div class="row"><div class="rl">Priorità</div><div class="rt">Scooter a benzina 45 km/h = <b>motoleggera A1</b>. Puntare su <b>Prima E Sport e E2H Sport</b> e la classe 25 km/h.</div></div><div class="row"><div class="rl">Canale</div><div class="rt">Richiede <b>omologazione svizzera (ASTRA)</b> + importatore locale. Il framing premium sostiene il margine.</div></div><div class="row"><div class="rl">Leva</div><div class="rt">Incentivi <b>cantonali</b>. Vendere su design, qualità e costi d\'esercizio.</div></div>',
+'cmp.eyebrow':'Il piano','cmp.title':'Campagna di pre-marketing — dal teaser al picco di primavera',
+'cmp.lead':'Sincronizzata su un fatto: <b>il mercato delle due ruote DACH tocca il picco a marzo–maggio</b>. Tutto anticipa la domanda al Q1 2027 — prima i concessionari, poi i clienti finali, più un canale stampa specializzata per la storia del sodio-ione.',
+'cmp.ph0':'<div class="ptag">Fondamenta — in silenzio</div><h4>Costruire l\'arsenale</h4><ul><li>Completare l\'omologazione di tipo UE + quella svizzera; fissare la consegna feb–mar 2027.</li><li>Identità di marca, foto/video di tutti i 6 modelli, sito + configuratore, sistema di prenotazione.</li><li>Pitch deck per concessionari, condizioni all\'ingrosso; kit stampa con i due angoli hero.</li></ul>',
+'cmp.ph1':'<div class="ptag">Riscaldamento concessionari — solo canale</div><h4>Firmare la rete prima che i clienti sentano una parola</h4><ul><li>Roadshow concessionari per DE/AT + incontri con importatori CH; prove su strada.</li><li>Briefing stampa specializzata sotto embargo; presenza a fiere fine 2026.</li><li>Obiettivo: LOI firmate dai concessionari + partner di assistenza nominati prima della presentazione.</li></ul>',
+'cmp.ph2':'<div class="ptag">Teaser cliente + lista d\'attesa</div><h4>«Primavera 2027» — costruire la pipeline</h4><ul><li>Lista d\'attesa di prenotazione (questo test di idoneità) con piccolo acconto rimborsabile; primi posti + vantaggi.</li><li>Teaser social, micro-influencer, paid social + search geo-targettizzati.</li><li>Proporre la «prima mondiale accessibile» del sodio-ione alla stampa tech/EV.</li></ul>',
+'cmp.ph3':'<div class="ptag">Presentazione e preordine</div><h4>Rivelare il prezzo. Aprire i preordini.</h4><ul><li>Presentazione completa con il <b>prezzo come titolo</b>; convertire la shortlist in preordini.</li><li>Bundle edizione lancio (2ª batteria gratis, nessuno sconto).</li><li>Inviare veicoli di prova perché i test escano a marzo.</li></ul>',
+'cmp.ph4':'<div class="ptag">Lancio e vendita — il picco</div><h4>Consegnare nell\'onda di primavera</h4><ul><li>Iniziano le consegne; tour di prove di primavera + pop-up urbani + azioni nei campus.</li><li>Ritargettizzare i non convertiti; co-op locale concessionari; rafforzare i test.</li><li>Programmi pilota flotta/consegne sulla storia TCO + batteria estraibile.</li></ul>',
+'cmp.pih':'Pilastri del messaggio',
+'cmp.pi1h':'Prezzo onesto','cmp.pi1p':'Stessa classe, centinaia in meno.','cmp.pi2h':'Prima del sodio-ione','cmp.pi2p':'Una batteria che nessuno offre.','cmp.pi3h':'Ricarica in casa','cmp.pi3p':'Batterie estraibili, niente garage.','cmp.pi4h':'Assistenza vera','cmp.pi4p':'Rete concessionari e garanzia.','cmp.pi5h':'Ogni patente','cmp.pi5p':'Dal primo ciclomotore all\'A1 da 80 km/h.',
+'rsk.eyebrow':'Da considerare','rsk.title':'Rischi chiave e loro mitigazione',
+'rsk.rh':'▼ Rischi','rsk.ru':'<li><b>«Economico = rischioso»</b> rispetto alle affermate NIU/Vespa.</li><li><b>Deficit di autonomia</b> su Future 5 / E2H nei test.</li><li><b>Ritardo di omologazione</b> spinge il lancio oltre la finestra di primavera.</li><li><b>Rete di assistenza scarsa</b> al lancio → reclami.</li><li><b>Classificazione svizzera</b> confonde sui modelli da 45 km/h.</li>',
+'rsk.mh':'▲ Contromisure','rsk.mu':'<li>Comprare credibilità presto: test, garanzia, assistenza visibile, concessionari veri.</li><li>Non pubblicizzare mai l\'autonomia; costi, tecnologia, cambia-e-ricarica; offrire 2ª batteria.</li><li>Proteggere la data presentazione feb/consegna mar come unica deadline rigida.</li><li>Nominare partner di assistenza per regione <i>prima</i> del lancio al cliente.</li><li>Avvisi di patente per paese nel configuratore + formazione concessionari.</li>',
+'rsk.call':'<b>Conclusione:</b> SFM parte nel 2027 con la scala di prezzi più aggressiva della DACH e una vera storia tecnologica. Si vende se la finestra pre-lancio trasforma il prezzo in <b>fiducia</b> — concessionari firmati, assistenza visibile, test positivi, shortlist calda.',
+'ft.h':'Fonti e note','ft.p':'Dati e prezzi SFM dalle sei schede tecniche. I prezzi della concorrenza sono valori di listino/strada attuali 2025–2026 e variano per concessionario/configurazione; trattarli come benchmark indicativi. Il test di idoneità e la shortlist sono un concetto illustrativo di pre-marketing.',
+'ft.disc':'Creato per SFM · go-to-market DACH 2027. Le cifre della concorrenza sono i migliori dati pubblici disponibili ad agosto 2026 e vanno verificate prima di un uso esterno.'
+};
+const ITPH={'r.slph':'tu@email.com'};
+
 // ---------- QUIZ ----------
 const QUIZ={
  en:[
@@ -999,79 +1209,95 @@ const QUIZ={
   {n:'Frage 4 von 6',q:'Wie viel möchtest du ausgeben?',o:['Unter 2.000 €','2.000–3.500 €','3.500–5.000 €','Über 5.000 €']},
   {n:'Frage 5 von 6',q:'Wofür hauptsächlich?',o:['Stadtpendeln','Freizeit &amp; Spaß','Lieferung oder Gewerbe','Mein erstes Fahrzeug']},
   {n:'Frage 6 von 6',q:'Wann möchtest du es?',o:['Diesen Frühling (2027)','Später 2027','Erstmal nur umschauen']}
+ ],
+ es:[
+  {n:'Pregunta 1 de 6',q:'¿Dónde vas a conducir?',o:['🇩🇪 Alemania','🇦🇹 Austria','🇨🇭 Suiza','🌍 Otro lugar de Europa']},
+  {n:'Pregunta 2 de 6',q:'¿A qué velocidad necesitas ir?',o:['25 km/h — ciclomotor, desde los 15','45 km/h — ciclomotor (permiso AM)','Hasta 110 km/h — permiso A1','Aún no lo sé']},
+  {n:'Pregunta 3 de 6',q:'¿Cuánto en un día normal?',o:['Menos de 30 km','30–60 km','60–90 km','90 km o más']},
+  {n:'Pregunta 4 de 6',q:'¿Cuánto quieres gastar?',o:['Menos de 2.000 €','2.000–3.500 €','3.500–5.000 €','Más de 5.000 €']},
+  {n:'Pregunta 5 de 6',q:'¿Para qué es sobre todo?',o:['Desplazamientos urbanos','Ocio y diversión','Reparto o negocio','Mi primer vehículo']},
+  {n:'Pregunta 6 de 6',q:'¿Cuándo lo querrías?',o:['Esta primavera (2027)','Más adelante en 2027','Solo estoy mirando por ahora']}
+ ],
+ it:[
+  {n:'Domanda 1 di 6',q:'Dove guiderai?',o:['🇩🇪 Germania','🇦🇹 Austria','🇨🇭 Svizzera','🌍 Altrove in Europa']},
+  {n:'Domanda 2 di 6',q:'A che velocità ti serve andare?',o:['25 km/h — ciclomotore, dai 15 anni','45 km/h — ciclomotore (patente AM)','Fino a 110 km/h — patente A1','Non ancora sicuro']},
+  {n:'Domanda 3 di 6',q:'Quanti km in una giornata tipo?',o:['Meno di 30 km','30–60 km','60–90 km','90 km o più']},
+  {n:'Domanda 4 di 6',q:'Quanto vuoi spendere?',o:['Meno di 2.000 €','2.000–3.500 €','3.500–5.000 €','Oltre 5.000 €']},
+  {n:'Domanda 5 di 6',q:'A cosa serve principalmente?',o:['Spostamenti in città','Tempo libero e divertimento','Consegne o lavoro','Il mio primo veicolo']},
+  {n:'Domanda 6 di 6',q:'Quando lo vorresti?',o:['Questa primavera (2027)','Più avanti nel 2027','Solo curiosità per ora']}
  ]
 };
 const answers=[null,null,null,null,null,null];
 
 // models + rival comparison sets (name, price, speed km/h, range km)
 const MODELS={
- EM1:{name:'SFM EM1',price:1699,sp:25,rg:80,cls:{en:'25 km/h Mofa · from age 15',de:'25 km/h Mofa · ab 15'},
-   specs:{en:[['Range','up to 80 km'],['Battery','60V · 1,440 Wh'],['Motor','500 W · 80 Nm']],de:[['Reichweite','bis 80 km'],['Akku','60V · 1.440 Wh'],['Motor','500 W · 80 Nm']]},
+ EM1:{name:'SFM EM1',price:1699,sp:25,rg:80,cls:{en:'25 km/h Mofa · from age 15',de:'25 km/h Mofa · ab 15',es:'Ciclomotor 25 km/h · desde los 15',it:'Ciclomotore 25 km/h · dai 15 anni'},
+   specs:{en:[['Range','up to 80 km'],['Battery','60V · 1,440 Wh'],['Motor','500 W · 80 Nm']],de:[['Reichweite','bis 80 km'],['Akku','60V · 1.440 Wh'],['Motor','500 W · 80 Nm']],es:[['Autonomía','hasta 80 km'],['Batería','60V · 1.440 Wh'],['Motor','500 W · 80 Nm']],it:[['Autonomia','fino a 80 km'],['Batteria','60V · 1.440 Wh'],['Motore','500 W · 80 Nm']]},
    rivals:[{name:'NIU UQi',price:2200,s:25,r:50},{name:'Super Soco CUx',price:2300,s:25,r:60},{name:'emco Novi',price:2500,s:25,r:60}]},
- E2H_STD:{name:'SFM E2H',price:2199,sp:25,rg:null,cls:{en:'25 km/h · torque retro',de:'25 km/h · drehmomentstark'},
-   specs:{en:[['Top speed','25 km/h'],['Torque','165 Nm'],['Battery','72V · 1,728 Wh']],de:[['Höchstgeschw.','25 km/h'],['Drehmoment','165 Nm'],['Akku','72V · 1.728 Wh']]},
+ E2H_STD:{name:'SFM E2H',price:2199,sp:25,rg:null,cls:{en:'25 km/h · torque retro',de:'25 km/h · drehmomentstark',es:'25 km/h · retro con par',it:'25 km/h · retro ad alta coppia'},
+   specs:{en:[['Top speed','25 km/h'],['Torque','165 Nm'],['Battery','72V · 1,728 Wh']],de:[['Höchstgeschw.','25 km/h'],['Drehmoment','165 Nm'],['Akku','72V · 1.728 Wh']],es:[['Vel. máx.','25 km/h'],['Par','165 Nm'],['Batería','72V · 1.728 Wh']],it:[['Vel. max','25 km/h'],['Coppia','165 Nm'],['Batteria','72V · 1.728 Wh']]},
    rivals:[{name:'NIU UQi',price:2200,s:25,r:50},{name:'Super Soco CUx',price:2300,s:25,r:60},{name:'emco Novi',price:2500,s:25,r:60}]},
- E2H_PLUS:{name:'SFM E2H Plus',price:2849,sp:25,rg:null,cls:{en:'25 km/h · dual battery',de:'25 km/h · Doppelakku'},
-   specs:{en:[['Top speed','25 km/h'],['Torque','165 Nm'],['Battery','2× 72V · 3,456 Wh']],de:[['Höchstgeschw.','25 km/h'],['Drehmoment','165 Nm'],['Akku','2× 72V · 3.456 Wh']]},
+ E2H_PLUS:{name:'SFM E2H Plus',price:2849,sp:25,rg:null,cls:{en:'25 km/h · dual battery',de:'25 km/h · Doppelakku',es:'25 km/h · batería doble',it:'25 km/h · doppia batteria'},
+   specs:{en:[['Top speed','25 km/h'],['Torque','165 Nm'],['Battery','2× 72V · 3,456 Wh']],de:[['Höchstgeschw.','25 km/h'],['Drehmoment','165 Nm'],['Akku','2× 72V · 3.456 Wh']],es:[['Vel. máx.','25 km/h'],['Par','165 Nm'],['Batería','2× 72V · 3.456 Wh']],it:[['Vel. max','25 km/h'],['Coppia','165 Nm'],['Batteria','2× 72V · 3.456 Wh']]},
    rivals:[{name:'NIU UQi',price:2200,s:25,r:50},{name:'Super Soco CUx',price:2300,s:25,r:60},{name:'emco Novi',price:2500,s:25,r:60}]},
- FUTURE5:{name:'SFM Future 5',price:1999,sp:45,rg:45,cls:{en:'45 km/h Mokick · sodium-ion',de:'45 km/h Mokick · Natrium-Ionen'},
-   specs:{en:[['Battery','⚛ Sodium-ion 1,260 Wh'],['Cycles','~1,200'],['Range','up to 45 km']],de:[['Akku','⚛ Natrium-Ionen 1.260 Wh'],['Zyklen','~1.200'],['Reichweite','bis 45 km']]},
+ FUTURE5:{name:'SFM Future 5',price:1999,sp:45,rg:45,cls:{en:'45 km/h Mokick · sodium-ion',de:'45 km/h Mokick · Natrium-Ionen',es:'Ciclomotor 45 km/h · sodio-ion',it:'Ciclomotore 45 km/h · sodio-ione'},
+   specs:{en:[['Battery','⚛ Sodium-ion 1,260 Wh'],['Cycles','~1,200'],['Range','up to 45 km']],de:[['Akku','⚛ Natrium-Ionen 1.260 Wh'],['Zyklen','~1.200'],['Reichweite','bis 45 km']],es:[['Batería','⚛ Sodio-ion 1.260 Wh'],['Ciclos','~1.200'],['Autonomía','hasta 45 km']],it:[['Batteria','⚛ Sodio-ione 1.260 Wh'],['Cicli','~1.200'],['Autonomia','fino a 45 km']]},
    rivals:[{name:'Vässla 2',price:2250,s:45,r:50},{name:'NIU MQi+',price:2500,s:45,r:65},{name:'Kumpan 54',price:3900,s:45,r:90}]},
- FUTURE3:{name:'SFM Future 3',price:2699,sp:45,rg:null,cls:{en:'45 km/h Mokick · big battery',de:'45 km/h Mokick · großer Akku'},
-   specs:{en:[['Motor','2,000 W'],['Battery','72V · 2,160 Wh'],['Top speed','45 km/h']],de:[['Motor','2.000 W'],['Akku','72V · 2.160 Wh'],['Höchstgeschw.','45 km/h']]},
+ FUTURE3:{name:'SFM Future 3',price:2699,sp:45,rg:null,cls:{en:'45 km/h Mokick · big battery',de:'45 km/h Mokick · großer Akku',es:'Ciclomotor 45 km/h · batería grande',it:'Ciclomotore 45 km/h · batteria grande'},
+   specs:{en:[['Motor','2,000 W'],['Battery','72V · 2,160 Wh'],['Top speed','45 km/h']],de:[['Motor','2.000 W'],['Akku','72V · 2.160 Wh'],['Höchstgeschw.','45 km/h']],es:[['Motor','2.000 W'],['Batería','72V · 2.160 Wh'],['Vel. máx.','45 km/h']],it:[['Motore','2.000 W'],['Batteria','72V · 2.160 Wh'],['Vel. max','45 km/h']]},
    rivals:[{name:'NIU MQi+',price:2500,s:45,r:65},{name:'Super Soco CUx Pro',price:2599,s:45,r:80},{name:'Horwin EK1',price:3200,s:45,r:100}]},
- PRIMA_E:{name:'SFM Prima E',price:1999,sp:45,rg:65,cls:{en:'Retro · 25 or 45 km/h',de:'Retro · 25 oder 45 km/h'},
-   specs:{en:[['Range','up to 65 km'],['Battery','960 Wh · 7 kg removable'],['Wheels','14″ retro']],de:[['Reichweite','bis 65 km'],['Akku','960 Wh · 7 kg Wechselakku'],['Räder','14″ Retro']]},
+ PRIMA_E:{name:'SFM Prima E',price:1999,sp:45,rg:65,cls:{en:'Retro · 25 or 45 km/h',de:'Retro · 25 oder 45 km/h',es:'Retro · 25 o 45 km/h',it:'Retro · 25 o 45 km/h'},
+   specs:{en:[['Range','up to 65 km'],['Battery','960 Wh · 7 kg removable'],['Wheels','14″ retro']],de:[['Reichweite','bis 65 km'],['Akku','960 Wh · 7 kg Wechselakku'],['Räder','14″ Retro']],es:[['Autonomía','hasta 65 km'],['Batería','960 Wh · extraíble 7 kg'],['Ruedas','14″ retro']],it:[['Autonomia','fino a 65 km'],['Batteria','960 Wh · estraibile 7 kg'],['Ruote','14″ retro']]},
    rivals:[{name:'NIU UQi',price:2200,s:45,r:50},{name:'unu Scooter',price:3024,s:45,r:55},{name:'Kumpan 54',price:3900,s:45,r:90}]},
- PRIMA_SPORT:{name:'SFM Prima E Sport',price:2999,sp:75,rg:90,cls:{en:'75 km/h · A1',de:'75 km/h · A1'},
-   specs:{en:[['Top speed','75 km/h'],['Range','up to 90 km'],['Power','3,000 / 3,800 W']],de:[['Höchstgeschw.','75 km/h'],['Reichweite','bis 90 km'],['Leistung','3.000 / 3.800 W']]},
+ PRIMA_SPORT:{name:'SFM Prima E Sport',price:2999,sp:75,rg:90,cls:{en:'75 km/h · A1',de:'75 km/h · A1',es:'75 km/h · A1',it:'75 km/h · A1'},
+   specs:{en:[['Top speed','75 km/h'],['Range','up to 90 km'],['Power','3,000 / 3,800 W']],de:[['Höchstgeschw.','75 km/h'],['Reichweite','bis 90 km'],['Leistung','3.000 / 3.800 W']],es:[['Vel. máx.','75 km/h'],['Autonomía','hasta 90 km'],['Potencia','3.000 / 3.800 W']],it:[['Vel. max','75 km/h'],['Autonomia','fino a 90 km'],['Potenza','3.000 / 3.800 W']]},
    rivals:[{name:'NIU MQi GT',price:3799,s:100,r:70},{name:'Horwin SK3',price:3990,s:90,r:120},{name:'Super Soco TC Max',price:3999,s:95,r:110}]},
- E2H:{name:'SFM E2H Sport',price:2999,sp:80,rg:75,cls:{en:'80 km/h L3e · A1',de:'80 km/h L3e · A1'},
-   specs:{en:[['Top speed','80 km/h'],['Range','up to 75 km'],['Battery','2× 72V · 3,456 Wh']],de:[['Höchstgeschw.','80 km/h'],['Reichweite','bis 75 km'],['Akku','2× 72V · 3.456 Wh']]},
+ E2H:{name:'SFM E2H Sport',price:2999,sp:80,rg:75,cls:{en:'80 km/h L3e · A1',de:'80 km/h L3e · A1',es:'80 km/h L3e · A1',it:'80 km/h L3e · A1'},
+   specs:{en:[['Top speed','80 km/h'],['Range','up to 75 km'],['Battery','2× 72V · 3,456 Wh']],de:[['Höchstgeschw.','80 km/h'],['Reichweite','bis 75 km'],['Akku','2× 72V · 3.456 Wh']],es:[['Vel. máx.','80 km/h'],['Autonomía','hasta 75 km'],['Batería','2× 72V · 3.456 Wh']],it:[['Vel. max','80 km/h'],['Autonomia','fino a 75 km'],['Batteria','2× 72V · 3.456 Wh']]},
    rivals:[{name:'Horwin SK3',price:3990,s:90,r:120},{name:'Super Soco TC Max',price:3999,s:95,r:110},{name:'Vespa Elettrica',price:7199,s:70,r:70}]},
- DREAM7:{name:'SFM Dream 7',price:5999,sp:110,rg:150,cls:{en:'110 km/h L3e · flagship',de:'110 km/h L3e · Flaggschiff'},
-   specs:{en:[['Top speed','110 km/h'],['Range','up to 150 km'],['Battery','BYD LFP 5.18 kWh'],['Charge','~2 h to 80%'],['Safety','ABS + TCS']],de:[['Höchstgeschw.','110 km/h'],['Reichweite','bis 150 km'],['Akku','BYD LFP 5,18 kWh'],['Laden','~2 h auf 80%'],['Sicherheit','ABS + TCS']]},
+ DREAM7:{name:'SFM Dream 7',price:5999,sp:110,rg:150,cls:{en:'110 km/h L3e · flagship',de:'110 km/h L3e · Flaggschiff',es:'110 km/h L3e · buque insignia',it:'110 km/h L3e · ammiraglia'},
+   specs:{en:[['Top speed','110 km/h'],['Range','up to 150 km'],['Battery','BYD LFP 5.18 kWh'],['Charge','~2 h to 80%'],['Safety','ABS + TCS']],de:[['Höchstgeschw.','110 km/h'],['Reichweite','bis 150 km'],['Akku','BYD LFP 5,18 kWh'],['Laden','~2 h auf 80%'],['Sicherheit','ABS + TCS']],es:[['Vel. máx.','110 km/h'],['Autonomía','hasta 150 km'],['Batería','BYD LFP 5,18 kWh'],['Carga','~2 h al 80%'],['Seguridad','ABS + TCS']],it:[['Vel. max','110 km/h'],['Autonomia','fino a 150 km'],['Batteria','BYD LFP 5,18 kWh'],['Ricarica','~2 h all\'80%'],['Sicurezza','ABS + TCS']]},
    rivals:[{name:'SEAT Mó 125',price:4990,s:95,r:137},{name:'Super Soco CPx',price:5990,s:90,r:140},{name:'Silence S01+',price:8790,s:100,r:133}]}
 };
 
 // strong points per model (honest wins vs named rivals)
 const STRONG={
  'SFM EM1':[
-   {t:{en:'Price',de:'Preis'},a:'€1,699',b:'€2,200',bn:'NIU UQi',note:{en:'€501 less — the class price floor',de:'501 € günstiger — Preisuntergrenze'}},
-   {t:{en:'Range',de:'Reichweite'},a:'80 km',b:'50 km',bn:'NIU UQi',note:{en:'+60% further per charge',de:'+60% mehr pro Ladung'}},
-   {t:{en:'vs premium',de:'vs. Premium'},a:'€1,699',b:'€3,200',bn:'Horwin EK1',note:{en:'About half the price',de:'Etwa der halbe Preis'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€1,699',b:'€2,200',bn:'NIU UQi',note:{en:'€501 less — the class price floor',de:'501 € günstiger — Preisuntergrenze',es:'501 € menos — el precio mínimo de la clase',it:'501 € in meno — il prezzo minimo della classe'}},
+   {t:{en:'Range',de:'Reichweite',es:'Autonomía',it:'Autonomia'},a:'80 km',b:'50 km',bn:'NIU UQi',note:{en:'+60% further per charge',de:'+60% mehr pro Ladung',es:'+60% más por carga',it:'+60% in più per carica'}},
+   {t:{en:'vs premium',de:'vs. Premium',es:'vs. premium',it:'vs. premium'},a:'€1,699',b:'€3,200',bn:'Horwin EK1',note:{en:'About half the price',de:'Etwa der halbe Preis',es:'Casi la mitad del precio',it:'Circa metà prezzo'}}],
  'SFM E2H':[
-   {t:{en:'Price',de:'Preis'},a:'€2,199',b:'€2,300',bn:'Super Soco CUx',note:{en:'Undercuts on price',de:'Unterbietet im Preis'}},
-   {t:{en:'Torque',de:'Drehmoment'},a:'165 Nm',b:'~130 Nm',bn:'rivals',note:{en:'Strongest low-end pull',de:'Stärkster Antritt'}},
-   {t:{en:'Power',de:'Leistung'},a:'3.0 kW',b:'~1.8 kW',bn:'NIU UQi',note:{en:'Punchy for a 25 km/h',de:'Kräftig für ein 25 km/h'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€2,199',b:'€2,300',bn:'Super Soco CUx',note:{en:'Undercuts on price',de:'Unterbietet im Preis',es:'Rebaja el precio',it:'Batte sul prezzo'}},
+   {t:{en:'Torque',de:'Drehmoment',es:'Par',it:'Coppia'},a:'165 Nm',b:'~130 Nm',bn:'rivals',note:{en:'Strongest low-end pull',de:'Stärkster Antritt',es:'El mayor empuje a bajas',it:'La spinta più forte ai bassi'}},
+   {t:{en:'Power',de:'Leistung',es:'Potencia',it:'Potenza'},a:'3.0 kW',b:'~1.8 kW',bn:'NIU UQi',note:{en:'Punchy for a 25 km/h',de:'Kräftig für ein 25 km/h',es:'Enérgico para un 25 km/h',it:'Grintoso per un 25 km/h'}}],
  'SFM E2H Plus':[
-   {t:{en:'Battery',de:'Akku'},a:'3,456 Wh',b:'~1,500 Wh',bn:'NIU UQi',note:{en:'Dual pack — big range',de:'Doppelakku — große Reichweite'}},
-   {t:{en:'Torque',de:'Drehmoment'},a:'165 Nm',b:'~130 Nm',bn:'rivals',note:{en:'Strong pull',de:'Kräftiger Antritt'}},
-   {t:{en:'vs premium 25',de:'vs. Premium-25'},a:'€2,849',b:'€3,200',bn:'Horwin',note:{en:'Dual battery for less',de:'Doppelakku für weniger'}}],
+   {t:{en:'Battery',de:'Akku',es:'Batería',it:'Batteria'},a:'3,456 Wh',b:'~1,500 Wh',bn:'NIU UQi',note:{en:'Dual pack — big range',de:'Doppelakku — große Reichweite',es:'Pack doble — gran autonomía',it:'Pacco doppio — grande autonomia'}},
+   {t:{en:'Torque',de:'Drehmoment',es:'Par',it:'Coppia'},a:'165 Nm',b:'~130 Nm',bn:'rivals',note:{en:'Strong pull',de:'Kräftiger Antritt',es:'Empuje fuerte',it:'Spinta forte'}},
+   {t:{en:'vs premium 25',de:'vs. Premium-25',es:'vs. premium 25',it:'vs. premium 25'},a:'€2,849',b:'€3,200',bn:'Horwin',note:{en:'Dual battery for less',de:'Doppelakku für weniger',es:'Batería doble por menos',it:'Doppia batteria per meno'}}],
  'SFM Future 3':[
-   {t:{en:'Price',de:'Preis'},a:'€2,699',b:'€3,200',bn:'Horwin EK1',note:{en:'Big 2 kW / 2,160 Wh for less',de:'Kräftige 2 kW / 2.160 Wh für weniger'}},
-   {t:{en:'Battery',de:'Akku'},a:'2,160 Wh',b:'~1,900 Wh',bn:'Horwin EK1',note:{en:'More energy on board',de:'Mehr Energie an Bord'}},
-   {t:{en:'Power',de:'Leistung'},a:'2,000 W',b:'1,400 W',bn:'NIU MQi+',note:{en:'Stronger pull',de:'Kräftigerer Antritt'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€2,699',b:'€3,200',bn:'Horwin EK1',note:{en:'Big 2 kW / 2,160 Wh for less',de:'Kräftige 2 kW / 2.160 Wh für weniger',es:'2 kW / 2.160 Wh por menos',it:'2 kW / 2.160 Wh per meno'}},
+   {t:{en:'Battery',de:'Akku',es:'Batería',it:'Batteria'},a:'2,160 Wh',b:'~1,900 Wh',bn:'Horwin EK1',note:{en:'More energy on board',de:'Mehr Energie an Bord',es:'Más energía a bordo',it:'Più energia a bordo'}},
+   {t:{en:'Power',de:'Leistung',es:'Potencia',it:'Potenza'},a:'2,000 W',b:'1,400 W',bn:'NIU MQi+',note:{en:'Stronger pull',de:'Kräftigerer Antritt',es:'Empuje más fuerte',it:'Spinta più forte'}}],
  'SFM Future 5':[
-   {t:{en:'Battery tech',de:'Akku-Technik'},a:'Na-ion',b:'Li-ion',bn:'every rival',note:{en:'Cold-tough, no fire story',de:'Kältefest, keine Brandgeschichte'}},
-   {t:{en:'Price',de:'Preis'},a:'€1,999',b:'€2,500',bn:'NIU MQi+',note:{en:'€500 less',de:'500 € günstiger'}},
-   {t:{en:'Lifespan',de:'Lebensdauer'},a:'~1,200',b:'—',bn:'cycles',note:{en:'Long-life sodium cells',de:'Langlebige Natrium-Zellen'}}],
+   {t:{en:'Battery tech',de:'Akku-Technik',es:'Tecnología de batería',it:'Tecnologia batteria'},a:'Na-ion',b:'Li-ion',bn:'every rival',note:{en:'Cold-tough, no fire story',de:'Kältefest, keine Brandgeschichte',es:'Resistente al frío, sin incendios',it:'Resistente al freddo, niente incendi'}},
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€1,999',b:'€2,500',bn:'NIU MQi+',note:{en:'€500 less',de:'500 € günstiger',es:'500 € menos',it:'500 € in meno'}},
+   {t:{en:'Lifespan',de:'Lebensdauer',es:'Vida útil',it:'Durata'},a:'~1,200',b:'—',bn:'cycles',note:{en:'Long-life sodium cells',de:'Langlebige Natrium-Zellen',es:'Celdas de sodio de larga vida',it:'Celle al sodio a lunga durata'}}],
  'SFM Prima E':[
-   {t:{en:'Price',de:'Preis'},a:'€1,999',b:'€3,024',bn:'unu Scooter',note:{en:'~€1,000 less than the design DTC',de:'~1.000 € unter der Design-DTC'}},
-   {t:{en:'vs retro icon',de:'vs. Retro-Ikone'},a:'€1,999',b:'€3,900',bn:'Kumpan 54',note:{en:'Half the retro price',de:'Halber Retro-Preis'}},
-   {t:{en:'Battery',de:'Akku'},a:'7 kg',b:'heavier',bn:'rivals',note:{en:'Light, removable, carry indoors',de:'Leicht, herausnehmbar, drinnen laden'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€1,999',b:'€3,024',bn:'unu Scooter',note:{en:'~€1,000 less than the design DTC',de:'~1.000 € unter der Design-DTC',es:'~1.000 € menos que la DTC de diseño',it:'~1.000 € in meno della DTC di design'}},
+   {t:{en:'vs retro icon',de:'vs. Retro-Ikone',es:'vs. icono retro',it:'vs. icona retro'},a:'€1,999',b:'€3,900',bn:'Kumpan 54',note:{en:'Half the retro price',de:'Halber Retro-Preis',es:'La mitad del precio retro',it:'Metà del prezzo retro'}},
+   {t:{en:'Battery',de:'Akku',es:'Batería',it:'Batteria'},a:'7 kg',b:'heavier',bn:'rivals',note:{en:'Light, removable, carry indoors',de:'Leicht, herausnehmbar, drinnen laden',es:'Ligera, extraíble, cárgala en casa',it:'Leggera, estraibile, la porti in casa'}}],
  'SFM Prima E Sport':[
-   {t:{en:'Price',de:'Preis'},a:'€2,999',b:'€3,799',bn:'NIU MQi GT',note:{en:'€800 less',de:'800 € günstiger'}},
-   {t:{en:'Range',de:'Reichweite'},a:'90 km',b:'75 km',bn:'NIU MQi GT',note:{en:'More range for less',de:'Mehr Reichweite für weniger'}},
-   {t:{en:'Speed for money',de:'Speed pro Geld'},a:'75 km/h',b:'45 km/h',bn:'moped money',note:{en:'A1 pace at moped price',de:'A1-Tempo zum Moped-Preis'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€2,999',b:'€3,799',bn:'NIU MQi GT',note:{en:'€800 less',de:'800 € günstiger',es:'800 € menos',it:'800 € in meno'}},
+   {t:{en:'Range',de:'Reichweite',es:'Autonomía',it:'Autonomia'},a:'90 km',b:'75 km',bn:'NIU MQi GT',note:{en:'More range for less',de:'Mehr Reichweite für weniger',es:'Más autonomía por menos',it:'Più autonomia per meno'}},
+   {t:{en:'Speed for money',de:'Speed pro Geld',es:'Velocidad por tu dinero',it:'Velocità per i tuoi soldi'},a:'75 km/h',b:'45 km/h',bn:'moped money',note:{en:'A1 pace at moped price',de:'A1-Tempo zum Moped-Preis',es:'Ritmo A1 a precio de ciclomotor',it:'Andatura A1 a prezzo da ciclomotore'}}],
  'SFM E2H Sport':[
-   {t:{en:'Price',de:'Preis'},a:'€2,999',b:'€3,999',bn:'Super Soco TC Max',note:{en:'€1,000 less — cheapest 80 km/h L3e in DACH',de:'1.000 € günstiger — günstigster 80-km/h-L3e in DACH'}},
-   {t:{en:'vs a Vespa',de:'vs. Vespa'},a:'€2,999',b:'€7,199',bn:'Elettrica 70',note:{en:'Under half the price',de:'Unter dem halben Preis'}},
-   {t:{en:'Batteries',de:'Akkus'},a:'Dual · removable',b:'Fixed',bn:'Vespa',note:{en:'Charge them indoors',de:'Drinnen laden'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€2,999',b:'€3,999',bn:'Super Soco TC Max',note:{en:'€1,000 less — cheapest 80 km/h L3e in DACH',de:'1.000 € günstiger — günstigster 80-km/h-L3e in DACH',es:'1.000 € menos — el L3e de 80 km/h más barato de DACH',it:'1.000 € in meno — il L3e da 80 km/h più economico della DACH'}},
+   {t:{en:'vs a Vespa',de:'vs. Vespa',es:'vs. una Vespa',it:'vs. una Vespa'},a:'€2,999',b:'€7,199',bn:'Elettrica 70',note:{en:'Under half the price',de:'Unter dem halben Preis',es:'Menos de la mitad del precio',it:'Meno della metà del prezzo'}},
+   {t:{en:'Batteries',de:'Akkus',es:'Baterías',it:'Batterie'},a:'Dual · removable',b:'Fixed',bn:'Vespa',note:{en:'Charge them indoors',de:'Drinnen laden',es:'Cárgalas en casa',it:'Ricaricale in casa'}}],
  'SFM Dream 7':[
-   {t:{en:'Range',de:'Reichweite'},a:'150 km',b:'137 km',bn:'SEAT Mó',note:{en:'Longest range in its class',de:'Größte Reichweite der Klasse'}},
-   {t:{en:'vs Silence',de:'vs. Silence'},a:'€5,999',b:'€8,790',bn:'S01+',note:{en:'~€2,800 under the premium name',de:'~2.800 € unter dem Premium-Namen'}},
-   {t:{en:'Fast charge',de:'Schnellladen'},a:'~2 h',b:'6–8 h',bn:'most rivals',note:{en:'BYD LFP · 0→80% in ~2 h',de:'BYD LFP · 0→80% in ~2 h'}}]
+   {t:{en:'Range',de:'Reichweite',es:'Autonomía',it:'Autonomia'},a:'150 km',b:'137 km',bn:'SEAT Mó',note:{en:'Longest range in its class',de:'Größte Reichweite der Klasse',es:'La mayor autonomía de su clase',it:'La maggiore autonomia della sua classe'}},
+   {t:{en:'vs Silence',de:'vs. Silence',es:'vs. Silence',it:'vs. Silence'},a:'€5,999',b:'€8,790',bn:'S01+',note:{en:'~€2,800 under the premium name',de:'~2.800 € unter dem Premium-Namen',es:'~2.800 € por debajo del nombre premium',it:'~2.800 € sotto il nome premium'}},
+   {t:{en:'Fast charge',de:'Schnellladen',es:'Carga rápida',it:'Ricarica rapida'},a:'~2 h',b:'6–8 h',bn:'most rivals',note:{en:'BYD LFP · 0→80% in ~2 h',de:'BYD LFP · 0→80% in ~2 h',es:'BYD LFP · 0→80% en ~2 h',it:'BYD LFP · 0→80% in ~2 h'}}]
 };
 function recommend(){
  const [loc,spd,dist,bud,use,when]=answers;
@@ -1091,15 +1317,15 @@ function recommend(){
 // media key + one-line reason per model (for featured image and alternates)
 const MMEDIA={'SFM EM1':['em1','g'],'SFM E2H':['e2h','g'],'SFM E2H Plus':['e2h','g'],'SFM Future 5':['future5','g'],'SFM Future 3':['future3','g'],'SFM Prima E':['primae','g'],'SFM Prima E Sport':['primaesport','g'],'SFM E2H Sport':['e2h','g'],'SFM Dream 7':['dream7','d']};
 const ALT_TAG={
- 'SFM EM1':{en:'The value pick — cheapest in the range, 80 km range',de:'Der Preis-Tipp — günstigstes Modell, 80 km Reichweite'},
- 'SFM E2H':{en:'Torque-rich 25 km/h retro',de:'Drehmomentstarkes 25-km/h-Retro'},
- 'SFM E2H Plus':{en:'Dual battery for longer 25 km/h range',de:'Doppelakku für mehr 25-km/h-Reichweite'},
- 'SFM Future 5':{en:'Sodium-ion first — cold-tough, long-life',de:'Natrium-Ionen-Premiere — kältefest, langlebig'},
- 'SFM Future 3':{en:'Big 2,160 Wh battery for the money',de:'Großer 2.160-Wh-Akku fürs Geld'},
- 'SFM Prima E':{en:'Retro style, 7 kg carry-in battery',de:'Retro-Stil, 7-kg-Wechselakku'},
- 'SFM Prima E Sport':{en:'75 km/h & 90 km at moped money',de:'75 km/h & 90 km zum Moped-Preis'},
- 'SFM E2H Sport':{en:'Cheapest 80 km/h L3e in DACH',de:'Günstigster 80-km/h-L3e in DACH'},
- 'SFM Dream 7':{en:'The 110 km/h, 150 km flagship',de:'Das 110-km/h-, 150-km-Flaggschiff'}};
+ 'SFM EM1':{en:'The value pick — cheapest in the range, 80 km range',de:'Der Preis-Tipp — günstigstes Modell, 80 km Reichweite',es:'La opción de valor — el más barato de la gama, 80 km de autonomía',it:'La scelta conveniente — il più economico della gamma, 80 km di autonomia'},
+ 'SFM E2H':{en:'Torque-rich 25 km/h retro',de:'Drehmomentstarkes 25-km/h-Retro',es:'Retro de 25 km/h con mucho par',it:'Retro da 25 km/h ad alta coppia'},
+ 'SFM E2H Plus':{en:'Dual battery for longer 25 km/h range',de:'Doppelakku für mehr 25-km/h-Reichweite',es:'Batería doble para más autonomía a 25 km/h',it:'Doppia batteria per più autonomia a 25 km/h'},
+ 'SFM Future 5':{en:'Sodium-ion first — cold-tough, long-life',de:'Natrium-Ionen-Premiere — kältefest, langlebig',es:'Estreno del sodio-ion — resistente al frío, larga vida',it:'Prima del sodio-ione — resistente al freddo, lunga durata'},
+ 'SFM Future 3':{en:'Big 2,160 Wh battery for the money',de:'Großer 2.160-Wh-Akku fürs Geld',es:'Gran batería de 2.160 Wh por el precio',it:'Grande batteria da 2.160 Wh per il prezzo'},
+ 'SFM Prima E':{en:'Retro style, 7 kg carry-in battery',de:'Retro-Stil, 7-kg-Wechselakku',es:'Estilo retro, batería extraíble de 7 kg',it:'Stile retro, batteria estraibile da 7 kg'},
+ 'SFM Prima E Sport':{en:'75 km/h & 90 km at moped money',de:'75 km/h & 90 km zum Moped-Preis',es:'75 km/h y 90 km a precio de ciclomotor',it:'75 km/h e 90 km a prezzo da ciclomotore'},
+ 'SFM E2H Sport':{en:'Cheapest 80 km/h L3e in DACH',de:'Günstigster 80-km/h-L3e in DACH',es:'El L3e de 80 km/h más barato de DACH',it:'Il L3e da 80 km/h più economico della DACH'},
+ 'SFM Dream 7':{en:'The 110 km/h, 150 km flagship',de:'Das 110-km/h-, 150-km-Flaggschiff',es:'El buque insignia de 110 km/h y 150 km',it:'L\'ammiraglia da 110 km/h e 150 km'}};
 function rankModels(){
  const [loc,spd,dist,bud,use]=answers;
  const budCap=[2000,3500,5000,999999][bud==null?3:bud];
@@ -1126,8 +1352,8 @@ function renderAlternates(list,lang){
   const mm=MMEDIA[m.name]; const isD=mm[1]==='d';
   const img=isD?'assets/dream7/d7-1.jpg':('assets/models/'+mm[0]+'/f-1.jpg');
   const el=document.createElement('div'); el.className='altcard';
-  el.innerHTML='<div class="aimg'+(mm[0]==='e2h'?' grey':'')+(isD?' dark':'')+'"><img src="'+img+'" alt="'+m.name+'" loading="lazy"><span class="vtag">⟳ '+(lang==='de'?'Ansehen':'View')+'</span></div>'+
-   '<div class="abody"><div class="an">'+m.name+'</div><div class="ap">€'+m.price.toLocaleString(lang==='de'?'de-DE':'en-US')+'</div><div class="awhy">'+((ALT_TAG[m.name]&&ALT_TAG[m.name][lang])||m.cls[lang])+'</div></div>';
+  el.innerHTML='<div class="aimg'+(mm[0]==='e2h'?' grey':'')+(isD?' dark':'')+'"><img src="'+img+'" alt="'+m.name+'" loading="lazy"><span class="vtag">⟳ '+({de:'Ansehen',es:'Ver',it:'Guarda'}[lang]||'View')+'</span></div>'+
+   '<div class="abody"><div class="an">'+m.name+'</div><div class="ap">€'+m.price.toLocaleString({de:'de-DE',es:'es-ES',it:'it-IT'}[lang]||'en-US')+'</div><div class="awhy">'+((ALT_TAG[m.name]&&(ALT_TAG[m.name][lang]||ALT_TAG[m.name].en))||(m.cls[lang]||m.cls.en))+'</div></div>';
   el.onclick=()=>{ isD?showView('dream7'):openGallery(mm[0]); };
   g.appendChild(el);
  });
@@ -1137,7 +1363,7 @@ function renderAlternates(list,lang){
 let curLang='en';
 let curQ=0, animating=false;
 function renderQuiz(){
- const item=QUIZ[curLang][curQ];
+ const item=(QUIZ[curLang]||QUIZ.en)[curQ];
  const wrap=document.getElementById('qwrap');
  let h='<div class="qq">'+item.q+'</div><div class="qopts">';
  item.o.forEach((opt,oi)=>{ h+='<div class="qopt'+(answers[curQ]===oi?' sel':'')+'" data-oi="'+oi+'"><span class="mk">'+(answers[curQ]===oi?'✓':'')+'</span><span>'+opt+'</span></div>'; });
@@ -1151,7 +1377,7 @@ function updateProg(){
  const done=answers.filter(a=>a!==null).length;
  document.getElementById('qbar').style.width=(Math.max(done,curQ)/6*100)+'%';
  const st=document.getElementById('qstep');
- if(st) st.textContent=(curLang==='de'?('Frage '+(curQ+1)+' von 6'):('Question '+(curQ+1)+' of 6'));
+ if(st) st.textContent=({de:('Frage '+(curQ+1)+' von 6'),es:('Pregunta '+(curQ+1)+' de 6'),it:('Domanda '+(curQ+1)+' di 6')}[curLang]||('Question '+(curQ+1)+' of 6'));
 }
 function flipTo(idx,dir){
  const w=document.getElementById('qwrap'); animating=true;
@@ -1192,43 +1418,49 @@ function startCountdown(){ if(cdTimer)return; cdEnd=Date.now()+72*3600*1000; tic
 function renderStrengths(m,lang){
  const el=document.getElementById('rstrengths'); if(!el)return;
  const arr=STRONG[m.name]||[];
- el.innerHTML=arr.map(x=>'<div class="scard"><div class="sct">'+x.t[lang]+'</div><div class="svs"><div class="sa">'+x.a+'<small>SFM</small></div><div class="svsx">vs</div><div class="sb">'+x.b+'<small>'+x.bn+'</small></div></div><div class="snote">✓ '+x.note[lang]+'</div></div>').join('');
+ el.innerHTML=arr.map(x=>'<div class="scard"><div class="sct">'+(x.t[lang]||x.t.en)+'</div><div class="svs"><div class="sa">'+x.a+'<small>SFM</small></div><div class="svsx">vs</div><div class="sb">'+x.b+'<small>'+x.bn+'</small></div></div><div class="snote">✓ '+(x.note[lang]||x.note.en)+'</div></div>').join('');
 }
 function showResult(){
  const m=recommend(); const lang=curLang;
  const loc=answers[0]; const eligible=loc<=2;
  document.getElementById('eligbadge').innerHTML = eligible
-   ? '<span class="elig">✓ '+(lang==='de'?'Du bist qualifiziert':'You\'re qualified')+'</span>'
-   : '<span class="elig intl">◐ '+(lang==='de'?'Early Access: zuerst DE/AT/CH':'Early access: DE/AT/CH first')+'</span>';
+   ? '<span class="elig">✓ '+({de:'Du bist qualifiziert',es:'Cumples los requisitos',it:'Hai i requisiti'}[lang]||'You\'re qualified')+'</span>'
+   : '<span class="elig intl">◐ '+({de:'Early Access: zuerst DE/AT/CH',es:'Acceso anticipado: primero DE/AT/CH',it:'Accesso anticipato: prima DE/AT/CH'}[lang]||'Early access: DE/AT/CH first')+'</span>';
  document.getElementById('rtitle').innerHTML = eligible
-   ? (lang==='de'?'Du qualifizierst dich für die Vorbestellung zum <span style="color:var(--accent)">Vorzugspreis</span>':'You qualify for pre-order at a <span style="color:var(--accent)">preferential rate</span>')
-   : (lang==='de'?'Deine <span style="color:var(--accent)">Wunschmaschine</span> steht fest':'Your <span style="color:var(--accent)">match</span> is ready');
+   ? ({de:'Du qualifizierst dich für die Vorbestellung zum <span style="color:var(--accent)">Vorzugspreis</span>',es:'Cumples los requisitos para reservar a un <span style="color:var(--accent)">precio preferente</span>',it:'Hai i requisiti per il preordine a un <span style="color:var(--accent)">prezzo agevolato</span>'}[lang]||'You qualify for pre-order at a <span style="color:var(--accent)">preferential rate</span>')
+   : ({de:'Deine <span style="color:var(--accent)">Wunschmaschine</span> steht fest',es:'Tu <span style="color:var(--accent)">match</span> está listo',it:'Il tuo <span style="color:var(--accent)">match</span> è pronto'}[lang]||'Your <span style="color:var(--accent)">match</span> is ready');
  document.getElementById('rlead').innerHTML = eligible
-   ? (lang==='de'?('Deine Antworten passen am besten zur <b>'+m.name+'</b> — für dich zum Early-Access-Preis reserviert, bevor die öffentlichen Preise stehen. Sichere ihn dir in den nächsten 72 Stunden; nur 200 qualifizierte Plätze.')
-                 :('Your answers match the <b>'+m.name+'</b> — held for you at an early-access rate before public pricing goes live. Lock it in within the next 72 hours; only 200 qualified spots.'))
-   : (lang==='de'?('Deine Antworten passen am besten zur <b>'+m.name+'</b>. Early Access startet zuerst in DE/AT/CH — trag deine E-Mail ein und wir melden uns, sobald dein Markt öffnet.')
-                 :('Your answers match the <b>'+m.name+'</b>. Early access opens in DE/AT/CH first — drop your email and we\'ll tell you when your market goes live.'));
+   ? ({de:('Deine Antworten passen am besten zur <b>'+m.name+'</b> — für dich zum Early-Access-Preis reserviert, bevor die öffentlichen Preise stehen. Sichere ihn dir in den nächsten 72 Stunden; nur 200 qualifizierte Plätze.'),
+       es:('Tus respuestas encajan mejor con la <b>'+m.name+'</b> — reservada para ti a un precio de acceso anticipado antes de que salgan los precios públicos. Asegúrala en las próximas 72 horas; solo 200 plazas cualificadas.'),
+       it:('Le tue risposte si adattano meglio alla <b>'+m.name+'</b> — riservata per te a un prezzo ad accesso anticipato prima dei prezzi pubblici. Bloccala nelle prossime 72 ore; solo 200 posti idonei.')}[lang]
+                 ||('Your answers match the <b>'+m.name+'</b> — held for you at an early-access rate before public pricing goes live. Lock it in within the next 72 hours; only 200 qualified spots.'))
+   : ({de:('Deine Antworten passen am besten zur <b>'+m.name+'</b>. Early Access startet zuerst in DE/AT/CH — trag deine E-Mail ein und wir melden uns, sobald dein Markt öffnet.'),
+       es:('Tus respuestas encajan mejor con la <b>'+m.name+'</b>. El acceso anticipado abre primero en DE/AT/CH — deja tu email y te avisaremos cuando tu mercado se active.'),
+       it:('Le tue risposte si adattano meglio alla <b>'+m.name+'</b>. L\'accesso anticipato apre prima in DE/AT/CH — lascia la tua email e ti avviseremo quando il tuo mercato sarà attivo.')}[lang]
+                 ||('Your answers match the <b>'+m.name+'</b>. Early access opens in DE/AT/CH first — drop your email and we\'ll tell you when your market goes live.'));
  // match card
  document.getElementById('rmname').textContent=m.name;
- document.getElementById('rmclass').textContent=m.cls[lang];
- document.getElementById('rmprice').textContent='€'+m.price.toLocaleString(lang==='de'?'de-DE':'en-US');
- document.getElementById('rmspecs').innerHTML=m.specs[lang].map(s=>'<li><span>'+s[0]+'</span><b>'+s[1]+'</b></li>').join('');
+ document.getElementById('rmclass').textContent=m.cls[lang]||m.cls.en;
+ document.getElementById('rmprice').textContent='€'+m.price.toLocaleString({de:'de-DE',es:'es-ES',it:'it-IT'}[lang]||'en-US');
+ document.getElementById('rmspecs').innerHTML=(m.specs[lang]||m.specs.en).map(s=>'<li><span>'+s[0]+'</span><b>'+s[1]+'</b></li>').join('');
  // matched model image
  const mm=MMEDIA[m.name]; const rmb=document.getElementById('rmimg');
  if(mm){ const isD=mm[1]==='d'; document.getElementById('rmimgi').src=isD?'assets/dream7/d7-1.jpg':('assets/models/'+mm[0]+'/f-1.jpg');
   rmb.className='mimg'+(mm[0]==='e2h'?' grey':'')+(isD?' dark':''); rmb.onclick=()=>{ isD?showView('dream7'):openGallery(mm[0]); }; rmb.style.display=''; }
  else rmb.style.display='none';
  // price chart
- document.getElementById('rctp').textContent=(lang==='de'?'Preisvergleich in deiner Klasse':'Price comparison in your class');
+ document.getElementById('rctp').textContent=({de:'Preisvergleich in deiner Klasse',es:'Comparación de precios en tu clase',it:'Confronto prezzi nella tua classe'}[lang]||'Price comparison in your class');
  const items=[{name:m.name,price:m.price,sfm:1,s:m.sp,r:m.rg}].concat(m.rivals.map(r=>({name:r.name,price:r.price,s:r.s,r:r.r})));
  renderColumns('rcols',items,lang);
  const rivalMin=Math.min(...m.rivals.map(r=>r.price)), rivalMax=Math.max(...m.rivals.map(r=>r.price));
  const save=rivalMin-m.price, pct=Math.round((1-m.price/rivalMax)*100), premium=m.rivals.find(r=>r.price===rivalMax).name;
- document.getElementById('rsave').innerHTML = lang==='de'
-   ? ('<b>Du zahlst €'+m.price.toLocaleString('de-DE')+'</b> — '+(save>0?('€'+save.toLocaleString('de-DE')+' weniger als der günstigste Vergleichbare'):'auf Augenhöhe mit dem günstigsten Rivalen')+', und <b>'+pct+'% unter</b> der '+premium+'.')
-   : ('<b>You\'d pay €'+m.price.toLocaleString('en-US')+'</b> — '+(save>0?('€'+save.toLocaleString('en-US')+' less than the cheapest comparable bike'):'on par with the cheapest rival')+', and <b>'+pct+'% below</b> the '+premium+'.');
+ document.getElementById('rsave').innerHTML = ({
+   de:('<b>Du zahlst €'+m.price.toLocaleString('de-DE')+'</b> — '+(save>0?('€'+save.toLocaleString('de-DE')+' weniger als der günstigste Vergleichbare'):'auf Augenhöhe mit dem günstigsten Rivalen')+', und <b>'+pct+'% unter</b> der '+premium+'.'),
+   es:('<b>Pagarías €'+m.price.toLocaleString('es-ES')+'</b> — '+(save>0?('€'+save.toLocaleString('es-ES')+' menos que la moto comparable más barata'):'a la par del rival más barato')+', y <b>'+pct+'% por debajo</b> de la '+premium+'.'),
+   it:('<b>Pagheresti €'+m.price.toLocaleString('it-IT')+'</b> — '+(save>0?('€'+save.toLocaleString('it-IT')+' in meno della moto comparabile più economica'):'alla pari con il rivale più economico')+', e <b>'+pct+'% sotto</b> la '+premium+'.')
+ }[lang]||('<b>You\'d pay €'+m.price.toLocaleString('en-US')+'</b> — '+(save>0?('€'+save.toLocaleString('en-US')+' less than the cheapest comparable bike'):'on par with the cheapest rival')+', and <b>'+pct+'% below</b> the '+premium+'.'));
  // heading + strengths
- document.getElementById('rct').textContent=(lang==='de'?('So schlägt sich deine '+m.name):('How your '+m.name+' stacks up'));
+ document.getElementById('rct').textContent=({de:('So schlägt sich deine '+m.name),es:('Así se posiciona tu '+m.name),it:('Ecco come si posiziona la tua '+m.name)}[lang]||('How your '+m.name+' stacks up'));
  renderStrengths(m,lang);
  // alternates — other models the answers also fit
  const fkey=Object.keys(MODELS).find(k=>MODELS[k]===m);
@@ -1247,14 +1479,15 @@ function parseRange(m){ const map={'SFM EM1 · 25 km/h':70,'SFM EM1 · 45 km/h':
 document.getElementById('slbtn').onclick=async()=>{
  const em=document.getElementById('slemail').value.trim();
  if(!em||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ document.getElementById('slemail').focus(); return; }
- const btn=document.getElementById('slbtn'); btn.disabled=true; btn.textContent=(curLang==='de'?'Wird gesendet…':'Sending…');
+ const btn=document.getElementById('slbtn'); btn.disabled=true; btn.textContent=({de:'Wird gesendet…',es:'Enviando…',it:'Invio in corso…'}[curLang]||'Sending…');
  await mlSubscribe(em);
  document.getElementById('slform').style.display='none';
  const d=document.getElementById('sldone'); d.style.display='block';
  const spot=Math.floor(37+ (em.length*7)%120); // illustrative position
- d.innerHTML=(curLang==='de'
-   ? '✓ Du stehst auf der Shortlist — <b>Platz '+spot+' von 200</b>.<br>Bitte bestätige deine E-Mail über den Link, den wir dir gerade geschickt haben.'
-   : '✓ You\'re on the shortlist — <b>spot '+spot+' of 200</b>.<br>Please confirm your email via the link we just sent you.');
+ d.innerHTML=({de:'✓ Du stehst auf der Shortlist — <b>Platz '+spot+' von 200</b>.<br>Bitte bestätige deine E-Mail über den Link, den wir dir gerade geschickt haben.',
+   es:'✓ Estás en la lista — <b>plaza '+spot+' de 200</b>.<br>Confirma tu email mediante el enlace que acabamos de enviarte.',
+   it:'✓ Sei nella shortlist — <b>posto '+spot+' di 200</b>.<br>Conferma la tua email tramite il link che ti abbiamo appena inviato.'}[curLang]
+   ||'✓ You\'re on the shortlist — <b>spot '+spot+' of 200</b>.<br>Please confirm your email via the link we just sent you.');
 };
 
 // ---------- deeper charts ----------
@@ -1262,25 +1495,25 @@ const c1=[{name:'SFM Future 5',price:1999,cls:'acc'},{name:'SFM Prima E',price:1
 const c3=[{name:'SFM Prima E Sport',price:2999,cls:'sfm'},{name:'SFM E2H Sport',price:2999,cls:'acc'},{name:'NIU MQi GT 100',price:3799},{name:'Horwin SK3',price:3990},{name:'NIU NGT',price:3990},{name:'Super Soco TC Max',price:3999},{name:'Trinity Uranus R 80',price:4428},{name:'SEAT Mó 125',price:4990},{name:'Segway E300SE',price:4999},{name:'Super Soco CPx',price:5990},{name:'Vespa Elettrica 70',price:7199}];
 const c4=[{name:'SFM Dream 7',price:5999,cls:'sfm'},{name:'NIU MQi GT 100',price:3799},{name:'SEAT Mó 125',price:4990},{name:'Super Soco CPx',price:5990},{name:'Vespa Elettrica 70',price:7199},{name:'Silence S01+',price:8790}];
 const specRows=[
- {m:'SFM EM1',c:'Mofa',s:'25',p:'1,699',mo:'500 W',b:'1,440 Wh',r:'80 km',sw:{en:'Yes',de:'Ja'},sfm:1},
- {m:'SFM E2H',c:'Mofa',s:'25',p:'2,199',mo:'1,500 W',b:'1,728 Wh',r:'—',sw:{en:'Yes',de:'Ja'},sfm:1},
- {m:'SFM E2H Plus',c:'Mofa',s:'25',p:'2,849',mo:'1,500 W',b:'3,456 Wh',r:'—',sw:{en:'Yes',de:'Ja'},sfm:1},
- {m:'SFM Future 5',c:'Mokick',s:'45',p:'1,999',mo:'1,200 W',b:{en:'1,260 Wh Na-ion',de:'1.260 Wh Na-Ion'},r:'45 km',sw:{en:'Yes',de:'Ja'},sfm:1},
- {m:'SFM Future 3',c:'Mokick',s:'45',p:'2,699',mo:'2,000 W',b:'2,160 Wh',r:'—',sw:{en:'Yes',de:'Ja'},sfm:1},
- {m:'SFM Prima E',c:'Mofa/Mokick',s:'25 / 45',p:'1,999',mo:'1,000 W',b:'960 Wh',r:'65 km',sw:{en:'Yes',de:'Ja'},sfm:1},
- {m:'SFM Prima E Sport',c:'L3e',s:'75',p:'2,999',mo:'3,000 W',b:'2,400 Wh',r:'90 km',sw:{en:'2 packs',de:'2 Akkus'},sfm:1},
- {m:'SFM E2H Sport',c:'L3e',s:'80',p:'2,999',mo:'2,500 W',b:'3,456 Wh',r:'75 km',sw:{en:'Yes',de:'Ja'},sfm:1},
- {m:'SFM Dream 7',c:'L3e',s:'110',p:'5,999',mo:'6,000 W',b:{en:'5,180 Wh LFP',de:'5.180 Wh LFP'},r:'150 km',sw:{en:'Yes',de:'Ja'},sfm:1},
- {m:'NIU MQi+ Sport',c:'Mokick',s:'45',p:'~2,500',mo:'1,400 W',b:'2,016 Wh',r:'65 km',sw:{en:'Yes',de:'Ja'}},
- {m:'Super Soco CUx Pro',c:'Mokick',s:'45',p:'2,599',mo:'2,300 W',b:'2,580 Wh',r:'80 km',sw:{en:'Yes',de:'Ja'}},
- {m:'Horwin EK1',c:'Mokick',s:'45',p:'~3,200',mo:'2,000 W',b:'~1,900 Wh',r:'70–120 km',sw:{en:'Yes',de:'Ja'}},
- {m:'NIU MQi GT 100',c:'L3e',s:'100',p:'3,799',mo:'6,500 W',b:'3,740 Wh',r:'65–75 km',sw:{en:'Yes',de:'Ja'}},
- {m:'Super Soco TC Max',c:'L3e',s:'95',p:'3,999',mo:'3,900 W',b:'3,240 Wh',r:'110 km',sw:{en:'Yes',de:'Ja'}},
- {m:'Horwin SK3',c:'L3e',s:'90',p:'3,990',mo:'3,000 W',b:'2,600 Wh',r:'80–160 km',sw:{en:'Yes',de:'Ja'}},
- {m:'SEAT Mó 125',c:'L3e',s:'95',p:'4,990',mo:'7,000 W',b:'5,600 Wh',r:'137 km',sw:{en:'No',de:'Nein'}},
- {m:'Super Soco CPx',c:'L3e',s:'90',p:'5,990',mo:'4,800 W',b:'~3,800 Wh',r:'140 km',sw:{en:'Yes',de:'Ja'}},
- {m:'Silence S01+',c:'L3e',s:'100',p:'8,790',mo:'7,000 W',b:'5,600 Wh',r:'133 km',sw:{en:'Yes',de:'Ja'}},
- {m:'Vespa Elettrica 70',c:'L3e',s:'70',p:'7,199',mo:'3,500 W',b:'4,200 Wh',r:'70 km',sw:{en:'No',de:'Nein'}}
+ {m:'SFM EM1',c:'Mofa',s:'25',p:'1,699',mo:'500 W',b:'1,440 Wh',r:'80 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
+ {m:'SFM E2H',c:'Mofa',s:'25',p:'2,199',mo:'1,500 W',b:'1,728 Wh',r:'—',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
+ {m:'SFM E2H Plus',c:'Mofa',s:'25',p:'2,849',mo:'1,500 W',b:'3,456 Wh',r:'—',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
+ {m:'SFM Future 5',c:'Mokick',s:'45',p:'1,999',mo:'1,200 W',b:{en:'1,260 Wh Na-ion',de:'1.260 Wh Na-Ion',es:'1.260 Wh Na-ion',it:'1.260 Wh Na-ione'},r:'45 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
+ {m:'SFM Future 3',c:'Mokick',s:'45',p:'2,699',mo:'2,000 W',b:'2,160 Wh',r:'—',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
+ {m:'SFM Prima E',c:'Mofa/Mokick',s:'25 / 45',p:'1,999',mo:'1,000 W',b:'960 Wh',r:'65 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
+ {m:'SFM Prima E Sport',c:'L3e',s:'75',p:'2,999',mo:'3,000 W',b:'2,400 Wh',r:'90 km',sw:{en:'2 packs',de:'2 Akkus',es:'2 packs',it:'2 pacchi'},sfm:1},
+ {m:'SFM E2H Sport',c:'L3e',s:'80',p:'2,999',mo:'2,500 W',b:'3,456 Wh',r:'75 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
+ {m:'SFM Dream 7',c:'L3e',s:'110',p:'5,999',mo:'6,000 W',b:{en:'5,180 Wh LFP',de:'5.180 Wh LFP',es:'5.180 Wh LFP',it:'5.180 Wh LFP'},r:'150 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
+ {m:'NIU MQi+ Sport',c:'Mokick',s:'45',p:'~2,500',mo:'1,400 W',b:'2,016 Wh',r:'65 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
+ {m:'Super Soco CUx Pro',c:'Mokick',s:'45',p:'2,599',mo:'2,300 W',b:'2,580 Wh',r:'80 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
+ {m:'Horwin EK1',c:'Mokick',s:'45',p:'~3,200',mo:'2,000 W',b:'~1,900 Wh',r:'70–120 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
+ {m:'NIU MQi GT 100',c:'L3e',s:'100',p:'3,799',mo:'6,500 W',b:'3,740 Wh',r:'65–75 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
+ {m:'Super Soco TC Max',c:'L3e',s:'95',p:'3,999',mo:'3,900 W',b:'3,240 Wh',r:'110 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
+ {m:'Horwin SK3',c:'L3e',s:'90',p:'3,990',mo:'3,000 W',b:'2,600 Wh',r:'80–160 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
+ {m:'SEAT Mó 125',c:'L3e',s:'95',p:'4,990',mo:'7,000 W',b:'5,600 Wh',r:'137 km',sw:{en:'No',de:'Nein',es:'No',it:'No'}},
+ {m:'Super Soco CPx',c:'L3e',s:'90',p:'5,990',mo:'4,800 W',b:'~3,800 Wh',r:'140 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
+ {m:'Silence S01+',c:'L3e',s:'100',p:'8,790',mo:'7,000 W',b:'5,600 Wh',r:'133 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
+ {m:'Vespa Elettrica 70',c:'L3e',s:'70',p:'7,199',mo:'3,500 W',b:'4,200 Wh',r:'70 km',sw:{en:'No',de:'Nein',es:'No',it:'No'}}
 ];
 const tip=document.getElementById('tip');
 function showTip(e,h){tip.innerHTML=h;tip.style.opacity=1;moveTip(e);}
@@ -1300,35 +1533,37 @@ function renderBar(elId,data,maxPrice,lang){
 }
 function renderTable(lang){
  const tb=document.getElementById('specbody'); if(!tb)return; tb.innerHTML='';
- specRows.forEach(r=>{const tr=document.createElement('tr');if(r.sfm)tr.className='sfm';const cell=v=>typeof v==='object'?v[lang]:v;tr.innerHTML='<td>'+r.m+'</td><td>'+cell(r.c)+'</td><td>'+r.s+'</td><td class="num">'+r.p+'</td><td>'+r.mo+'</td><td>'+cell(r.b)+'</td><td>'+r.r+'</td><td>'+cell(r.sw)+'</td>';tb.appendChild(tr);});
+ specRows.forEach(r=>{const tr=document.createElement('tr');if(r.sfm)tr.className='sfm';const cell=v=>typeof v==='object'?(v[lang]||v.en):v;tr.innerHTML='<td>'+r.m+'</td><td>'+cell(r.c)+'</td><td>'+r.s+'</td><td class="num">'+r.p+'</td><td>'+r.mo+'</td><td>'+cell(r.b)+'</td><td>'+r.r+'</td><td>'+cell(r.sw)+'</td>';tb.appendChild(tr);});
 }
 function renderDeeper(lang){renderBar('c1',c1,4200,lang);renderBar('c3',c3,7600,lang);renderBar('c4',c4,9200,lang);renderTable(lang);}
 
 // ---------- language ----------
+const DICTS={en:EN,de:DE,es:ES,it:IT}; const PHS={en:ENPH,de:DEPH,es:ESPH,it:ITPH};
 function applyLang(l){
- curLang=l; const src=l==='de'?DE:EN;
+ curLang=l; const src=DICTS[l]||EN;
  document.querySelectorAll('[data-k]').forEach(e=>{const v=src[e.dataset.k];if(v!=null)e.innerHTML=v;});
- const phs=l==='de'?DEPH:ENPH;
+ const phs=PHS[l]||ENPH;
  document.querySelectorAll('[data-kph]').forEach(e=>{const v=phs[e.dataset.kph];if(v!=null)e.setAttribute('placeholder',v);});
  document.documentElement.lang=l;
- document.getElementById('enBtn').classList.toggle('on',l==='en');
- document.getElementById('deBtn').classList.toggle('on',l==='de');
+ ['enBtn','deBtn','esBtn','itBtn'].forEach(id=>document.getElementById(id).classList.toggle('on',id===l+'Btn'));
  renderQuiz(); updateProg(); renderDeeper(l); if(typeof d7go==='function') d7go(d7i);
  if(document.getElementById('result').style.display==='block' && answers.filter(a=>a!==null).length===6) showResult();
 }
 document.getElementById('enBtn').onclick=()=>{manualLang=true;applyLang('en');};
 document.getElementById('deBtn').onclick=()=>{manualLang=true;applyLang('de');};
+document.getElementById('esBtn').onclick=()=>{manualLang=true;applyLang('es');};
+document.getElementById('itBtn').onclick=()=>{manualLang=true;applyLang('it');};
 
 // ---------- view switching (Home / Analysis) ----------
 let resultShown=false;
 // ---------- per-model gallery modal ----------
 const MEDIA={
- em1:{title:'EM1',sub:{en:'€1,699 · 25 km/h Mofa',de:'1.699 € · 25 km/h Mofa'},stage:'light',n:8},
- e2h:{title:'E2H',sub:{en:'€2,199 · retro · 25 km/h',de:'2.199 € · Retro · 25 km/h'},stage:'grey',n:8},
- future5:{title:'Future 5',sub:{en:'€1,999 · ⚛ sodium-ion',de:'1.999 € · ⚛ Natrium-Ionen'},stage:'light',n:7},
- future3:{title:'Future 3',sub:{en:'€2,699 · big battery',de:'2.699 € · großer Akku'},stage:'light',n:6},
- primae:{title:'Prima E',sub:{en:'€1,999 · retro',de:'1.999 € · Retro'},stage:'light',n:4},
- primaesport:{title:'Prima E Sport',sub:{en:'€2,999 · 75 km/h · A1',de:'2.999 € · 75 km/h · A1'},stage:'light',n:4}
+ em1:{title:'EM1',sub:{en:'€1,699 · 25 km/h Mofa',de:'1.699 € · 25 km/h Mofa',es:'1.699 € · ciclomotor 25 km/h',it:'1.699 € · ciclomotore 25 km/h'},stage:'light',n:8},
+ e2h:{title:'E2H',sub:{en:'€2,199 · retro · 25 km/h',de:'2.199 € · Retro · 25 km/h',es:'2.199 € · retro · 25 km/h',it:'2.199 € · retro · 25 km/h'},stage:'grey',n:8},
+ future5:{title:'Future 5',sub:{en:'€1,999 · ⚛ sodium-ion',de:'1.999 € · ⚛ Natrium-Ionen',es:'1.999 € · ⚛ sodio-ion',it:'1.999 € · ⚛ sodio-ione'},stage:'light',n:7},
+ future3:{title:'Future 3',sub:{en:'€2,699 · big battery',de:'2.699 € · großer Akku',es:'2.699 € · batería grande',it:'2.699 € · batteria grande'},stage:'light',n:6},
+ primae:{title:'Prima E',sub:{en:'€1,999 · retro',de:'1.999 € · Retro',es:'1.999 € · retro',it:'1.999 € · retro'},stage:'light',n:4},
+ primaesport:{title:'Prima E Sport',sub:{en:'€2,999 · 75 km/h · A1',de:'2.999 € · 75 km/h · A1',es:'2.999 € · 75 km/h · A1',it:'2.999 € · 75 km/h · A1'},stage:'light',n:4}
 };
 const mgEl=document.getElementById('mg'),mgStage=document.getElementById('mgstage'),
       mgFilm=document.getElementById('mgfilm'),mgTitle=document.getElementById('mgtitle');
@@ -1373,13 +1608,13 @@ window.addEventListener('keydown',e=>{ if(!mgEl.classList.contains('on'))return;
 
 // ---------- Dream 7 walk-around gallery ----------
 const D7=[
- {img:'assets/dream7/d7-1.jpg',th:'assets/dream7/d7-1-t.jpg',v:{en:'Left profile',de:'Seite links'}},
- {img:'assets/dream7/d7-2.jpg',th:'assets/dream7/d7-2-t.jpg',v:{en:'Front ¾ left',de:'Front ¾ links'}},
- {img:'assets/dream7/d7-3.jpg',th:'assets/dream7/d7-3-t.jpg',v:{en:'Front',de:'Front'}},
- {img:'assets/dream7/d7-4.jpg',th:'assets/dream7/d7-4-t.jpg',v:{en:'Front ¾ right',de:'Front ¾ rechts'}},
- {img:'assets/dream7/d7-5.jpg',th:'assets/dream7/d7-5-t.jpg',v:{en:'Right profile',de:'Seite rechts'}},
- {img:'assets/dream7/d7-6.jpg',th:'assets/dream7/d7-6-t.jpg',v:{en:'Rear ¾',de:'Heck ¾'}},
- {img:'assets/dream7/d7-7.jpg',th:'assets/dream7/d7-7-t.jpg',v:{en:'Rear',de:'Heck'}}
+ {img:'assets/dream7/d7-1.jpg',th:'assets/dream7/d7-1-t.jpg',v:{en:'Left profile',de:'Seite links',es:'Perfil izquierdo',it:'Profilo sinistro'}},
+ {img:'assets/dream7/d7-2.jpg',th:'assets/dream7/d7-2-t.jpg',v:{en:'Front ¾ left',de:'Front ¾ links',es:'Frontal ¾ izquierda',it:'Anteriore ¾ sinistra'}},
+ {img:'assets/dream7/d7-3.jpg',th:'assets/dream7/d7-3-t.jpg',v:{en:'Front',de:'Front',es:'Frontal',it:'Anteriore'}},
+ {img:'assets/dream7/d7-4.jpg',th:'assets/dream7/d7-4-t.jpg',v:{en:'Front ¾ right',de:'Front ¾ rechts',es:'Frontal ¾ derecha',it:'Anteriore ¾ destra'}},
+ {img:'assets/dream7/d7-5.jpg',th:'assets/dream7/d7-5-t.jpg',v:{en:'Right profile',de:'Seite rechts',es:'Perfil derecho',it:'Profilo destro'}},
+ {img:'assets/dream7/d7-6.jpg',th:'assets/dream7/d7-6-t.jpg',v:{en:'Rear ¾',de:'Heck ¾',es:'Trasera ¾',it:'Posteriore ¾'}},
+ {img:'assets/dream7/d7-7.jpg',th:'assets/dream7/d7-7-t.jpg',v:{en:'Rear',de:'Heck',es:'Trasera',it:'Posteriore'}}
 ];
 let d7i=0,d7timer=null;
 const d7stage=document.getElementById('d7stage'),d7dots=document.getElementById('d7dots'),
@@ -1463,9 +1698,9 @@ document.getElementById('d7toQuiz').onclick=openQuiz;
 document.getElementById('heroCta').onclick=openQuiz;
 document.getElementById('qclose').onclick=()=>{ document.getElementById('quiz').classList.remove('revealed'); document.body.style.overflow=''; };
 const tbn=document.getElementById('themeBtn');
-tbn.onclick=()=>{const d=root.getAttribute('data-theme')==='dark';root.setAttribute('data-theme',d?'light':'dark');tbn.textContent=d?'Dark':(curLang==='de'?'Hell':'Light');};
+tbn.onclick=()=>{const d=root.getAttribute('data-theme')==='dark';root.setAttribute('data-theme',d?'light':'dark');tbn.textContent=d?'Dark':({de:'Hell',es:'Claro',it:'Chiaro'}[curLang]||'Light');};
 // initial language: quick browser hint, then refine by IP country (DE/AT/CH → German)
-applyLang((navigator.language||'').toLowerCase().startsWith('de')?'de':'en');
+{const bl=(navigator.language||'').toLowerCase();applyLang(bl.startsWith('de')?'de':bl.startsWith('es')?'es':bl.startsWith('it')?'it':'en');}
 showView('home');
 
 // ---------- intro teaser splash (text first → rapid Dream 7 montage) ----------
@@ -1496,7 +1731,7 @@ showView('home');
    const r=await fetch('https://ipwho.is/?fields=country_code,success');
    const j=await r.json();
    const cc=((j&&j.country_code)||'').toUpperCase();
-   if(!manualLang && cc) applyLang(['DE','AT','CH'].includes(cc)?'de':'en');
+   const map={DE:'de',AT:'de',CH:'de',ES:'es',IT:'it'}; if(!manualLang && cc) applyLang(map[cc]||'en');
  }catch(e){ /* keep browser-hint language */ }
 })();
 </script>
