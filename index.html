@@ -14,7 +14,7 @@
     --accent:#eb6834; --accent-soft:#fdece4;
     --good:#0ca30c; --good-soft:#e4f5e4; --good-ink:#006300;
     --crit:#d03b3b; --comp:#b9b8b1; --comp-soft:#eeede8; --sodium:#4a3aa7;
-    --radius:14px; --font: system-ui,-apple-system,"Segoe UI",sans-serif; --maxw:1120px;
+    --radius:14px; --font: system-ui,-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif; --maxw:1120px;
   }
   :root[data-theme="dark"]{
     color-scheme: dark;
@@ -35,12 +35,28 @@
   nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--surface-1) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
   nav .wrap{display:flex;align-items:center;gap:16px;height:56px;}
   .brand{font-weight:800;letter-spacing:.5px;font-size:18px;} .brand span{color:var(--sfm);}
-  .navlinks{display:flex;gap:16px;margin-left:auto;flex-wrap:wrap;}
+  .navpanel{display:flex;align-items:center;gap:18px;margin-left:auto;}
+  .navlinks{display:flex;gap:16px;}
   .navlinks a{color:var(--ink-2);font-size:13px;font-weight:600;} .navlinks a:hover{color:var(--sfm);text-decoration:none;}
   .ctrls{display:flex;gap:8px;}
   .btn{cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--ink-2);border-radius:8px;padding:5px 10px;font-size:12px;font-weight:700;}
   .langwrap{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;} .langwrap .btn{border:none;border-radius:0;} .btn.on{background:var(--sfm);color:#fff;}
-  @media(max-width:820px){.navlinks{display:none;}}
+  .hamb{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:36px;margin-left:auto;background:var(--card);border:1px solid var(--border);border-radius:9px;cursor:pointer;padding:0 9px;}
+  .hamb span{display:block;height:2px;background:var(--ink);border-radius:2px;transition:.25s;}
+  .hamb.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamb.open span:nth-child(2){opacity:0;}
+  .hamb.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  @media(max-width:820px){
+    .hamb{display:flex;}
+    .navpanel{position:absolute;top:100%;left:0;right:0;margin-left:0;flex-direction:column;align-items:stretch;gap:14px;
+      background:var(--surface-1);border-bottom:1px solid var(--border);box-shadow:0 14px 34px rgba(0,0,0,.14);padding:14px 22px 20px;display:none;}
+    .navpanel.open{display:flex;animation:navdrop .22s ease;}
+    @keyframes navdrop{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:none;}}
+    .navlinks{flex-direction:column;gap:0;}
+    .navlinks a{padding:12px 2px;border-bottom:1px solid var(--grid);font-size:16px;}
+    .ctrls{flex-direction:column;gap:12px;align-items:flex-start;}
+    .langwrap{align-self:stretch;} .langwrap .btn{flex:1;text-align:center;padding:9px 6px;font-size:13px;}
+  }
 
   /* TEASER */
   header.teaser{background:radial-gradient(1000px 460px at 50% -20%,var(--sfm-soft),transparent 60%),var(--surface-1);border-bottom:1px solid var(--border);padding:54px 0 30px;text-align:center;}
@@ -65,6 +81,12 @@
   section h2{font-size:27px;margin:0 0 6px;letter-spacing:-.3px;}
   .lead{color:var(--ink-2);max-width:780px;margin:0 0 22px;font-size:16.5px;}
   .eyebrow{color:var(--accent);font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+  /* CJK typography — relax tight Latin tracking for Simplified Chinese */
+  html[lang="zh"] .ah,html[lang="zh"] .d7h,html[lang="zh"] .sline,html[lang="zh"] .pt,html[lang="zh"] .hg-cap,html[lang="zh"] .ak,html[lang="zh"] .plead,html[lang="zh"] .brand{letter-spacing:normal;}
+  html[lang="zh"] .eyebrow,html[lang="zh"] .d7ey,html[lang="zh"] .seyebrow{letter-spacing:.5px;}
+  html[lang="zh"] .ah{line-height:1.15;}
+  html[lang="zh"] .sline{line-height:1.2;}
+  html[lang="zh"] .d7h{line-height:1.1;}
   h3{font-size:18px;margin:30px 0 12px;}
 
   /* QUIZ */
@@ -406,8 +428,10 @@
   .pcard:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.18);text-decoration:none;}
   .pcard .pimg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s cubic-bezier(.2,.7,.2,1);}
   .pcard:hover .pimg{transform:scale(1.07);}
-  .pcard .pov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,12,.05) 30%,rgba(8,9,12,.82) 100%);}
-  .pcard.feat .pov{background:linear-gradient(180deg,rgba(42,120,214,.15) 20%,rgba(11,30,60,.9) 100%);}
+  .pcard .pov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,12,.34) 0%,rgba(8,9,12,.5) 42%,rgba(8,9,12,.9) 100%);}
+  .pcard.feat .pov{background:linear-gradient(180deg,rgba(11,30,60,.42) 0%,rgba(11,30,60,.58) 42%,rgba(11,30,60,.93) 100%);}
+  .pcard .pt,.pcard .ps{text-shadow:0 2px 16px rgba(0,0,0,.6);}
+  .pcard .pnum{text-shadow:0 1px 10px rgba(0,0,0,.5);}
   .pcard .pbody{position:relative;z-index:1;padding:26px 24px 24px;}
   .pcard .pnum{position:absolute;top:18px;left:20px;z-index:1;font-size:13px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,.7);}
   .pcard .ptag{position:absolute;top:16px;right:16px;z-index:1;background:var(--accent);color:#fff;font-size:11px;font-weight:800;padding:5px 11px;border-radius:14px;letter-spacing:.5px;text-transform:uppercase;}
@@ -418,6 +442,7 @@
   .pcard:hover .pgo{background:#fff;color:#0b0b0b;border-color:#fff;}
   .pcard.feat .pgo{background:var(--sfm);border-color:var(--sfm);} .pcard.feat:hover .pgo{background:#fff;color:var(--sfm);}
   @media(max-width:820px){.pgrid{grid-template-columns:1fr;gap:16px;}.pcard{min-height:230px;}}
+  @media(max-width:560px){.pcard .ptag{top:12px;right:12px;padding:4px 9px;font-size:10px;}.pcard .pt{font-size:22px;line-height:1.1;}.pcard.feat .pt{padding-right:88px;}}
   /* matched-model image in quiz result */
   .matchcard .mimg{position:relative;height:150px;border-radius:12px;overflow:hidden;margin:0 0 14px;cursor:pointer;
     background:radial-gradient(ellipse at 50% 45%,#ffffff,#eceae6 80%);}
@@ -428,8 +453,6 @@
   .matchcard .mimg .vtag{position:absolute;bottom:8px;right:8px;background:rgba(11,11,11,.72);color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:16px;opacity:0;transition:.25s;}
   .matchcard .mimg:hover .vtag{opacity:1;}
   /* keep the menu reachable on mobile */
-  @media(max-width:820px){nav .navlinks{display:flex !important;gap:11px;margin-left:0;order:3;width:100%;justify-content:center;padding-top:6px;}
-    nav .wrap{flex-wrap:wrap;} nav .navlinks a{font-size:13px;}}
   /* ---------- intro teaser splash ---------- */
   #splash{position:fixed;inset:0;z-index:200;background:#05060a;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:opacity .7s ease;}
   #splash.gone{opacity:0;pointer-events:none;}
@@ -501,15 +524,18 @@
 <nav>
   <div class="wrap">
     <div class="brand">SFM E-Mobility <span>2027</span></div>
-    <div class="navlinks">
-      <a href="#" id="navHome" class="vlink on" data-k="nav.home">Home</a>
-      <a href="#" id="navLineup" class="vlink" data-k="nav.lineup">Lineup</a>
-      <a href="#" id="navDream" class="vlink" data-k="nav.dream">Dream 7</a>
-      <a href="#" id="navAnalysis" class="vlink" data-k="nav.analysis">Analysis</a>
-    </div>
-    <div class="ctrls">
-      <div class="langwrap"><button class="btn on" id="enBtn">EN</button><button class="btn" id="deBtn">DE</button><button class="btn" id="esBtn">ES</button><button class="btn" id="itBtn">IT</button></div>
-      <button class="btn" id="themeBtn">Dark</button>
+    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="navpanel" id="navpanel">
+      <div class="navlinks">
+        <a href="#" id="navHome" class="vlink on" data-k="nav.home">Home</a>
+        <a href="#" id="navLineup" class="vlink" data-k="nav.lineup">Lineup</a>
+        <a href="#" id="navDream" class="vlink" data-k="nav.dream">Dream 7</a>
+        <a href="#" id="navAnalysis" class="vlink" data-k="nav.analysis">Analysis</a>
+      </div>
+      <div class="ctrls">
+        <div class="langwrap"><button class="btn on" id="enBtn">EN</button><button class="btn" id="deBtn">DE</button><button class="btn" id="esBtn">ES</button><button class="btn" id="itBtn">IT</button><button class="btn" id="zhBtn">中文</button></div>
+        <button class="btn" id="themeBtn">Dark</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -1192,6 +1218,111 @@ const IT={
 };
 const ITPH={'r.slph':'tu@email.com'};
 
+// ---------- Simplified Chinese dictionary ----------
+const ZH={
+'nav.home':'首页','nav.lineup':'车型','nav.analysis':'分析','nav.dream':'Dream 7',
+'mg.zoom':'放大','m.view':'360° · 缩放','m.viewfull':'前往展示页',
+'s.l1':'想象一下 110 km/h。','s.l2':'一次充电续航 150 km。','s.l3':'售价 5.999 €。','s.q':'这个价位就有真正可上高速的旗舰车型。好得令人难以置信？','s.enter':'继续 →',
+'p.lead':'三种进入方式——选择你的',
+'p.line.t':'全新车型阵容','p.line.s':'以 Dream 7 旗舰领衔——九款车型，最低至 1.699 € 的城市助力车。每款均可 360° 旋转并放大查看。','p.line.g':'探索车型阵容 →',
+'p.quiz.tag':'仅 200 个名额','p.quiz.t':'你符合预订资格吗？','p.quiz.s':'60 秒测评为你找到合适车型，并解锁抢先体验价。数量有限。','p.quiz.g':'检测资格 →',
+'p.ana.t':'竞争分析','p.ana.s':'每款 SFM 车型如何在价格与技术上胜过对手——完整的 DACH 竞争简报。','p.ana.g':'打开简报 →',
+'d7.ey':'旗舰车型','d7.sub':'车型阵容中可上高速的门面担当。拖动可环绕查看，点按某个角度，点击车辆进入细节缩放。','d7.uvp':'厂商建议零售价（含增值税）','d7.zoom':'⤢ <span>点击放大</span>','d7.auto':'自动旋转','d7.s1':'km/h 最高时速','d7.s2':'km 续航','d7.s4':'至 80%','d7.cta1':'检测资格 →','d7.cta2':'看它如何对比','d7.lbhint':'滚动或双指缩放放大 · 拖动移动 · Esc 关闭',
+'a.k':'SFM E-Mobility 2027',
+'r.u1':'直到你的优惠价锁定','r.u2':'名额 · 仅限合格申请者',
+'r.slnote':'✓ 无需付款，无需承诺——你的邮箱只用于锁定名额。锁定即可固定你的抢先体验价。',
+'r.scroll':'↓ 看你的匹配车型如何对阵市场',
+'r.ceyebrow':'你的价格证据','r.strh':'它在哪里胜过对手',
+'r.altsh':'你同样符合资格的其他车型','r.altsub':'你的答案匹配多款车型——以下是次优之选。点按任意一款即可旋转查看。',
+'r.actah':'查看完整的 2027 车型阵容','r.actap':'六款车型，每款都与同级对手基准对比——最强的竞争优势优先呈现。','r.actabtn':'探索产品线 →',
+'a.h':'你准备好迎接<br><span class="grad">出行的未来了吗？</span>',
+'a.sub':'<b>Dream&nbsp;7 旗舰</b>：110&nbsp;km/h · 150&nbsp;km 续航 · ~2&nbsp;h 快充——5.999&nbsp;€，远低于高端品牌。',
+'hg.range':'续航 · 越多越好','hg.price':'价格 · 越低越好','hg.us':'SFM 旗舰','hg.them':'典型高端对手','hg.us2':'SFM 旗舰','hg.them2':'典型高端对手',
+'a.cta':'检测预订资格 →','a.meta':'200 个抢先名额 · 10 月 1 日截止 · 德国 · 奥地利 · 瑞士',
+'t.k':'抢先体验 · 2027 年春季 · DE · AT · CH',
+'t.h':'你准备好迎接两轮出行的<br><span class="g">未来</span>了吗？',
+'t.sub':'SFM 的 2027 电动车型阵容以大牌一半的价格提供最高 80&nbsp;km/h 的速度。做 60 秒测评，看你是否符合抢先体验资格——并找到适合你的车型。',
+'t.c1':'200','t.c1b':'抢先名额','t.c2':'10 月 1 日前','t.c3':'相比高端最高 <b>–50%</b>',
+'t.scroll':'↓ 从一个快速问题开始',
+'q.eyebrow':'限量预订 · 资格检测','q.title':'你符合限量预订资格吗？',
+'q.lead':'仅 200 个预订名额，优先 DE/AT/CH——本测评确认你的资格，为你匹配合适车型，并展示相较对手的真实价格与性能。六个简短问题。',
+'q.submit':'查看结果与数据','q.count':'答完全部 6 题以继续','q.back':'返回',
+'r.eyebrow':'你的结果','r.match':'你的最佳匹配',
+'r.cn':'同一驾照级别下的售价——越低越实惠。数据见每根柱下方。',
+'r.slt1':'抢先名额——仅限合格申请者','r.slt2':'申请于 2027 年 10 月 1 日截止 · 先到先匹配',
+'r.slh':'进入预订候选名单','r.slp':'2027 年 10 月 1 日前仅接受 <b>200 份合格预订</b>。候选名单车主将获得春季首批交付、锁定的上市价格及一块免费备用电池。现在无需付款——你将在 2 月的最终定价公布时确认订单。',
+'r.slph':'you@email.com','r.slbtn':'锁定名额',
+'r.sldisc':'你可随时退出——这只是预留名额，并非购买，也非具约束力的订单。预订开放时我们会发邮件与你确认。',
+'e.eyebrow':'背后的数据','e.title':'为什么“最高半价”是真的，而非口号',
+'e.lead':'三组直接对比，最清晰地展现差距。每个数字都是 2025–26 年的真实市场价；SFM 价格为厂商建议零售价。',
+'e.f1t':'80 km/h 级别 · 制胜一击','e.f1a':'SFM E2H Sport','e.f1b':'最便宜的对手','e.f1s':'便宜 1.000&nbsp;€——而且是<b>全 DACH 最便宜的 80 km/h 电动踏板车</b>。',
+'e.f2t':'风格级别 · 对阵标杆','e.f2a':'SFM E2H Sport','e.f2b':'Vespa Elettrica 70','e.f2s':'几乎是 <b>Vespa 价格的一半</b>——却是一辆更快、带可拆卸电池的车。',
+'e.f3t':'别人都没有的技术','e.f3a':'SFM Future 5','e.f3b':'所有对手','e.f3s':'<b>钠离子</b>：低温性能更好，没有锂电池起火的历史，寿命长。<b>没有任何在售竞品拥有它。</b>',
+'e.mvt':'每个级别中最低的入门价','e.mvs':'入门价，€ · SFM（蓝色）对比已知最便宜对手（灰色）',
+'e.mv1':'25 km/h 助力车','e.mv2':'45 km/h 轻便摩托','e.mv3':'75–80 km/h · A1',
+'w.eyebrow':'直言不讳','w.title':'它致胜的五个理由',
+'w.a1h':'定价诚实','w.a1p':'在每个驾照级别都低于市场——而且是 DACH 最便宜的合法上路 80 km/h 踏板车。',
+'w.a2h':'钠离子首发','w.a2p':'Future 5 搭载更安全、耐寒、长寿命的电池，没有任何对手在售提供。',
+'w.a3h':'在室内充电','w.a3p':'全系可拆卸电池——拎上楼在书桌旁充电。无需车库。',
+'w.a4h':'真正的售后','w.a4p':'背后有经销与质保网络的品牌——而非面目模糊的线上进口货。',
+'w.a5h':'每种驾照都有对应车型','w.a5p':'从 15 岁的第一辆 25 km/h 助力车到 80 km/h 的 A1——一个品牌伴你成长。',
+'w.a6h':'让你乐于停放的设计','w.a6p':'复古的 Prima E 以零头的价格给你接近 Vespa 的造型。',
+'d.label':'深度分析','d.title':'完整的竞争与市场进入简报',
+'d.p':'以下所有内容都是详尽的证据基础——完整车型阵容、对每个同级对手的基准对比、DACH 分销策略以及预热营销计划。',
+'lineup.eyebrow':'车型阵容','lineup.title':'SFM 2027 车型阵容',
+'lineup.lead':'九款车型：三款 25 km/h 助力车（含高扭矩的 E2H）、一款钠离子首发、一款大电池 45 km/h 轻便摩托、一款复古城市踏板车、两款高性能 L3e 机器，以及 Dream&nbsp;7 旗舰。几乎全系可换电池。价格为厂商建议零售价，含增值税。',
+'m.em1.c':'助力车 25 km/h — 15 岁起','m.em1.u':'<li><span>电机</span><b>500 W · 80 Nm</b></li><li><span>电池</span><b>60V · 1.440 Wh Li-Ion</b></li><li><span>续航</span><b>最高 80 km</b></li><li><span>可换电池</span><b>是</b></li><li><span>级别</span><b>25 km/h 助力车</b></li>','m.em1.b':'同级价格底线',
+'m.e2hstd.c':'复古 · 25 km/h · 高扭矩','m.e2hstd.u':'<li><span>电机</span><b>3.000 W · 165 Nm</b></li><li><span>电池</span><b>72V · 1.728 Wh</b></li><li><span>最高时速</span><b>25 km/h</b></li><li><span>可换电池</span><b>是</b></li><li><span>级别</span><b>25 km/h 助力车</b></li>','m.e2hstd.b':'同级最强扭矩',
+'m.e2hplus.c':'复古 · 25 km/h · 双电池','m.e2hplus.u':'<li><span>电机</span><b>3.000 W · 165 Nm</b></li><li><span>电池</span><b>2× 72V · 3.456 Wh</b></li><li><span>最高时速</span><b>25 km/h</b></li><li><span>可换电池</span><b>是</b></li><li><span>级别</span><b>25 km/h 助力车</b></li>','m.e2hplus.b':'双电池——超长续航',
+'m.fut5.c':'轻便摩托 45 km/h — 钠离子','m.fut5.u':'<li><span>电池</span><b>⚛ 钠离子 · 1.260 Wh</b></li><li><span>充电循环</span><b>~1.200</b></li><li><span>续航</span><b>最高 45 km</b></li><li><span>可换电池</span><b>是</b></li><li><span>级别</span><b>45 km/h 轻便摩托</b></li>','m.fut5.b':'⚛ 钠离子首发',
+'m.fut3.c':'轻便摩托 45 km/h — 大电池','m.fut3.u':'<li><span>电机</span><b>2.000 W</b></li><li><span>电池</span><b>72V · 2.160 Wh</b></li><li><span>续航</span><b>同级出色</b></li><li><span>可换电池</span><b>是</b></li><li><span>级别</span><b>45 km/h 轻便摩托</b></li>','m.fut3.b':'大电池，更低价',
+'m.pri.c':'复古 · 25 或 45 km/h','m.pri.u':'<li><span>电机</span><b>1.000 W · 14″ 车轮</b></li><li><span>电池</span><b>48V · 960 Wh Li-Ion</b></li><li><span>续航</span><b>最高 65 km（25）</b></li><li><span>可换电池</span><b>是 · 7 kg</b></li><li><span>重量</span><b>~51 kg</b></li>','m.pri.b':'复古 / 生活方式',
+'m.pris.c':'快速踏板车 — 75 km/h · A1','m.pris.u':'<li><span>电机</span><b>3.000 W / 3.800 W · 150 Nm</b></li><li><span>电池</span><b>2× · 2.400 Wh Li-Ion</b></li><li><span>续航</span><b>最高 90 km</b></li><li><span>刹车</span><b>CBS 联动刹车</b></li><li><span>重量</span><b>~103 kg</b></li>','m.pris.b':'以助力车价格享 75 km/h',
+'m.e2h.c':'L3e 摩托车 — 80 km/h · A1','m.e2h.u':'<li><span>电机</span><b>3.000 W / 5.000 W 峰值</b></li><li><span>电池</span><b>2× 72V · 3.456 Wh</b></li><li><span>续航</span><b>最高 75 km</b></li><li><span>可换电池</span><b>是</b></li><li><span>重量</span><b>~106 kg</b></li>','m.e2h.b':'DACH 最便宜的 80 km/h L3e',
+'m.dream7.c':'L3e 旗舰 — 110 km/h · A1','m.dream7.u':'<li><span>最高时速</span><b>110 km/h</b></li><li><span>电池</span><b>BYD LFP · 5,18 kWh</b></li><li><span>续航</span><b>最高 150 km</b></li><li><span>充电</span><b>~2 h 至 80%</b></li><li><span>安全</span><b>ABS + TCS</b></li>','m.dream7.b':'★ 续航与速度旗舰',
+'pos.eyebrow':'SFM 的定位','pos.title':'按级别的竞争定位',
+'pos.lead':'每款 SFM 车型与 DACH 买家在同一驾照级别真正会考虑的车辆对比。柱状显示售价（越低=越实惠）。将鼠标悬停在柱上查看详情。对手价格为 2025–26 年当前的街头价/建议零售价。',
+'pos.c1t':'45 km/h 轻便摩托 / L1e — 走量的主战场','pos.c1n':'售价，€ · 越低越实惠 · SFM 蓝色，钠离子旗舰橙色',
+'pos.lg.sfm':'SFM','pos.lg.fut':'SFM · Future 5','pos.lg.comp':'竞争对手',
+'pos.call1':'<b>解读：</b>45 km/h 主流阵营在 2.250–3.200&nbsp;€，德系复古品牌在 3.900–6.500&nbsp;€。SFM 的 EM1 与 Prima E 起价 <b>1.699–1.999&nbsp;€</b>——低于整个主流区间、约为复古级别的一半——并配可换电池，EM1 更有 80&nbsp;km 续航。',
+'pos.c3t':'75–80 km/h L3e / 快速级别 — 降价幅度最大之处','pos.c3n':'售价，€ · SFM 的两款高性能车型对比当前 L3e 阵营',
+'pos.lg.pris':'SFM · Prima E Sport','pos.lg.e2h':'SFM · E2H Sport','pos.lg.comp3':'竞争对手',
+'pos.call3':'<b>重点：</b>以 <b>2.999&nbsp;€</b>，E2H Sport 将是 <b>DACH 80 km/h 级别最便宜的 L3e 踏板车</b>——比 Super Soco TC Max 和 Horwin SK3 低约 1.000&nbsp;€，不到 Vespa Elettrica 70 的一半。需要管理的是<b>续航</b>（75–90&nbsp;km，对比 NIU/Super Soco 的 110–130&nbsp;km）。',
+'pos.c4t':'可上高速的旗舰 — Dream 7 对阵 100+ km/h 阵营','pos.c4n':'售价，€ · Dream 7 对阵高端长续航/快速 L3e 级别','pos.lg.dream':'SFM · Dream 7','pos.lg.comp4':'竞争对手',
+'pos.call4':'<b>旗舰王牌：</b>以 <b>5.999&nbsp;€</b>，Dream&nbsp;7 将真正的 <b>110&nbsp;km/h</b> 极速与 <b>150&nbsp;km</b> 续航——本阵营最长——同 BYD LFP 电池及 ~2&nbsp;h 快充结合。它比 Silence S01+ 低约 2.800&nbsp;€，与续航更短的 Super Soco CPx 持平，而 NIU MQi GT 更慢、更不耐久。这是 SFM 对那些原本会为一辆“真正”可上高速的车而转投别家品牌的买家给出的答案。',
+'pos.tabt':'完整规格对比',
+'pos.th.model':'车型','pos.th.class':'级别','pos.th.speed':'最高时速','pos.th.motor':'额定电机','pos.th.batt':'电池','pos.th.range':'续航','pos.th.swap':'可换电池',
+'edge.eyebrow':'诚实评估','edge.title':'SFM 在哪里取胜——又在哪里脆弱',
+'edge.lead':'车型阵容凭价格与广度取胜。要让这转化为销量而非仅仅一个廉价品牌形象，以下缺口须在上市前补齐。',
+'edge.winh':'▲ 结构性优势','edge.winu':'<li><b>每个级别的价格领先</b>——在 25 与 45 km/h 低于主流，市场上最便宜的 L3e。</li><li><b>覆盖所有级别</b>——从第一辆助力车到 80 km/h 的 A1。</li><li><b>钠离子故事（Future 5）</b>——行业首创：耐寒、无起火历史、约 1.200 次循环、可持续。</li><li><b>全系可换电池</b>——含可在室内充电的双电池组。</li><li><b>复古设计（Prima E）</b>——以零头价格呈现接近 Vespa 的造型。</li>',
+'edge.gaph':'▼ 上市前的缺口','edge.gapu':'<li><b>品牌与售后信任</b>——拒绝廉价电动踏板车的头号原因是售后薄弱。</li><li><b>三款车型的续航</b>——Future 5（45）、E2H（75）、Prima E Sport（90）落后于续航 110–130 km 的对手。</li><li><b>没有 App/互联</b>——NIU 与 unu 靠 GPS 和 App 卖车。</li><li><b>瑞士分类</b>——45 km/h 在 CH 属 A1 轻型摩托车。</li><li><b>没有补贴助力</b>——AT 已到期，DE 无，CH 视州而定。</li>',
+'edge.call':'<b>战略结论：</b>SFM 是<b>对 NIU 可信的价值挑战者</b>，拥有两个真实的抓手——无可匹敌的 L3e 价格与钠离子首发。要靠<b>信任</b>取胜：利用上市前窗口买下可信度（经销商、售后、评测、质保）。',
+'str.eyebrow':'市场进入','str.title':'面向德国、奥地利和瑞士的分销策略',
+'str.lead':'一个定位——<b>“定价诚实、售后真实的电动两轮品牌”</b>——通过混合模式实现：精选的经销/售后网络加上直营在线配置器。每个市场需要不同的侧重。',
+'str.de.s':'欧盟最大市场 · ~23% · NIU 主导',
+'str.de.b':'<div class="row"><div class="rl">优先</div><div class="rt">走量市场。用 EM1/Prima/Future 5 打赢 <b>45 km/h</b> 价格战，让 <b>E2H Sport 2.999&nbsp;€</b> 成为 L3e 价格故事，让 <b>Dream 7</b> 成为门面。</div></div><div class="row"><div class="rl">渠道</div><div class="rt"><b>经销/售后网络优先</b>——对阵 NIU 的信任答案。D2C 线上作为补充。</div></div><div class="row"><div class="rl">杠杆</div><div class="rt">面向 L3e 车主的 <b>THG-Quote</b>，面向车队的 <b>0,25% 公务车规则</b>，面向青少年的 15 岁助力车。</div></div>',
+'str.at.s':'较小 · 45 km/h 的 AM 是入门',
+'str.at.b':'<div class="row"><div class="rl">优先</div><div class="rt">没有 25 km/h 级别——青少年入门是 <b>15 岁起的 AM 45 km/h</b>。以 EM1 45、Prima E 45、Future 5 领衔。</div></div><div class="row"><div class="rl">渠道</div><div class="rt"><b>进口商 + 区域经销商</b>；借力 ÖAMTC 的公信力。</div></div><div class="row"><div class="rl">杠杆</div><div class="rt">补贴<b>已到期</b>。Future 5 钠离子的<b>阿尔卑斯耐寒优势</b>。</div></div>',
+'str.ch.s':'愿意为高端付费 · 级别不同',
+'str.ch.b':'<div class="row"><div class="rl">优先</div><div class="rt">45 km/h 燃油踏板车 = <b>A1 轻型摩托车</b>。押注 <b>Prima E Sport 与 E2H Sport</b> 以及 25 km/h 级别。</div></div><div class="row"><div class="rl">渠道</div><div class="rt">需要 <b>瑞士认证（ASTRA）</b> + 本地进口商。高端定位支撑利润。</div></div><div class="row"><div class="rl">杠杆</div><div class="rt">补贴<b>按州而定</b>。靠设计、品质、使用成本卖车。</div></div>',
+'cmp.eyebrow':'计划','cmp.title':'预热营销活动——从预告到春季高峰',
+'cmp.lead':'踩准一个事实：<b>DACH 两轮市场在 3–5 月达到高峰</b>。一切都把需求前置到 2027 年第一季度——先经销商，后终端客户，外加面向专业媒体的钠离子故事线。',
+'cmp.ph0':'<div class="ptag">奠基——低调进行</div><h4>打造弹药库</h4><ul><li>完成欧盟型式认证 + 瑞士认证；锁定 2027 年 2–3 月交付。</li><li>品牌识别、全部 6 款车型的图片/视频、网站 + 配置器、预订系统。</li><li>经销商推介材料、批发条款；含两大主打角度的公关媒体资料包。</li></ul>',
+'cmp.ph1':'<div class="ptag">经销商预热——仅限渠道</div><h4>在客户听到只言片语前签下网络</h4><ul><li>走遍 DE/AT 的经销商巡展 + CH 进口商会谈；试驾。</li><li>禁发期下的专业媒体简报；2026 年底参展。</li><li>目标：在揭幕前拿到经销商签署的 LOI + 指定的售后合作伙伴。</li></ul>',
+'cmp.ph2':'<div class="ptag">客户预告 + 候补名单</div><h4>“2027 春季来临”——构建管道</h4><ul><li>开放预订候补名单（本资格测评），附小额可退定金；候补者获首批名额 + 权益。</li><li>社交预告、微影响者、地理定向的付费社交 + 搜索。</li><li>向科技/电动车媒体推介钠离子“可负担的全球首发”故事。</li></ul>',
+'cmp.ph3':'<div class="ptag">揭幕与预订</div><h4>公布价格。开放预订。</h4><ul><li>以<b>价格为头条</b>完整揭幕；将候选名单转化为预订。</li><li>上市版套装（免费第二块电池，不打折）。</li><li>寄出评测车，让评测在 3 月发布。</li></ul>',
+'cmp.ph4':'<div class="ptag">上市与销售——高峰</div><h4>在春季浪潮中交付</h4><ul><li>开始交付；春季试驾巡回 + 城市快闪 + 校园活动。</li><li>对未转化者进行再营销；本地经销商联合推广；加强评测。</li><li>基于 TCO + 可换电池故事的车队/配送试点项目。</li></ul>',
+'cmp.pih':'信息支柱',
+'cmp.pi1h':'定价诚实','cmp.pi1p':'同级别，便宜数百。','cmp.pi2h':'钠离子首发','cmp.pi2p':'一块无人提供的电池。','cmp.pi3h':'室内充电','cmp.pi3p':'可换电池，无需车库。','cmp.pi4h':'真正的售后','cmp.pi4p':'经销与质保网络。','cmp.pi5h':'每种驾照','cmp.pi5p':'从第一辆助力车到 80 km/h A1。',
+'rsk.eyebrow':'需要注意','rsk.title':'关键风险及其化解',
+'rsk.rh':'▼ 风险','rsk.ru':'<li><b>“便宜=有风险”</b>对比成熟的 NIU/Vespa。</li><li>Future 5 / E2H 在评测中的<b>续航短板</b>。</li><li><b>认证延误</b>将上市推过春季窗口。</li><li>上市时<b>售后网络薄弱</b> → 投诉。</li><li><b>瑞士分类</b>在 45 km/h 车型上造成困惑。</li>',
+'rsk.mh':'▲ 应对措施','rsk.mu':'<li>尽早买下可信度：评测、质保、可见的售后、真实的经销商。</li><li>绝不以续航为卖点；讲成本、技术、换电即充；提供第二块电池。</li><li>把 2 月揭幕 / 3 月交付日期作为唯一的硬性截止日守住。</li><li>在面向客户上市<i>之前</i>为每个区域指定售后合作伙伴。</li><li>在配置器中加入分国的驾照提示 + 经销商培训。</li>',
+'rsk.call':'<b>结论：</b>SFM 于 2027 年以 DACH 最激进的价格阶梯和一个真实的技术故事登场。若上市前窗口能把价格转化为<b>信任</b>——经销商签约、售后可见、评测正面、候选名单火热——它就能卖得动。',
+'ft.h':'来源与说明','ft.p':'SFM 数据与价格来自六份数据表。对手价格为 2025–2026 年当前的街头价/建议零售价，因经销商/配置而异；请作为指示性基准看待。资格测评与候选名单为示意性的预热营销概念。',
+'ft.disc':'为 SFM 制作 · 2027 DACH 市场进入。对手数字为截至 2026 年 8 月的最佳公开数据，用于外部用途前须核实。'
+};
+const ZHPH={'r.slph':'you@email.com'};
+
 // ---------- QUIZ ----------
 const QUIZ={
  en:[
@@ -1225,79 +1356,87 @@ const QUIZ={
   {n:'Domanda 4 di 6',q:'Quanto vuoi spendere?',o:['Meno di 2.000 €','2.000–3.500 €','3.500–5.000 €','Oltre 5.000 €']},
   {n:'Domanda 5 di 6',q:'A cosa serve principalmente?',o:['Spostamenti in città','Tempo libero e divertimento','Consegne o lavoro','Il mio primo veicolo']},
   {n:'Domanda 6 di 6',q:'Quando lo vorresti?',o:['Questa primavera (2027)','Più avanti nel 2027','Solo curiosità per ora']}
+ ],
+ zh:[
+  {n:'第 1 题，共 6 题',q:'你将在哪里骑行？',o:['🇩🇪 德国','🇦🇹 奥地利','🇨🇭 瑞士','🌍 欧洲其他地区']},
+  {n:'第 2 题，共 6 题',q:'你需要多快的速度？',o:['25 km/h — 助力车，15 岁起','45 km/h — 轻便摩托（AM 驾照）','最高 110 km/h — A1 驾照','还不确定']},
+  {n:'第 3 题，共 6 题',q:'平常一天骑多远？',o:['30 km 以内','30–60 km','60–90 km','90 km 或以上']},
+  {n:'第 4 题，共 6 题',q:'你想花多少预算？',o:['2.000 € 以内','2.000–3.500 €','3.500–5.000 €','5.000 € 以上']},
+  {n:'第 5 题，共 6 题',q:'主要用于什么？',o:['城市通勤','休闲与乐趣','配送或商用','我的第一辆车']},
+  {n:'第 6 题，共 6 题',q:'你希望何时拥有？',o:['今年春季（2027）','2027 年晚些时候','目前只是了解一下']}
  ]
 };
 const answers=[null,null,null,null,null,null];
 
 // models + rival comparison sets (name, price, speed km/h, range km)
 const MODELS={
- EM1:{name:'SFM EM1',price:1699,sp:25,rg:80,cls:{en:'25 km/h Mofa · from age 15',de:'25 km/h Mofa · ab 15',es:'Ciclomotor 25 km/h · desde los 15',it:'Ciclomotore 25 km/h · dai 15 anni'},
-   specs:{en:[['Range','up to 80 km'],['Battery','60V · 1,440 Wh'],['Motor','500 W · 80 Nm']],de:[['Reichweite','bis 80 km'],['Akku','60V · 1.440 Wh'],['Motor','500 W · 80 Nm']],es:[['Autonomía','hasta 80 km'],['Batería','60V · 1.440 Wh'],['Motor','500 W · 80 Nm']],it:[['Autonomia','fino a 80 km'],['Batteria','60V · 1.440 Wh'],['Motore','500 W · 80 Nm']]},
+ EM1:{name:'SFM EM1',price:1699,sp:25,rg:80,cls:{en:'25 km/h Mofa · from age 15',de:'25 km/h Mofa · ab 15',es:'Ciclomotor 25 km/h · desde los 15',it:'Ciclomotore 25 km/h · dai 15 anni',zh:'25 km/h 助力车 · 15 岁起'},
+   specs:{en:[['Range','up to 80 km'],['Battery','60V · 1,440 Wh'],['Motor','500 W · 80 Nm']],de:[['Reichweite','bis 80 km'],['Akku','60V · 1.440 Wh'],['Motor','500 W · 80 Nm']],es:[['Autonomía','hasta 80 km'],['Batería','60V · 1.440 Wh'],['Motor','500 W · 80 Nm']],it:[['Autonomia','fino a 80 km'],['Batteria','60V · 1.440 Wh'],['Motore','500 W · 80 Nm']],zh:[['续航','最高 80 km'],['电池','60V · 1.440 Wh'],['电机','500 W · 80 Nm']]},
    rivals:[{name:'NIU UQi',price:2200,s:25,r:50},{name:'Super Soco CUx',price:2300,s:25,r:60},{name:'emco Novi',price:2500,s:25,r:60}]},
- E2H_STD:{name:'SFM E2H',price:2199,sp:25,rg:null,cls:{en:'25 km/h · torque retro',de:'25 km/h · drehmomentstark',es:'25 km/h · retro con par',it:'25 km/h · retro ad alta coppia'},
-   specs:{en:[['Top speed','25 km/h'],['Torque','165 Nm'],['Battery','72V · 1,728 Wh']],de:[['Höchstgeschw.','25 km/h'],['Drehmoment','165 Nm'],['Akku','72V · 1.728 Wh']],es:[['Vel. máx.','25 km/h'],['Par','165 Nm'],['Batería','72V · 1.728 Wh']],it:[['Vel. max','25 km/h'],['Coppia','165 Nm'],['Batteria','72V · 1.728 Wh']]},
+ E2H_STD:{name:'SFM E2H',price:2199,sp:25,rg:null,cls:{en:'25 km/h · torque retro',de:'25 km/h · drehmomentstark',es:'25 km/h · retro con par',it:'25 km/h · retro ad alta coppia',zh:'25 km/h · 复古高扭矩'},
+   specs:{en:[['Top speed','25 km/h'],['Torque','165 Nm'],['Battery','72V · 1,728 Wh']],de:[['Höchstgeschw.','25 km/h'],['Drehmoment','165 Nm'],['Akku','72V · 1.728 Wh']],es:[['Vel. máx.','25 km/h'],['Par','165 Nm'],['Batería','72V · 1.728 Wh']],it:[['Vel. max','25 km/h'],['Coppia','165 Nm'],['Batteria','72V · 1.728 Wh']],zh:[['最高时速','25 km/h'],['扭矩','165 Nm'],['电池','72V · 1.728 Wh']]},
    rivals:[{name:'NIU UQi',price:2200,s:25,r:50},{name:'Super Soco CUx',price:2300,s:25,r:60},{name:'emco Novi',price:2500,s:25,r:60}]},
- E2H_PLUS:{name:'SFM E2H Plus',price:2849,sp:25,rg:null,cls:{en:'25 km/h · dual battery',de:'25 km/h · Doppelakku',es:'25 km/h · batería doble',it:'25 km/h · doppia batteria'},
-   specs:{en:[['Top speed','25 km/h'],['Torque','165 Nm'],['Battery','2× 72V · 3,456 Wh']],de:[['Höchstgeschw.','25 km/h'],['Drehmoment','165 Nm'],['Akku','2× 72V · 3.456 Wh']],es:[['Vel. máx.','25 km/h'],['Par','165 Nm'],['Batería','2× 72V · 3.456 Wh']],it:[['Vel. max','25 km/h'],['Coppia','165 Nm'],['Batteria','2× 72V · 3.456 Wh']]},
+ E2H_PLUS:{name:'SFM E2H Plus',price:2849,sp:25,rg:null,cls:{en:'25 km/h · dual battery',de:'25 km/h · Doppelakku',es:'25 km/h · batería doble',it:'25 km/h · doppia batteria',zh:'25 km/h · 双电池'},
+   specs:{en:[['Top speed','25 km/h'],['Torque','165 Nm'],['Battery','2× 72V · 3,456 Wh']],de:[['Höchstgeschw.','25 km/h'],['Drehmoment','165 Nm'],['Akku','2× 72V · 3.456 Wh']],es:[['Vel. máx.','25 km/h'],['Par','165 Nm'],['Batería','2× 72V · 3.456 Wh']],it:[['Vel. max','25 km/h'],['Coppia','165 Nm'],['Batteria','2× 72V · 3.456 Wh']],zh:[['最高时速','25 km/h'],['扭矩','165 Nm'],['电池','2× 72V · 3.456 Wh']]},
    rivals:[{name:'NIU UQi',price:2200,s:25,r:50},{name:'Super Soco CUx',price:2300,s:25,r:60},{name:'emco Novi',price:2500,s:25,r:60}]},
- FUTURE5:{name:'SFM Future 5',price:1999,sp:45,rg:45,cls:{en:'45 km/h Mokick · sodium-ion',de:'45 km/h Mokick · Natrium-Ionen',es:'Ciclomotor 45 km/h · sodio-ion',it:'Ciclomotore 45 km/h · sodio-ione'},
-   specs:{en:[['Battery','⚛ Sodium-ion 1,260 Wh'],['Cycles','~1,200'],['Range','up to 45 km']],de:[['Akku','⚛ Natrium-Ionen 1.260 Wh'],['Zyklen','~1.200'],['Reichweite','bis 45 km']],es:[['Batería','⚛ Sodio-ion 1.260 Wh'],['Ciclos','~1.200'],['Autonomía','hasta 45 km']],it:[['Batteria','⚛ Sodio-ione 1.260 Wh'],['Cicli','~1.200'],['Autonomia','fino a 45 km']]},
+ FUTURE5:{name:'SFM Future 5',price:1999,sp:45,rg:45,cls:{en:'45 km/h Mokick · sodium-ion',de:'45 km/h Mokick · Natrium-Ionen',es:'Ciclomotor 45 km/h · sodio-ion',it:'Ciclomotore 45 km/h · sodio-ione',zh:'45 km/h 轻便摩托 · 钠离子'},
+   specs:{en:[['Battery','⚛ Sodium-ion 1,260 Wh'],['Cycles','~1,200'],['Range','up to 45 km']],de:[['Akku','⚛ Natrium-Ionen 1.260 Wh'],['Zyklen','~1.200'],['Reichweite','bis 45 km']],es:[['Batería','⚛ Sodio-ion 1.260 Wh'],['Ciclos','~1.200'],['Autonomía','hasta 45 km']],it:[['Batteria','⚛ Sodio-ione 1.260 Wh'],['Cicli','~1.200'],['Autonomia','fino a 45 km']],zh:[['电池','⚛ 钠离子 1.260 Wh'],['循环','~1.200'],['续航','最高 45 km']]},
    rivals:[{name:'Vässla 2',price:2250,s:45,r:50},{name:'NIU MQi+',price:2500,s:45,r:65},{name:'Kumpan 54',price:3900,s:45,r:90}]},
- FUTURE3:{name:'SFM Future 3',price:2699,sp:45,rg:null,cls:{en:'45 km/h Mokick · big battery',de:'45 km/h Mokick · großer Akku',es:'Ciclomotor 45 km/h · batería grande',it:'Ciclomotore 45 km/h · batteria grande'},
-   specs:{en:[['Motor','2,000 W'],['Battery','72V · 2,160 Wh'],['Top speed','45 km/h']],de:[['Motor','2.000 W'],['Akku','72V · 2.160 Wh'],['Höchstgeschw.','45 km/h']],es:[['Motor','2.000 W'],['Batería','72V · 2.160 Wh'],['Vel. máx.','45 km/h']],it:[['Motore','2.000 W'],['Batteria','72V · 2.160 Wh'],['Vel. max','45 km/h']]},
+ FUTURE3:{name:'SFM Future 3',price:2699,sp:45,rg:null,cls:{en:'45 km/h Mokick · big battery',de:'45 km/h Mokick · großer Akku',es:'Ciclomotor 45 km/h · batería grande',it:'Ciclomotore 45 km/h · batteria grande',zh:'45 km/h 轻便摩托 · 大电池'},
+   specs:{en:[['Motor','2,000 W'],['Battery','72V · 2,160 Wh'],['Top speed','45 km/h']],de:[['Motor','2.000 W'],['Akku','72V · 2.160 Wh'],['Höchstgeschw.','45 km/h']],es:[['Motor','2.000 W'],['Batería','72V · 2.160 Wh'],['Vel. máx.','45 km/h']],it:[['Motore','2.000 W'],['Batteria','72V · 2.160 Wh'],['Vel. max','45 km/h']],zh:[['电机','2.000 W'],['电池','72V · 2.160 Wh'],['最高时速','45 km/h']]},
    rivals:[{name:'NIU MQi+',price:2500,s:45,r:65},{name:'Super Soco CUx Pro',price:2599,s:45,r:80},{name:'Horwin EK1',price:3200,s:45,r:100}]},
- PRIMA_E:{name:'SFM Prima E',price:1999,sp:45,rg:65,cls:{en:'Retro · 25 or 45 km/h',de:'Retro · 25 oder 45 km/h',es:'Retro · 25 o 45 km/h',it:'Retro · 25 o 45 km/h'},
-   specs:{en:[['Range','up to 65 km'],['Battery','960 Wh · 7 kg removable'],['Wheels','14″ retro']],de:[['Reichweite','bis 65 km'],['Akku','960 Wh · 7 kg Wechselakku'],['Räder','14″ Retro']],es:[['Autonomía','hasta 65 km'],['Batería','960 Wh · extraíble 7 kg'],['Ruedas','14″ retro']],it:[['Autonomia','fino a 65 km'],['Batteria','960 Wh · estraibile 7 kg'],['Ruote','14″ retro']]},
+ PRIMA_E:{name:'SFM Prima E',price:1999,sp:45,rg:65,cls:{en:'Retro · 25 or 45 km/h',de:'Retro · 25 oder 45 km/h',es:'Retro · 25 o 45 km/h',it:'Retro · 25 o 45 km/h',zh:'复古 · 25 或 45 km/h'},
+   specs:{en:[['Range','up to 65 km'],['Battery','960 Wh · 7 kg removable'],['Wheels','14″ retro']],de:[['Reichweite','bis 65 km'],['Akku','960 Wh · 7 kg Wechselakku'],['Räder','14″ Retro']],es:[['Autonomía','hasta 65 km'],['Batería','960 Wh · extraíble 7 kg'],['Ruedas','14″ retro']],it:[['Autonomia','fino a 65 km'],['Batteria','960 Wh · estraibile 7 kg'],['Ruote','14″ retro']],zh:[['续航','最高 65 km'],['电池','960 Wh · 7 kg 可拆卸'],['车轮','14″ 复古']]},
    rivals:[{name:'NIU UQi',price:2200,s:45,r:50},{name:'unu Scooter',price:3024,s:45,r:55},{name:'Kumpan 54',price:3900,s:45,r:90}]},
- PRIMA_SPORT:{name:'SFM Prima E Sport',price:2999,sp:75,rg:90,cls:{en:'75 km/h · A1',de:'75 km/h · A1',es:'75 km/h · A1',it:'75 km/h · A1'},
-   specs:{en:[['Top speed','75 km/h'],['Range','up to 90 km'],['Power','3,000 / 3,800 W']],de:[['Höchstgeschw.','75 km/h'],['Reichweite','bis 90 km'],['Leistung','3.000 / 3.800 W']],es:[['Vel. máx.','75 km/h'],['Autonomía','hasta 90 km'],['Potencia','3.000 / 3.800 W']],it:[['Vel. max','75 km/h'],['Autonomia','fino a 90 km'],['Potenza','3.000 / 3.800 W']]},
+ PRIMA_SPORT:{name:'SFM Prima E Sport',price:2999,sp:75,rg:90,cls:{en:'75 km/h · A1',de:'75 km/h · A1',es:'75 km/h · A1',it:'75 km/h · A1',zh:'75 km/h · A1'},
+   specs:{en:[['Top speed','75 km/h'],['Range','up to 90 km'],['Power','3,000 / 3,800 W']],de:[['Höchstgeschw.','75 km/h'],['Reichweite','bis 90 km'],['Leistung','3.000 / 3.800 W']],es:[['Vel. máx.','75 km/h'],['Autonomía','hasta 90 km'],['Potencia','3.000 / 3.800 W']],it:[['Vel. max','75 km/h'],['Autonomia','fino a 90 km'],['Potenza','3.000 / 3.800 W']],zh:[['最高时速','75 km/h'],['续航','最高 90 km'],['功率','3.000 / 3.800 W']]},
    rivals:[{name:'NIU MQi GT',price:3799,s:100,r:70},{name:'Horwin SK3',price:3990,s:90,r:120},{name:'Super Soco TC Max',price:3999,s:95,r:110}]},
- E2H:{name:'SFM E2H Sport',price:2999,sp:80,rg:75,cls:{en:'80 km/h L3e · A1',de:'80 km/h L3e · A1',es:'80 km/h L3e · A1',it:'80 km/h L3e · A1'},
-   specs:{en:[['Top speed','80 km/h'],['Range','up to 75 km'],['Battery','2× 72V · 3,456 Wh']],de:[['Höchstgeschw.','80 km/h'],['Reichweite','bis 75 km'],['Akku','2× 72V · 3.456 Wh']],es:[['Vel. máx.','80 km/h'],['Autonomía','hasta 75 km'],['Batería','2× 72V · 3.456 Wh']],it:[['Vel. max','80 km/h'],['Autonomia','fino a 75 km'],['Batteria','2× 72V · 3.456 Wh']]},
+ E2H:{name:'SFM E2H Sport',price:2999,sp:80,rg:75,cls:{en:'80 km/h L3e · A1',de:'80 km/h L3e · A1',es:'80 km/h L3e · A1',it:'80 km/h L3e · A1',zh:'80 km/h L3e · A1'},
+   specs:{en:[['Top speed','80 km/h'],['Range','up to 75 km'],['Battery','2× 72V · 3,456 Wh']],de:[['Höchstgeschw.','80 km/h'],['Reichweite','bis 75 km'],['Akku','2× 72V · 3.456 Wh']],es:[['Vel. máx.','80 km/h'],['Autonomía','hasta 75 km'],['Batería','2× 72V · 3.456 Wh']],it:[['Vel. max','80 km/h'],['Autonomia','fino a 75 km'],['Batteria','2× 72V · 3.456 Wh']],zh:[['最高时速','80 km/h'],['续航','最高 75 km'],['电池','2× 72V · 3.456 Wh']]},
    rivals:[{name:'Horwin SK3',price:3990,s:90,r:120},{name:'Super Soco TC Max',price:3999,s:95,r:110},{name:'Vespa Elettrica',price:7199,s:70,r:70}]},
- DREAM7:{name:'SFM Dream 7',price:5999,sp:110,rg:150,cls:{en:'110 km/h L3e · flagship',de:'110 km/h L3e · Flaggschiff',es:'110 km/h L3e · buque insignia',it:'110 km/h L3e · ammiraglia'},
-   specs:{en:[['Top speed','110 km/h'],['Range','up to 150 km'],['Battery','BYD LFP 5.18 kWh'],['Charge','~2 h to 80%'],['Safety','ABS + TCS']],de:[['Höchstgeschw.','110 km/h'],['Reichweite','bis 150 km'],['Akku','BYD LFP 5,18 kWh'],['Laden','~2 h auf 80%'],['Sicherheit','ABS + TCS']],es:[['Vel. máx.','110 km/h'],['Autonomía','hasta 150 km'],['Batería','BYD LFP 5,18 kWh'],['Carga','~2 h al 80%'],['Seguridad','ABS + TCS']],it:[['Vel. max','110 km/h'],['Autonomia','fino a 150 km'],['Batteria','BYD LFP 5,18 kWh'],['Ricarica','~2 h all\'80%'],['Sicurezza','ABS + TCS']]},
+ DREAM7:{name:'SFM Dream 7',price:5999,sp:110,rg:150,cls:{en:'110 km/h L3e · flagship',de:'110 km/h L3e · Flaggschiff',es:'110 km/h L3e · buque insignia',it:'110 km/h L3e · ammiraglia',zh:'110 km/h L3e · 旗舰'},
+   specs:{en:[['Top speed','110 km/h'],['Range','up to 150 km'],['Battery','BYD LFP 5.18 kWh'],['Charge','~2 h to 80%'],['Safety','ABS + TCS']],de:[['Höchstgeschw.','110 km/h'],['Reichweite','bis 150 km'],['Akku','BYD LFP 5,18 kWh'],['Laden','~2 h auf 80%'],['Sicherheit','ABS + TCS']],es:[['Vel. máx.','110 km/h'],['Autonomía','hasta 150 km'],['Batería','BYD LFP 5,18 kWh'],['Carga','~2 h al 80%'],['Seguridad','ABS + TCS']],it:[['Vel. max','110 km/h'],['Autonomia','fino a 150 km'],['Batteria','BYD LFP 5,18 kWh'],['Ricarica','~2 h all\'80%'],['Sicurezza','ABS + TCS']],zh:[['最高时速','110 km/h'],['续航','最高 150 km'],['电池','BYD LFP 5,18 kWh'],['充电','~2 h 至 80%'],['安全','ABS + TCS']]},
    rivals:[{name:'SEAT Mó 125',price:4990,s:95,r:137},{name:'Super Soco CPx',price:5990,s:90,r:140},{name:'Silence S01+',price:8790,s:100,r:133}]}
 };
 
 // strong points per model (honest wins vs named rivals)
 const STRONG={
  'SFM EM1':[
-   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€1,699',b:'€2,200',bn:'NIU UQi',note:{en:'€501 less — the class price floor',de:'501 € günstiger — Preisuntergrenze',es:'501 € menos — el precio mínimo de la clase',it:'501 € in meno — il prezzo minimo della classe'}},
-   {t:{en:'Range',de:'Reichweite',es:'Autonomía',it:'Autonomia'},a:'80 km',b:'50 km',bn:'NIU UQi',note:{en:'+60% further per charge',de:'+60% mehr pro Ladung',es:'+60% más por carga',it:'+60% in più per carica'}},
-   {t:{en:'vs premium',de:'vs. Premium',es:'vs. premium',it:'vs. premium'},a:'€1,699',b:'€3,200',bn:'Horwin EK1',note:{en:'About half the price',de:'Etwa der halbe Preis',es:'Casi la mitad del precio',it:'Circa metà prezzo'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo',zh:'价格'},a:'€1,699',b:'€2,200',bn:'NIU UQi',note:{en:'€501 less — the class price floor',de:'501 € günstiger — Preisuntergrenze',es:'501 € menos — el precio mínimo de la clase',it:'501 € in meno — il prezzo minimo della classe',zh:'便宜 501 €——同级价格底线'}},
+   {t:{en:'Range',de:'Reichweite',es:'Autonomía',it:'Autonomia',zh:'续航'},a:'80 km',b:'50 km',bn:'NIU UQi',note:{en:'+60% further per charge',de:'+60% mehr pro Ladung',es:'+60% más por carga',it:'+60% in più per carica',zh:'每次充电多跑 60%'}},
+   {t:{en:'vs premium',de:'vs. Premium',es:'vs. premium',it:'vs. premium',zh:'对比高端'},a:'€1,699',b:'€3,200',bn:'Horwin EK1',note:{en:'About half the price',de:'Etwa der halbe Preis',es:'Casi la mitad del precio',it:'Circa metà prezzo',zh:'约为一半价格'}}],
  'SFM E2H':[
-   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€2,199',b:'€2,300',bn:'Super Soco CUx',note:{en:'Undercuts on price',de:'Unterbietet im Preis',es:'Rebaja el precio',it:'Batte sul prezzo'}},
-   {t:{en:'Torque',de:'Drehmoment',es:'Par',it:'Coppia'},a:'165 Nm',b:'~130 Nm',bn:'rivals',note:{en:'Strongest low-end pull',de:'Stärkster Antritt',es:'El mayor empuje a bajas',it:'La spinta più forte ai bassi'}},
-   {t:{en:'Power',de:'Leistung',es:'Potencia',it:'Potenza'},a:'3.0 kW',b:'~1.8 kW',bn:'NIU UQi',note:{en:'Punchy for a 25 km/h',de:'Kräftig für ein 25 km/h',es:'Enérgico para un 25 km/h',it:'Grintoso per un 25 km/h'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo',zh:'价格'},a:'€2,199',b:'€2,300',bn:'Super Soco CUx',note:{en:'Undercuts on price',de:'Unterbietet im Preis',es:'Rebaja el precio',it:'Batte sul prezzo',zh:'价格更低'}},
+   {t:{en:'Torque',de:'Drehmoment',es:'Par',it:'Coppia',zh:'扭矩'},a:'165 Nm',b:'~130 Nm',bn:'rivals',note:{en:'Strongest low-end pull',de:'Stärkster Antritt',es:'El mayor empuje a bajas',it:'La spinta più forte ai bassi',zh:'最强的低速牵引力'}},
+   {t:{en:'Power',de:'Leistung',es:'Potencia',it:'Potenza',zh:'功率'},a:'3.0 kW',b:'~1.8 kW',bn:'NIU UQi',note:{en:'Punchy for a 25 km/h',de:'Kräftig für ein 25 km/h',es:'Enérgico para un 25 km/h',it:'Grintoso per un 25 km/h',zh:'对 25 km/h 来说很有劲'}}],
  'SFM E2H Plus':[
-   {t:{en:'Battery',de:'Akku',es:'Batería',it:'Batteria'},a:'3,456 Wh',b:'~1,500 Wh',bn:'NIU UQi',note:{en:'Dual pack — big range',de:'Doppelakku — große Reichweite',es:'Pack doble — gran autonomía',it:'Pacco doppio — grande autonomia'}},
-   {t:{en:'Torque',de:'Drehmoment',es:'Par',it:'Coppia'},a:'165 Nm',b:'~130 Nm',bn:'rivals',note:{en:'Strong pull',de:'Kräftiger Antritt',es:'Empuje fuerte',it:'Spinta forte'}},
-   {t:{en:'vs premium 25',de:'vs. Premium-25',es:'vs. premium 25',it:'vs. premium 25'},a:'€2,849',b:'€3,200',bn:'Horwin',note:{en:'Dual battery for less',de:'Doppelakku für weniger',es:'Batería doble por menos',it:'Doppia batteria per meno'}}],
+   {t:{en:'Battery',de:'Akku',es:'Batería',it:'Batteria',zh:'电池'},a:'3,456 Wh',b:'~1,500 Wh',bn:'NIU UQi',note:{en:'Dual pack — big range',de:'Doppelakku — große Reichweite',es:'Pack doble — gran autonomía',it:'Pacco doppio — grande autonomia',zh:'双电池组——大续航'}},
+   {t:{en:'Torque',de:'Drehmoment',es:'Par',it:'Coppia',zh:'扭矩'},a:'165 Nm',b:'~130 Nm',bn:'rivals',note:{en:'Strong pull',de:'Kräftiger Antritt',es:'Empuje fuerte',it:'Spinta forte',zh:'强劲牵引'}},
+   {t:{en:'vs premium 25',de:'vs. Premium-25',es:'vs. premium 25',it:'vs. premium 25',zh:'对比高端 25'},a:'€2,849',b:'€3,200',bn:'Horwin',note:{en:'Dual battery for less',de:'Doppelakku für weniger',es:'Batería doble por menos',it:'Doppia batteria per meno',zh:'更低价的双电池'}}],
  'SFM Future 3':[
-   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€2,699',b:'€3,200',bn:'Horwin EK1',note:{en:'Big 2 kW / 2,160 Wh for less',de:'Kräftige 2 kW / 2.160 Wh für weniger',es:'2 kW / 2.160 Wh por menos',it:'2 kW / 2.160 Wh per meno'}},
-   {t:{en:'Battery',de:'Akku',es:'Batería',it:'Batteria'},a:'2,160 Wh',b:'~1,900 Wh',bn:'Horwin EK1',note:{en:'More energy on board',de:'Mehr Energie an Bord',es:'Más energía a bordo',it:'Più energia a bordo'}},
-   {t:{en:'Power',de:'Leistung',es:'Potencia',it:'Potenza'},a:'2,000 W',b:'1,400 W',bn:'NIU MQi+',note:{en:'Stronger pull',de:'Kräftigerer Antritt',es:'Empuje más fuerte',it:'Spinta più forte'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo',zh:'价格'},a:'€2,699',b:'€3,200',bn:'Horwin EK1',note:{en:'Big 2 kW / 2,160 Wh for less',de:'Kräftige 2 kW / 2.160 Wh für weniger',es:'2 kW / 2.160 Wh por menos',it:'2 kW / 2.160 Wh per meno',zh:'更低价享 2 kW / 2.160 Wh'}},
+   {t:{en:'Battery',de:'Akku',es:'Batería',it:'Batteria',zh:'电池'},a:'2,160 Wh',b:'~1,900 Wh',bn:'Horwin EK1',note:{en:'More energy on board',de:'Mehr Energie an Bord',es:'Más energía a bordo',it:'Più energia a bordo',zh:'车载能量更多'}},
+   {t:{en:'Power',de:'Leistung',es:'Potencia',it:'Potenza',zh:'功率'},a:'2,000 W',b:'1,400 W',bn:'NIU MQi+',note:{en:'Stronger pull',de:'Kräftigerer Antritt',es:'Empuje más fuerte',it:'Spinta più forte',zh:'更强牵引'}}],
  'SFM Future 5':[
-   {t:{en:'Battery tech',de:'Akku-Technik',es:'Tecnología de batería',it:'Tecnologia batteria'},a:'Na-ion',b:'Li-ion',bn:'every rival',note:{en:'Cold-tough, no fire story',de:'Kältefest, keine Brandgeschichte',es:'Resistente al frío, sin incendios',it:'Resistente al freddo, niente incendi'}},
-   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€1,999',b:'€2,500',bn:'NIU MQi+',note:{en:'€500 less',de:'500 € günstiger',es:'500 € menos',it:'500 € in meno'}},
-   {t:{en:'Lifespan',de:'Lebensdauer',es:'Vida útil',it:'Durata'},a:'~1,200',b:'—',bn:'cycles',note:{en:'Long-life sodium cells',de:'Langlebige Natrium-Zellen',es:'Celdas de sodio de larga vida',it:'Celle al sodio a lunga durata'}}],
+   {t:{en:'Battery tech',de:'Akku-Technik',es:'Tecnología de batería',it:'Tecnologia batteria',zh:'电池技术'},a:'Na-ion',b:'Li-ion',bn:'every rival',note:{en:'Cold-tough, no fire story',de:'Kältefest, keine Brandgeschichte',es:'Resistente al frío, sin incendios',it:'Resistente al freddo, niente incendi',zh:'耐寒，无起火隐患'}},
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo',zh:'价格'},a:'€1,999',b:'€2,500',bn:'NIU MQi+',note:{en:'€500 less',de:'500 € günstiger',es:'500 € menos',it:'500 € in meno',zh:'便宜 500 €'}},
+   {t:{en:'Lifespan',de:'Lebensdauer',es:'Vida útil',it:'Durata',zh:'寿命'},a:'~1,200',b:'—',bn:'cycles',note:{en:'Long-life sodium cells',de:'Langlebige Natrium-Zellen',es:'Celdas de sodio de larga vida',it:'Celle al sodio a lunga durata',zh:'长寿命钠电芯'}}],
  'SFM Prima E':[
-   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€1,999',b:'€3,024',bn:'unu Scooter',note:{en:'~€1,000 less than the design DTC',de:'~1.000 € unter der Design-DTC',es:'~1.000 € menos que la DTC de diseño',it:'~1.000 € in meno della DTC di design'}},
-   {t:{en:'vs retro icon',de:'vs. Retro-Ikone',es:'vs. icono retro',it:'vs. icona retro'},a:'€1,999',b:'€3,900',bn:'Kumpan 54',note:{en:'Half the retro price',de:'Halber Retro-Preis',es:'La mitad del precio retro',it:'Metà del prezzo retro'}},
-   {t:{en:'Battery',de:'Akku',es:'Batería',it:'Batteria'},a:'7 kg',b:'heavier',bn:'rivals',note:{en:'Light, removable, carry indoors',de:'Leicht, herausnehmbar, drinnen laden',es:'Ligera, extraíble, cárgala en casa',it:'Leggera, estraibile, la porti in casa'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo',zh:'价格'},a:'€1,999',b:'€3,024',bn:'unu Scooter',note:{en:'~€1,000 less than the design DTC',de:'~1.000 € unter der Design-DTC',es:'~1.000 € menos que la DTC de diseño',it:'~1.000 € in meno della DTC di design',zh:'比设计款 DTC 便宜约 1.000 €'}},
+   {t:{en:'vs retro icon',de:'vs. Retro-Ikone',es:'vs. icono retro',it:'vs. icona retro',zh:'对比复古标杆'},a:'€1,999',b:'€3,900',bn:'Kumpan 54',note:{en:'Half the retro price',de:'Halber Retro-Preis',es:'La mitad del precio retro',it:'Metà del prezzo retro',zh:'复古价格的一半'}},
+   {t:{en:'Battery',de:'Akku',es:'Batería',it:'Batteria',zh:'电池'},a:'7 kg',b:'heavier',bn:'rivals',note:{en:'Light, removable, carry indoors',de:'Leicht, herausnehmbar, drinnen laden',es:'Ligera, extraíble, cárgala en casa',it:'Leggera, estraibile, la porti in casa',zh:'轻巧、可拆卸、可拎进室内'}}],
  'SFM Prima E Sport':[
-   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€2,999',b:'€3,799',bn:'NIU MQi GT',note:{en:'€800 less',de:'800 € günstiger',es:'800 € menos',it:'800 € in meno'}},
-   {t:{en:'Range',de:'Reichweite',es:'Autonomía',it:'Autonomia'},a:'90 km',b:'75 km',bn:'NIU MQi GT',note:{en:'More range for less',de:'Mehr Reichweite für weniger',es:'Más autonomía por menos',it:'Più autonomia per meno'}},
-   {t:{en:'Speed for money',de:'Speed pro Geld',es:'Velocidad por tu dinero',it:'Velocità per i tuoi soldi'},a:'75 km/h',b:'45 km/h',bn:'moped money',note:{en:'A1 pace at moped price',de:'A1-Tempo zum Moped-Preis',es:'Ritmo A1 a precio de ciclomotor',it:'Andatura A1 a prezzo da ciclomotore'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo',zh:'价格'},a:'€2,999',b:'€3,799',bn:'NIU MQi GT',note:{en:'€800 less',de:'800 € günstiger',es:'800 € menos',it:'800 € in meno',zh:'便宜 800 €'}},
+   {t:{en:'Range',de:'Reichweite',es:'Autonomía',it:'Autonomia',zh:'续航'},a:'90 km',b:'75 km',bn:'NIU MQi GT',note:{en:'More range for less',de:'Mehr Reichweite für weniger',es:'Más autonomía por menos',it:'Più autonomia per meno',zh:'更低价、更长续航'}},
+   {t:{en:'Speed for money',de:'Speed pro Geld',es:'Velocidad por tu dinero',it:'Velocità per i tuoi soldi',zh:'性价比速度'},a:'75 km/h',b:'45 km/h',bn:'moped money',note:{en:'A1 pace at moped price',de:'A1-Tempo zum Moped-Preis',es:'Ritmo A1 a precio de ciclomotor',it:'Andatura A1 a prezzo da ciclomotore',zh:'以助力车价格享 A1 速度'}}],
  'SFM E2H Sport':[
-   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo'},a:'€2,999',b:'€3,999',bn:'Super Soco TC Max',note:{en:'€1,000 less — cheapest 80 km/h L3e in DACH',de:'1.000 € günstiger — günstigster 80-km/h-L3e in DACH',es:'1.000 € menos — el L3e de 80 km/h más barato de DACH',it:'1.000 € in meno — il L3e da 80 km/h più economico della DACH'}},
-   {t:{en:'vs a Vespa',de:'vs. Vespa',es:'vs. una Vespa',it:'vs. una Vespa'},a:'€2,999',b:'€7,199',bn:'Elettrica 70',note:{en:'Under half the price',de:'Unter dem halben Preis',es:'Menos de la mitad del precio',it:'Meno della metà del prezzo'}},
-   {t:{en:'Batteries',de:'Akkus',es:'Baterías',it:'Batterie'},a:'Dual · removable',b:'Fixed',bn:'Vespa',note:{en:'Charge them indoors',de:'Drinnen laden',es:'Cárgalas en casa',it:'Ricaricale in casa'}}],
+   {t:{en:'Price',de:'Preis',es:'Precio',it:'Prezzo',zh:'价格'},a:'€2,999',b:'€3,999',bn:'Super Soco TC Max',note:{en:'€1,000 less — cheapest 80 km/h L3e in DACH',de:'1.000 € günstiger — günstigster 80-km/h-L3e in DACH',es:'1.000 € menos — el L3e de 80 km/h más barato de DACH',it:'1.000 € in meno — il L3e da 80 km/h più economico della DACH',zh:'便宜 1.000 €——DACH 最便宜的 80 km/h L3e'}},
+   {t:{en:'vs a Vespa',de:'vs. Vespa',es:'vs. una Vespa',it:'vs. una Vespa',zh:'对比 Vespa'},a:'€2,999',b:'€7,199',bn:'Elettrica 70',note:{en:'Under half the price',de:'Unter dem halben Preis',es:'Menos de la mitad del precio',it:'Meno della metà del prezzo',zh:'不到一半价格'}},
+   {t:{en:'Batteries',de:'Akkus',es:'Baterías',it:'Batterie',zh:'电池'},a:'Dual · removable',b:'Fixed',bn:'Vespa',note:{en:'Charge them indoors',de:'Drinnen laden',es:'Cárgalas en casa',it:'Ricaricale in casa',zh:'可在室内充电'}}],
  'SFM Dream 7':[
-   {t:{en:'Range',de:'Reichweite',es:'Autonomía',it:'Autonomia'},a:'150 km',b:'137 km',bn:'SEAT Mó',note:{en:'Longest range in its class',de:'Größte Reichweite der Klasse',es:'La mayor autonomía de su clase',it:'La maggiore autonomia della sua classe'}},
-   {t:{en:'vs Silence',de:'vs. Silence',es:'vs. Silence',it:'vs. Silence'},a:'€5,999',b:'€8,790',bn:'S01+',note:{en:'~€2,800 under the premium name',de:'~2.800 € unter dem Premium-Namen',es:'~2.800 € por debajo del nombre premium',it:'~2.800 € sotto il nome premium'}},
-   {t:{en:'Fast charge',de:'Schnellladen',es:'Carga rápida',it:'Ricarica rapida'},a:'~2 h',b:'6–8 h',bn:'most rivals',note:{en:'BYD LFP · 0→80% in ~2 h',de:'BYD LFP · 0→80% in ~2 h',es:'BYD LFP · 0→80% en ~2 h',it:'BYD LFP · 0→80% in ~2 h'}}]
+   {t:{en:'Range',de:'Reichweite',es:'Autonomía',it:'Autonomia',zh:'续航'},a:'150 km',b:'137 km',bn:'SEAT Mó',note:{en:'Longest range in its class',de:'Größte Reichweite der Klasse',es:'La mayor autonomía de su clase',it:'La maggiore autonomia della sua classe',zh:'同级最长续航'}},
+   {t:{en:'vs Silence',de:'vs. Silence',es:'vs. Silence',it:'vs. Silence',zh:'对比 Silence'},a:'€5,999',b:'€8,790',bn:'S01+',note:{en:'~€2,800 under the premium name',de:'~2.800 € unter dem Premium-Namen',es:'~2.800 € por debajo del nombre premium',it:'~2.800 € sotto il nome premium',zh:'比高端品牌低约 2.800 €'}},
+   {t:{en:'Fast charge',de:'Schnellladen',es:'Carga rápida',it:'Ricarica rapida',zh:'快充'},a:'~2 h',b:'6–8 h',bn:'most rivals',note:{en:'BYD LFP · 0→80% in ~2 h',de:'BYD LFP · 0→80% in ~2 h',es:'BYD LFP · 0→80% en ~2 h',it:'BYD LFP · 0→80% in ~2 h',zh:'BYD LFP · 0→80% 约 2 h'}}]
 };
 function recommend(){
  const [loc,spd,dist,bud,use,when]=answers;
@@ -1317,15 +1456,15 @@ function recommend(){
 // media key + one-line reason per model (for featured image and alternates)
 const MMEDIA={'SFM EM1':['em1','g'],'SFM E2H':['e2h','g'],'SFM E2H Plus':['e2h','g'],'SFM Future 5':['future5','g'],'SFM Future 3':['future3','g'],'SFM Prima E':['primae','g'],'SFM Prima E Sport':['primaesport','g'],'SFM E2H Sport':['e2h','g'],'SFM Dream 7':['dream7','d']};
 const ALT_TAG={
- 'SFM EM1':{en:'The value pick — cheapest in the range, 80 km range',de:'Der Preis-Tipp — günstigstes Modell, 80 km Reichweite',es:'La opción de valor — el más barato de la gama, 80 km de autonomía',it:'La scelta conveniente — il più economico della gamma, 80 km di autonomia'},
- 'SFM E2H':{en:'Torque-rich 25 km/h retro',de:'Drehmomentstarkes 25-km/h-Retro',es:'Retro de 25 km/h con mucho par',it:'Retro da 25 km/h ad alta coppia'},
- 'SFM E2H Plus':{en:'Dual battery for longer 25 km/h range',de:'Doppelakku für mehr 25-km/h-Reichweite',es:'Batería doble para más autonomía a 25 km/h',it:'Doppia batteria per più autonomia a 25 km/h'},
- 'SFM Future 5':{en:'Sodium-ion first — cold-tough, long-life',de:'Natrium-Ionen-Premiere — kältefest, langlebig',es:'Estreno del sodio-ion — resistente al frío, larga vida',it:'Prima del sodio-ione — resistente al freddo, lunga durata'},
- 'SFM Future 3':{en:'Big 2,160 Wh battery for the money',de:'Großer 2.160-Wh-Akku fürs Geld',es:'Gran batería de 2.160 Wh por el precio',it:'Grande batteria da 2.160 Wh per il prezzo'},
- 'SFM Prima E':{en:'Retro style, 7 kg carry-in battery',de:'Retro-Stil, 7-kg-Wechselakku',es:'Estilo retro, batería extraíble de 7 kg',it:'Stile retro, batteria estraibile da 7 kg'},
- 'SFM Prima E Sport':{en:'75 km/h & 90 km at moped money',de:'75 km/h & 90 km zum Moped-Preis',es:'75 km/h y 90 km a precio de ciclomotor',it:'75 km/h e 90 km a prezzo da ciclomotore'},
- 'SFM E2H Sport':{en:'Cheapest 80 km/h L3e in DACH',de:'Günstigster 80-km/h-L3e in DACH',es:'El L3e de 80 km/h más barato de DACH',it:'Il L3e da 80 km/h più economico della DACH'},
- 'SFM Dream 7':{en:'The 110 km/h, 150 km flagship',de:'Das 110-km/h-, 150-km-Flaggschiff',es:'El buque insignia de 110 km/h y 150 km',it:'L\'ammiraglia da 110 km/h e 150 km'}};
+ 'SFM EM1':{en:'The value pick — cheapest in the range, 80 km range',de:'Der Preis-Tipp — günstigstes Modell, 80 km Reichweite',es:'La opción de valor — el más barato de la gama, 80 km de autonomía',it:'La scelta conveniente — il più economico della gamma, 80 km di autonomia',zh:'超值之选——全系最便宜，80 km 续航'},
+ 'SFM E2H':{en:'Torque-rich 25 km/h retro',de:'Drehmomentstarkes 25-km/h-Retro',es:'Retro de 25 km/h con mucho par',it:'Retro da 25 km/h ad alta coppia',zh:'高扭矩 25 km/h 复古'},
+ 'SFM E2H Plus':{en:'Dual battery for longer 25 km/h range',de:'Doppelakku für mehr 25-km/h-Reichweite',es:'Batería doble para más autonomía a 25 km/h',it:'Doppia batteria per più autonomia a 25 km/h',zh:'双电池，25 km/h 更长续航'},
+ 'SFM Future 5':{en:'Sodium-ion first — cold-tough, long-life',de:'Natrium-Ionen-Premiere — kältefest, langlebig',es:'Estreno del sodio-ion — resistente al frío, larga vida',it:'Prima del sodio-ione — resistente al freddo, lunga durata',zh:'钠离子首发——耐寒、长寿命'},
+ 'SFM Future 3':{en:'Big 2,160 Wh battery for the money',de:'Großer 2.160-Wh-Akku fürs Geld',es:'Gran batería de 2.160 Wh por el precio',it:'Grande batteria da 2.160 Wh per il prezzo',zh:'超值的 2.160 Wh 大电池'},
+ 'SFM Prima E':{en:'Retro style, 7 kg carry-in battery',de:'Retro-Stil, 7-kg-Wechselakku',es:'Estilo retro, batería extraíble de 7 kg',it:'Stile retro, batteria estraibile da 7 kg',zh:'复古风格，7 kg 可拎电池'},
+ 'SFM Prima E Sport':{en:'75 km/h & 90 km at moped money',de:'75 km/h & 90 km zum Moped-Preis',es:'75 km/h y 90 km a precio de ciclomotor',it:'75 km/h e 90 km a prezzo da ciclomotore',zh:'以助力车价格享 75 km/h 与 90 km'},
+ 'SFM E2H Sport':{en:'Cheapest 80 km/h L3e in DACH',de:'Günstigster 80-km/h-L3e in DACH',es:'El L3e de 80 km/h más barato de DACH',it:'Il L3e da 80 km/h più economico della DACH',zh:'DACH 最便宜的 80 km/h L3e'},
+ 'SFM Dream 7':{en:'The 110 km/h, 150 km flagship',de:'Das 110-km/h-, 150-km-Flaggschiff',es:'El buque insignia de 110 km/h y 150 km',it:'L\'ammiraglia da 110 km/h e 150 km',zh:'110 km/h、150 km 的旗舰'}};
 function rankModels(){
  const [loc,spd,dist,bud,use]=answers;
  const budCap=[2000,3500,5000,999999][bud==null?3:bud];
@@ -1352,8 +1491,8 @@ function renderAlternates(list,lang){
   const mm=MMEDIA[m.name]; const isD=mm[1]==='d';
   const img=isD?'assets/dream7/d7-1.jpg':('assets/models/'+mm[0]+'/f-1.jpg');
   const el=document.createElement('div'); el.className='altcard';
-  el.innerHTML='<div class="aimg'+(mm[0]==='e2h'?' grey':'')+(isD?' dark':'')+'"><img src="'+img+'" alt="'+m.name+'" loading="lazy"><span class="vtag">⟳ '+({de:'Ansehen',es:'Ver',it:'Guarda'}[lang]||'View')+'</span></div>'+
-   '<div class="abody"><div class="an">'+m.name+'</div><div class="ap">€'+m.price.toLocaleString({de:'de-DE',es:'es-ES',it:'it-IT'}[lang]||'en-US')+'</div><div class="awhy">'+((ALT_TAG[m.name]&&(ALT_TAG[m.name][lang]||ALT_TAG[m.name].en))||(m.cls[lang]||m.cls.en))+'</div></div>';
+  el.innerHTML='<div class="aimg'+(mm[0]==='e2h'?' grey':'')+(isD?' dark':'')+'"><img src="'+img+'" alt="'+m.name+'" loading="lazy"><span class="vtag">⟳ '+({de:'Ansehen',es:'Ver',it:'Guarda',zh:'查看'}[lang]||'View')+'</span></div>'+
+   '<div class="abody"><div class="an">'+m.name+'</div><div class="ap">€'+m.price.toLocaleString({de:'de-DE',es:'es-ES',it:'it-IT',zh:'zh-CN'}[lang]||'en-US')+'</div><div class="awhy">'+((ALT_TAG[m.name]&&(ALT_TAG[m.name][lang]||ALT_TAG[m.name].en))||(m.cls[lang]||m.cls.en))+'</div></div>';
   el.onclick=()=>{ isD?showView('dream7'):openGallery(mm[0]); };
   g.appendChild(el);
  });
@@ -1377,7 +1516,7 @@ function updateProg(){
  const done=answers.filter(a=>a!==null).length;
  document.getElementById('qbar').style.width=(Math.max(done,curQ)/6*100)+'%';
  const st=document.getElementById('qstep');
- if(st) st.textContent=({de:('Frage '+(curQ+1)+' von 6'),es:('Pregunta '+(curQ+1)+' de 6'),it:('Domanda '+(curQ+1)+' di 6')}[curLang]||('Question '+(curQ+1)+' of 6'));
+ if(st) st.textContent=({de:('Frage '+(curQ+1)+' von 6'),es:('Pregunta '+(curQ+1)+' de 6'),it:('Domanda '+(curQ+1)+' di 6'),zh:('第 '+(curQ+1)+' 题，共 6 题')}[curLang]||('Question '+(curQ+1)+' of 6'));
 }
 function flipTo(idx,dir){
  const w=document.getElementById('qwrap'); animating=true;
@@ -1424,24 +1563,26 @@ function showResult(){
  const m=recommend(); const lang=curLang;
  const loc=answers[0]; const eligible=loc<=2;
  document.getElementById('eligbadge').innerHTML = eligible
-   ? '<span class="elig">✓ '+({de:'Du bist qualifiziert',es:'Cumples los requisitos',it:'Hai i requisiti'}[lang]||'You\'re qualified')+'</span>'
-   : '<span class="elig intl">◐ '+({de:'Early Access: zuerst DE/AT/CH',es:'Acceso anticipado: primero DE/AT/CH',it:'Accesso anticipato: prima DE/AT/CH'}[lang]||'Early access: DE/AT/CH first')+'</span>';
+   ? '<span class="elig">✓ '+({de:'Du bist qualifiziert',es:'Cumples los requisitos',it:'Hai i requisiti',zh:'你已符合资格'}[lang]||'You\'re qualified')+'</span>'
+   : '<span class="elig intl">◐ '+({de:'Early Access: zuerst DE/AT/CH',es:'Acceso anticipado: primero DE/AT/CH',it:'Accesso anticipato: prima DE/AT/CH',zh:'抢先体验：优先 DE/AT/CH'}[lang]||'Early access: DE/AT/CH first')+'</span>';
  document.getElementById('rtitle').innerHTML = eligible
-   ? ({de:'Du qualifizierst dich für die Vorbestellung zum <span style="color:var(--accent)">Vorzugspreis</span>',es:'Cumples los requisitos para reservar a un <span style="color:var(--accent)">precio preferente</span>',it:'Hai i requisiti per il preordine a un <span style="color:var(--accent)">prezzo agevolato</span>'}[lang]||'You qualify for pre-order at a <span style="color:var(--accent)">preferential rate</span>')
-   : ({de:'Deine <span style="color:var(--accent)">Wunschmaschine</span> steht fest',es:'Tu <span style="color:var(--accent)">match</span> está listo',it:'Il tuo <span style="color:var(--accent)">match</span> è pronto'}[lang]||'Your <span style="color:var(--accent)">match</span> is ready');
+   ? ({de:'Du qualifizierst dich für die Vorbestellung zum <span style="color:var(--accent)">Vorzugspreis</span>',es:'Cumples los requisitos para reservar a un <span style="color:var(--accent)">precio preferente</span>',it:'Hai i requisiti per il preordine a un <span style="color:var(--accent)">prezzo agevolato</span>',zh:'你符合以<span style="color:var(--accent)">优惠价</span>预订的资格'}[lang]||'You qualify for pre-order at a <span style="color:var(--accent)">preferential rate</span>')
+   : ({de:'Deine <span style="color:var(--accent)">Wunschmaschine</span> steht fest',es:'Tu <span style="color:var(--accent)">match</span> está listo',it:'Il tuo <span style="color:var(--accent)">match</span> è pronto',zh:'你的<span style="color:var(--accent)">匹配车型</span>已确定'}[lang]||'Your <span style="color:var(--accent)">match</span> is ready');
  document.getElementById('rlead').innerHTML = eligible
    ? ({de:('Deine Antworten passen am besten zur <b>'+m.name+'</b> — für dich zum Early-Access-Preis reserviert, bevor die öffentlichen Preise stehen. Sichere ihn dir in den nächsten 72 Stunden; nur 200 qualifizierte Plätze.'),
        es:('Tus respuestas encajan mejor con la <b>'+m.name+'</b> — reservada para ti a un precio de acceso anticipado antes de que salgan los precios públicos. Asegúrala en las próximas 72 horas; solo 200 plazas cualificadas.'),
-       it:('Le tue risposte si adattano meglio alla <b>'+m.name+'</b> — riservata per te a un prezzo ad accesso anticipato prima dei prezzi pubblici. Bloccala nelle prossime 72 ore; solo 200 posti idonei.')}[lang]
+       it:('Le tue risposte si adattano meglio alla <b>'+m.name+'</b> — riservata per te a un prezzo ad accesso anticipato prima dei prezzi pubblici. Bloccala nelle prossime 72 ore; solo 200 posti idonei.'),
+       zh:('你的答案与 <b>'+m.name+'</b> 最匹配——已在公开定价发布前为你以抢先体验价预留。请在接下来的 72 小时内锁定；仅 200 个合格名额。')}[lang]
                  ||('Your answers match the <b>'+m.name+'</b> — held for you at an early-access rate before public pricing goes live. Lock it in within the next 72 hours; only 200 qualified spots.'))
    : ({de:('Deine Antworten passen am besten zur <b>'+m.name+'</b>. Early Access startet zuerst in DE/AT/CH — trag deine E-Mail ein und wir melden uns, sobald dein Markt öffnet.'),
        es:('Tus respuestas encajan mejor con la <b>'+m.name+'</b>. El acceso anticipado abre primero en DE/AT/CH — deja tu email y te avisaremos cuando tu mercado se active.'),
-       it:('Le tue risposte si adattano meglio alla <b>'+m.name+'</b>. L\'accesso anticipato apre prima in DE/AT/CH — lascia la tua email e ti avviseremo quando il tuo mercato sarà attivo.')}[lang]
+       it:('Le tue risposte si adattano meglio alla <b>'+m.name+'</b>. L\'accesso anticipato apre prima in DE/AT/CH — lascia la tua email e ti avviseremo quando il tuo mercato sarà attivo.'),
+       zh:('你的答案与 <b>'+m.name+'</b> 最匹配。抢先体验将优先在 DE/AT/CH 开放——留下你的邮箱，你的市场开放时我们会通知你。')}[lang]
                  ||('Your answers match the <b>'+m.name+'</b>. Early access opens in DE/AT/CH first — drop your email and we\'ll tell you when your market goes live.'));
  // match card
  document.getElementById('rmname').textContent=m.name;
  document.getElementById('rmclass').textContent=m.cls[lang]||m.cls.en;
- document.getElementById('rmprice').textContent='€'+m.price.toLocaleString({de:'de-DE',es:'es-ES',it:'it-IT'}[lang]||'en-US');
+ document.getElementById('rmprice').textContent='€'+m.price.toLocaleString({de:'de-DE',es:'es-ES',it:'it-IT',zh:'zh-CN'}[lang]||'en-US');
  document.getElementById('rmspecs').innerHTML=(m.specs[lang]||m.specs.en).map(s=>'<li><span>'+s[0]+'</span><b>'+s[1]+'</b></li>').join('');
  // matched model image
  const mm=MMEDIA[m.name]; const rmb=document.getElementById('rmimg');
@@ -1449,7 +1590,7 @@ function showResult(){
   rmb.className='mimg'+(mm[0]==='e2h'?' grey':'')+(isD?' dark':''); rmb.onclick=()=>{ isD?showView('dream7'):openGallery(mm[0]); }; rmb.style.display=''; }
  else rmb.style.display='none';
  // price chart
- document.getElementById('rctp').textContent=({de:'Preisvergleich in deiner Klasse',es:'Comparación de precios en tu clase',it:'Confronto prezzi nella tua classe'}[lang]||'Price comparison in your class');
+ document.getElementById('rctp').textContent=({de:'Preisvergleich in deiner Klasse',es:'Comparación de precios en tu clase',it:'Confronto prezzi nella tua classe',zh:'你所在级别的价格对比'}[lang]||'Price comparison in your class');
  const items=[{name:m.name,price:m.price,sfm:1,s:m.sp,r:m.rg}].concat(m.rivals.map(r=>({name:r.name,price:r.price,s:r.s,r:r.r})));
  renderColumns('rcols',items,lang);
  const rivalMin=Math.min(...m.rivals.map(r=>r.price)), rivalMax=Math.max(...m.rivals.map(r=>r.price));
@@ -1457,10 +1598,11 @@ function showResult(){
  document.getElementById('rsave').innerHTML = ({
    de:('<b>Du zahlst €'+m.price.toLocaleString('de-DE')+'</b> — '+(save>0?('€'+save.toLocaleString('de-DE')+' weniger als der günstigste Vergleichbare'):'auf Augenhöhe mit dem günstigsten Rivalen')+', und <b>'+pct+'% unter</b> der '+premium+'.'),
    es:('<b>Pagarías €'+m.price.toLocaleString('es-ES')+'</b> — '+(save>0?('€'+save.toLocaleString('es-ES')+' menos que la moto comparable más barata'):'a la par del rival más barato')+', y <b>'+pct+'% por debajo</b> de la '+premium+'.'),
-   it:('<b>Pagheresti €'+m.price.toLocaleString('it-IT')+'</b> — '+(save>0?('€'+save.toLocaleString('it-IT')+' in meno della moto comparabile più economica'):'alla pari con il rivale più economico')+', e <b>'+pct+'% sotto</b> la '+premium+'.')
+   it:('<b>Pagheresti €'+m.price.toLocaleString('it-IT')+'</b> — '+(save>0?('€'+save.toLocaleString('it-IT')+' in meno della moto comparabile più economica'):'alla pari con il rivale più economico')+', e <b>'+pct+'% sotto</b> la '+premium+'.'),
+   zh:('<b>你将支付 €'+m.price.toLocaleString('zh-CN')+'</b>——'+(save>0?('比最便宜的可比车型少 €'+save.toLocaleString('zh-CN')):'与最便宜的对手持平')+'，且<b>比 '+premium+' 低 '+pct+'%</b>。')
  }[lang]||('<b>You\'d pay €'+m.price.toLocaleString('en-US')+'</b> — '+(save>0?('€'+save.toLocaleString('en-US')+' less than the cheapest comparable bike'):'on par with the cheapest rival')+', and <b>'+pct+'% below</b> the '+premium+'.'));
  // heading + strengths
- document.getElementById('rct').textContent=({de:('So schlägt sich deine '+m.name),es:('Así se posiciona tu '+m.name),it:('Ecco come si posiziona la tua '+m.name)}[lang]||('How your '+m.name+' stacks up'));
+ document.getElementById('rct').textContent=({de:('So schlägt sich deine '+m.name),es:('Así se posiciona tu '+m.name),it:('Ecco come si posiziona la tua '+m.name),zh:('你的 '+m.name+' 如何对比')}[lang]||('How your '+m.name+' stacks up'));
  renderStrengths(m,lang);
  // alternates — other models the answers also fit
  const fkey=Object.keys(MODELS).find(k=>MODELS[k]===m);
@@ -1479,14 +1621,15 @@ function parseRange(m){ const map={'SFM EM1 · 25 km/h':70,'SFM EM1 · 45 km/h':
 document.getElementById('slbtn').onclick=async()=>{
  const em=document.getElementById('slemail').value.trim();
  if(!em||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ document.getElementById('slemail').focus(); return; }
- const btn=document.getElementById('slbtn'); btn.disabled=true; btn.textContent=({de:'Wird gesendet…',es:'Enviando…',it:'Invio in corso…'}[curLang]||'Sending…');
+ const btn=document.getElementById('slbtn'); btn.disabled=true; btn.textContent=({de:'Wird gesendet…',es:'Enviando…',it:'Invio in corso…',zh:'发送中…'}[curLang]||'Sending…');
  await mlSubscribe(em);
  document.getElementById('slform').style.display='none';
  const d=document.getElementById('sldone'); d.style.display='block';
  const spot=Math.floor(37+ (em.length*7)%120); // illustrative position
  d.innerHTML=({de:'✓ Du stehst auf der Shortlist — <b>Platz '+spot+' von 200</b>.<br>Bitte bestätige deine E-Mail über den Link, den wir dir gerade geschickt haben.',
    es:'✓ Estás en la lista — <b>plaza '+spot+' de 200</b>.<br>Confirma tu email mediante el enlace que acabamos de enviarte.',
-   it:'✓ Sei nella shortlist — <b>posto '+spot+' di 200</b>.<br>Conferma la tua email tramite il link che ti abbiamo appena inviato.'}[curLang]
+   it:'✓ Sei nella shortlist — <b>posto '+spot+' di 200</b>.<br>Conferma la tua email tramite il link che ti abbiamo appena inviato.',
+   zh:'✓ 你已进入候选名单——<b>第 '+spot+' 位，共 200</b>。<br>请通过我们刚刚发送的链接确认你的邮箱。'}[curLang]
    ||'✓ You\'re on the shortlist — <b>spot '+spot+' of 200</b>.<br>Please confirm your email via the link we just sent you.');
 };
 
@@ -1495,25 +1638,25 @@ const c1=[{name:'SFM Future 5',price:1999,cls:'acc'},{name:'SFM Prima E',price:1
 const c3=[{name:'SFM Prima E Sport',price:2999,cls:'sfm'},{name:'SFM E2H Sport',price:2999,cls:'acc'},{name:'NIU MQi GT 100',price:3799},{name:'Horwin SK3',price:3990},{name:'NIU NGT',price:3990},{name:'Super Soco TC Max',price:3999},{name:'Trinity Uranus R 80',price:4428},{name:'SEAT Mó 125',price:4990},{name:'Segway E300SE',price:4999},{name:'Super Soco CPx',price:5990},{name:'Vespa Elettrica 70',price:7199}];
 const c4=[{name:'SFM Dream 7',price:5999,cls:'sfm'},{name:'NIU MQi GT 100',price:3799},{name:'SEAT Mó 125',price:4990},{name:'Super Soco CPx',price:5990},{name:'Vespa Elettrica 70',price:7199},{name:'Silence S01+',price:8790}];
 const specRows=[
- {m:'SFM EM1',c:'Mofa',s:'25',p:'1,699',mo:'500 W',b:'1,440 Wh',r:'80 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
- {m:'SFM E2H',c:'Mofa',s:'25',p:'2,199',mo:'1,500 W',b:'1,728 Wh',r:'—',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
- {m:'SFM E2H Plus',c:'Mofa',s:'25',p:'2,849',mo:'1,500 W',b:'3,456 Wh',r:'—',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
- {m:'SFM Future 5',c:'Mokick',s:'45',p:'1,999',mo:'1,200 W',b:{en:'1,260 Wh Na-ion',de:'1.260 Wh Na-Ion',es:'1.260 Wh Na-ion',it:'1.260 Wh Na-ione'},r:'45 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
- {m:'SFM Future 3',c:'Mokick',s:'45',p:'2,699',mo:'2,000 W',b:'2,160 Wh',r:'—',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
- {m:'SFM Prima E',c:'Mofa/Mokick',s:'25 / 45',p:'1,999',mo:'1,000 W',b:'960 Wh',r:'65 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
- {m:'SFM Prima E Sport',c:'L3e',s:'75',p:'2,999',mo:'3,000 W',b:'2,400 Wh',r:'90 km',sw:{en:'2 packs',de:'2 Akkus',es:'2 packs',it:'2 pacchi'},sfm:1},
- {m:'SFM E2H Sport',c:'L3e',s:'80',p:'2,999',mo:'2,500 W',b:'3,456 Wh',r:'75 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
- {m:'SFM Dream 7',c:'L3e',s:'110',p:'5,999',mo:'6,000 W',b:{en:'5,180 Wh LFP',de:'5.180 Wh LFP',es:'5.180 Wh LFP',it:'5.180 Wh LFP'},r:'150 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'},sfm:1},
- {m:'NIU MQi+ Sport',c:'Mokick',s:'45',p:'~2,500',mo:'1,400 W',b:'2,016 Wh',r:'65 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
- {m:'Super Soco CUx Pro',c:'Mokick',s:'45',p:'2,599',mo:'2,300 W',b:'2,580 Wh',r:'80 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
- {m:'Horwin EK1',c:'Mokick',s:'45',p:'~3,200',mo:'2,000 W',b:'~1,900 Wh',r:'70–120 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
- {m:'NIU MQi GT 100',c:'L3e',s:'100',p:'3,799',mo:'6,500 W',b:'3,740 Wh',r:'65–75 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
- {m:'Super Soco TC Max',c:'L3e',s:'95',p:'3,999',mo:'3,900 W',b:'3,240 Wh',r:'110 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
- {m:'Horwin SK3',c:'L3e',s:'90',p:'3,990',mo:'3,000 W',b:'2,600 Wh',r:'80–160 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
- {m:'SEAT Mó 125',c:'L3e',s:'95',p:'4,990',mo:'7,000 W',b:'5,600 Wh',r:'137 km',sw:{en:'No',de:'Nein',es:'No',it:'No'}},
- {m:'Super Soco CPx',c:'L3e',s:'90',p:'5,990',mo:'4,800 W',b:'~3,800 Wh',r:'140 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
- {m:'Silence S01+',c:'L3e',s:'100',p:'8,790',mo:'7,000 W',b:'5,600 Wh',r:'133 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì'}},
- {m:'Vespa Elettrica 70',c:'L3e',s:'70',p:'7,199',mo:'3,500 W',b:'4,200 Wh',r:'70 km',sw:{en:'No',de:'Nein',es:'No',it:'No'}}
+ {m:'SFM EM1',c:'Mofa',s:'25',p:'1,699',mo:'500 W',b:'1,440 Wh',r:'80 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'},sfm:1},
+ {m:'SFM E2H',c:'Mofa',s:'25',p:'2,199',mo:'1,500 W',b:'1,728 Wh',r:'—',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'},sfm:1},
+ {m:'SFM E2H Plus',c:'Mofa',s:'25',p:'2,849',mo:'1,500 W',b:'3,456 Wh',r:'—',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'},sfm:1},
+ {m:'SFM Future 5',c:'Mokick',s:'45',p:'1,999',mo:'1,200 W',b:{en:'1,260 Wh Na-ion',de:'1.260 Wh Na-Ion',es:'1.260 Wh Na-ion',it:'1.260 Wh Na-ione',zh:'1.260 Wh 钠离子'},r:'45 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'},sfm:1},
+ {m:'SFM Future 3',c:'Mokick',s:'45',p:'2,699',mo:'2,000 W',b:'2,160 Wh',r:'—',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'},sfm:1},
+ {m:'SFM Prima E',c:'Mofa/Mokick',s:'25 / 45',p:'1,999',mo:'1,000 W',b:'960 Wh',r:'65 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'},sfm:1},
+ {m:'SFM Prima E Sport',c:'L3e',s:'75',p:'2,999',mo:'3,000 W',b:'2,400 Wh',r:'90 km',sw:{en:'2 packs',de:'2 Akkus',es:'2 packs',it:'2 pacchi',zh:'2 组电池'},sfm:1},
+ {m:'SFM E2H Sport',c:'L3e',s:'80',p:'2,999',mo:'2,500 W',b:'3,456 Wh',r:'75 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'},sfm:1},
+ {m:'SFM Dream 7',c:'L3e',s:'110',p:'5,999',mo:'6,000 W',b:{en:'5,180 Wh LFP',de:'5.180 Wh LFP',es:'5.180 Wh LFP',it:'5.180 Wh LFP',zh:'5.180 Wh LFP'},r:'150 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'},sfm:1},
+ {m:'NIU MQi+ Sport',c:'Mokick',s:'45',p:'~2,500',mo:'1,400 W',b:'2,016 Wh',r:'65 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'}},
+ {m:'Super Soco CUx Pro',c:'Mokick',s:'45',p:'2,599',mo:'2,300 W',b:'2,580 Wh',r:'80 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'}},
+ {m:'Horwin EK1',c:'Mokick',s:'45',p:'~3,200',mo:'2,000 W',b:'~1,900 Wh',r:'70–120 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'}},
+ {m:'NIU MQi GT 100',c:'L3e',s:'100',p:'3,799',mo:'6,500 W',b:'3,740 Wh',r:'65–75 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'}},
+ {m:'Super Soco TC Max',c:'L3e',s:'95',p:'3,999',mo:'3,900 W',b:'3,240 Wh',r:'110 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'}},
+ {m:'Horwin SK3',c:'L3e',s:'90',p:'3,990',mo:'3,000 W',b:'2,600 Wh',r:'80–160 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'}},
+ {m:'SEAT Mó 125',c:'L3e',s:'95',p:'4,990',mo:'7,000 W',b:'5,600 Wh',r:'137 km',sw:{en:'No',de:'Nein',es:'No',it:'No',zh:'否'}},
+ {m:'Super Soco CPx',c:'L3e',s:'90',p:'5,990',mo:'4,800 W',b:'~3,800 Wh',r:'140 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'}},
+ {m:'Silence S01+',c:'L3e',s:'100',p:'8,790',mo:'7,000 W',b:'5,600 Wh',r:'133 km',sw:{en:'Yes',de:'Ja',es:'Sí',it:'Sì',zh:'是'}},
+ {m:'Vespa Elettrica 70',c:'L3e',s:'70',p:'7,199',mo:'3,500 W',b:'4,200 Wh',r:'70 km',sw:{en:'No',de:'Nein',es:'No',it:'No',zh:'否'}}
 ];
 const tip=document.getElementById('tip');
 function showTip(e,h){tip.innerHTML=h;tip.style.opacity=1;moveTip(e);}
@@ -1538,14 +1681,14 @@ function renderTable(lang){
 function renderDeeper(lang){renderBar('c1',c1,4200,lang);renderBar('c3',c3,7600,lang);renderBar('c4',c4,9200,lang);renderTable(lang);}
 
 // ---------- language ----------
-const DICTS={en:EN,de:DE,es:ES,it:IT}; const PHS={en:ENPH,de:DEPH,es:ESPH,it:ITPH};
+const DICTS={en:EN,de:DE,es:ES,it:IT,zh:ZH}; const PHS={en:ENPH,de:DEPH,es:ESPH,it:ITPH,zh:ZHPH};
 function applyLang(l){
  curLang=l; const src=DICTS[l]||EN;
  document.querySelectorAll('[data-k]').forEach(e=>{const v=src[e.dataset.k];if(v!=null)e.innerHTML=v;});
  const phs=PHS[l]||ENPH;
  document.querySelectorAll('[data-kph]').forEach(e=>{const v=phs[e.dataset.kph];if(v!=null)e.setAttribute('placeholder',v);});
  document.documentElement.lang=l;
- ['enBtn','deBtn','esBtn','itBtn'].forEach(id=>document.getElementById(id).classList.toggle('on',id===l+'Btn'));
+ ['enBtn','deBtn','esBtn','itBtn','zhBtn'].forEach(id=>document.getElementById(id).classList.toggle('on',id===l+'Btn'));
  renderQuiz(); updateProg(); renderDeeper(l); if(typeof d7go==='function') d7go(d7i);
  if(document.getElementById('result').style.display==='block' && answers.filter(a=>a!==null).length===6) showResult();
 }
@@ -1553,17 +1696,18 @@ document.getElementById('enBtn').onclick=()=>{manualLang=true;applyLang('en');};
 document.getElementById('deBtn').onclick=()=>{manualLang=true;applyLang('de');};
 document.getElementById('esBtn').onclick=()=>{manualLang=true;applyLang('es');};
 document.getElementById('itBtn').onclick=()=>{manualLang=true;applyLang('it');};
+document.getElementById('zhBtn').onclick=()=>{manualLang=true;applyLang('zh');};
 
 // ---------- view switching (Home / Analysis) ----------
 let resultShown=false;
 // ---------- per-model gallery modal ----------
 const MEDIA={
- em1:{title:'EM1',sub:{en:'€1,699 · 25 km/h Mofa',de:'1.699 € · 25 km/h Mofa',es:'1.699 € · ciclomotor 25 km/h',it:'1.699 € · ciclomotore 25 km/h'},stage:'light',n:8},
- e2h:{title:'E2H',sub:{en:'€2,199 · retro · 25 km/h',de:'2.199 € · Retro · 25 km/h',es:'2.199 € · retro · 25 km/h',it:'2.199 € · retro · 25 km/h'},stage:'grey',n:8},
- future5:{title:'Future 5',sub:{en:'€1,999 · ⚛ sodium-ion',de:'1.999 € · ⚛ Natrium-Ionen',es:'1.999 € · ⚛ sodio-ion',it:'1.999 € · ⚛ sodio-ione'},stage:'light',n:7},
- future3:{title:'Future 3',sub:{en:'€2,699 · big battery',de:'2.699 € · großer Akku',es:'2.699 € · batería grande',it:'2.699 € · batteria grande'},stage:'light',n:6},
- primae:{title:'Prima E',sub:{en:'€1,999 · retro',de:'1.999 € · Retro',es:'1.999 € · retro',it:'1.999 € · retro'},stage:'light',n:4},
- primaesport:{title:'Prima E Sport',sub:{en:'€2,999 · 75 km/h · A1',de:'2.999 € · 75 km/h · A1',es:'2.999 € · 75 km/h · A1',it:'2.999 € · 75 km/h · A1'},stage:'light',n:4}
+ em1:{title:'EM1',sub:{en:'€1,699 · 25 km/h Mofa',de:'1.699 € · 25 km/h Mofa',es:'1.699 € · ciclomotor 25 km/h',it:'1.699 € · ciclomotore 25 km/h',zh:'1.699 € · 25 km/h 助力车'},stage:'light',n:8},
+ e2h:{title:'E2H',sub:{en:'€2,199 · retro · 25 km/h',de:'2.199 € · Retro · 25 km/h',es:'2.199 € · retro · 25 km/h',it:'2.199 € · retro · 25 km/h',zh:'2.199 € · 复古 · 25 km/h'},stage:'grey',n:8},
+ future5:{title:'Future 5',sub:{en:'€1,999 · ⚛ sodium-ion',de:'1.999 € · ⚛ Natrium-Ionen',es:'1.999 € · ⚛ sodio-ion',it:'1.999 € · ⚛ sodio-ione',zh:'1.999 € · ⚛ 钠离子'},stage:'light',n:7},
+ future3:{title:'Future 3',sub:{en:'€2,699 · big battery',de:'2.699 € · großer Akku',es:'2.699 € · batería grande',it:'2.699 € · batteria grande',zh:'2.699 € · 大电池'},stage:'light',n:6},
+ primae:{title:'Prima E',sub:{en:'€1,999 · retro',de:'1.999 € · Retro',es:'1.999 € · retro',it:'1.999 € · retro',zh:'1.999 € · 复古'},stage:'light',n:4},
+ primaesport:{title:'Prima E Sport',sub:{en:'€2,999 · 75 km/h · A1',de:'2.999 € · 75 km/h · A1',es:'2.999 € · 75 km/h · A1',it:'2.999 € · 75 km/h · A1',zh:'2.999 € · 75 km/h · A1'},stage:'light',n:4}
 };
 const mgEl=document.getElementById('mg'),mgStage=document.getElementById('mgstage'),
       mgFilm=document.getElementById('mgfilm'),mgTitle=document.getElementById('mgtitle');
@@ -1608,13 +1752,13 @@ window.addEventListener('keydown',e=>{ if(!mgEl.classList.contains('on'))return;
 
 // ---------- Dream 7 walk-around gallery ----------
 const D7=[
- {img:'assets/dream7/d7-1.jpg',th:'assets/dream7/d7-1-t.jpg',v:{en:'Left profile',de:'Seite links',es:'Perfil izquierdo',it:'Profilo sinistro'}},
- {img:'assets/dream7/d7-2.jpg',th:'assets/dream7/d7-2-t.jpg',v:{en:'Front ¾ left',de:'Front ¾ links',es:'Frontal ¾ izquierda',it:'Anteriore ¾ sinistra'}},
- {img:'assets/dream7/d7-3.jpg',th:'assets/dream7/d7-3-t.jpg',v:{en:'Front',de:'Front',es:'Frontal',it:'Anteriore'}},
- {img:'assets/dream7/d7-4.jpg',th:'assets/dream7/d7-4-t.jpg',v:{en:'Front ¾ right',de:'Front ¾ rechts',es:'Frontal ¾ derecha',it:'Anteriore ¾ destra'}},
- {img:'assets/dream7/d7-5.jpg',th:'assets/dream7/d7-5-t.jpg',v:{en:'Right profile',de:'Seite rechts',es:'Perfil derecho',it:'Profilo destro'}},
- {img:'assets/dream7/d7-6.jpg',th:'assets/dream7/d7-6-t.jpg',v:{en:'Rear ¾',de:'Heck ¾',es:'Trasera ¾',it:'Posteriore ¾'}},
- {img:'assets/dream7/d7-7.jpg',th:'assets/dream7/d7-7-t.jpg',v:{en:'Rear',de:'Heck',es:'Trasera',it:'Posteriore'}}
+ {img:'assets/dream7/d7-1.jpg',th:'assets/dream7/d7-1-t.jpg',v:{en:'Left profile',de:'Seite links',es:'Perfil izquierdo',it:'Profilo sinistro',zh:'左侧'}},
+ {img:'assets/dream7/d7-2.jpg',th:'assets/dream7/d7-2-t.jpg',v:{en:'Front ¾ left',de:'Front ¾ links',es:'Frontal ¾ izquierda',it:'Anteriore ¾ sinistra',zh:'前部左 ¾'}},
+ {img:'assets/dream7/d7-3.jpg',th:'assets/dream7/d7-3-t.jpg',v:{en:'Front',de:'Front',es:'Frontal',it:'Anteriore',zh:'正前'}},
+ {img:'assets/dream7/d7-4.jpg',th:'assets/dream7/d7-4-t.jpg',v:{en:'Front ¾ right',de:'Front ¾ rechts',es:'Frontal ¾ derecha',it:'Anteriore ¾ destra',zh:'前部右 ¾'}},
+ {img:'assets/dream7/d7-5.jpg',th:'assets/dream7/d7-5-t.jpg',v:{en:'Right profile',de:'Seite rechts',es:'Perfil derecho',it:'Profilo destro',zh:'右侧'}},
+ {img:'assets/dream7/d7-6.jpg',th:'assets/dream7/d7-6-t.jpg',v:{en:'Rear ¾',de:'Heck ¾',es:'Trasera ¾',it:'Posteriore ¾',zh:'后部 ¾'}},
+ {img:'assets/dream7/d7-7.jpg',th:'assets/dream7/d7-7-t.jpg',v:{en:'Rear',de:'Heck',es:'Trasera',it:'Posteriore',zh:'正后'}}
 ];
 let d7i=0,d7timer=null;
 const d7stage=document.getElementById('d7stage'),d7dots=document.getElementById('d7dots'),
@@ -1685,8 +1829,14 @@ function showView(v){
  document.getElementById('navDream').classList.toggle('on',v==='dream7');
  if(v!=='dream7' && typeof d7stop==='function') d7stop();
  if(v==='dream7' && typeof d7start==='function'){ d7go(0); d7start(); }
+ closeMenu();
  window.scrollTo(0,0);
 }
+// mobile hamburger menu
+const hamb=document.getElementById('hamb'), navpanel=document.getElementById('navpanel');
+function closeMenu(){ if(navpanel){navpanel.classList.remove('open');} if(hamb){hamb.classList.remove('open');hamb.setAttribute('aria-expanded','false');} }
+hamb.onclick=(e)=>{ e.stopPropagation(); const o=!navpanel.classList.contains('open'); navpanel.classList.toggle('open',o); hamb.classList.toggle('open',o); hamb.setAttribute('aria-expanded',o); };
+document.addEventListener('click',e=>{ if(navpanel.classList.contains('open') && !e.target.closest('nav')) closeMenu(); });
 function openQuiz(){ showView('home'); document.getElementById('quiz').classList.add('revealed'); document.body.style.overflow='hidden'; }
 document.getElementById('navHome').onclick=(e)=>{e.preventDefault();showView('home');};
 document.getElementById('navLineup').onclick=(e)=>{e.preventDefault();showView('lineup');};
@@ -1698,9 +1848,9 @@ document.getElementById('d7toQuiz').onclick=openQuiz;
 document.getElementById('heroCta').onclick=openQuiz;
 document.getElementById('qclose').onclick=()=>{ document.getElementById('quiz').classList.remove('revealed'); document.body.style.overflow=''; };
 const tbn=document.getElementById('themeBtn');
-tbn.onclick=()=>{const d=root.getAttribute('data-theme')==='dark';root.setAttribute('data-theme',d?'light':'dark');tbn.textContent=d?'Dark':({de:'Hell',es:'Claro',it:'Chiaro'}[curLang]||'Light');};
+tbn.onclick=()=>{const d=root.getAttribute('data-theme')==='dark';root.setAttribute('data-theme',d?'light':'dark');tbn.textContent=d?'Dark':({de:'Hell',es:'Claro',it:'Chiaro',zh:'亮色'}[curLang]||'Light');};
 // initial language: quick browser hint, then refine by IP country (DE/AT/CH → German)
-{const bl=(navigator.language||'').toLowerCase();applyLang(bl.startsWith('de')?'de':bl.startsWith('es')?'es':bl.startsWith('it')?'it':'en');}
+{const bl=(navigator.language||'').toLowerCase();applyLang(bl.startsWith('de')?'de':bl.startsWith('es')?'es':bl.startsWith('it')?'it':bl.startsWith('zh')?'zh':'en');}
 showView('home');
 
 // ---------- intro teaser splash (text first → rapid Dream 7 montage) ----------
@@ -1731,7 +1881,7 @@ showView('home');
    const r=await fetch('https://ipwho.is/?fields=country_code,success');
    const j=await r.json();
    const cc=((j&&j.country_code)||'').toUpperCase();
-   const map={DE:'de',AT:'de',CH:'de',ES:'es',IT:'it'}; if(!manualLang && cc) applyLang(map[cc]||'en');
+   const map={DE:'de',AT:'de',CH:'de',ES:'es',IT:'it',CN:'zh',TW:'zh',HK:'zh',SG:'zh',MO:'zh'}; if(!manualLang && cc) applyLang(map[cc]||'en');
  }catch(e){ /* keep browser-hint language */ }
 })();
 </script>
