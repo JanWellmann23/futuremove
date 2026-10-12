@@ -597,7 +597,7 @@ const T={
   vChartT:'Preis im Vergleich',recMark:'Deine Empfehlung',
   take45:'In dieser Klasse ab 1.299 € — mehrere SFM-Modelle günstiger als der NIU NQi Sport (1.999 €). Der NIU hat einen größeren Akku.',
   take80:'In dieser Klasse ab 2.999 € — deutlich unter Horwin SK3 (3.990 €) und Super Soco TC Max (4.749 €). Die Mitbewerber fahren etwas schneller, kosten aber mehr.',
-  take110:'Das Flaggschiff: 110 km/h, 5,18-kWh-BYD-LFP-Akku, bis 150 km, ABS + TCS. Die meisten Mainstream-E-Roller enden bei 80–95 km/h.',
+  take110:'Das Flaggschiff spielt in einer eigenen Liga: 110 km/h, 5,18-kWh-Akku, bis 150 km, ABS + TCS — schneller und mit mehr Reichweite als die schnellsten Mainstream-Modelle, dafür mit Aufpreis.',
   vNote:'Preise & Daten: UVP inkl. MwSt., Herstellerangaben. SFM lt. SFM-Datenblättern & Preisliste 2027. NIU NQi Sport lt. niu.com (AT) — ¹ ~65 km mit 1 Akku, 120–130 km mit 2 Akkus. Horwin SK3 (3.990 €) lt. Hersteller/Fachhandel — ¹ ~80 km mit 1 Akku, bis 160 km mit 2 Akkus. Super Soco TC Max (4.749 €) lt. ADAC/Datenblatt. Reichweite je nach Fahrweise, Zuladung und Bedingungen. Stand: Oktober 2026. Vergleich nach Führerscheinklasse; Angaben ohne Gewähr.',
   cEy:'Der Preisvorteil',cH2:'Gleiche Klasse. Deutlich weniger Geld.',
   cLead:'Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.',
@@ -671,7 +671,7 @@ const T={
   vChartT:'Price in comparison',recMark:'Your pick',
   take45:'In this class from €1,299 — several SFM models below the NIU NQi Sport (€1,999). The NIU has a bigger battery.',
   take80:'In this class from €2,999 — well below the Horwin SK3 (€3,990) and Super Soco TC Max (€4,749). The rivals are a little faster but cost more.',
-  take110:'The flagship: 110 km/h, 5.18 kWh BYD LFP battery, up to 150 km, ABS + TCS. Most mainstream e-scooters top out at 80–95 km/h.',
+  take110:'The flagship is in a league of its own: 110 km/h, 5.18 kWh battery, up to 150 km, ABS + TCS — faster and longer-range than the quickest mainstream models, at a premium.',
   vNote:'Prices & data: RRP incl. VAT, manufacturer figures. SFM per SFM data sheets & price list 2027. NIU NQi Sport per niu.com (AT) — ¹ ~65 km with one battery, 120–130 km with two. Horwin SK3 (€3,990) per manufacturer/retail — ¹ ~80 km with one battery, up to 160 km with two. Super Soco TC Max (€4,749) per ADAC/data sheet. Range varies with riding style, load and conditions. As of October 2026. Comparison by licence class; without warranty.',
   cEy:'The price advantage',cH2:'Same class. Noticeably less money.',
   cLead:'The same performance as the market leader — at an honest price. A direct comparison, class by class.',
@@ -862,7 +862,10 @@ const VGL=[
     {name:'Horwin SK3',price:3990,speed:'90 km/h',batt:{de:'2,6 kWh',en:'2.6 kWh'},range:{de:'bis ~80 km¹',en:'~80 km¹'},removable:true,brakes:DISCCBS,vclass:'L3e-A1'},
     {name:'Super Soco TC Max',price:4749,speed:'95 km/h',batt:{de:'3,24 kWh',en:'3.24 kWh'},range:{de:'bis ~110 km',en:'~110 km'},removable:true,brakes:DISCCBS,vclass:'L3e-A1'}
   ],take:'take80'},
-  {key:'cls110',def:'dream7',members:['dream7'],rivals:[],take:'take110'}
+  {key:'cls110',def:'dream7',members:['dream7'],noChart:true,rivals:[
+    {name:'Super Soco TC Max',price:4749,speed:'95 km/h',batt:{de:'3,24 kWh',en:'3.24 kWh'},range:{de:'bis ~110 km',en:'~110 km'},removable:true,brakes:DISCCBS,vclass:'L3e-A1'},
+    {name:'Horwin SK3',price:3990,speed:'90 km/h',batt:{de:'2,6 kWh',en:'2.6 kWh'},range:{de:'bis ~80 km¹',en:'~80 km¹'},removable:true,brakes:DISCCBS,vclass:'L3e-A1'}
+  ],take:'take110'}
 ];
 let VGL_FOCUS=null;
 function renderVgl(){
@@ -885,7 +888,7 @@ function renderVgl(){
       return `<tr><td class="rl">${label}</td>${cells}</tr>`;
     }).join('');
     let chart='';
-    if(b.members.length>1||b.rivals.length){
+    if(!b.noChart&&(b.members.length>1||b.rivals.length)){
       const items=[...b.members.map(id=>{const m=MODELS.find(x=>x.id===id);return{name:m.name,price:m.price,ours:true,hot:id===sfmId&&focusHere};}),
         ...b.rivals.map(r=>({name:r.name,price:r.price,ours:false}))].sort((x,y)=>x.price-y.price);
       const maxp=Math.max(...items.map(i=>i.price));
@@ -901,9 +904,10 @@ function renderVgl(){
 window.showCompare=function(id){
   VGL_FOCUS=id; renderVgl();
   const sec=document.getElementById('vergleich'); if(!sec)return;
-  sec.scrollIntoView({behavior:'smooth',block:'start'});
-  const blk=sec.querySelector('.vblock.focus');
-  if(blk){blk.classList.remove('pulse');void blk.offsetWidth;blk.classList.add('pulse');}
+  const blk=sec.querySelector('.vblock.focus')||sec;
+  const y=blk.getBoundingClientRect().top+window.scrollY-66;
+  window.scrollTo({top:y,behavior:'smooth'});
+  if(blk.classList){blk.classList.remove('pulse');void blk.offsetWidth;blk.classList.add('pulse');}
 };
 
 /* ===== LIVE AVAILABILITY — reads the Bestand sheet via Apps Script doGet ===== */
