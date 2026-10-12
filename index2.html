@@ -780,7 +780,7 @@ const T={
   axSpeed:'Tempo',axBatt:'Akku',axRange:'Reichweite',axPrice:'Preisvorteil',compName:'Vergleichbare Modelle (Ø)',
   take45:'In dieser Klasse ab 1.299 € — deutlich günstiger als der Schnitt vergleichbarer Modelle (Ø ~3.200 €). Die Graphen-Modelle (z. B. Urbano, Future City) halten beim Akku locker mit oder liegen vorn.',
   take80:'In dieser Klasse ab 2.999 € — klar unter dem Schnitt vergleichbarer Modelle (Ø ~3.900 €) und mit dem größten Akku der Klasse. Der Mitbewerb fährt im Schnitt etwas schneller.',
-  take110:'Das Flaggschiff spielt in einer eigenen Liga: 110 km/h, 5,18-kWh-Akku, bis 150 km, ABS + TCS — schneller, mehr Akku und mehr Reichweite als der Schnitt vergleichbarer Top-Modelle, und das zu deren durchschnittlichem Preisniveau.',
+  take110:'Das Flaggschiff spielt in einer eigenen Liga: 110 km/h, 5,18-kWh-Akku, bis 150 km, ABS + TCS — schneller, mehr Akku und mehr Reichweite als der Schnitt vergleichbarer Top-Modelle, und das für rund 3.000 € unter deren Durchschnittspreis.',
   vNote:'Vergleichswerte = Durchschnitt vergleichbarer Modelle derselben Führerscheinklasse (Listenpreise & Herstellerangaben führender Marken, Stand Okt. 2026). SFM-Werte lt. SFM-Datenblättern & Preisliste 2027. Reichweite je nach Fahrweise, Zuladung und Bedingungen. Richtwerte, ohne Gewähr.',
   cEy:'Der Preisvorteil',cH2:'Gleiche Klasse. Deutlich weniger Geld.',
   cLead:'Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.',
@@ -857,7 +857,7 @@ const T={
   axSpeed:'Speed',axBatt:'Battery',axRange:'Range',axPrice:'Value',compName:'Comparable models (avg.)',
   take45:'In this class from €1,299 — well below the average of comparable models (avg. ~€3,200). The graphene models (e.g. Urbano, Future City) match or beat the competition on battery.',
   take80:'In this class from €2,999 — clearly below the average of comparable models (avg. ~€3,900) and with the largest battery in the class. The competition is a little faster on average.',
-  take110:'The flagship is in a league of its own: 110 km/h, 5.18 kWh battery, up to 150 km, ABS + TCS — faster, more battery and more range than the average comparable top model, and at their average price level.',
+  take110:'The flagship is in a league of its own: 110 km/h, 5.18 kWh battery, up to 150 km, ABS + TCS — faster, more battery and more range than the average comparable top model, and roughly €2,900 below their average price.',
   vNote:'Comparison values = average of comparable models in the same licence class (list prices & manufacturer figures of leading brands, as of Oct 2026). SFM values per SFM data sheets & price list 2027. Range varies with riding style, load and conditions. Reference values, without warranty.',
   cEy:'The price advantage',cH2:'Same class. Noticeably less money.',
   cLead:'The same performance as the market leader — at an honest price. A direct comparison, class by class.',
@@ -1085,7 +1085,7 @@ function sfmSpec(id){
 const COMP={
   cls45:{speed:'~45 km/h',batt:{de:'~1,7 kWh',en:'~1.7 kWh'},range:{de:'~70 km',en:'~70 km'},removable:{de:'teils',en:'some'},brakes:DISCCBS,vclass:'L1e-B',price:3200,r:{speed:45,batt:1.7,range:70}},
   cls80:{speed:'~88 km/h',batt:{de:'~2,9 kWh',en:'~2.9 kWh'},range:{de:'~85 km',en:'~85 km'},removable:{de:'teils',en:'some'},brakes:DISCCBS,vclass:'L3e-A1',price:3900,r:{speed:88,batt:2.9,range:85}},
-  cls110:{speed:'~100 km/h',batt:{de:'~4,3 kWh',en:'~4.3 kWh'},range:{de:'~115 km',en:'~115 km'},removable:{de:'teils',en:'some'},brakes:{de:'Scheibe · CBS/ABS',en:'Disc · CBS/ABS'},vclass:'L3e-A1',price:5800,r:{speed:100,batt:4.3,range:115}}
+  cls110:{speed:'~105 km/h',batt:{de:'~5,0 kWh',en:'~5.0 kWh'},range:{de:'~120 km',en:'~120 km'},removable:{de:'teils',en:'some'},brakes:{de:'Scheibe · CBS/ABS',en:'Disc · CBS/ABS'},vclass:'L3e',price:8900,r:{speed:105,batt:5.0,range:120}}
 };
 /* SFM radar reference (class hero — full verified data incl. range) */
 const SFM_R={cls45:{speed:45,batt:1.44,range:70,price:1699},cls80:{speed:80,batt:3.46,range:75,price:2999},cls110:{speed:110,batt:5.18,range:150,price:5999}};
