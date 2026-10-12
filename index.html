@@ -603,7 +603,7 @@ const T={
   recCompare:'Im Vergleich ansehen →',
   vChartT:'Preis im Vergleich',recMark:'Deine Empfehlung',
   axSpeed:'Tempo',axBatt:'Akku',axRange:'Reichweite',axPrice:'Preisvorteil',compName:'Vergleichbare Modelle (Ø)',
-  take45:'In dieser Klasse ab 1.299 € — deutlich günstiger als der Schnitt vergleichbarer Modelle (Ø ~3.200 €). Beim Akku liegt der Mitbewerb im Schnitt etwas vorn.',
+  take45:'In dieser Klasse ab 1.299 € — deutlich günstiger als der Schnitt vergleichbarer Modelle (Ø ~3.200 €). Die Graphen-Modelle (z. B. Urbano, Future City) halten beim Akku locker mit oder liegen vorn.',
   take80:'In dieser Klasse ab 2.999 € — klar unter dem Schnitt vergleichbarer Modelle (Ø ~3.900 €) und mit dem größten Akku der Klasse. Der Mitbewerb fährt im Schnitt etwas schneller.',
   take110:'Das Flaggschiff spielt in einer eigenen Liga: 110 km/h, 5,18-kWh-Akku, bis 150 km, ABS + TCS — schneller, mehr Akku und mehr Reichweite als der Schnitt vergleichbarer Top-Modelle, und das zu deren durchschnittlichem Preisniveau.',
   vNote:'Vergleichswerte = Durchschnitt vergleichbarer Modelle derselben Führerscheinklasse (Listenpreise & Herstellerangaben führender Marken, Stand Okt. 2026). SFM-Werte lt. SFM-Datenblättern & Preisliste 2027. Reichweite je nach Fahrweise, Zuladung und Bedingungen. Richtwerte, ohne Gewähr.',
@@ -678,7 +678,7 @@ const T={
   recCompare:'See it in the comparison →',
   vChartT:'Price in comparison',recMark:'Your pick',
   axSpeed:'Speed',axBatt:'Battery',axRange:'Range',axPrice:'Value',compName:'Comparable models (avg.)',
-  take45:'In this class from €1,299 — well below the average of comparable models (avg. ~€3,200). On battery the competition leads a little on average.',
+  take45:'In this class from €1,299 — well below the average of comparable models (avg. ~€3,200). The graphene models (e.g. Urbano, Future City) match or beat the competition on battery.',
   take80:'In this class from €2,999 — clearly below the average of comparable models (avg. ~€3,900) and with the largest battery in the class. The competition is a little faster on average.',
   take110:'The flagship is in a league of its own: 110 km/h, 5.18 kWh battery, up to 150 km, ABS + TCS — faster, more battery and more range than the average comparable top model, and at their average price level.',
   vNote:'Comparison values = average of comparable models in the same licence class (list prices & manufacturer figures of leading brands, as of Oct 2026). SFM values per SFM data sheets & price list 2027. Range varies with riding style, load and conditions. Reference values, without warranty.',
@@ -849,7 +849,7 @@ const DISC={de:'Scheibe v+h',en:'Disc, f+r'},DISCCBS={de:'Scheibe · CBS',en:'Di
 /* nominal battery energy per SFM model (V × Ah) */
 const SFM_KWH={dream7:'5,18',legend:'3,60',futuresport:'3,60',e2hsport:'3,46',futurecity:'1,87',e2h:'1,73',futurelight:'1,26',em1:'1,44',urbano:'1,87',primaeclassic:'0,96'};
 /* range from SFM Datenblätter where the model name matches exactly */
-const SFM_RANGE={dream7:150,e2hsport:75,em1:70};
+const SFM_RANGE={dream7:150,e2hsport:75,em1:70,futurecity:70};
 const DUAL={e2hsport:1};
 function sfmSpec(id){
   const m=MODELS.find(x=>x.id===id); if(!m)return null;
@@ -865,7 +865,7 @@ function sfmSpec(id){
 }
 /* nearest comparable model per class — real data (NIU / Horwin / Super Soco), shown anonymised */
 const COMP={
-  cls45:{speed:'~45 km/h',batt:{de:'~2,0 kWh',en:'~2.0 kWh'},range:{de:'~70 km',en:'~70 km'},removable:{de:'teils',en:'some'},brakes:DISCCBS,vclass:'L1e-B',price:3200,r:{speed:45,batt:2.0,range:70}},
+  cls45:{speed:'~45 km/h',batt:{de:'~1,7 kWh',en:'~1.7 kWh'},range:{de:'~70 km',en:'~70 km'},removable:{de:'teils',en:'some'},brakes:DISCCBS,vclass:'L1e-B',price:3200,r:{speed:45,batt:1.7,range:70}},
   cls80:{speed:'~88 km/h',batt:{de:'~2,9 kWh',en:'~2.9 kWh'},range:{de:'~85 km',en:'~85 km'},removable:{de:'teils',en:'some'},brakes:DISCCBS,vclass:'L3e-A1',price:3900,r:{speed:88,batt:2.9,range:85}},
   cls110:{speed:'~100 km/h',batt:{de:'~4,3 kWh',en:'~4.3 kWh'},range:{de:'~115 km',en:'~115 km'},removable:{de:'teils',en:'some'},brakes:{de:'Scheibe · CBS/ABS',en:'Disc · CBS/ABS'},vclass:'L3e-A1',price:5800,r:{speed:100,batt:4.3,range:115}}
 };
@@ -874,7 +874,7 @@ const SFM_R={cls45:{speed:45,batt:1.44,range:70,price:1699},cls80:{speed:80,batt
 const VGL=[
   {key:'cls110',def:'dream7',members:['dream7'],take:'take110'},
   {key:'cls80',def:'e2hsport',members:['e2hsport','futuresport','legend'],take:'take80'},
-  {key:'cls45',def:'em1',members:['primaeclassic','urbano','em1','futurelight','futurecity','e2h'],take:'take45'}
+  {key:'cls45',def:'futurecity',members:['primaeclassic','urbano','em1','futurelight','futurecity','e2h'],take:'take45'}
 ];
 let VGL_FOCUS=null;
 function radarSVG(axes,sfm,comp){
@@ -891,8 +891,17 @@ function radarSVG(axes,sfm,comp){
   const dots=(v,fill)=>v.map((x,i)=>{const[dx,dy]=pt(i,Math.max(0.06,x));return `<circle cx="${f(dx)}" cy="${f(dy)}" r="3.3" fill="${fill}"/>`;}).join('');
   return `<svg viewBox="-74 -26 ${S+148} ${S+52}" class="radar">${grid}${ax}${poly(comp,'rgba(150,160,172,.12)','#aab0b8',2,'4 3')}${poly(sfm,'rgba(42,120,214,.30)','#1f6fd0',2.8)}${dots(sfm,'#1f6fd0')}</svg>`;
 }
-function radarVals(key){
-  const s=SFM_R[key],c=COMP[key].r,cp=COMP[key].price,sp=SFM_R[key].price;
+function radarVals(key,sfmId){
+  // SFM side reflects the actual model shown (battery/speed/price per model);
+  // range stays the verified class figure. Competitor = segment average.
+  const m=sfmId&&MODELS.find(x=>x.id===sfmId);
+  const s={
+    speed: m?m.speed:SFM_R[key].speed,
+    batt:  m?(parseFloat((SFM_KWH[sfmId]||'0').replace(',','.'))||SFM_R[key].batt):SFM_R[key].batt,
+    range: SFM_R[key].range,
+    price: m?m.price:SFM_R[key].price
+  };
+  const c=COMP[key].r,cp=COMP[key].price,sp=s.price;
   // gamma curve: leader of each axis sits on the outer ring, the weaker value is
   // pushed toward the centre so a real gap reads clearly (monotonic — order preserved)
   const G=2.4, amp=x=>Math.pow(x,G);
@@ -918,7 +927,7 @@ function renderVgl(){
         return `<td class="${c.ours?'ours':''}">${v}</td>`;}).join('');
       return `<tr><td class="rl">${label}</td>${cells}</tr>`;
     }).join('');
-    const [sv,cv]=radarVals(b.key);
+    const [sv,cv]=radarVals(b.key,sfmId);
     const radar=`<div class="vradar">${radarSVG([d.axSpeed,d.axBatt,d.axRange,d.axPrice],sv,cv)}<div class="vrleg"><span><i class="rl-s"></i>SFM</span><span><i class="rl-c"></i>${d.compName}</span></div></div>`;
     const more=b.members.filter(id=>id!==sfmId).map(id=>{const m=MODELS.find(x=>x.id===id);return m?`${m.name} ${euro(m.price)}`:null;}).filter(Boolean);
     const moreLine=more.length?`<div class="vrange"><b>${d.vRange}:</b> ${more.join(' · ')}</div>`:'';
