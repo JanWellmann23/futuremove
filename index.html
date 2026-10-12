@@ -594,7 +594,7 @@ const T={
   recAlt:'Ebenfalls passend',
   navCmp:'Vergleich',
   vEy:'Ehrlich verglichen',vH2:'Gleiche Klasse. Transparente Preise.',
-  vLead:'Gleiche Führerscheinklasse, verifizierte Listenpreise (UVP inkl. MwSt., Stand Oktober 2026). Entscheide selbst.',
+  vLead:'Gleiche Führerscheinklasse, verglichen mit dem Durchschnitt vergleichbarer Modelle (Richtwerte, Stand Oktober 2026). Entscheide selbst.',
   cls45:'45 km/h · Klasse L1e (Mokick)',
   cls80:'80–95 km/h · Klasse A1 (L3e)',
   cls110:'110 km/h · Klasse L3e (Flaggschiff)',
@@ -602,11 +602,11 @@ const T={
   vRange:'Weitere SFM-Modelle in dieser Klasse',
   recCompare:'Im Vergleich ansehen →',
   vChartT:'Preis im Vergleich',recMark:'Deine Empfehlung',
-  axSpeed:'Tempo',axBatt:'Akku',axRange:'Reichweite',axPrice:'Preisvorteil',compName:'Vergleichbares Modell',
-  take45:'In dieser Klasse ab 1.299 € — mehrere SFM-Modelle günstiger als ein vergleichbares Modell. Beim Akku liegt der Mitbewerber teils vorn.',
-  take80:'In dieser Klasse ab 2.999 € — deutlich günstiger als vergleichbare Modelle und mit dem größten Akku der Klasse. Vergleichbare Modelle fahren etwas schneller.',
-  take110:'Das Flaggschiff spielt in einer eigenen Liga: 110 km/h, 5,18-kWh-Akku, bis 150 km, ABS + TCS — schneller und mit mehr Reichweite als die schnellsten Mainstream-Modelle, dafür mit Aufpreis.',
-  vNote:'Vergleich mit einem vergleichbaren Modell derselben Führerscheinklasse (Listenpreise & Herstellerangaben führender Marken). SFM-Werte lt. SFM-Datenblättern & Preisliste 2027. Reichweite je nach Fahrweise, Zuladung und Bedingungen. Stand: Oktober 2026. Richtwerte, ohne Gewähr.',
+  axSpeed:'Tempo',axBatt:'Akku',axRange:'Reichweite',axPrice:'Preisvorteil',compName:'Vergleichbare Modelle (Ø)',
+  take45:'In dieser Klasse ab 1.299 € — deutlich günstiger als der Schnitt vergleichbarer Modelle (Ø ~3.200 €). Beim Akku liegt der Mitbewerb im Schnitt etwas vorn.',
+  take80:'In dieser Klasse ab 2.999 € — klar unter dem Schnitt vergleichbarer Modelle (Ø ~3.900 €) und mit dem größten Akku der Klasse. Der Mitbewerb fährt im Schnitt etwas schneller.',
+  take110:'Das Flaggschiff spielt in einer eigenen Liga: 110 km/h, 5,18-kWh-Akku, bis 150 km, ABS + TCS — schneller, mehr Akku und mehr Reichweite als der Schnitt vergleichbarer Top-Modelle, und das zu deren durchschnittlichem Preisniveau.',
+  vNote:'Vergleichswerte = Durchschnitt vergleichbarer Modelle derselben Führerscheinklasse (Listenpreise & Herstellerangaben führender Marken, Stand Okt. 2026). SFM-Werte lt. SFM-Datenblättern & Preisliste 2027. Reichweite je nach Fahrweise, Zuladung und Bedingungen. Richtwerte, ohne Gewähr.',
   cEy:'Der Preisvorteil',cH2:'Gleiche Klasse. Deutlich weniger Geld.',
   cLead:'Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.',
   cmpOurs:'Unser Modell',cmpComp:'Vergleichbar',
@@ -669,7 +669,7 @@ const T={
   recAlt:'Also a good fit',
   navCmp:'Compare',
   vEy:'An honest comparison',vH2:'Same class. Transparent prices.',
-  vLead:'Same licence class, verified list prices (RRP incl. VAT, as of October 2026). You decide.',
+  vLead:'Same licence class, compared against the average of comparable models (reference values, as of October 2026). You decide.',
   cls45:'45 km/h · class L1e (moped)',
   cls80:'80–95 km/h · class A1 (L3e)',
   cls110:'110 km/h · class L3e (flagship)',
@@ -677,11 +677,11 @@ const T={
   vRange:'More SFM models in this class',
   recCompare:'See it in the comparison →',
   vChartT:'Price in comparison',recMark:'Your pick',
-  axSpeed:'Speed',axBatt:'Battery',axRange:'Range',axPrice:'Value',compName:'Comparable model',
-  take45:'In this class from €1,299 — several SFM models below a comparable model. On battery the comparable model sometimes leads.',
-  take80:'In this class from €2,999 — well below comparable models and with the largest battery in the class. Comparable models are a little faster.',
-  take110:'The flagship is in a league of its own: 110 km/h, 5.18 kWh battery, up to 150 km, ABS + TCS — faster and longer-range than the quickest mainstream models, at a premium.',
-  vNote:'Comparison with a comparable model in the same licence class (list prices & manufacturer figures of leading brands). SFM values per SFM data sheets & price list 2027. Range varies with riding style, load and conditions. As of October 2026. Reference values, without warranty.',
+  axSpeed:'Speed',axBatt:'Battery',axRange:'Range',axPrice:'Value',compName:'Comparable models (avg.)',
+  take45:'In this class from €1,299 — well below the average of comparable models (avg. ~€3,200). On battery the competition leads a little on average.',
+  take80:'In this class from €2,999 — clearly below the average of comparable models (avg. ~€3,900) and with the largest battery in the class. The competition is a little faster on average.',
+  take110:'The flagship is in a league of its own: 110 km/h, 5.18 kWh battery, up to 150 km, ABS + TCS — faster, more battery and more range than the average comparable top model, and at their average price level.',
+  vNote:'Comparison values = average of comparable models in the same licence class (list prices & manufacturer figures of leading brands, as of Oct 2026). SFM values per SFM data sheets & price list 2027. Range varies with riding style, load and conditions. Reference values, without warranty.',
   cEy:'The price advantage',cH2:'Same class. Noticeably less money.',
   cLead:'The same performance as the market leader — at an honest price. A direct comparison, class by class.',
   cmpOurs:'Our model',cmpComp:'Comparable',
@@ -865,9 +865,9 @@ function sfmSpec(id){
 }
 /* nearest comparable model per class — real data (NIU / Horwin / Super Soco), shown anonymised */
 const COMP={
-  cls45:{speed:'45 km/h',batt:{de:'2,0 kWh',en:'2.0 kWh'},range:{de:'bis ~65 km',en:'~65 km'},removable:true,brakes:DISCCBS,vclass:'L1e-B',price:1999,r:{speed:45,batt:2.0,range:65}},
-  cls80:{speed:'90 km/h',batt:{de:'2,6 kWh',en:'2.6 kWh'},range:{de:'bis ~80 km',en:'~80 km'},removable:true,brakes:DISCCBS,vclass:'L3e-A1',price:3990,r:{speed:90,batt:2.6,range:80}},
-  cls110:{speed:'95 km/h',batt:{de:'3,24 kWh',en:'3.24 kWh'},range:{de:'bis ~110 km',en:'~110 km'},removable:true,brakes:DISCCBS,vclass:'L3e-A1',price:4749,r:{speed:95,batt:3.24,range:110}}
+  cls45:{speed:'~45 km/h',batt:{de:'~2,0 kWh',en:'~2.0 kWh'},range:{de:'~70 km',en:'~70 km'},removable:{de:'teils',en:'some'},brakes:DISCCBS,vclass:'L1e-B',price:3200,r:{speed:45,batt:2.0,range:70}},
+  cls80:{speed:'~88 km/h',batt:{de:'~2,9 kWh',en:'~2.9 kWh'},range:{de:'~85 km',en:'~85 km'},removable:{de:'teils',en:'some'},brakes:DISCCBS,vclass:'L3e-A1',price:3900,r:{speed:88,batt:2.9,range:85}},
+  cls110:{speed:'~100 km/h',batt:{de:'~4,3 kWh',en:'~4.3 kWh'},range:{de:'~115 km',en:'~115 km'},removable:{de:'teils',en:'some'},brakes:{de:'Scheibe · CBS/ABS',en:'Disc · CBS/ABS'},vclass:'L3e-A1',price:5800,r:{speed:100,batt:4.3,range:115}}
 };
 /* SFM radar reference (class hero — full verified data incl. range) */
 const SFM_R={cls45:{speed:45,batt:1.44,range:70,price:1699},cls80:{speed:80,batt:3.46,range:75,price:2999},cls110:{speed:110,batt:5.18,range:150,price:5999}};
@@ -907,8 +907,8 @@ function renderVgl(){
     const head='<th></th>'+cols.map(c=>`<th class="${c.ours?'ours':''}">${c.spec.name}</th>`).join('');
     const body=rows.map(([k,label])=>{
       const cells=cols.map(c=>{let v;const s=c.spec;
-        if(k==='price')v=euro(s.price);
-        else if(k==='removable')v=s.removable?d.yes:'–';
+        if(k==='price'){v=euro(s.price);if(!c.ours)v='Ø '+v;}
+        else if(k==='removable'){const rv=s.removable;v=(rv&&typeof rv==='object')?rv[LANG]:(rv?d.yes:'–');}
         else{v=s[k];if(v&&typeof v==='object')v=v[LANG]||v.de;v=v||'–';}
         return `<td class="${c.ours?'ours':''}">${v}</td>`;}).join('');
       return `<tr><td class="rl">${label}</td>${cells}</tr>`;
