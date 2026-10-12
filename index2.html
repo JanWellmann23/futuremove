@@ -58,11 +58,11 @@ a{color:inherit;text-decoration:none}
   animation:heroKen 24s ease-in-out infinite alternate}
 @keyframes heroKen{from{transform:scale(1) translateY(0)}to{transform:scale(1.09) translateY(-1.5%)}}
 @media(prefers-reduced-motion:reduce){.cine::before{animation:none}}
-.stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;transform-origin:50% 42%;animation:introzoom 15s ease-out both}
-@keyframes introzoom{from{transform:scale(1)}to{transform:scale(1.07)}}
+.stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;transform-origin:50% 0%;animation:introzoom 15s ease-out both}
+@keyframes introzoom{from{transform:translateY(4.5%) scale(1.03)}to{transform:translateY(4.5%) scale(1.07)}}
 @keyframes introzoomM{from{transform:scale(1.01)}to{transform:scale(1.06)}}
-@media(prefers-reduced-motion:reduce){.stage{animation:none}}
-.shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%;opacity:0;transition:opacity 1.1s ease;filter:none}
+@media(prefers-reduced-motion:reduce){.stage{animation:none;transform:translateY(4.5%) scale(1.03)}}
+.shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 34%;opacity:0;transition:opacity 1.1s ease;filter:none}
 .shot.on{opacity:1}
 .cine::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(180deg,rgba(6,8,13,.55),rgba(6,8,13,.16) 30%,rgba(6,8,13,.18) 56%,rgba(6,8,13,.92))}
@@ -1346,7 +1346,12 @@ syncLive();
   if(first.complete&&first.naturalWidth){start();}
   else{first.addEventListener('load',start,{once:true});first.addEventListener('error',start,{once:true});setTimeout(start,1400);}
   skip.addEventListener('click',finish);
-  window.addEventListener('scroll',()=>{if(window.scrollY>40)finish();},{passive:true});
+  // A browser-restored scroll position on reload must not count as a user scroll
+  // (that would fire finish() on load and skip the intro straight to the end shot).
+  try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}
+  if(!location.hash){try{window.scrollTo(0,0);}catch(e){}}
+  let scrollArmed=false;setTimeout(function(){scrollArmed=true;},500);
+  window.addEventListener('scroll',()=>{if(scrollArmed&&window.scrollY>40)finish();},{passive:true});
 })();
 
 /* ===== visual enrichment: counters, card tilt, streaks ===== */
