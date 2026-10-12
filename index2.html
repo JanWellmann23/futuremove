@@ -59,9 +59,9 @@ a{color:inherit;text-decoration:none}
 @keyframes heroKen{from{transform:scale(1) translateY(0)}to{transform:scale(1.09) translateY(-1.5%)}}
 @media(prefers-reduced-motion:reduce){.cine::before{animation:none}}
 .stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1}
-.shot{position:absolute;max-width:92%;max-height:62%;object-fit:contain;opacity:0;transform:scale(1.02) translateY(8px);
-  transition:opacity 1s ease,transform 1.2s ease,max-height 1s ease;filter:drop-shadow(0 40px 60px rgba(0,0,0,.5))}
-.shot.on{opacity:1;transform:none}
+.shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);
+  transition:opacity 1.1s ease,transform 6s ease;filter:none}
+.shot.on{opacity:1;transform:scale(1)}
 .cine::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(180deg,rgba(6,8,13,.5),rgba(6,8,13,0) 26%,rgba(6,8,13,0) 55%,rgba(6,8,13,.9))}
 .caps{position:absolute;z-index:3;left:24px;right:24px;top:17%;max-width:var(--maxw);margin:0 auto;text-align:center}
@@ -424,10 +424,10 @@ body.noscroll{overflow:hidden}
 <!-- CINEMATIC HERO -->
 <section class="cine" id="home">
   <div class="stage">
-    <img class="shot" src="assets-v2/dream7/a.webp" alt="Dream 7" fetchpriority="high" decoding="async">
-    <img class="shot" src="assets-v2/dream7/c.webp" alt="Dream 7">
-    <img class="shot" src="assets-v2/dream7/d.webp" alt="Dream 7">
-    <img class="shot" src="assets-v2/dream7/b.webp" alt="Dream 7">
+    <img class="shot" src="assets-v2/dream7/g_a.webp" alt="Dream 7" fetchpriority="high" decoding="async">
+    <img class="shot" src="assets-v2/dream7/g_c.webp" alt="Dream 7">
+    <img class="shot" src="assets-v2/dream7/g_d.webp" alt="Dream 7">
+    <img class="shot" src="assets-v2/dream7/g_b.webp" alt="Dream 7">
   </div>
   <div class="caps">
     <h2 class="cap" data-i="0" data-i18n-html="cap0">Eine neue Ära<br>der Elektromobilität.</h2>
