@@ -35,7 +35,21 @@ a{color:inherit;text-decoration:none}
 .langtog{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:3px;margin-left:18px}
 .langtog button{background:none;border:none;color:#aab2c0;font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;cursor:pointer;letter-spacing:.04em;transition:background .2s,color .2s}
 .langtog button.on{background:#fff;color:#0b0b0d}
-@media(max-width:720px){.brand span{display:none}.nav{gap:0}.nav a:not(.res){display:none}.nav .res{background:var(--blue);color:#fff;padding:8px 16px;border-radius:999px}.langtog{margin-left:10px}}
+.burger{display:none;flex-direction:column;justify-content:center;gap:4px;width:36px;height:34px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:9px;cursor:pointer;margin-left:10px;padding:0}
+.burger span{display:block;width:17px;height:2px;background:#e7eaf0;margin:0 auto;border-radius:2px;transition:transform .25s ease,opacity .2s ease}
+.burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media(max-width:720px){
+  .brand span{display:none}
+  .burger{display:flex}
+  .nav{position:absolute;top:52px;left:0;right:0;flex-direction:column;gap:0;background:rgba(10,11,13,.98);backdrop-filter:saturate(160%) blur(16px);border-bottom:1px solid rgba(255,255,255,.1);padding:6px 0;transform:translateY(-10px);opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s;max-height:calc(100dvh - 52px);overflow:auto}
+  .nav.open{opacity:1;transform:none;visibility:visible}
+  .nav a{display:block;font-size:15px;opacity:1;padding:13px 22px;border-top:1px solid rgba(255,255,255,.06)}
+  .nav a:first-child{border-top:none}
+  .nav .res{color:#8fc0ff;font-weight:700}
+  .langtog{margin-left:10px}
+}
 
 /* cinematic hero — transparent cut-outs on gradient */
 .cine{position:relative;height:100svh;min-height:620px;overflow:hidden;color:#fff;
@@ -276,7 +290,7 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
   <div class="wrap">
     <a href="#home" class="brand"><b>ENERGEIA</b><span data-i18n="brandSub">SFM · Sunra Vertretung Österreich</span></a>
     <div class="topright">
-      <nav class="nav">
+      <nav class="nav" id="nav">
         <a href="#finder" data-i18n="navFinder">Finder</a>
         <a href="#warum" data-i18n="navWhy">Ausstattung</a>
         <a href="#vergleich" data-i18n="navCmp">Vergleich</a>
@@ -287,6 +301,9 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
       <div class="langtog" id="langtog" role="group" aria-label="Language">
         <button data-l="de" type="button">DE</button><button data-l="en" type="button">EN</button>
       </div>
+      <button class="burger" id="burger" type="button" aria-label="Menü" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
@@ -1033,6 +1050,17 @@ function applyLang(l){
   if(result.classList.contains('on'))showResult();
 }
 document.querySelectorAll('#langtog button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.l)));
+
+/* mobile menu */
+(function(){
+  const burger=document.getElementById('burger'),nav=document.getElementById('nav');
+  if(!burger||!nav)return;
+  const setOpen=o=>{nav.classList.toggle('open',o);burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',o?'true':'false');};
+  burger.addEventListener('click',e=>{e.stopPropagation();setOpen(!nav.classList.contains('open'));});
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));
+  document.addEventListener('click',e=>{if(nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==burger&&!burger.contains(e.target))setOpen(false);});
+  window.addEventListener('scroll',()=>{if(nav.classList.contains('open'))setOpen(false);},{passive:true});
+})();
 
 /* ===== INIT ===== */
 applyLang(detectLang());
