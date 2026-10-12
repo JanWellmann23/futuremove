@@ -24,7 +24,7 @@ Das aktuelle Backend ist eine **Google-Apps-Script-Übergangslösung** (siehe Ab
 
 - **Live-URL:** https://futuremove.one
 - **Hosting:** GitHub Pages (Branch `main`, Root-Verzeichnis).
-- **Repository:** `github.com/JanWellmann23/sfm-dach-brief`
+- **Repository:** `github.com/JanWellmann23/futuremove`
 - **Custom Domain:** über die Datei `CNAME` im Repo (`futuremove.one`). Datei `.nojekyll` ist vorhanden (verhindert Jekyll-Verarbeitung).
 - **DNS:** Die DNS-Einträge für futuremove.one (A-Records auf GitHub Pages bzw. CNAME) liegen beim Domain-Registrar des Auftraggebers. Zugang zu den DNS-Einstellungen bitte beim Auftraggeber anfragen — nur nötig, falls das Hosting später umgezogen wird.
 - **Deployment:** Jeder Push auf `main` wird von GitHub Pages automatisch veröffentlicht (ca. 1 Minute). Kein Build-Schritt, kein Framework.
