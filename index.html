@@ -53,11 +53,9 @@ a{color:inherit;text-decoration:none}
 
 /* cinematic hero — transparent cut-outs on gradient */
 .cine{position:relative;height:100svh;min-height:620px;overflow:hidden;color:#fff;background:#06080d}
-.cine::before{content:"";position:absolute;inset:-4%;z-index:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(6,8,13,.42),rgba(6,8,13,.08) 44%,rgba(6,8,13,.5)),url('assets-v2/hero/alpine.webp') center 42%/cover no-repeat;
-  animation:heroKen 24s ease-in-out infinite alternate}
+.cine::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,#0a0e16,#06080d)}
 @keyframes heroKen{from{transform:scale(1) translateY(0)}to{transform:scale(1.09) translateY(-1.5%)}}
-@media(prefers-reduced-motion:reduce){.cine::before{animation:none}}
 .stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;transform-origin:50% 0%;animation:introzoom 15s ease-out both}
 @keyframes introzoom{from{transform:translateY(4.5%) scale(1.03)}to{transform:translateY(4.5%) scale(1.07)}}
 @keyframes introzoomM{from{transform:scale(1.01)}to{transform:scale(1.06)}}
@@ -1341,7 +1339,12 @@ syncLive();
   function stepF(){paint(i);if(i>=SEQ){finish();return;}i++;timer=setTimeout(stepF,DUR);}
   // start only once the first product image is decoded, so the image never lags the caption
   let started=false;
-  function start(){if(started)return;started=true;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)finish();else stepF();}
+  function start(){if(started)return;started=true;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){finish();return;}
+    shots[0].style.transition='none';           // go straight to the first shot (no fade-through the backdrop)
+    stepF();
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{shots[0].style.transition='';}));
+  }
   const first=shots[0];
   if(first.complete&&first.naturalWidth){start();}
   else{first.addEventListener('load',start,{once:true});first.addEventListener('error',start,{once:true});setTimeout(start,1400);}
