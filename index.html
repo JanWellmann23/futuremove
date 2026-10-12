@@ -106,8 +106,10 @@ section{padding:clamp(60px,9vw,118px) 0}
 .manifesto b{color:var(--blue)}
 
 /* finder */
-.finder{background:var(--soft)}
-.fcard{margin-top:40px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(24px,4vw,44px);box-shadow:0 20px 60px rgba(10,20,40,.06)}
+.finder{position:relative;overflow:hidden;background:var(--soft)}
+.finder::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(245,246,248,.6),rgba(245,246,248,.4) 46%,rgba(245,246,248,.74)),url('assets-v2/bg/finder.webp') center/cover no-repeat}
+.finder>.wrap{position:relative;z-index:1}
+.fcard{margin-top:40px;background:#fff;border:1px solid rgba(255,255,255,.7);border-radius:22px;padding:clamp(24px,4vw,44px);box-shadow:0 30px 80px -24px rgba(10,30,60,.28),0 2px 8px rgba(10,20,40,.06);backdrop-filter:saturate(120%)}
 .fstep{display:none}.fstep.on{display:block;animation:fade .4s ease}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .fq{font-size:clamp(20px,3vw,28px);font-weight:700;letter-spacing:-.01em}
