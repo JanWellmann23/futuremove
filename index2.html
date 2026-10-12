@@ -202,6 +202,13 @@ section{padding:clamp(60px,9vw,118px) 0}
 .vbfill.ours{background:var(--blue)}
 .vbfill.hot{background:var(--blue-d);box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
 @media(max-width:600px){.vblab{width:90px;font-size:12px}}
+.vtop{display:flex;gap:30px;align-items:center;margin-top:6px}
+@media(max-width:820px){.vtop{flex-direction:column;align-items:stretch;gap:18px}}
+.vradar{flex:0 0 310px;max-width:330px;margin:0 auto}
+.radar{width:100%;height:auto;display:block}
+.vrleg{display:flex;gap:20px;justify-content:center;margin-top:4px;font-size:12.5px;color:var(--mut)}
+.vrleg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.vrleg .rl-s{background:var(--blue)}.vrleg .rl-c{background:#9aa0a8}
 
 /* comparison */
 .compare{background:var(--soft)}
@@ -595,10 +602,11 @@ const T={
   vRange:'Weitere SFM-Modelle in dieser Klasse',
   recCompare:'Im Vergleich ansehen →',
   vChartT:'Preis im Vergleich',recMark:'Deine Empfehlung',
-  take45:'In dieser Klasse ab 1.299 € — mehrere SFM-Modelle günstiger als der NIU NQi Sport (1.999 €). Der NIU hat einen größeren Akku.',
-  take80:'In dieser Klasse ab 2.999 € — deutlich unter Horwin SK3 (3.990 €) und Super Soco TC Max (4.749 €). Die Mitbewerber fahren etwas schneller, kosten aber mehr.',
+  axSpeed:'Tempo',axBatt:'Akku',axRange:'Reichweite',axPrice:'Preisvorteil',compName:'Vergleichbares Modell',
+  take45:'In dieser Klasse ab 1.299 € — mehrere SFM-Modelle günstiger als ein vergleichbares Modell. Beim Akku liegt der Mitbewerber teils vorn.',
+  take80:'In dieser Klasse ab 2.999 € — deutlich günstiger als vergleichbare Modelle und mit dem größten Akku der Klasse. Vergleichbare Modelle fahren etwas schneller.',
   take110:'Das Flaggschiff spielt in einer eigenen Liga: 110 km/h, 5,18-kWh-Akku, bis 150 km, ABS + TCS — schneller und mit mehr Reichweite als die schnellsten Mainstream-Modelle, dafür mit Aufpreis.',
-  vNote:'Preise & Daten: UVP inkl. MwSt., Herstellerangaben. SFM lt. SFM-Datenblättern & Preisliste 2027. NIU NQi Sport lt. niu.com (AT) — ¹ ~65 km mit 1 Akku, 120–130 km mit 2 Akkus. Horwin SK3 (3.990 €) lt. Hersteller/Fachhandel — ¹ ~80 km mit 1 Akku, bis 160 km mit 2 Akkus. Super Soco TC Max (4.749 €) lt. ADAC/Datenblatt. Reichweite je nach Fahrweise, Zuladung und Bedingungen. Stand: Oktober 2026. Vergleich nach Führerscheinklasse; Angaben ohne Gewähr.',
+  vNote:'Vergleich mit einem vergleichbaren Modell derselben Führerscheinklasse (Listenpreise & Herstellerangaben führender Marken). SFM-Werte lt. SFM-Datenblättern & Preisliste 2027. Reichweite je nach Fahrweise, Zuladung und Bedingungen. Stand: Oktober 2026. Richtwerte, ohne Gewähr.',
   cEy:'Der Preisvorteil',cH2:'Gleiche Klasse. Deutlich weniger Geld.',
   cLead:'Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.',
   cmpOurs:'Unser Modell',cmpComp:'Vergleichbar',
@@ -669,10 +677,11 @@ const T={
   vRange:'More SFM models in this class',
   recCompare:'See it in the comparison →',
   vChartT:'Price in comparison',recMark:'Your pick',
-  take45:'In this class from €1,299 — several SFM models below the NIU NQi Sport (€1,999). The NIU has a bigger battery.',
-  take80:'In this class from €2,999 — well below the Horwin SK3 (€3,990) and Super Soco TC Max (€4,749). The rivals are a little faster but cost more.',
+  axSpeed:'Speed',axBatt:'Battery',axRange:'Range',axPrice:'Value',compName:'Comparable model',
+  take45:'In this class from €1,299 — several SFM models below a comparable model. On battery the comparable model sometimes leads.',
+  take80:'In this class from €2,999 — well below comparable models and with the largest battery in the class. Comparable models are a little faster.',
   take110:'The flagship is in a league of its own: 110 km/h, 5.18 kWh battery, up to 150 km, ABS + TCS — faster and longer-range than the quickest mainstream models, at a premium.',
-  vNote:'Prices & data: RRP incl. VAT, manufacturer figures. SFM per SFM data sheets & price list 2027. NIU NQi Sport per niu.com (AT) — ¹ ~65 km with one battery, 120–130 km with two. Horwin SK3 (€3,990) per manufacturer/retail — ¹ ~80 km with one battery, up to 160 km with two. Super Soco TC Max (€4,749) per ADAC/data sheet. Range varies with riding style, load and conditions. As of October 2026. Comparison by licence class; without warranty.',
+  vNote:'Comparison with a comparable model in the same licence class (list prices & manufacturer figures of leading brands). SFM values per SFM data sheets & price list 2027. Range varies with riding style, load and conditions. As of October 2026. Reference values, without warranty.',
   cEy:'The price advantage',cH2:'Same class. Noticeably less money.',
   cLead:'The same performance as the market leader — at an honest price. A direct comparison, class by class.',
   cmpOurs:'Our model',cmpComp:'Comparable',
@@ -854,20 +863,34 @@ function sfmSpec(id){
     removable:true,brakes:id==='dream7'?DISCABS:DISC,
     vclass:m.speed>=110?'L3e':(m.speed>=80?'L3e-A1':'L1e')};
 }
+/* nearest comparable model per class — real data (NIU / Horwin / Super Soco), shown anonymised */
+const COMP={
+  cls45:{speed:'45 km/h',batt:{de:'2,0 kWh',en:'2.0 kWh'},range:{de:'bis ~65 km',en:'~65 km'},removable:true,brakes:DISCCBS,vclass:'L1e-B',price:1999,r:{speed:45,batt:2.0,range:65}},
+  cls80:{speed:'90 km/h',batt:{de:'2,6 kWh',en:'2.6 kWh'},range:{de:'bis ~80 km',en:'~80 km'},removable:true,brakes:DISCCBS,vclass:'L3e-A1',price:3990,r:{speed:90,batt:2.6,range:80}},
+  cls110:{speed:'95 km/h',batt:{de:'3,24 kWh',en:'3.24 kWh'},range:{de:'bis ~110 km',en:'~110 km'},removable:true,brakes:DISCCBS,vclass:'L3e-A1',price:4749,r:{speed:95,batt:3.24,range:110}}
+};
+/* SFM radar reference (class hero — full verified data incl. range) */
+const SFM_R={cls45:{speed:45,batt:1.44,range:70,price:1699},cls80:{speed:80,batt:3.46,range:75,price:2999},cls110:{speed:110,batt:5.18,range:150,price:5999}};
 const VGL=[
-  {key:'cls45',def:'em1',members:['primaeclassic','urbano','em1','futurelight','futurecity','e2h'],rivals:[
-    {name:'NIU NQi Sport',price:1999,speed:'45 km/h',batt:{de:'2,0 kWh',en:'2.0 kWh'},range:{de:'bis ~65 km¹',en:'~65 km¹'},removable:true,brakes:DISCCBS,vclass:'L1e-B'}
-  ],take:'take45'},
-  {key:'cls80',def:'e2hsport',members:['e2hsport','futuresport','legend'],rivals:[
-    {name:'Horwin SK3',price:3990,speed:'90 km/h',batt:{de:'2,6 kWh',en:'2.6 kWh'},range:{de:'bis ~80 km¹',en:'~80 km¹'},removable:true,brakes:DISCCBS,vclass:'L3e-A1'},
-    {name:'Super Soco TC Max',price:4749,speed:'95 km/h',batt:{de:'3,24 kWh',en:'3.24 kWh'},range:{de:'bis ~110 km',en:'~110 km'},removable:true,brakes:DISCCBS,vclass:'L3e-A1'}
-  ],take:'take80'},
-  {key:'cls110',def:'dream7',members:['dream7'],noChart:true,rivals:[
-    {name:'Super Soco TC Max',price:4749,speed:'95 km/h',batt:{de:'3,24 kWh',en:'3.24 kWh'},range:{de:'bis ~110 km',en:'~110 km'},removable:true,brakes:DISCCBS,vclass:'L3e-A1'},
-    {name:'Horwin SK3',price:3990,speed:'90 km/h',batt:{de:'2,6 kWh',en:'2.6 kWh'},range:{de:'bis ~80 km¹',en:'~80 km¹'},removable:true,brakes:DISCCBS,vclass:'L3e-A1'}
-  ],take:'take110'}
+  {key:'cls45',def:'em1',members:['primaeclassic','urbano','em1','futurelight','futurecity','e2h'],take:'take45'},
+  {key:'cls80',def:'e2hsport',members:['e2hsport','futuresport','legend'],take:'take80'},
+  {key:'cls110',def:'dream7',members:['dream7'],take:'take110'}
 ];
 let VGL_FOCUS=null;
+function radarSVG(axes,sfm,comp){
+  const S=280,c=S/2,R=S*0.34;
+  const pt=(i,r)=>{const a=(Math.PI*2*i/axes.length)-Math.PI/2;return[(c+Math.cos(a)*R*r).toFixed(1),(c+Math.sin(a)*R*r).toFixed(1)];};
+  let grid='';[0.25,0.5,0.75,1].forEach(g=>{grid+=`<polygon points="${axes.map((_,i)=>pt(i,g).join(',')).join(' ')}" fill="none" stroke="#e4e8ef" stroke-width="1"/>`;});
+  let ax='';axes.forEach((lab,i)=>{const[x,y]=pt(i,1);ax+=`<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="#e4e8ef" stroke-width="1"/>`;const[lx,ly]=pt(i,1.17);ax+=`<text x="${lx}" y="${ly}" font-size="11.5" font-weight="700" fill="#5b6472" text-anchor="middle" dominant-baseline="middle">${lab}</text>`;});
+  const poly=(v,f,s)=>`<polygon points="${v.map((x,i)=>pt(i,Math.max(0.05,x)).join(',')).join(' ')}" fill="${f}" stroke="${s}" stroke-width="2.2"/>`;
+  return `<svg viewBox="-34 -20 ${S+68} ${S+40}" class="radar">${grid}${ax}${poly(comp,'rgba(150,160,172,.16)','#9aa0a8')}${poly(sfm,'rgba(42,120,214,.22)','#2a78d6')}</svg>`;
+}
+function radarVals(key){
+  const s=SFM_R[key],c=COMP[key].r,cp=COMP[key].price,sp=SFM_R[key].price;
+  const nv=k=>{const mx=Math.max(s[k],c[k])||1;return[s[k]/mx,c[k]/mx];};
+  const a=nv('speed'),b=nv('batt'),r=nv('range'),mp=Math.min(sp,cp);
+  return [[a[0],b[0],r[0],mp/sp],[a[1],b[1],r[1],mp/cp]];
+}
 function renderVgl(){
   const box=document.getElementById('vgl'); if(!box)return; const d=T[LANG];
   const rows=[['price',d.fPrice],['speed',d.fSpeed],['batt',d.fBatt],['range',d.fRange],['removable',d.fRemov],['brakes',d.fBrakes],['vclass',d.fClass]];
@@ -875,30 +898,23 @@ function renderVgl(){
     const focusHere=VGL_FOCUS&&b.members.includes(VGL_FOCUS);
     const sfmId=focusHere?VGL_FOCUS:b.def;
     const sfm=sfmSpec(sfmId);
-    const cols=[{ours:true,spec:sfm},...b.rivals.map(r=>({ours:false,spec:r}))];
+    const comp=Object.assign({},COMP[b.key],{name:d.compName});
+    const cols=[{ours:true,spec:sfm},{ours:false,spec:comp}];
     const head='<th></th>'+cols.map(c=>`<th class="${c.ours?'ours':''}">${c.spec.name}</th>`).join('');
     const body=rows.map(([k,label])=>{
-      const cells=cols.map(c=>{
-        let v; const s=c.spec;
+      const cells=cols.map(c=>{let v;const s=c.spec;
         if(k==='price')v=euro(s.price);
         else if(k==='removable')v=s.removable?d.yes:'–';
-        else {v=s[k]; if(v&&typeof v==='object')v=v[LANG]||v.de; v=v||'–';}
-        return `<td class="${c.ours?'ours':''}">${v}</td>`;
-      }).join('');
+        else{v=s[k];if(v&&typeof v==='object')v=v[LANG]||v.de;v=v||'–';}
+        return `<td class="${c.ours?'ours':''}">${v}</td>`;}).join('');
       return `<tr><td class="rl">${label}</td>${cells}</tr>`;
     }).join('');
-    let chart='';
-    if(!b.noChart&&(b.members.length>1||b.rivals.length)){
-      const items=[...b.members.map(id=>{const m=MODELS.find(x=>x.id===id);return{name:m.name,price:m.price,ours:true,hot:id===sfmId&&focusHere};}),
-        ...b.rivals.map(r=>({name:r.name,price:r.price,ours:false}))].sort((x,y)=>x.price-y.price);
-      const maxp=Math.max(...items.map(i=>i.price));
-      chart=`<div class="vchart"><div class="vchart-t">${d.vChartT}</div>`+items.map(it=>{
-        const w=Math.max(18,Math.round(it.price/maxp*100));
-        return `<div class="vbrow"><div class="vblab${it.ours?' o':''}">${it.name}</div><div class="vbtrack"><div class="vbfill${it.ours?' ours':''}${it.hot?' hot':''}" style="width:${w}%">${euro(it.price)}</div></div></div>`;
-      }).join('')+`</div>`;
-    }
+    const [sv,cv]=radarVals(b.key);
+    const radar=`<div class="vradar">${radarSVG([d.axSpeed,d.axBatt,d.axRange,d.axPrice],sv,cv)}<div class="vrleg"><span><i class="rl-s"></i>SFM</span><span><i class="rl-c"></i>${d.compName}</span></div></div>`;
+    const more=b.members.filter(id=>id!==sfmId).map(id=>{const m=MODELS.find(x=>x.id===id);return m?`${m.name} ${euro(m.price)}`:null;}).filter(Boolean);
+    const moreLine=more.length?`<div class="vrange"><b>${d.vRange}:</b> ${more.join(' · ')}</div>`:'';
     const rec=focusHere?`<div class="vrec">${d.recMark}: <b>${sfm.name.replace('SFM ','')}</b></div>`:'';
-    return `<div class="vblock${focusHere?' focus':''}" data-cls="${b.key}"><div class="vcls">${d[b.key]}</div>${rec}<div class="vtwrap"><table class="vtable"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>${chart}<div class="vtake">${d[b.take]}</div></div>`;
+    return `<div class="vblock${focusHere?' focus':''}" data-cls="${b.key}"><div class="vcls">${d[b.key]}</div>${rec}<div class="vtop">${radar}<div class="vtwrap"><table class="vtable"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div></div><div class="vtake">${d[b.take]}</div>${moreLine}</div>`;
   }).join('');
 }
 window.showCompare=function(id){
