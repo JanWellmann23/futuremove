@@ -158,6 +158,26 @@ section{padding:clamp(60px,9vw,118px) 0}
 .wcard h3{font-size:18px;font-weight:800;letter-spacing:-.01em}
 .wcard p{color:var(--mut);font-size:14.5px;margin-top:8px;line-height:1.55}
 
+/* comparison v2 (verified, sourced) */
+.compare2{background:var(--soft)}
+.vgl{margin-top:40px;display:flex;flex-direction:column;gap:18px}
+.vblock{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 14px 40px rgba(10,20,40,.05)}
+.vcls{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-weight:700;margin-bottom:14px}
+.vitems{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
+.vitem{border:1px solid var(--line);border-radius:14px;padding:15px 16px;background:#fff}
+.vitem.ours{border-color:var(--blue);background:#f4f8fe}
+.vitem .vb{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.vitem.ours .vb{color:var(--blue)}
+.vitem .vm{font-size:16px;font-weight:800;margin-top:4px;letter-spacing:-.01em}
+.vitem .vp{font-size:21px;font-weight:800;margin-top:8px}
+.vitem.ours .vp{color:var(--blue)}
+.vitem .vs{font-size:12.5px;color:var(--mut);margin-top:3px}
+.vtake{margin-top:14px;font-size:13.5px;color:var(--ink);font-weight:600;line-height:1.5}
+.vtake b{color:var(--blue)}
+.vflag{margin-top:18px;background:var(--ink);color:#fff;border-radius:16px;padding:18px 22px;font-size:15px;line-height:1.5}
+.vflag b{color:#7fb0ef}
+.vnote{margin-top:18px;font-size:11.5px;color:var(--mut);line-height:1.6;max-width:84ch}
+
 /* comparison */
 .compare{background:var(--soft)}
 .cmp-grid{margin-top:46px;display:grid;gap:20px}
@@ -226,8 +246,9 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
     <div class="topright">
       <nav class="nav">
         <a href="#finder" data-i18n="navFinder">Finder</a>
+        <a href="#warum" data-i18n="navWhy">Ausstattung</a>
+        <a href="#vergleich" data-i18n="navCmp">Vergleich</a>
         <a href="#modelle" data-i18n="navModels">Modelle</a>
-        <a href="#warum" data-i18n="navWhy">Warum SFM</a>
         <a href="#reservieren" class="res" data-i18n="navReserve">Reservieren</a>
         <a href="#haendler" data-i18n="navDealers">Händler</a>
       </nav>
@@ -347,6 +368,20 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
       <div class="wcard"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3 data-i18n="wf5t">Lokal in Österreich</h3><p data-i18n="wf5p">Energeia ist die offizielle SFM-/Sunra-Vertretung in Österreich — Ansprechpartner und Service vor Ort.</p></div>
       <div class="wcard"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h3 data-i18n="wf6t">Zehn Modelle</h3><p data-i18n="wf6p">Vom günstigen Stadtflitzer bis zum autobahntauglichen Flaggschiff — für jeden Weg das passende Modell.</p></div>
     </div>
+  </div>
+</section>
+
+<!-- COMPARISON (verified, sourced) -->
+<section class="compare2" id="vergleich">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="ey" data-i18n="vEy">Ehrlich verglichen</div>
+      <h2 class="h2" data-i18n="vH2">Gleiche Klasse. Transparente Preise.</h2>
+      <p class="lead" data-i18n="vLead">Gleiche Führerscheinklasse, verifizierte Listenpreise (UVP inkl. MwSt., Stand Oktober 2026). Entscheide selbst.</p>
+    </div>
+    <div class="vgl reveal" id="vgl"></div>
+    <div class="vflag reveal" data-i18n-html="vFlag"><b>Dream 7: 110 km/h.</b> Die meisten Mainstream-E-Roller enden bei 80–95 km/h — das Flaggschiff fährt darüber hinaus.</div>
+    <p class="vnote reveal" data-i18n="vNote">Preise: UVP inkl. MwSt. Stand: Oktober 2026.</p>
   </div>
 </section>
 
@@ -525,6 +560,15 @@ const T={
   wf5t:'Lokal in Österreich',wf5p:'Energeia ist die offizielle SFM-/Sunra-Vertretung in Österreich — Ansprechpartner und Service vor Ort.',
   wf6t:'Zehn Modelle',wf6p:'Vom günstigen Stadtflitzer bis zum autobahntauglichen Flaggschiff — für jeden Weg das passende Modell.',
   recAlt:'Ebenfalls passend',
+  navCmp:'Vergleich',
+  vEy:'Ehrlich verglichen',vH2:'Gleiche Klasse. Transparente Preise.',
+  vLead:'Gleiche Führerscheinklasse, verifizierte Listenpreise (UVP inkl. MwSt., Stand Oktober 2026). Entscheide selbst.',
+  cls45:'45 km/h · Klasse L1e (Mokick)',
+  cls80:'80–95 km/h · Klasse A1 (L3e)',
+  take45:'SFM EM1 – <b>300 € weniger</b> als der NIU NQi Sport, in derselben 45-km/h-Klasse.',
+  take80:'SFM E2H Sport – <b>1.000–1.750 € unter</b> Horwin SK3 und Super Soco TC Max. Die Mitbewerber fahren etwas schneller (90–95 km/h), kosten aber deutlich mehr.',
+  vFlag:'<b>Dream 7: 110 km/h.</b> Die meisten Mainstream-E-Roller (NIU, Super Soco, Horwin) enden bei 80–95 km/h — das Flaggschiff fährt darüber hinaus.',
+  vNote:'Preise: UVP inkl. MwSt. SFM lt. SFM-Preisliste 2027. NIU NQi Sport (1.999 €) lt. niu.com (AT). Horwin SK3 (3.990 €) lt. Hersteller/Fachhandel. Super Soco TC Max (4.749 €) lt. ADAC-Katalog. Stand: Oktober 2026. Straßen- und Aktionspreise können abweichen. Vergleich nach Führerscheinklasse; Angaben ohne Gewähr.',
   cEy:'Der Preisvorteil',cH2:'Gleiche Klasse. Deutlich weniger Geld.',
   cLead:'Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.',
   cmpOurs:'Unser Modell',cmpComp:'Vergleichbar',
@@ -585,6 +629,15 @@ const T={
   wf5t:'Local in Austria',wf5p:'Energeia is the official SFM/Sunra representative in Austria — local contact and service.',
   wf6t:'Ten models',wf6p:'From the affordable city runabout to the motorway-capable flagship — the right model for every route.',
   recAlt:'Also a good fit',
+  navCmp:'Compare',
+  vEy:'An honest comparison',vH2:'Same class. Transparent prices.',
+  vLead:'Same licence class, verified list prices (RRP incl. VAT, as of October 2026). You decide.',
+  cls45:'45 km/h · class L1e (moped)',
+  cls80:'80–95 km/h · class A1 (L3e)',
+  take45:'SFM EM1 – <b>€300 less</b> than the NIU NQi Sport, in the same 45 km/h class.',
+  take80:'SFM E2H Sport – <b>€1,000–1,750 below</b> the Horwin SK3 and Super Soco TC Max. The rivals are a little faster (90–95 km/h) but cost considerably more.',
+  vFlag:'<b>Dream 7: 110 km/h.</b> Most mainstream e-scooters (NIU, Super Soco, Horwin) top out at 80–95 km/h — the flagship goes beyond.',
+  vNote:'Prices: RRP incl. VAT. SFM per SFM price list 2027. NIU NQi Sport (€1,999) per niu.com (AT). Horwin SK3 (€3,990) per manufacturer/retail. Super Soco TC Max (€4,749) per ADAC catalogue. As of October 2026. Street and promotional prices may vary. Comparison by licence class; without warranty.',
   cEy:'The price advantage',cH2:'Same class. Noticeably less money.',
   cLead:'The same performance as the market leader — at an honest price. A direct comparison, class by class.',
   cmpOurs:'Our model',cmpComp:'Comparable',
@@ -744,6 +797,26 @@ function renderScar(){
   box.innerHTML=html;
 }
 
+/* ===== VERIFIED COMPARISON (by licence class, sourced UVP) ===== */
+const VGL=[
+  {cls:'cls45',items:[
+    {ours:true,name:'SFM EM1',price:1699,spd:'45 km/h'},
+    {name:'NIU NQi Sport',price:1999,spd:'45 km/h'}
+  ],take:'take45'},
+  {cls:'cls80',items:[
+    {ours:true,name:'SFM E2H Sport',price:2999,spd:'80 km/h'},
+    {name:'Horwin SK3',price:3990,spd:'90 km/h'},
+    {name:'Super Soco TC Max',price:4749,spd:'95 km/h'}
+  ],take:'take80'}
+];
+function renderVgl(){
+  const box=document.getElementById('vgl'); if(!box)return; const d=T[LANG];
+  box.innerHTML=VGL.map(b=>{
+    const items=b.items.map(it=>`<div class="vitem${it.ours?' ours':''}"><div class="vb">${it.ours?d.cmpOurs:d.cmpComp}</div><div class="vm">${it.name}</div><div class="vp">${euro(it.price)}</div><div class="vs">${it.spd} · ${d.rrp}</div></div>`).join('');
+    return `<div class="vblock"><div class="vcls">${d[b.cls]}</div><div class="vitems">${items}</div><div class="vtake">${d[b.take]}</div></div>`;
+  }).join('');
+}
+
 /* ===== LIVE AVAILABILITY — reads the Bestand sheet via Apps Script doGet ===== */
 function applyLiveToDOM(){
   if(!LIVE)return;const d=T[LANG];
@@ -829,7 +902,7 @@ function applyLang(l){
   document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(d[k]!=null)el.innerHTML=d[k];});
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.getAttribute('data-i18n-ph');if(d[k]!=null)el.placeholder=d[k];});
   document.querySelectorAll('#langtog button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
-  renderLineup();fillModelOptions();fillColors();renderScar();applyLiveToDOM();
+  renderLineup();fillModelOptions();fillColors();renderScar();renderVgl();applyLiveToDOM();
   if(result.classList.contains('on'))showResult();
 }
 document.querySelectorAll('#langtog button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.l)));
