@@ -539,7 +539,7 @@ const MODELS=[
   stock:{'Weiss':30,'Schwarz':40,'Grün':10},
   blurb:{de:'45 km/h, 12-Zoll-Räder, souverän durch die Stadt.',en:'45 km/h, 12-inch wheels, effortless through the city.'}},
  {id:'e2h',name:'E2H',tag:{de:'Komfort',en:'Comfort'},speed:45,power:'1,5 kW (Spitze 3 kW)',batt:'72 V / 24 Ah',price:2399,
-  colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Blau','#2a5cd6']],img:'assets-v2/e2h/a.webp',status:'preorder',stock:{},
+  colors:[['Blau','#8fc3ef'],['Weiss','#eef0f2'],['Schwarz','#1b1b1d']],img:'assets-v2/e2h/blue.webp',status:'preorder',stock:{},
   blurb:{de:'25 oder 45 km/h, 165 Nm, NFC-Zugang, LED-Display.',en:'25 or 45 km/h, 165 Nm, NFC access, LED display.'}},
  {id:'futurelight',name:'Future Light',tag:{de:'Einstieg City',en:'City entry'},speed:45,power:'1,2 kW (Spitze 2 kW)',batt:'60 V / 21 Ah',price:1799,
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Türkis','#2bb3a3'],['Rot','#c0392b']],img:'assets-v2/futurelight/a.webp',status:'preorder',stock:{},
@@ -878,18 +878,22 @@ const VGL=[
 ];
 let VGL_FOCUS=null;
 function radarSVG(axes,sfm,comp){
-  const S=280,c=S/2,R=S*0.34;
+  const S=280,c=S/2,R=S*0.36;
   const pt=(i,r)=>{const a=(Math.PI*2*i/axes.length)-Math.PI/2;return[(c+Math.cos(a)*R*r).toFixed(1),(c+Math.sin(a)*R*r).toFixed(1)];};
   let grid='';[0.25,0.5,0.75,1].forEach(g=>{grid+=`<polygon points="${axes.map((_,i)=>pt(i,g).join(',')).join(' ')}" fill="none" stroke="#e4e8ef" stroke-width="1"/>`;});
-  let ax='';axes.forEach((lab,i)=>{const[x,y]=pt(i,1);ax+=`<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="#e4e8ef" stroke-width="1"/>`;const[lx,ly]=pt(i,1.17);ax+=`<text x="${lx}" y="${ly}" font-size="11.5" font-weight="700" fill="#5b6472" text-anchor="middle" dominant-baseline="middle">${lab}</text>`;});
-  const poly=(v,f,s)=>`<polygon points="${v.map((x,i)=>pt(i,Math.max(0.05,x)).join(',')).join(' ')}" fill="${f}" stroke="${s}" stroke-width="2.2"/>`;
-  return `<svg viewBox="-34 -20 ${S+68} ${S+40}" class="radar">${grid}${ax}${poly(comp,'rgba(150,160,172,.16)','#9aa0a8')}${poly(sfm,'rgba(42,120,214,.22)','#2a78d6')}</svg>`;
+  let ax='';axes.forEach((lab,i)=>{const[x,y]=pt(i,1);ax+=`<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="#e4e8ef" stroke-width="1"/>`;const[lx,ly]=pt(i,1.18);ax+=`<text x="${lx}" y="${ly}" font-size="11.5" font-weight="700" fill="#5b6472" text-anchor="middle" dominant-baseline="middle">${lab}</text>`;});
+  const poly=(v,f,s,w,dash)=>`<polygon points="${v.map((x,i)=>pt(i,Math.max(0.06,x)).join(',')).join(' ')}" fill="${f}" stroke="${s}" stroke-width="${w}"${dash?` stroke-dasharray="${dash}"`:''} stroke-linejoin="round"/>`;
+  const dots=(v,fill)=>v.map((x,i)=>{const[dx,dy]=pt(i,Math.max(0.06,x));return `<circle cx="${dx}" cy="${dy}" r="3.3" fill="${fill}"/>`;}).join('');
+  return `<svg viewBox="-34 -22 ${S+68} ${S+44}" class="radar">${grid}${ax}${poly(comp,'rgba(150,160,172,.12)','#aab0b8',2,'4 3')}${poly(sfm,'rgba(42,120,214,.30)','#1f6fd0',2.8)}${dots(sfm,'#1f6fd0')}</svg>`;
 }
 function radarVals(key){
   const s=SFM_R[key],c=COMP[key].r,cp=COMP[key].price,sp=SFM_R[key].price;
-  const nv=k=>{const mx=Math.max(s[k],c[k])||1;return[s[k]/mx,c[k]/mx];};
+  // gamma curve: leader of each axis sits on the outer ring, the weaker value is
+  // pushed toward the centre so a real gap reads clearly (monotonic — order preserved)
+  const G=2.4, amp=x=>Math.pow(x,G);
+  const nv=k=>{const mx=Math.max(s[k],c[k])||1;return[amp(s[k]/mx),amp(c[k]/mx)];};
   const a=nv('speed'),b=nv('batt'),r=nv('range'),mp=Math.min(sp,cp);
-  return [[a[0],b[0],r[0],mp/sp],[a[1],b[1],r[1],mp/cp]];
+  return [[a[0],b[0],r[0],amp(mp/sp)],[a[1],b[1],r[1],amp(mp/cp)]];
 }
 function renderVgl(){
   const box=document.getElementById('vgl'); if(!box)return; const d=T[LANG];
