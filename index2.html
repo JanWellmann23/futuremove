@@ -177,6 +177,20 @@ section{padding:clamp(60px,9vw,118px) 0}
 .vflag{margin-top:18px;background:var(--ink);color:#fff;border-radius:16px;padding:18px 22px;font-size:15px;line-height:1.5}
 .vflag b{color:#7fb0ef}
 .vnote{margin-top:18px;font-size:11.5px;color:var(--mut);line-height:1.6;max-width:84ch}
+.vtwrap{margin-top:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.vtable{width:100%;border-collapse:collapse;font-size:13.5px;min-width:480px}
+.vtable th,.vtable td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.vtable thead th{font-size:14.5px;font-weight:800;border-bottom:2px solid var(--line);letter-spacing:-.01em}
+.vtable td.rl{color:var(--mut);font-weight:600;white-space:nowrap}
+.vtable .ours{background:#f4f8fe}
+.vtable thead th.ours{color:var(--blue)}
+.vtable tbody tr:last-child td{border-bottom:none}
+.vblock.focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(42,120,214,.22),0 14px 40px rgba(10,20,40,.06)}
+@keyframes vpulse{0%{box-shadow:0 0 0 0 rgba(42,120,214,.45),0 14px 40px rgba(10,20,40,.06)}100%{box-shadow:0 0 0 16px rgba(42,120,214,0),0 14px 40px rgba(10,20,40,.06)}}
+.vblock.pulse{animation:vpulse 1.5s ease}
+.vrange{margin-top:12px;font-size:12px;color:var(--mut);line-height:1.5}
+.vrange b{color:var(--ink)}
+.reccmp{display:inline-block;margin-left:16px;color:var(--blue);font-weight:600;font-size:14px}
 
 /* comparison */
 .compare{background:var(--soft)}
@@ -343,6 +357,7 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
               <div><b id="rec-price"></b><span data-i18n="recPriceLabel">UVP inkl. MwSt.</span></div>
             </div>
             <a href="#reservieren" class="btn btn-dark" id="rec-reserve" data-i18n="recReserve">Dieses Modell reservieren</a>
+            <a href="#vergleich" class="reccmp" id="rec-compare" data-i18n="recCompare">Im Vergleich ansehen</a>
             <div><button class="restart" id="rec-restart" data-i18n="recRestart">↺ Neu starten</button></div>
           </div>
         </div>
@@ -380,8 +395,7 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
       <p class="lead" data-i18n="vLead">Gleiche Führerscheinklasse, verifizierte Listenpreise (UVP inkl. MwSt., Stand Oktober 2026). Entscheide selbst.</p>
     </div>
     <div class="vgl reveal" id="vgl"></div>
-    <div class="vflag reveal" data-i18n-html="vFlag"><b>Dream 7: 110 km/h.</b> Die meisten Mainstream-E-Roller enden bei 80–95 km/h — das Flaggschiff fährt darüber hinaus.</div>
-    <p class="vnote reveal" data-i18n="vNote">Preise: UVP inkl. MwSt. Stand: Oktober 2026.</p>
+    <p class="vnote reveal" data-i18n="vNote">Preise & Daten: UVP inkl. MwSt. Stand: Oktober 2026.</p>
   </div>
 </section>
 
@@ -565,10 +579,14 @@ const T={
   vLead:'Gleiche Führerscheinklasse, verifizierte Listenpreise (UVP inkl. MwSt., Stand Oktober 2026). Entscheide selbst.',
   cls45:'45 km/h · Klasse L1e (Mokick)',
   cls80:'80–95 km/h · Klasse A1 (L3e)',
-  take45:'SFM EM1 – <b>300 € weniger</b> als der NIU NQi Sport, in derselben 45-km/h-Klasse.',
-  take80:'SFM E2H Sport – <b>1.000–1.750 € unter</b> Horwin SK3 und Super Soco TC Max. Die Mitbewerber fahren etwas schneller (90–95 km/h), kosten aber deutlich mehr.',
-  vFlag:'<b>Dream 7: 110 km/h.</b> Die meisten Mainstream-E-Roller (NIU, Super Soco, Horwin) enden bei 80–95 km/h — das Flaggschiff fährt darüber hinaus.',
-  vNote:'Preise: UVP inkl. MwSt. SFM lt. SFM-Preisliste 2027. NIU NQi Sport (1.999 €) lt. niu.com (AT). Horwin SK3 (3.990 €) lt. Hersteller/Fachhandel. Super Soco TC Max (4.749 €) lt. ADAC-Katalog. Stand: Oktober 2026. Straßen- und Aktionspreise können abweichen. Vergleich nach Führerscheinklasse; Angaben ohne Gewähr.',
+  cls110:'110 km/h · Klasse L3e (Flaggschiff)',
+  fPrice:'Preis (UVP)',fSpeed:'Höchstgeschw.',fBatt:'Akku',fRange:'Reichweite',fRemov:'Herausnehmbar',fBrakes:'Bremsen',fClass:'Klasse',yes:'Ja',
+  vRange:'Weitere SFM-Modelle in dieser Klasse',
+  recCompare:'Im Vergleich ansehen →',
+  take45:'SFM EM1 – der günstigste Einstieg (1.699 €). Der NIU NQi Sport hat einen größeren Akku, kostet aber 300 € mehr.',
+  take80:'SFM E2H Sport – der günstigste in der Klasse (2.999 €) und mit dem größten Akku (3,46 kWh, 2 herausnehmbare Packs). Horwin und Super Soco fahren etwas schneller, kosten aber deutlich mehr.',
+  take110:'Das Flaggschiff: 110 km/h, 5,18-kWh-BYD-LFP-Akku, bis 150 km, ABS + TCS. Die meisten Mainstream-E-Roller enden bei 80–95 km/h.',
+  vNote:'Preise & Daten: UVP inkl. MwSt., Herstellerangaben. SFM lt. SFM-Datenblättern & Preisliste 2027. NIU NQi Sport lt. niu.com (AT) — ¹ ~65 km mit 1 Akku, 120–130 km mit 2 Akkus. Horwin SK3 (3.990 €) lt. Hersteller/Fachhandel — ¹ ~80 km mit 1 Akku, bis 160 km mit 2 Akkus. Super Soco TC Max (4.749 €) lt. ADAC/Datenblatt. Reichweite je nach Fahrweise, Zuladung und Bedingungen. Stand: Oktober 2026. Vergleich nach Führerscheinklasse; Angaben ohne Gewähr.',
   cEy:'Der Preisvorteil',cH2:'Gleiche Klasse. Deutlich weniger Geld.',
   cLead:'Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.',
   cmpOurs:'Unser Modell',cmpComp:'Vergleichbar',
@@ -634,10 +652,14 @@ const T={
   vLead:'Same licence class, verified list prices (RRP incl. VAT, as of October 2026). You decide.',
   cls45:'45 km/h · class L1e (moped)',
   cls80:'80–95 km/h · class A1 (L3e)',
-  take45:'SFM EM1 – <b>€300 less</b> than the NIU NQi Sport, in the same 45 km/h class.',
-  take80:'SFM E2H Sport – <b>€1,000–1,750 below</b> the Horwin SK3 and Super Soco TC Max. The rivals are a little faster (90–95 km/h) but cost considerably more.',
-  vFlag:'<b>Dream 7: 110 km/h.</b> Most mainstream e-scooters (NIU, Super Soco, Horwin) top out at 80–95 km/h — the flagship goes beyond.',
-  vNote:'Prices: RRP incl. VAT. SFM per SFM price list 2027. NIU NQi Sport (€1,999) per niu.com (AT). Horwin SK3 (€3,990) per manufacturer/retail. Super Soco TC Max (€4,749) per ADAC catalogue. As of October 2026. Street and promotional prices may vary. Comparison by licence class; without warranty.',
+  cls110:'110 km/h · class L3e (flagship)',
+  fPrice:'Price (RRP)',fSpeed:'Top speed',fBatt:'Battery',fRange:'Range',fRemov:'Removable',fBrakes:'Brakes',fClass:'Class',yes:'Yes',
+  vRange:'More SFM models in this class',
+  recCompare:'See it in the comparison →',
+  take45:'SFM EM1 – the most affordable entry (€1,699). The NIU NQi Sport has a bigger battery, but costs €300 more.',
+  take80:'SFM E2H Sport – the most affordable in its class (€2,999) and with the largest battery (3.46 kWh, 2 removable packs). Horwin and Super Soco are a little faster but cost considerably more.',
+  take110:'The flagship: 110 km/h, 5.18 kWh BYD LFP battery, up to 150 km, ABS + TCS. Most mainstream e-scooters top out at 80–95 km/h.',
+  vNote:'Prices & data: RRP incl. VAT, manufacturer figures. SFM per SFM data sheets & price list 2027. NIU NQi Sport per niu.com (AT) — ¹ ~65 km with one battery, 120–130 km with two. Horwin SK3 (€3,990) per manufacturer/retail — ¹ ~80 km with one battery, up to 160 km with two. Super Soco TC Max (€4,749) per ADAC/data sheet. Range varies with riding style, load and conditions. As of October 2026. Comparison by licence class; without warranty.',
   cEy:'The price advantage',cH2:'Same class. Noticeably less money.',
   cLead:'The same performance as the market leader — at an honest price. A direct comparison, class by class.',
   cmpOurs:'Our model',cmpComp:'Comparable',
@@ -746,6 +768,7 @@ function showResult(){
   document.getElementById('rec-speed').textContent=m.speed;
   document.getElementById('rec-price').textContent=euro(m.price);
   document.getElementById('rec-reserve').setAttribute('onclick',`preselect('${m.id}')`);
+  document.getElementById('rec-compare').setAttribute('onclick',`showCompare('${m.id}')`);
   const box=document.getElementById('rec-alts');
   const alts=order.slice(1,3).map(id=>MODELS.find(x=>x.id===id)).filter(Boolean);
   if(box){
@@ -797,25 +820,60 @@ function renderScar(){
   box.innerHTML=html;
 }
 
-/* ===== VERIFIED COMPARISON (by licence class, sourced UVP) ===== */
+/* ===== VERIFIED COMPARISON (feature table, by licence class) =====
+   SFM specs from SFM Datenblätter; prices from Preisliste 2027.
+   Competitor specs from official/manufacturer sources (see footnote). Verified Oct 2026. */
+const DISC={de:'Scheibe v+h',en:'Disc, f+r'},DISCCBS={de:'Scheibe · CBS',en:'Disc · CBS'};
+const SFM_SPEC={
+  em1:{name:'SFM EM1',price:1699,speed:'45 km/h',batt:{de:'1,44 kWh',en:'1.44 kWh'},range:{de:'bis 70 km',en:'up to 70 km'},removable:true,brakes:DISC,vclass:'L1e (45)'},
+  e2hsport:{name:'SFM E2H Sport',price:2999,speed:'80 km/h',batt:{de:'3,46 kWh · 2 Akkus',en:'3.46 kWh · 2 packs'},range:{de:'bis 75 km',en:'up to 75 km'},removable:true,brakes:DISC,vclass:'L3e-A1'},
+  dream7:{name:'SFM Dream 7',price:5999,speed:'110 km/h',batt:{de:'5,18 kWh · BYD LFP',en:'5.18 kWh · BYD LFP'},range:{de:'bis 150 km',en:'up to 150 km'},removable:true,brakes:{de:'Scheibe · ABS+TCS',en:'Disc · ABS+TCS'},vclass:'L3e'}
+};
 const VGL=[
-  {cls:'cls45',items:[
-    {ours:true,name:'SFM EM1',price:1699,spd:'45 km/h'},
-    {name:'NIU NQi Sport',price:1999,spd:'45 km/h'}
+  {key:'cls45',def:'em1',members:['futurecity','futurelight','em1','urbano','primaeclassic','e2h'],cols:[
+    {ours:true,ref:'em1'},
+    {name:'NIU NQi Sport',price:1999,speed:'45 km/h',batt:{de:'2,0 kWh',en:'2.0 kWh'},range:{de:'bis ~65 km¹',en:'~65 km¹'},removable:true,brakes:DISCCBS,vclass:'L1e-B'}
   ],take:'take45'},
-  {cls:'cls80',items:[
-    {ours:true,name:'SFM E2H Sport',price:2999,spd:'80 km/h'},
-    {name:'Horwin SK3',price:3990,spd:'90 km/h'},
-    {name:'Super Soco TC Max',price:4749,spd:'95 km/h'}
-  ],take:'take80'}
+  {key:'cls80',def:'e2hsport',members:['e2hsport','futuresport','legend'],cols:[
+    {ours:true,ref:'e2hsport'},
+    {name:'Horwin SK3',price:3990,speed:'90 km/h',batt:{de:'2,6 kWh',en:'2.6 kWh'},range:{de:'bis ~80 km¹',en:'~80 km¹'},removable:true,brakes:DISCCBS,vclass:'L3e-A1'},
+    {name:'Super Soco TC Max',price:4749,speed:'95 km/h',batt:{de:'3,24 kWh',en:'3.24 kWh'},range:{de:'bis ~110 km',en:'~110 km'},removable:true,brakes:DISCCBS,vclass:'L3e-A1'}
+  ],take:'take80'},
+  {key:'cls110',def:'dream7',members:['dream7'],cols:[
+    {ours:true,ref:'dream7'}
+  ],take:'take110'}
 ];
+let VGL_FOCUS=null;
+function specOf(col){ return col.ours ? SFM_SPEC[col.ref] : col; }
 function renderVgl(){
   const box=document.getElementById('vgl'); if(!box)return; const d=T[LANG];
+  const rows=[['price',d.fPrice],['speed',d.fSpeed],['batt',d.fBatt],['range',d.fRange],['removable',d.fRemov],['brakes',d.fBrakes],['vclass',d.fClass]];
   box.innerHTML=VGL.map(b=>{
-    const items=b.items.map(it=>`<div class="vitem${it.ours?' ours':''}"><div class="vb">${it.ours?d.cmpOurs:d.cmpComp}</div><div class="vm">${it.name}</div><div class="vp">${euro(it.price)}</div><div class="vs">${it.spd} · ${d.rrp}</div></div>`).join('');
-    return `<div class="vblock"><div class="vcls">${d[b.cls]}</div><div class="vitems">${items}</div><div class="vtake">${d[b.take]}</div></div>`;
+    const focus=VGL_FOCUS&&b.members.includes(VGL_FOCUS);
+    const cols=b.cols.map(specOf);
+    const head='<th></th>'+cols.map((c,i)=>`<th class="${b.cols[i].ours?'ours':''}">${c.name}</th>`).join('');
+    const body=rows.map(([k,label])=>{
+      const cells=cols.map((c,i)=>{
+        let v;
+        if(k==='price')v=euro(c.price);
+        else if(k==='removable')v=c.removable?d.yes:'–';
+        else {v=c[k]; if(v&&typeof v==='object')v=v[LANG]||v.de; v=v||'–';}
+        return `<td class="${b.cols[i].ours?'ours':''}">${v}</td>`;
+      }).join('');
+      return `<tr><td class="rl">${label}</td>${cells}</tr>`;
+    }).join('');
+    const others=b.members.filter(id=>id!==b.def).map(id=>{const mm=MODELS.find(x=>x.id===id);return mm?`${mm.name} ${euro(mm.price)}`:null;}).filter(Boolean);
+    const range=others.length?`<div class="vrange"><b>${d.vRange}:</b> ${others.join(' · ')}</div>`:'';
+    return `<div class="vblock${focus?' focus':''}" data-cls="${b.key}"><div class="vcls">${d[b.key]}</div><div class="vtwrap"><table class="vtable"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div><div class="vtake">${d[b.take]}</div>${range}</div>`;
   }).join('');
 }
+window.showCompare=function(id){
+  VGL_FOCUS=id; renderVgl();
+  const sec=document.getElementById('vergleich'); if(!sec)return;
+  sec.scrollIntoView({behavior:'smooth',block:'start'});
+  const blk=sec.querySelector('.vblock.focus');
+  if(blk){blk.classList.remove('pulse');void blk.offsetWidth;blk.classList.add('pulse');}
+};
 
 /* ===== LIVE AVAILABILITY — reads the Bestand sheet via Apps Script doGet ===== */
 function applyLiveToDOM(){
