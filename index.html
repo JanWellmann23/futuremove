@@ -1280,15 +1280,33 @@ syncLive();
   const finalEl=document.querySelector('.final');
   const dotsWrap=document.getElementById('dots');const skip=document.getElementById('skip');
   if(!shots.length)return;
-  // --- random still carousel: 3 distinct characters (random variant) + product 4th ---
-  const _b='assets-v2/car/';
-  const _isM=window.matchMedia('(max-width:720px)').matches;
-  const _P=_isM?{alpine:['v01','v09'],city:['v02','v11'],lake:['v03','v10'],oldtown:['v04','v12'],field:['v05','v13'],rain:['v06','v14'],vineyard:['v07','v15'],coast:['v08','v16']}
-               :{alpine:['d01','d09'],city:['d02','d11'],lake:['d03','d10'],oldtown:['d04','d12'],field:['d05','d13'],rain:['d06','d14'],vineyard:['d07','d15'],coast:['d08','d16']};
-  const _prod=_isM?'assets-v2/hero/end_m.webp':'assets-v2/hero/end.webp';
-  const _chars=Object.keys(_P).sort(function(){return Math.random()-0.5;}).slice(0,3);
-  _chars.forEach(function(c,idx){var v=_P[c];shots[idx].src=_b+v[Math.floor(Math.random()*v.length)]+'.webp';});
-  shots[3].src=_prod;
+  // --- smart still carousel: 3 distinct characters/visit, city-nature mix, no repeat vs last visit, angle rotates when reused ---
+  (function(){
+    const b='assets-v2/car/';
+    const isM=window.matchMedia('(max-width:720px)').matches;
+    const NATURE=['alpine','lake','field','vineyard','coast'], CITY=['city','oldtown','rain'];
+    const V={alpine:['v01','v09'],city:['v02','v10'],lake:['v03','v11'],oldtown:['v04','v12'],field:['v05','v13'],rain:['v06','v14'],vineyard:['v07','v15'],coast:['v08','v16']};
+    const D={alpine:['d01','d09'],city:['d02','d10'],lake:['d03','d11'],oldtown:['d04','d12'],field:['d05','d13'],rain:['d06','d14'],vineyard:['d07','d15'],coast:['d08','d16']};
+    const P=isM?V:D, prod=isM?'assets-v2/hero/end_m.webp':'assets-v2/hero/end.webp';
+    const ALL=NATURE.concat(CITY);
+    function ls(k,d){try{return JSON.parse(localStorage.getItem(k))||d;}catch(e){return d;}}
+    function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+    function shuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+    let hist=ls('hHist',[]), vars=ls('hVar',{});
+    let avail=ALL.filter(c=>hist.indexOf(c)<0);
+    if(avail.length<3){avail=ALL.slice();hist=[];}            // ran out of fresh characters -> reset (angle rotation keeps it fresh)
+    let avN=shuf(avail.filter(c=>NATURE.indexOf(c)>=0)), avC=shuf(avail.filter(c=>CITY.indexOf(c)>=0));
+    let pick=[];
+    if(avN.length&&avC.length){pick.push(avN.shift());pick.push(avC.shift());const rest=shuf(avN.concat(avC));pick.push(rest[0]);}
+    else{pick=shuf(avail).slice(0,3);}
+    // order so types alternate (lone type in middle): e.g. N C N
+    const nat=pick.filter(c=>NATURE.indexOf(c)>=0), cit=pick.filter(c=>CITY.indexOf(c)>=0);
+    let ordered = nat.length>=cit.length ? interleave(nat,cit) : interleave(cit,nat);
+    function interleave(maj,min){const o=[];let mi=0,ni=0;for(let k=0;k<maj.length+min.length;k++){ if(k%2===0&&mi<maj.length)o.push(maj[mi++]); else if(ni<min.length)o.push(min[ni++]); else if(mi<maj.length)o.push(maj[mi++]); }return o;}
+    ordered.forEach(function(c,idx){var opts=P[c];var vi=(vars[c]===0)?1:0;vars[c]=vi;shots[idx].src=b+opts[vi%opts.length]+'.webp';});
+    shots[3].src=prod;
+    hist=ordered.concat(hist).slice(0,5); save('hHist',hist); save('hVar',vars);
+  })();
   const SEQ=caps.length,DUR=2600;let i=0,timer=null,done=false;
   const cineEl=document.querySelector('.cine');
   setTimeout(()=>cineEl&&cineEl.classList.add('showcta'),1500);
