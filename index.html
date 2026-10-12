@@ -28,10 +28,14 @@ a{color:inherit;text-decoration:none}
 .brand{display:flex;flex-direction:column;line-height:1.05}
 .brand b{color:#fff;font-size:16px;font-weight:800;letter-spacing:.12em}
 .brand span{color:#9aa3b2;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.topright{display:flex;align-items:center}
 .nav{display:flex;gap:26px}
 .nav a{color:#e7eaf0;font-size:13.5px;font-weight:500;opacity:.85}.nav a:hover{opacity:1}
 .nav .res{color:#7fb0ef}
-@media(max-width:720px){.brand span{display:none}.nav{gap:0}.nav a:not(.res){display:none}.nav .res{background:var(--blue);color:#fff;padding:8px 16px;border-radius:999px}}
+.langtog{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:3px;margin-left:18px}
+.langtog button{background:none;border:none;color:#aab2c0;font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;cursor:pointer;letter-spacing:.04em;transition:background .2s,color .2s}
+.langtog button.on{background:#fff;color:#0b0b0d}
+@media(max-width:720px){.brand span{display:none}.nav{gap:0}.nav a:not(.res){display:none}.nav .res{background:var(--blue);color:#fff;padding:8px 16px;border-radius:999px}.langtog{margin-left:10px}}
 
 /* cinematic hero — transparent cut-outs on gradient */
 .cine{position:relative;height:100svh;min-height:620px;overflow:hidden;color:#fff;
@@ -186,14 +190,19 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
 
 <header class="top">
   <div class="wrap">
-    <a href="#home" class="brand"><b>ENERGEIA</b><span>SFM · Sunra Vertretung Österreich</span></a>
-    <nav class="nav">
-      <a href="#finder">Finder</a>
-      <a href="#modelle">Modelle</a>
-      <a href="#vorteil">Preisvorteil</a>
-      <a href="#reservieren" class="res">Reservieren</a>
-      <a href="#haendler">Händler</a>
-    </nav>
+    <a href="#home" class="brand"><b>ENERGEIA</b><span data-i18n="brandSub">SFM · Sunra Vertretung Österreich</span></a>
+    <div class="topright">
+      <nav class="nav">
+        <a href="#finder" data-i18n="navFinder">Finder</a>
+        <a href="#modelle" data-i18n="navModels">Modelle</a>
+        <a href="#vorteil" data-i18n="navAdv">Preisvorteil</a>
+        <a href="#reservieren" class="res" data-i18n="navReserve">Reservieren</a>
+        <a href="#haendler" data-i18n="navDealers">Händler</a>
+      </nav>
+      <div class="langtog" id="langtog" role="group" aria-label="Language">
+        <button data-l="de" type="button">DE</button><button data-l="en" type="button">EN</button>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -206,30 +215,30 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
     <img class="shot" src="assets-v2/dream7/b.webp" alt="Dream 7">
   </div>
   <div class="caps">
-    <h2 class="cap" data-i="0">Eine neue Ära<br>der Elektromobilität.</h2>
-    <h2 class="cap" data-i="1">Spitzenleistung.<br>Ehrlicher Preis.</h2>
-    <h2 class="cap" data-i="2">Gebaut, um die Branche<br>zu verändern.</h2>
+    <h2 class="cap" data-i="0" data-i18n-html="cap0">Eine neue Ära<br>der Elektromobilität.</h2>
+    <h2 class="cap" data-i="1" data-i18n-html="cap1">Spitzenleistung.<br>Ehrlicher Preis.</h2>
+    <h2 class="cap" data-i="2" data-i18n-html="cap2">Gebaut, um die Branche<br>zu verändern.</h2>
   </div>
   <div class="cine-wrap wrap">
     <div class="final">
-      <div class="kick">Jetzt in Österreich</div>
-      <h1>Der Elektroroller, den der Westen noch nicht kennt.</h1>
-      <p class="sub">Spitzenleistung zum ehrlichen Preis — sofort lieferbare Modelle und Vorbestellung.</p>
+      <div class="kick" data-i18n="heroKick">Jetzt in Österreich</div>
+      <h1 data-i18n="heroH1">Der Elektroroller, den der Westen noch nicht kennt.</h1>
+      <p class="sub" data-i18n="heroSub">Spitzenleistung zum ehrlichen Preis — sofort lieferbare Modelle und Vorbestellung.</p>
       <div class="cta">
-        <a href="#finder" class="btn btn-primary btn-lg">Dein Modell finden</a>
-        <a href="#reservieren" class="btn btn-ghost btn-lg">Jetzt reservieren</a>
+        <a href="#finder" class="btn btn-primary btn-lg" data-i18n="heroCta1">Dein Modell finden</a>
+        <a href="#reservieren" class="btn btn-ghost btn-lg" data-i18n="heroCta2">Jetzt reservieren</a>
       </div>
-      <div class="tagline"><b>Dream 7</b> · 110 km/h · ab 5.999 € · sofort lieferbar</div>
+      <div class="tagline" data-i18n-html="heroTag"><b>Dream 7</b> · 110 km/h · ab 5.999 € · sofort lieferbar</div>
     </div>
   </div>
-  <button class="skip" id="skip">Überspringen ›</button>
+  <button class="skip" id="skip" data-i18n="skip">Überspringen ›</button>
   <div class="dots" id="dots"></div>
 </section>
 
 <!-- MANIFESTO -->
 <section class="manifesto">
   <div class="wrap">
-    <p class="reveal">Eine neue Generation Elektroroller — <b>sauber, schnell, bezahlbar.</b> Entwickelt in einer der größten E-Roller-Fabriken der Welt. Zum ersten Mal in Österreich. Der Anfang einer neuen Art, sich zu bewegen.</p>
+    <p class="reveal" data-i18n-html="manifesto">Eine neue Generation Elektroroller — <b>sauber, schnell, bezahlbar.</b> Entwickelt in einer der größten E-Roller-Fabriken der Welt. Zum ersten Mal in Österreich. Der Anfang einer neuen Art, sich zu bewegen.</p>
   </div>
 </section>
 
@@ -237,40 +246,40 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
 <section class="finder" id="finder">
   <div class="wrap">
     <div class="reveal">
-      <div class="ey">In 3 Fragen</div>
-      <h2 class="h2">Finde deinen Roller.</h2>
-      <p class="lead">Drei kurze Fragen — wir empfehlen dir das passende Modell aus der Palette.</p>
+      <div class="ey" data-i18n="fEy">In 3 Fragen</div>
+      <h2 class="h2" data-i18n="fH2">Finde deinen Roller.</h2>
+      <p class="lead" data-i18n="fLead">Drei kurze Fragen — wir empfehlen dir das passende Modell aus der Palette.</p>
     </div>
     <div class="fcard reveal">
       <div class="fstep on" data-step="1">
-        <div class="fprog">Frage 1 von 3</div>
-        <div class="fq">Wie weit bist du meistens unterwegs?</div>
+        <div class="fprog" data-i18n="fProg1">Frage 1 von 3</div>
+        <div class="fq" data-i18n="fQ1">Wie weit bist du meistens unterwegs?</div>
         <div class="fopts">
-          <div class="fopt" data-k="dist" data-v="short"><b>Kurze Wege</b><span>In der Stadt, ein paar Kilometer</span></div>
-          <div class="fopt" data-k="dist" data-v="daily"><b>Täglich pendeln</b><span>Zur Arbeit und zurück</span></div>
-          <div class="fopt" data-k="dist" data-v="long"><b>Längere Strecken</b><span>Auch übers Umland</span></div>
+          <div class="fopt" data-k="dist" data-v="short"><b data-i18n="fo_dist_short_b">Kurze Wege</b><span data-i18n="fo_dist_short_s">In der Stadt, ein paar Kilometer</span></div>
+          <div class="fopt" data-k="dist" data-v="daily"><b data-i18n="fo_dist_daily_b">Täglich pendeln</b><span data-i18n="fo_dist_daily_s">Zur Arbeit und zurück</span></div>
+          <div class="fopt" data-k="dist" data-v="long"><b data-i18n="fo_dist_long_b">Längere Strecken</b><span data-i18n="fo_dist_long_s">Auch übers Umland</span></div>
         </div>
       </div>
       <div class="fstep" data-step="2">
-        <div class="fprog">Frage 2 von 3</div>
-        <div class="fq">Wie schnell möchtest du sein?</div>
+        <div class="fprog" data-i18n="fProg2">Frage 2 von 3</div>
+        <div class="fq" data-i18n="fQ2">Wie schnell möchtest du sein?</div>
         <div class="fopts">
-          <div class="fopt" data-k="speed" data-v="45"><b>Entspannt</b><span>Bis 45 km/h · Klasse AM</span></div>
-          <div class="fopt" data-k="speed" data-v="80"><b>Zügig</b><span>Bis 80 km/h · Klasse A1</span></div>
-          <div class="fopt" data-k="speed" data-v="110"><b>Maximal</b><span>Bis 110 km/h · das Flaggschiff</span></div>
+          <div class="fopt" data-k="speed" data-v="45"><b data-i18n="fo_speed_45_b">Entspannt</b><span data-i18n="fo_speed_45_s">Bis 45 km/h · Klasse AM</span></div>
+          <div class="fopt" data-k="speed" data-v="80"><b data-i18n="fo_speed_80_b">Zügig</b><span data-i18n="fo_speed_80_s">Bis 80 km/h · Klasse A1</span></div>
+          <div class="fopt" data-k="speed" data-v="110"><b data-i18n="fo_speed_110_b">Maximal</b><span data-i18n="fo_speed_110_s">Bis 110 km/h · das Flaggschiff</span></div>
         </div>
       </div>
       <div class="fstep" data-step="3">
-        <div class="fprog">Frage 3 von 3</div>
-        <div class="fq">Was ist dir beim Budget wichtig?</div>
+        <div class="fprog" data-i18n="fProg3">Frage 3 von 3</div>
+        <div class="fq" data-i18n="fQ3">Was ist dir beim Budget wichtig?</div>
         <div class="fopts">
-          <div class="fopt" data-k="budget" data-v="low"><b>So günstig wie möglich</b><span>Bester Einstiegspreis</span></div>
-          <div class="fopt" data-k="budget" data-v="mid"><b>Gutes Mittelfeld</b><span>Preis und Leistung</span></div>
-          <div class="fopt" data-k="budget" data-v="open"><b>Offen</b><span>Das Beste zählt</span></div>
+          <div class="fopt" data-k="budget" data-v="low"><b data-i18n="fo_budget_low_b">So günstig wie möglich</b><span data-i18n="fo_budget_low_s">Bester Einstiegspreis</span></div>
+          <div class="fopt" data-k="budget" data-v="mid"><b data-i18n="fo_budget_mid_b">Gutes Mittelfeld</b><span data-i18n="fo_budget_mid_s">Preis und Leistung</span></div>
+          <div class="fopt" data-k="budget" data-v="open"><b data-i18n="fo_budget_open_b">Offen</b><span data-i18n="fo_budget_open_s">Das Beste zählt</span></div>
         </div>
       </div>
       <div class="fresult" data-step="result">
-        <div class="fprog">Deine Empfehlung</div>
+        <div class="fprog" data-i18n="fResTitle">Deine Empfehlung</div>
         <div class="rec">
           <div class="ph"><img id="rec-img" src="" alt=""></div>
           <div>
@@ -278,10 +287,10 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
             <p class="lead" id="rec-blurb" style="margin-top:10px"></p>
             <div class="recspecs">
               <div><b id="rec-speed"></b><span>km/h</span></div>
-              <div><b id="rec-price"></b><span>UVP inkl. MwSt.</span></div>
+              <div><b id="rec-price"></b><span data-i18n="recPriceLabel">UVP inkl. MwSt.</span></div>
             </div>
-            <a href="#reservieren" class="btn btn-dark" id="rec-reserve">Dieses Modell reservieren</a>
-            <div><button class="restart" id="rec-restart">↺ Neu starten</button></div>
+            <a href="#reservieren" class="btn btn-dark" id="rec-reserve" data-i18n="recReserve">Dieses Modell reservieren</a>
+            <div><button class="restart" id="rec-restart" data-i18n="recRestart">↺ Neu starten</button></div>
           </div>
         </div>
       </div>
@@ -293,9 +302,9 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
 <section id="modelle">
   <div class="wrap">
     <div class="reveal">
-      <div class="ey">Die Palette</div>
-      <h2 class="h2">Zehn Modelle. Für jede Strecke das richtige.</h2>
-      <p class="lead">Vom 110-km/h-Flaggschiff bis zum günstigen Stadtflitzer. <b>Grün = sofort lieferbar</b>, der Rest auf Vorbestellung. Alle Preise UVP inkl. 20 % MwSt.</p>
+      <div class="ey" data-i18n="lEy">Die Palette</div>
+      <h2 class="h2" data-i18n="lH2">Zehn Modelle. Für jede Strecke das richtige.</h2>
+      <p class="lead" data-i18n-html="lLead">Vom 110-km/h-Flaggschiff bis zum günstigen Stadtflitzer. <b>Grün = sofort lieferbar</b>, der Rest auf Vorbestellung. Alle Preise UVP inkl. 20 % MwSt.</p>
     </div>
     <div class="grid" id="grid"></div>
   </div>
@@ -305,28 +314,28 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
 <section class="compare" id="vorteil">
   <div class="wrap">
     <div class="reveal">
-      <div class="ey">Der Preisvorteil</div>
-      <h2 class="h2">Gleiche Klasse. Deutlich weniger Geld.</h2>
-      <p class="lead">Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.</p>
+      <div class="ey" data-i18n="cEy">Der Preisvorteil</div>
+      <h2 class="h2" data-i18n="cH2">Gleiche Klasse. Deutlich weniger Geld.</h2>
+      <p class="lead" data-i18n="cLead">Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.</p>
     </div>
     <div class="cmp-grid reveal">
       <div class="cmp">
-        <div class="side ours"><h4>Unser Modell</h4><div class="mn">Future Sport</div><div class="pr">3.499 €</div><div class="sp">80 km/h · 72 V / 50 Ah · CBS</div></div>
-        <div class="mid"><div class="save"><b>−24 %</b><span>≈ 1.100 € gespart</span></div></div>
-        <div class="side rival"><h4>Vergleichbar</h4><div class="mn">NIU NQi GT</div><div class="pr">4.599 €</div><div class="sp">70 km/h · Reichweite 91 km</div></div>
+        <div class="side ours"><h4 data-i18n="cmpOurs">Unser Modell</h4><div class="mn">Future Sport</div><div class="pr" data-i18n="p1">3.499 €</div><div class="sp">80 km/h · 72 V / 50 Ah · CBS</div></div>
+        <div class="mid"><div class="save"><b>−24 %</b><span data-i18n="s1">≈ 1.100 € gespart</span></div></div>
+        <div class="side rival"><h4 data-i18n="cmpComp">Vergleichbar</h4><div class="mn">NIU NQi GT</div><div class="pr" data-i18n="p2">4.599 €</div><div class="sp" data-i18n="r1">70 km/h · Reichweite 91 km</div></div>
       </div>
       <div class="cmp">
-        <div class="side ours"><h4>Unser Modell</h4><div class="mn">E2H Sport</div><div class="pr">2.999 €</div><div class="sp">80 km/h · 2× 72 V / 24 Ah · CBS</div></div>
-        <div class="mid"><div class="save"><b>−25 %</b><span>≈ 1.000 € gespart</span></div></div>
-        <div class="side rival"><h4>Vergleichbar</h4><div class="mn">NIU NQi GTS</div><div class="pr">3.999 €</div><div class="sp">80 km/h · Reichweite 60–70 km</div></div>
+        <div class="side ours"><h4 data-i18n="cmpOurs">Unser Modell</h4><div class="mn">E2H Sport</div><div class="pr" data-i18n="p3">2.999 €</div><div class="sp">80 km/h · 2× 72 V / 24 Ah · CBS</div></div>
+        <div class="mid"><div class="save"><b>−25 %</b><span data-i18n="s2">≈ 1.000 € gespart</span></div></div>
+        <div class="side rival"><h4 data-i18n="cmpComp">Vergleichbar</h4><div class="mn">NIU NQi GTS</div><div class="pr" data-i18n="p4">3.999 €</div><div class="sp" data-i18n="r2">80 km/h · Reichweite 60–70 km</div></div>
       </div>
       <div class="cmp">
-        <div class="side ours"><h4>Unser Modell</h4><div class="mn">Future City</div><div class="pr">2.299 €</div><div class="sp">45 km/h · 72 V / 26 Ah</div></div>
-        <div class="mid"><div class="save"><b>−23 %</b><span>≈ 700 € gespart</span></div></div>
-        <div class="side rival"><h4>Vergleichbar</h4><div class="mn">NIU NQi Sport</div><div class="pr">3.000 €</div><div class="sp">45 km/h · Reichweite 50–80 km</div></div>
+        <div class="side ours"><h4 data-i18n="cmpOurs">Unser Modell</h4><div class="mn">Future City</div><div class="pr" data-i18n="p5">2.299 €</div><div class="sp">45 km/h · 72 V / 26 Ah</div></div>
+        <div class="mid"><div class="save"><b>−23 %</b><span data-i18n="s3">≈ 700 € gespart</span></div></div>
+        <div class="side rival"><h4 data-i18n="cmpComp">Vergleichbar</h4><div class="mn">NIU NQi Sport</div><div class="pr" data-i18n="p6">3.000 €</div><div class="sp" data-i18n="r3">45 km/h · Reichweite 50–80 km</div></div>
       </div>
     </div>
-    <p class="cmp-note">Vergleichswerte: NIU NQi GT lt. ADAC (4.599 €, 70 km/h, 91 km); NQi GTS (ab 3.999 €, 80 km/h) und NQi Sport (ab ca. 3.000 €, 45 km/h) lt. Hersteller/Fachhandel, Stand 2026. Alle Preise unverbindliche Preisempfehlungen inkl. MwSt. Richtwerte zum Vergleich, ohne Gewähr.</p>
+    <p class="cmp-note" data-i18n="cmpNote">Vergleichswerte: NIU NQi GT lt. ADAC (4.599 €, 70 km/h, 91 km); NQi GTS (ab 3.999 €, 80 km/h) und NQi Sport (ab ca. 3.000 €, 45 km/h) lt. Hersteller/Fachhandel, Stand 2026. Alle Preise unverbindliche Preisempfehlungen inkl. MwSt. Richtwerte zum Vergleich, ohne Gewähr.</p>
   </div>
 </section>
 
@@ -334,28 +343,28 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
 <section class="reserve" id="reservieren">
   <div class="wrap">
     <div class="reveal">
-      <div class="ey" style="color:#7fb0ef">Vorbestellung &amp; Reservierung</div>
-      <h2 class="h2">Sichere dir deinen Roller.</h2>
-      <p class="lead">Sofort lieferbare Modelle sind streng limitiert — reserviere, bevor sie weg sind. Vorbestellungen sichern dir die erste Lieferung zum Vorzugspreis. Unverbindlich, noch keine Zahlung.</p>
+      <div class="ey" style="color:#7fb0ef" data-i18n="rEy">Vorbestellung &amp; Reservierung</div>
+      <h2 class="h2" data-i18n="rH2">Sichere dir deinen Roller.</h2>
+      <p class="lead" data-i18n="rLead">Sofort lieferbare Modelle sind streng limitiert — reserviere, bevor sie weg sind. Vorbestellungen sichern dir die erste Lieferung zum Vorzugspreis. Unverbindlich, noch keine Zahlung.</p>
     </div>
     <div class="rgrid reveal">
       <div class="scarbox">
-        <h4>● Jetzt sofort lieferbar</h4>
+        <h4 data-i18n="scarTitle">● Jetzt sofort lieferbar</h4>
         <div id="scar"></div>
-        <p class="note">Bestände Stand 09.10.2026. Weitere Modelle auf Vorbestellung.</p>
+        <p class="note" data-i18n="scarNote">Bestände Stand 09.10.2026. Weitere Modelle auf Vorbestellung.</p>
       </div>
       <div>
         <form id="resform">
-          <div class="fld"><label for="r-model">Modell</label><select id="r-model" required></select></div>
+          <div class="fld"><label for="r-model" data-i18n="lblModel">Modell</label><select id="r-model" required></select></div>
           <div class="statusline" id="r-status"></div>
-          <div class="fld"><label for="r-color">Farbe</label><select id="r-color" required></select></div>
+          <div class="fld"><label for="r-color" data-i18n="lblColor">Farbe</label><select id="r-color" required></select></div>
           <div class="two">
-            <div class="fld"><label for="r-name">Name</label><input id="r-name" type="text" placeholder="Vor- und Nachname" required></div>
-            <div class="fld"><label for="r-phone">Telefon</label><input id="r-phone" type="tel" placeholder="+43 …"></div>
+            <div class="fld"><label for="r-name" data-i18n="lblName">Name</label><input id="r-name" type="text" data-i18n-ph="phName" placeholder="Vor- und Nachname" required></div>
+            <div class="fld"><label for="r-phone" data-i18n="lblPhone">Telefon</label><input id="r-phone" type="tel" placeholder="+43 …"></div>
           </div>
-          <div class="fld"><label for="r-email">E-Mail</label><input id="r-email" type="email" placeholder="du@beispiel.at" required></div>
-          <button class="btn btn-primary btn-lg" type="submit" style="width:100%">Jetzt reservieren</button>
-          <p class="note">Unverbindlich. Keine Zahlung. Du erhältst eine Bestätigung per E-Mail. Deine Daten werden vertraulich behandelt.</p>
+          <div class="fld"><label for="r-email" data-i18n="lblEmail">E-Mail</label><input id="r-email" type="email" data-i18n-ph="phEmail" placeholder="du@beispiel.at" required></div>
+          <button class="btn btn-primary btn-lg" type="submit" style="width:100%" data-i18n="resBtn">Jetzt reservieren</button>
+          <p class="note" data-i18n="resNote">Unverbindlich. Keine Zahlung. Du erhältst eine Bestätigung per E-Mail. Deine Daten werden vertraulich behandelt.</p>
         </form>
         <div class="ok" id="resok"></div>
       </div>
@@ -367,23 +376,23 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
 <section class="dealer" id="haendler">
   <div class="wrap">
     <div class="reveal">
-      <div class="ey">Für den Handel</div>
-      <h2 class="h2">Händler werden in Österreich.</h2>
-      <p class="lead">Sie betreiben ein Geschäft und möchten SFM-Elektroroller führen? Hinterlassen Sie uns Ihre Daten — wir melden uns mit den Konditionen.</p>
+      <div class="ey" data-i18n="dEy">Für den Handel</div>
+      <h2 class="h2" data-i18n="dH2">Händler werden in Österreich.</h2>
+      <p class="lead" data-i18n="dLead">Sie betreiben ein Geschäft und möchten SFM-Elektroroller führen? Hinterlassen Sie uns Ihre Daten — wir melden uns mit den Konditionen.</p>
     </div>
     <div class="dcard reveal">
       <form id="dealform">
         <div class="two">
-          <div class="fld"><label for="d-shop">Firma / Geschäft</label><input id="d-shop" type="text" required></div>
-          <div class="fld"><label for="d-city">Ort</label><input id="d-city" type="text" required></div>
+          <div class="fld"><label for="d-shop" data-i18n="lblShop">Firma / Geschäft</label><input id="d-shop" type="text" required></div>
+          <div class="fld"><label for="d-city" data-i18n="lblCity">Ort</label><input id="d-city" type="text" required></div>
         </div>
         <div class="two">
-          <div class="fld"><label for="d-name">Ansprechpartner</label><input id="d-name" type="text" required></div>
-          <div class="fld"><label for="d-phone">Telefon</label><input id="d-phone" type="tel"></div>
+          <div class="fld"><label for="d-name" data-i18n="lblContact">Ansprechpartner</label><input id="d-name" type="text" required></div>
+          <div class="fld"><label for="d-phone" data-i18n="lblPhone">Telefon</label><input id="d-phone" type="tel"></div>
         </div>
-        <div class="fld"><label for="d-email">E-Mail</label><input id="d-email" type="email" required></div>
-        <div class="fld"><label for="d-msg">Nachricht (optional)</label><textarea id="d-msg" placeholder="Interesse, Standort, bestehende Marken …"></textarea></div>
-        <button class="btn btn-dark btn-lg" type="submit">Anfrage senden</button>
+        <div class="fld"><label for="d-email" data-i18n="lblEmail">E-Mail</label><input id="d-email" type="email" required></div>
+        <div class="fld"><label for="d-msg" data-i18n="lblMsg">Nachricht (optional)</label><textarea id="d-msg" data-i18n-ph="phMsg" placeholder="Interesse, Standort, bestehende Marken …"></textarea></div>
+        <button class="btn btn-dark btn-lg" type="submit" data-i18n="dealBtn">Anfrage senden</button>
       </form>
       <div class="dok" id="dealok"></div>
     </div>
@@ -395,13 +404,13 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
     <div class="fgrid">
       <div>
         <b class="fn">ENERGEIA</b>
-        Offizielle Vertretung von SFM · Sunra Elektrorollern in Österreich.<br>
-        Ein Shop. Viele Marken — das Haus hinter Kaiser Natron und Kammergut Tiergenuss.
+        <span data-i18n="footTag">Offizielle Vertretung von SFM · Sunra Elektrorollern in Österreich.</span><br>
+        <span data-i18n="footLine2">Ein Shop. Viele Marken — das Haus hinter Kaiser Natron und Kammergut Tiergenuss.</span>
       </div>
       <div class="legal">
         <b style="color:#fff;font-weight:700;display:block;margin-bottom:8px">Energeia Vertriebs GmbH</b>
         Aigenstraße 46, 4600 Thalheim bei Wels, Österreich<br>
-        Vertreten durch: Daniel Grenzner<br>
+        <span data-i18n="footRepBy">Vertreten durch:</span> Daniel Grenzner<br>
         Tel: +43 664 5550175 · service@energeia-shop.at<br>
         Firmenbuch: FN 687378 a, Landesgericht Wels<br>
         UID: ATU83660717
@@ -409,11 +418,11 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
     </div>
     <div class="cr">
       <div class="flinks">
-        <a href="https://energeia-shop.at/impressum" target="_blank" rel="noopener">Impressum</a>
-        <a href="https://energeia-shop.at/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
-        <a href="#haendler">Händler werden</a>
+        <a href="https://energeia-shop.at/impressum" target="_blank" rel="noopener" data-i18n="linkImprint">Impressum</a>
+        <a href="https://energeia-shop.at/datenschutz" target="_blank" rel="noopener" data-i18n="linkPrivacy">Datenschutz</a>
+        <a href="#haendler" data-i18n="linkDealer">Händler werden</a>
       </div>
-      <div>© 2026 Energeia Vertriebs GmbH. Alle Rechte vorbehalten.</div>
+      <div data-i18n="copyright">© 2026 Energeia Vertriebs GmbH. Alle Rechte vorbehalten.</div>
     </div>
   </div>
 </footer>
@@ -421,64 +430,189 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
 <script>
 /* ===== DATA — SFM 2027 Preisliste + Bestände 09.10.2026 ===== */
 const MODELS=[
- {id:'dream7',name:'Dream 7',tag:'Flaggschiff',hero:true,speed:110,power:'6 kW',batt:'72 V / 72 Ah',price:5999,
+ {id:'dream7',name:'Dream 7',tag:{de:'Flaggschiff',en:'Flagship'},hero:true,speed:110,power:'6 kW',batt:'72 V / 72 Ah',price:5999,
   colors:[['Schwarz','#1b1b1d'],['Grau','#8a8f98'],['Orange','#e8651f']],img:'assets-v2/dream7/c.webp',
-  status:'available',stock:{'Schwarz':12,'Grau':12,'Orange':12},blurb:'110 km/h, 6 kW, TFT-Farbdisplay. Die Speerspitze der Palette.'},
- {id:'legend',name:'Legend',tag:'Sport-Retro',speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
-  colors:[['Schwarz','#1b1b1d']],img:null,status:'available',stock:{'Schwarz':50},blurb:'80 km/h, großer 50-Ah-Akku, CBS-Bremssystem. Retro-Haltung mit Kraft.'},
- {id:'futuresport',name:'Future Sport',tag:'Sportlich',speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
+  status:'available',stock:{'Schwarz':12,'Grau':12,'Orange':12},
+  blurb:{de:'110 km/h, 6 kW, TFT-Farbdisplay. Die Speerspitze der Palette.',en:'110 km/h, 6 kW, TFT colour display. The spearhead of the range.'}},
+ {id:'legend',name:'Legend',tag:{de:'Sport-Retro',en:'Sport retro'},speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
+  colors:[['Schwarz','#1b1b1d']],img:null,status:'available',stock:{'Schwarz':50},
+  blurb:{de:'80 km/h, großer 50-Ah-Akku, CBS-Bremssystem. Retro-Haltung mit Kraft.',en:'80 km/h, big 50 Ah battery, CBS braking. Retro attitude with muscle.'}},
+ {id:'futuresport',name:'Future Sport',tag:{de:'Sportlich',en:'Sporty'},speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
   colors:[['Rot','#c0392b'],['Schwarz','#1b1b1d'],['Türkis','#2bb3a3']],img:null,status:'available',
-  stock:{'Schwarz':30,'Rot':30,'Türkis':10},blurb:'80 km/h, 50-Ah-Akku, CBS. Der dynamische Allrounder.'},
- {id:'e2hsport',name:'E2H Sport',tag:'Sportlich',speed:80,power:'2,5 kW (Spitze 5 kW)',batt:'2× 72 V / 24 Ah',price:2999,
+  stock:{'Schwarz':30,'Rot':30,'Türkis':10},
+  blurb:{de:'80 km/h, 50-Ah-Akku, CBS. Der dynamische Allrounder.',en:'80 km/h, 50 Ah battery, CBS. The dynamic all-rounder.'}},
+ {id:'e2hsport',name:'E2H Sport',tag:{de:'Sportlich',en:'Sporty'},speed:80,power:'2,5 kW (Spitze 5 kW)',batt:'2× 72 V / 24 Ah',price:2999,
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d']],img:'assets-v2/e2h/a.webp',status:'available',stock:{},
-  blurb:'80 km/h, Doppelakku, CBS-Bremssystem. Der schnelle Pendler.'},
- {id:'futurecity',name:'Future City',tag:'Stadt',speed:45,power:'2 kW (Spitze 3,3 kW)',batt:'72 V / 26 Ah',price:2299,
+  blurb:{de:'80 km/h, Doppelakku, CBS-Bremssystem. Der schnelle Pendler.',en:'80 km/h, dual battery, CBS braking. The fast commuter.'}},
+ {id:'futurecity',name:'Future City',tag:{de:'Stadt',en:'City'},speed:45,power:'2 kW (Spitze 3,3 kW)',batt:'72 V / 26 Ah',price:2299,
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Grün','#3a7d44']],img:'assets-v2/futurecity/a.webp',status:'available',
-  stock:{'Weiss':30,'Schwarz':40,'Grün':10},blurb:'45 km/h, 12-Zoll-Räder, souverän durch die Stadt.'},
- {id:'e2h',name:'E2H',tag:'Komfort',speed:45,power:'1,5 kW (Spitze 3 kW)',batt:'72 V / 24 Ah',price:2399,
+  stock:{'Weiss':30,'Schwarz':40,'Grün':10},
+  blurb:{de:'45 km/h, 12-Zoll-Räder, souverän durch die Stadt.',en:'45 km/h, 12-inch wheels, effortless through the city.'}},
+ {id:'e2h',name:'E2H',tag:{de:'Komfort',en:'Comfort'},speed:45,power:'1,5 kW (Spitze 3 kW)',batt:'72 V / 24 Ah',price:2399,
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Blau','#2a5cd6']],img:'assets-v2/e2h/a.webp',status:'preorder',stock:{},
-  blurb:'25 oder 45 km/h, 165 Nm, NFC-Zugang, LED-Display.'},
- {id:'futurelight',name:'Future Light',tag:'Einstieg City',speed:45,power:'1,2 kW (Spitze 2 kW)',batt:'60 V / 21 Ah',price:1799,
+  blurb:{de:'25 oder 45 km/h, 165 Nm, NFC-Zugang, LED-Display.',en:'25 or 45 km/h, 165 Nm, NFC access, LED display.'}},
+ {id:'futurelight',name:'Future Light',tag:{de:'Einstieg City',en:'City entry'},speed:45,power:'1,2 kW (Spitze 2 kW)',batt:'60 V / 21 Ah',price:1799,
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Türkis','#2bb3a3'],['Rot','#c0392b']],img:'assets-v2/futurelight/a.webp',status:'preorder',stock:{},
-  blurb:'25 oder 45 km/h, leicht und wendig. Der stilvolle Einstieg.'},
- {id:'em1',name:'EM1',tag:'Einstieg',speed:45,power:'1 kW',batt:'60 V / 24 Ah',price:1699,
+  blurb:{de:'25 oder 45 km/h, leicht und wendig. Der stilvolle Einstieg.',en:'25 or 45 km/h, light and agile. The stylish way in.'}},
+ {id:'em1',name:'EM1',tag:{de:'Einstieg',en:'Entry'},speed:45,power:'1 kW',batt:'60 V / 24 Ah',price:1699,
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Grün','#3a7d44']],img:'assets-v2/em1/a.webp',status:'preorder',stock:{},
-  blurb:'25 oder 45 km/h. Der einfachste Weg, elektrisch zu fahren.'},
- {id:'urbano',name:'Urbano',tag:'Praktisch',speed:45,power:'1,5 kW',batt:'72 V / 26 Ah (Graphen)',price:1499,
-  colors:[['Schwarz','#1b1b1d']],img:null,status:'available',stock:{'Schwarz':50},blurb:'45 km/h, Graphen-Akku, robust und praktisch.'},
- {id:'primaeclassic',name:'Prima E Classic',tag:'Charakter',speed:45,power:'500 W (Spitze 800 W)',batt:'48 V / 20 Ah',price:1299,
-  colors:[['Grau','#8a8f98']],img:'assets-v2/primaeclassic/a.webp',status:'available',stock:{'Grau':150},blurb:'45 km/h, Retro-Design, ehrlicher Einstiegspreis.'},
+  blurb:{de:'25 oder 45 km/h. Der einfachste Weg, elektrisch zu fahren.',en:'25 or 45 km/h. The simplest way to go electric.'}},
+ {id:'urbano',name:'Urbano',tag:{de:'Praktisch',en:'Practical'},speed:45,power:'1,5 kW',batt:'72 V / 26 Ah (Graphen)',price:1499,
+  colors:[['Schwarz','#1b1b1d']],img:null,status:'available',stock:{'Schwarz':50},
+  blurb:{de:'45 km/h, Graphen-Akku, robust und praktisch.',en:'45 km/h, graphene battery, robust and practical.'}},
+ {id:'primaeclassic',name:'Prima E Classic',tag:{de:'Charakter',en:'Character'},speed:45,power:'500 W (Spitze 800 W)',batt:'48 V / 20 Ah',price:1299,
+  colors:[['Grau','#8a8f98']],img:'assets-v2/primaeclassic/a.webp',status:'available',stock:{'Grau':150},
+  blurb:{de:'45 km/h, Retro-Design, ehrlicher Einstiegspreis.',en:'45 km/h, retro design, an honest entry price.'}},
 ];
+
+/* ===== I18N ===== */
+const T={
+ de:{
+  title:'Energeia · SFM Elektroroller Österreich',
+  brandSub:'SFM · Sunra Vertretung Österreich',
+  navFinder:'Finder',navModels:'Modelle',navAdv:'Preisvorteil',navReserve:'Reservieren',navDealers:'Händler',
+  cap0:'Eine neue Ära<br>der Elektromobilität.',cap1:'Spitzenleistung.<br>Ehrlicher Preis.',cap2:'Gebaut, um die Branche<br>zu verändern.',
+  heroKick:'Jetzt in Österreich',heroH1:'Der Elektroroller, den der Westen noch nicht kennt.',
+  heroSub:'Spitzenleistung zum ehrlichen Preis — sofort lieferbare Modelle und Vorbestellung.',
+  heroCta1:'Dein Modell finden',heroCta2:'Jetzt reservieren',
+  heroTag:'<b>Dream 7</b> · 110 km/h · ab 5.999 € · sofort lieferbar',skip:'Überspringen ›',
+  manifesto:'Eine neue Generation Elektroroller — <b>sauber, schnell, bezahlbar.</b> Entwickelt in einer der größten E-Roller-Fabriken der Welt. Zum ersten Mal in Österreich. Der Anfang einer neuen Art, sich zu bewegen.',
+  fEy:'In 3 Fragen',fH2:'Finde deinen Roller.',fLead:'Drei kurze Fragen — wir empfehlen dir das passende Modell aus der Palette.',
+  fProg1:'Frage 1 von 3',fProg2:'Frage 2 von 3',fProg3:'Frage 3 von 3',
+  fQ1:'Wie weit bist du meistens unterwegs?',fQ2:'Wie schnell möchtest du sein?',fQ3:'Was ist dir beim Budget wichtig?',
+  fo_dist_short_b:'Kurze Wege',fo_dist_short_s:'In der Stadt, ein paar Kilometer',
+  fo_dist_daily_b:'Täglich pendeln',fo_dist_daily_s:'Zur Arbeit und zurück',
+  fo_dist_long_b:'Längere Strecken',fo_dist_long_s:'Auch übers Umland',
+  fo_speed_45_b:'Entspannt',fo_speed_45_s:'Bis 45 km/h · Klasse AM',
+  fo_speed_80_b:'Zügig',fo_speed_80_s:'Bis 80 km/h · Klasse A1',
+  fo_speed_110_b:'Maximal',fo_speed_110_s:'Bis 110 km/h · das Flaggschiff',
+  fo_budget_low_b:'So günstig wie möglich',fo_budget_low_s:'Bester Einstiegspreis',
+  fo_budget_mid_b:'Gutes Mittelfeld',fo_budget_mid_s:'Preis und Leistung',
+  fo_budget_open_b:'Offen',fo_budget_open_s:'Das Beste zählt',
+  fResTitle:'Deine Empfehlung',recPriceLabel:'UVP inkl. MwSt.',recReserve:'Dieses Modell reservieren',recRestart:'↺ Neu starten',
+  lEy:'Die Palette',lH2:'Zehn Modelle. Für jede Strecke das richtige.',
+  lLead:'Vom 110-km/h-Flaggschiff bis zum günstigen Stadtflitzer. <b>Grün = sofort lieferbar</b>, der Rest auf Vorbestellung. Alle Preise UVP inkl. 20 % MwSt.',
+  cEy:'Der Preisvorteil',cH2:'Gleiche Klasse. Deutlich weniger Geld.',
+  cLead:'Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.',
+  cmpOurs:'Unser Modell',cmpComp:'Vergleichbar',
+  p1:'3.499 €',p2:'4.599 €',p3:'2.999 €',p4:'3.999 €',p5:'2.299 €',p6:'3.000 €',
+  s1:'≈ 1.100 € gespart',s2:'≈ 1.000 € gespart',s3:'≈ 700 € gespart',
+  r1:'70 km/h · Reichweite 91 km',r2:'80 km/h · Reichweite 60–70 km',r3:'45 km/h · Reichweite 50–80 km',
+  cmpNote:'Vergleichswerte: NIU NQi GT lt. ADAC (4.599 €, 70 km/h, 91 km); NQi GTS (ab 3.999 €, 80 km/h) und NQi Sport (ab ca. 3.000 €, 45 km/h) lt. Hersteller/Fachhandel, Stand 2026. Alle Preise unverbindliche Preisempfehlungen inkl. MwSt. Richtwerte zum Vergleich, ohne Gewähr.',
+  rEy:'Vorbestellung & Reservierung',rH2:'Sichere dir deinen Roller.',
+  rLead:'Sofort lieferbare Modelle sind streng limitiert — reserviere, bevor sie weg sind. Vorbestellungen sichern dir die erste Lieferung zum Vorzugspreis. Unverbindlich, noch keine Zahlung.',
+  scarTitle:'● Jetzt sofort lieferbar',scarNote:'Bestände Stand 09.10.2026. Weitere Modelle auf Vorbestellung.',
+  lblModel:'Modell',lblColor:'Farbe',lblName:'Name',lblPhone:'Telefon',lblEmail:'E-Mail',
+  phName:'Vor- und Nachname',phEmail:'du@beispiel.at',
+  resBtn:'Jetzt reservieren',resNote:'Unverbindlich. Keine Zahlung. Du erhältst eine Bestätigung per E-Mail. Deine Daten werden vertraulich behandelt.',
+  dEy:'Für den Handel',dH2:'Händler werden in Österreich.',
+  dLead:'Sie betreiben ein Geschäft und möchten SFM-Elektroroller führen? Hinterlassen Sie uns Ihre Daten — wir melden uns mit den Konditionen.',
+  lblShop:'Firma / Geschäft',lblCity:'Ort',lblContact:'Ansprechpartner',lblMsg:'Nachricht (optional)',
+  phMsg:'Interesse, Standort, bestehende Marken …',dealBtn:'Anfrage senden',
+  footTag:'Offizielle Vertretung von SFM · Sunra Elektrorollern in Österreich.',
+  footLine2:'Ein Shop. Viele Marken — das Haus hinter Kaiser Natron und Kammergut Tiergenuss.',
+  footRepBy:'Vertreten durch:',linkImprint:'Impressum',linkPrivacy:'Datenschutz',linkDealer:'Händler werden',
+  copyright:'© 2026 Energeia Vertriebs GmbH. Alle Rechte vorbehalten.',
+  /* render-only */
+  availOk:'● Sofort lieferbar',availPre:'Vorbestellung',photo:'Foto folgt',power:'Leistung',batt:'Akku',rrp:'UVP',reserveShort:'Reservieren',
+  statusPre:'Vorbestellung — Lieferung nach Markteinführung',availableWord:'verfügbar',soldOut:'ausverkauft',pcs:'Stück'
+ },
+ en:{
+  title:'Energeia · SFM Electric Scooters Austria',
+  brandSub:'SFM · Sunra Representative, Austria',
+  navFinder:'Finder',navModels:'Models',navAdv:'Price advantage',navReserve:'Reserve',navDealers:'Dealers',
+  cap0:'A new era<br>of electric mobility.',cap1:'Peak performance.<br>Honest price.',cap2:'Built to change<br>the industry.',
+  heroKick:'Now in Austria',heroH1:"The electric scooter the West doesn't know yet.",
+  heroSub:'Peak performance at an honest price — models in stock now, plus pre-order.',
+  heroCta1:'Find your model',heroCta2:'Reserve now',
+  heroTag:'<b>Dream 7</b> · 110 km/h · from €5,999 · in stock now',skip:'Skip ›',
+  manifesto:"A new generation of electric scooters — <b>clean, fast, affordable.</b> Built in one of the world's largest e-scooter factories. For the first time in Austria. The start of a new way to move.",
+  fEy:'In 3 questions',fH2:'Find your scooter.',fLead:"Three quick questions — we'll recommend the right model from the range.",
+  fProg1:'Question 1 of 3',fProg2:'Question 2 of 3',fProg3:'Question 3 of 3',
+  fQ1:'How far do you usually travel?',fQ2:'How fast do you want to go?',fQ3:'What matters most on budget?',
+  fo_dist_short_b:'Short trips',fo_dist_short_s:'Around town, a few kilometres',
+  fo_dist_daily_b:'Daily commute',fo_dist_daily_s:'To work and back',
+  fo_dist_long_b:'Longer distances',fo_dist_long_s:'Out into the region too',
+  fo_speed_45_b:'Relaxed',fo_speed_45_s:'Up to 45 km/h · class AM',
+  fo_speed_80_b:'Brisk',fo_speed_80_s:'Up to 80 km/h · class A1',
+  fo_speed_110_b:'Maximum',fo_speed_110_s:'Up to 110 km/h · the flagship',
+  fo_budget_low_b:'As affordable as possible',fo_budget_low_s:'Best entry price',
+  fo_budget_mid_b:'Solid middle',fo_budget_mid_s:'Price and performance',
+  fo_budget_open_b:'Open',fo_budget_open_s:'Only the best',
+  fResTitle:'Your recommendation',recPriceLabel:'RRP incl. VAT',recReserve:'Reserve this model',recRestart:'↺ Start over',
+  lEy:'The range',lH2:'Ten models. The right one for every route.',
+  lLead:'From the 110 km/h flagship to the affordable city runabout. <b>Green = in stock now</b>, the rest on pre-order. All prices RRP incl. 20% VAT.',
+  cEy:'The price advantage',cH2:'Same class. Noticeably less money.',
+  cLead:'The same performance as the market leader — at an honest price. A direct comparison, class by class.',
+  cmpOurs:'Our model',cmpComp:'Comparable',
+  p1:'€3,499',p2:'€4,599',p3:'€2,999',p4:'€3,999',p5:'€2,299',p6:'€3,000',
+  s1:'≈ €1,100 saved',s2:'≈ €1,000 saved',s3:'≈ €700 saved',
+  r1:'70 km/h · range 91 km',r2:'80 km/h · range 60–70 km',r3:'45 km/h · range 50–80 km',
+  cmpNote:'Comparison figures: NIU NQi GT per ADAC (€4,599, 70 km/h, 91 km); NQi GTS (from €3,999, 80 km/h) and NQi Sport (from approx. €3,000, 45 km/h) per manufacturer/retail, as of 2026. All prices are recommended retail prices incl. VAT. Reference values for comparison, without warranty.',
+  rEy:'Pre-order & reservation',rH2:'Secure your scooter.',
+  rLead:"In-stock models are strictly limited — reserve before they're gone. Pre-orders secure you the first delivery at the preferential price. No obligation, no payment yet.",
+  scarTitle:'● In stock right now',scarNote:'Stock as of 09.10.2026. More models on pre-order.',
+  lblModel:'Model',lblColor:'Colour',lblName:'Name',lblPhone:'Phone',lblEmail:'Email',
+  phName:'First and last name',phEmail:'you@example.com',
+  resBtn:'Reserve now',resNote:"No obligation. No payment. You'll receive a confirmation by email. Your data is treated confidentially.",
+  dEy:'For retailers',dH2:'Become a dealer in Austria.',
+  dLead:"Run a shop and want to carry SFM electric scooters? Leave us your details — we'll get back to you with the terms.",
+  lblShop:'Company / shop',lblCity:'City',lblContact:'Contact person',lblMsg:'Message (optional)',
+  phMsg:'Interest, location, existing brands …',dealBtn:'Send enquiry',
+  footTag:'Official representative of SFM · Sunra electric scooters in Austria.',
+  footLine2:'One shop. Many brands — the house behind Kaiser Natron and Kammergut Tiergenuss.',
+  footRepBy:'Represented by:',linkImprint:'Imprint',linkPrivacy:'Privacy',linkDealer:'Become a dealer',
+  copyright:'© 2026 Energeia Vertriebs GmbH. All rights reserved.',
+  /* render-only */
+  availOk:'● In stock now',availPre:'Pre-order',photo:'Photo coming',power:'Power',batt:'Battery',rrp:'RRP',reserveShort:'Reserve',
+  statusPre:'Pre-order — delivery after launch',availableWord:'available',soldOut:'sold out',pcs:'units'
+ }
+};
+
 /* backend endpoint — Apps Script Web App (writes to the Bestand sheet) */
 const API_BASE="https://script.google.com/macros/s/AKfycbwHaSkq8pUaKQNWr12upl-A_aVWAsiH170VpTXVxCBFTEydvAB5JXTm6OkWfC_QMmmc/exec";
-const euro=n=>n.toLocaleString('de-DE')+' €';
+
+let LANG='de';
+let LIVE=null; /* {modelName:{byColor:{color:n}, total, available}} — filled from the sheet feed */
+const euro=n=>LANG==='en'?'€'+n.toLocaleString('en-US'):n.toLocaleString('de-DE')+' €';
+
+/* scroll reveal observer */
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.12});
+function observeReveals(scope){(scope||document).querySelectorAll('.reveal').forEach(el=>io.observe(el));}
 
 /* ===== LINEUP ===== */
 const grid=document.getElementById('grid');
-MODELS.forEach(m=>{
-  const sw=m.colors.map(c=>`<span class="sw" title="${c[0]}" style="background:${c[1]}"></span>`).join('');
-  const avail=m.status==='available'?`<div class="avail ok" data-av="${m.name}">● Sofort lieferbar</div>`:`<div class="avail pre" data-av="${m.name}">Vorbestellung</div>`;
-  const pic=m.img?`<div class="pic"><img src="${m.img}" alt="${m.name}" loading="lazy"></div>`
-    :`<div class="pic"><div class="noimg"><b>${m.name}</b><span>Foto folgt</span></div></div>`;
-  grid.insertAdjacentHTML('beforeend',`
-    <div class="card reveal">
-      ${pic.replace('<div class="pic">',`<div class="pic"><div class="flag ${m.hero?'hero':''}">${m.tag}</div>${avail}`)}
-      <div class="body">
-        <h3>${m.name}</h3>
-        <p class="blurb">${m.blurb}</p>
-        <div class="specrow">
-          <div><b>${m.speed}</b><span>km/h</span></div>
-          <div><b>${m.power.split(' ')[0]} ${m.power.includes('kW')?'kW':'W'}</b><span>Leistung</span></div>
-          <div><b>${m.batt.split(' / ')[1]||m.batt}</b><span>Akku</span></div>
+function renderLineup(){
+  const d=T[LANG];grid.innerHTML='';
+  MODELS.forEach(m=>{
+    const sw=m.colors.map(c=>`<span class="sw" title="${c[0]}" style="background:${c[1]}"></span>`).join('');
+    const availCls=m.status==='available'?'ok':'pre';
+    const availTxt=m.status==='available'?d.availOk:d.availPre;
+    const tag=m.tag[LANG]||m.tag.de, blurb=m.blurb[LANG]||m.blurb.de;
+    const picInner=m.img?`<img src="${m.img}" alt="${m.name}" loading="lazy">`
+      :`<div class="noimg"><b>${m.name}</b><span>${d.photo}</span></div>`;
+    grid.insertAdjacentHTML('beforeend',`
+      <div class="card reveal">
+        <div class="pic"><div class="flag ${m.hero?'hero':''}">${tag}</div><div class="avail ${availCls}" data-av="${m.name}">${availTxt}</div>${picInner}</div>
+        <div class="body">
+          <h3>${m.name}</h3>
+          <p class="blurb">${blurb}</p>
+          <div class="specrow">
+            <div><b>${m.speed}</b><span>km/h</span></div>
+            <div><b>${m.power.split(' ')[0]} ${m.power.includes('kW')?'kW':'W'}</b><span>${d.power}</span></div>
+            <div><b>${m.batt.split(' / ')[1]||m.batt}</b><span>${d.batt}</span></div>
+          </div>
+          <div class="swatches">${sw}</div>
+          <div class="foot">
+            <div class="price">${euro(m.price)} <small>${d.rrp}</small></div>
+            <a href="#reservieren" class="btn btn-dark" onclick="preselect('${m.id}')">${d.reserveShort}</a>
+          </div>
         </div>
-        <div class="swatches">${sw}</div>
-        <div class="foot">
-          <div class="price">${euro(m.price)} <small>UVP</small></div>
-          <a href="#reservieren" class="btn btn-dark" onclick="preselect('${m.id}')">Reservieren</a>
-        </div>
-      </div>
-    </div>`);
-});
+      </div>`);
+  });
+  observeReveals(grid);
+  applyLiveToDOM();
+}
 
 /* ===== FINDER ===== */
 const answers={};let step=1;
@@ -502,7 +636,7 @@ function showResult(){
   if(m.img){img.src=m.img;img.style.display='block';}else{img.style.display='none';}
   img.alt=m.name;
   document.getElementById('rec-name').textContent=m.name;
-  document.getElementById('rec-blurb').textContent=m.blurb;
+  document.getElementById('rec-blurb').textContent=m.blurb[LANG]||m.blurb.de;
   document.getElementById('rec-speed').textContent=m.speed;
   document.getElementById('rec-price').textContent=euro(m.price);
   document.getElementById('rec-reserve').setAttribute('onclick',`preselect('${m.id}')`);
@@ -515,37 +649,55 @@ document.getElementById('rec-restart').addEventListener('click',()=>{
 
 /* ===== RESERVE ===== */
 const rModel=document.getElementById('r-model'),rColor=document.getElementById('r-color'),rStatus=document.getElementById('r-status');
-MODELS.forEach(m=>rModel.insertAdjacentHTML('beforeend',`<option value="${m.id}">${m.name} — ${euro(m.price)}</option>`));
-let LIVE=null; /* {modelName:{byColor:{color:n}, total, available}} — filled from the sheet feed */
+function fillModelOptions(){
+  const cur=rModel.value||'dream7';
+  rModel.innerHTML=MODELS.map(m=>`<option value="${m.id}">${m.name} — ${euro(m.price)}</option>`).join('');
+  rModel.value=cur;
+}
 function liveFor(m){ return LIVE && LIVE[m.name] ? LIVE[m.name] : null; }
 function fillColors(){
-  const m=MODELS.find(x=>x.id===rModel.value);
-  const lv=liveFor(m);
+  const m=MODELS.find(x=>x.id===rModel.value);const d=T[LANG];const lv=liveFor(m);
   rColor.innerHTML=m.colors.map(c=>{
     const n=lv&&lv.byColor&&(c[0] in lv.byColor)?lv.byColor[c[0]]:null;
     const sold=n!==null&&n<=0&&lv&&lv.available;
-    const note=n!==null?(n>0?' — '+n+' verfügbar':(lv&&lv.available?' — ausverkauft':'')):'';
+    const note=n!==null?(n>0?` — ${n} ${d.availableWord}`:(lv&&lv.available?` — ${d.soldOut}`:'')):'';
     return `<option value="${c[0]}"${sold?' disabled':''}>${c[0]}${note}</option>`;
   }).join('');
-  const avail = lv ? lv.available : (m.status==='available');
-  if(avail){rStatus.className='statusline ok';rStatus.textContent='● Sofort lieferbar';}
-  else{rStatus.className='statusline pre';rStatus.textContent='Vorbestellung — Lieferung nach Markteinführung';}
+  const avail=lv?lv.available:(m.status==='available');
+  if(avail){rStatus.className='statusline ok';rStatus.textContent=d.availOk;}
+  else{rStatus.className='statusline pre';rStatus.textContent=d.statusPre;}
 }
 rModel.addEventListener('change',fillColors);
 window.preselect=function(id){rModel.value=id;fillColors();};
-rModel.value='dream7';fillColors();
 
-/* live-available panel */
-(function(){
-  const box=document.getElementById('scar');let html='';
+/* static stock panel (fallback before/without live feed) */
+function renderScar(){
+  const box=document.getElementById('scar');const d=T[LANG];let html='';
   MODELS.filter(m=>m.status==='available').forEach(m=>{
     const total=Object.values(m.stock||{}).reduce((a,b)=>a+b,0);
-    html+=`<div class="scarrow"><span class="c">${m.name}</span><span class="n">${total?total+' Stück':'verfügbar'}</span></div>`;
+    html+=`<div class="scarrow"><span class="c">${m.name}</span><span class="n">${total?total+' '+d.pcs:d.availableWord}</span></div>`;
   });
   box.innerHTML=html;
-})();
+}
 
 /* ===== LIVE AVAILABILITY — reads the Bestand sheet via Apps Script doGet ===== */
+function applyLiveToDOM(){
+  if(!LIVE)return;const d=T[LANG];
+  document.querySelectorAll('[data-av]').forEach(el=>{
+    const lv=LIVE[el.getAttribute('data-av')]; if(!lv)return;
+    if(lv.available){el.className='avail ok';el.textContent=d.availOk;}
+    else{el.className='avail pre';el.textContent=d.availPre;}
+  });
+  const box=document.getElementById('scar');
+  if(box){
+    let html='';
+    Object.keys(LIVE).forEach(name=>{
+      const lv=LIVE[name]; if(!lv.available||lv.total<=0)return;
+      html+=`<div class="scarrow"><span class="c">${name}</span><span class="n">${lv.total} ${d.pcs}</span></div>`;
+    });
+    if(html)box.innerHTML=html;
+  }
+}
 async function syncLive(){
   if(!API_BASE)return;
   let rows;
@@ -559,51 +711,70 @@ async function syncLive(){
     map[name].byColor[col]=n; map[name].total+=n;
     if(avail&&n>0)map[name].available=true;
   });
-  LIVE=map;
-  document.querySelectorAll('[data-av]').forEach(el=>{
-    const lv=map[el.getAttribute('data-av')]; if(!lv)return;
-    if(lv.available){el.className='avail ok';el.textContent='● Sofort lieferbar';}
-    else{el.className='avail pre';el.textContent='Vorbestellung';}
-  });
-  const box=document.getElementById('scar');
-  if(box){
-    let html='';
-    Object.keys(map).forEach(name=>{
-      const lv=map[name]; if(!lv.available||lv.total<=0)return;
-      html+=`<div class="scarrow"><span class="c">${name}</span><span class="n">${lv.total} Stück</span></div>`;
-    });
-    if(html)box.innerHTML=html;
-  }
-  fillColors();
+  LIVE=map; applyLiveToDOM(); fillColors();
 }
-syncLive();
 
+/* ===== FORMS ===== */
 document.getElementById('resform').addEventListener('submit',async e=>{
   e.preventDefault();
   const m=MODELS.find(x=>x.id===rModel.value);
   const data={type:m.status==='available'?'reservation':'preorder',model:m.name,model_id:m.id,color:rColor.value,
-    name:r_name.value,email:r_email.value,phone:r_phone.value,submitted_at:new Date().toISOString()};
+    name:r_name.value,email:r_email.value,phone:r_phone.value,lang:LANG,submitted_at:new Date().toISOString()};
   await send(data);
   const ok=document.getElementById('resok');
-  ok.innerHTML=`✓ ${data.type==='preorder'?'Vorbestellung':'Reservierung'} erhalten — <b>${data.model}, ${data.color}</b>. Wir senden dir in Kürze eine Bestätigung an ${data.email}.`;
+  if(LANG==='en'){
+    ok.innerHTML=`✓ ${data.type==='preorder'?'Pre-order':'Reservation'} received — <b>${data.model}, ${data.color}</b>. We'll send a confirmation to ${data.email} shortly.`;
+  }else{
+    ok.innerHTML=`✓ ${data.type==='preorder'?'Vorbestellung':'Reservierung'} erhalten — <b>${data.model}, ${data.color}</b>. Wir senden dir in Kürze eine Bestätigung an ${data.email}.`;
+  }
   ok.classList.add('on');e.target.reset();rModel.value=data.model_id;fillColors();
   ok.scrollIntoView({behavior:'smooth',block:'center'});
 });
-
-/* ===== DEALER ===== */
 document.getElementById('dealform').addEventListener('submit',async e=>{
   e.preventDefault();
-  const data={type:'dealer',shop:d_shop.value,city:d_city.value,name:d_name.value,email:d_email.value,phone:d_phone.value,message:d_msg.value,submitted_at:new Date().toISOString()};
+  const data={type:'dealer',shop:d_shop.value,city:d_city.value,name:d_name.value,email:d_email.value,phone:d_phone.value,message:d_msg.value,lang:LANG,submitted_at:new Date().toISOString()};
   await send(data);
   const ok=document.getElementById('dealok');
-  ok.innerHTML=`✓ Danke, ${data.name}. Ihre Anfrage für <b>${data.shop}</b> ist eingegangen — wir melden uns bei ${data.email}.`;
+  if(LANG==='en'){
+    ok.innerHTML=`✓ Thank you, ${data.name}. Your enquiry for <b>${data.shop}</b> has been received — we'll be in touch at ${data.email}.`;
+  }else{
+    ok.innerHTML=`✓ Danke, ${data.name}. Ihre Anfrage für <b>${data.shop}</b> ist eingegangen — wir melden uns bei ${data.email}.`;
+  }
   ok.classList.add('on');e.target.reset();ok.scrollIntoView({behavior:'smooth',block:'center'});
 });
-
 async function send(data){
   if(!API_BASE)return;
   try{await fetch(API_BASE,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)});}catch(err){}
 }
+
+/* ===== LANGUAGE ===== */
+function detectLang(){
+  try{const s=localStorage.getItem('fm_lang');if(s==='de'||s==='en')return s;}catch(e){}
+  const navs=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en']).map(x=>(x||'').toLowerCase());
+  if(navs.some(x=>x.startsWith('de')))return 'de';
+  try{const tz=(Intl.DateTimeFormat().resolvedOptions().timeZone)||'';
+    if(/Vienna|Berlin|Zurich|Zürich|Vaduz|Busingen/i.test(tz))return 'de';}catch(e){}
+  return 'en';
+}
+function applyLang(l){
+  LANG=l;document.documentElement.lang=l;
+  try{localStorage.setItem('fm_lang',l);}catch(e){}
+  const d=T[l];
+  if(d.title)document.title=d.title;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(d[k]!=null)el.innerHTML=d[k];});
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.getAttribute('data-i18n-ph');if(d[k]!=null)el.placeholder=d[k];});
+  document.querySelectorAll('#langtog button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  renderLineup();fillModelOptions();fillColors();renderScar();applyLiveToDOM();
+  if(result.classList.contains('on'))showResult();
+}
+document.querySelectorAll('#langtog button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.l)));
+
+/* ===== INIT ===== */
+applyLang(detectLang());
+rModel.value='dream7';fillColors();
+observeReveals(document);
+syncLive();
 
 /* ===== CINEMATIC HERO ===== */
 (function(){
@@ -617,14 +788,14 @@ async function send(data){
   const dots=[...dotsWrap.children];
   function paint(n){
     shots.forEach((f,k)=>f.classList.toggle('on',k===n));
-    dots.forEach((d,k)=>d.classList.toggle('on',k===n));
+    dots.forEach((dd,k)=>dd.classList.toggle('on',k===n));
     caps.forEach((c,k)=>c.classList.toggle('on',k===n&&n<SEQ&&!done));
   }
   function finish(){
     if(done)return;done=true;clearTimeout(timer);
     const last=shots.length-1;
     shots.forEach((f,k)=>f.classList.toggle('on',k===last));
-    dots.forEach((d,k)=>d.classList.toggle('on',k===last));
+    dots.forEach((dd,k)=>dd.classList.toggle('on',k===last));
     caps.forEach(c=>c.classList.remove('on'));
     finalEl.classList.add('on');skip.classList.add('hide');
   }
@@ -633,10 +804,6 @@ async function send(data){
   skip.addEventListener('click',finish);
   window.addEventListener('scroll',()=>{if(window.scrollY>40)finish();},{passive:true});
 })();
-
-/* ===== SCROLL REVEAL ===== */
-const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
