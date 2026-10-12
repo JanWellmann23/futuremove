@@ -52,8 +52,12 @@ a{color:inherit;text-decoration:none}
 }
 
 /* cinematic hero — transparent cut-outs on gradient */
-.cine{position:relative;height:100svh;min-height:620px;overflow:hidden;color:#fff;
-  background:radial-gradient(130% 100% at 72% 18%,#1b3a63 0%,#0c1726 42%,#06080d 100%)}
+.cine{position:relative;height:100svh;min-height:620px;overflow:hidden;color:#fff;background:#06080d}
+.cine::before{content:"";position:absolute;inset:-4%;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(6,8,13,.42),rgba(6,8,13,.08) 44%,rgba(6,8,13,.5)),url('assets-v2/hero/alpine.webp') center 42%/cover no-repeat;
+  animation:heroKen 24s ease-in-out infinite alternate}
+@keyframes heroKen{from{transform:scale(1) translateY(0)}to{transform:scale(1.09) translateY(-1.5%)}}
+@media(prefers-reduced-motion:reduce){.cine::before{animation:none}}
 .stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1}
 .shot{position:absolute;max-width:92%;max-height:62%;object-fit:contain;opacity:0;transform:scale(1.02) translateY(8px);
   transition:opacity 1s ease,transform 1.2s ease,max-height 1s ease;filter:drop-shadow(0 40px 60px rgba(0,0,0,.5))}
@@ -366,7 +370,7 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
 <!-- CINEMATIC HERO -->
 <section class="cine" id="home">
   <div class="stage">
-    <img class="shot" src="assets-v2/dream7/a.webp" alt="Dream 7">
+    <img class="shot" src="assets-v2/dream7/a.webp" alt="Dream 7" fetchpriority="high" decoding="async">
     <img class="shot" src="assets-v2/dream7/c.webp" alt="Dream 7">
     <img class="shot" src="assets-v2/dream7/d.webp" alt="Dream 7">
     <img class="shot" src="assets-v2/dream7/b.webp" alt="Dream 7">
@@ -1167,7 +1171,12 @@ syncLive();
     document.querySelector('.cine').classList.add('ended');
   }
   function stepF(){paint(i);if(i>=SEQ){finish();return;}i++;timer=setTimeout(stepF,DUR);}
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)finish();else stepF();
+  // start only once the first product image is decoded, so the image never lags the caption
+  let started=false;
+  function start(){if(started)return;started=true;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)finish();else stepF();}
+  const first=shots[0];
+  if(first.complete&&first.naturalWidth){start();}
+  else{first.addEventListener('load',start,{once:true});first.addEventListener('error',start,{once:true});setTimeout(start,1400);}
   skip.addEventListener('click',finish);
   window.addEventListener('scroll',()=>{if(window.scrollY>40)finish();},{passive:true});
 })();
