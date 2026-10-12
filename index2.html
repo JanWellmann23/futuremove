@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Energeia · SFM Elektroroller Österreich</title>
+<meta name="description" content="Offizielle SFM · Sunra Vertretung in Österreich. Elektroroller mit ehrlichem Preis — jetzt vorbestellen oder sofort lieferbare Modelle reservieren.">
+<style>
+:root{
+  --ink:#0b0b0d;--paper:#fff;--mut:#6b7280;--line:#e6e8ec;--blue:#2a78d6;--blue-d:#1f5fb0;
+  --soft:#f5f6f8;--dark:#08090c;--maxw:1140px;--green:#1a7d4b;--amber:#9a6a12;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.5}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:980px;padding:14px 26px;font-size:15px;font-weight:600;cursor:pointer;transition:transform .15s,background .2s,opacity .2s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:var(--blue-d)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-dark{background:var(--ink);color:#fff}.btn-dark:hover{opacity:.88}
+.btn-lg{padding:16px 34px;font-size:17px}
+
+.top{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,11,13,.72);backdrop-filter:saturate(160%) blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
+.brand{display:flex;flex-direction:column;line-height:1.05}
+.brand b{color:#fff;font-size:16px;font-weight:800;letter-spacing:.12em}
+.brand span{color:#9aa3b2;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.nav{display:flex;gap:26px}
+.nav a{color:#e7eaf0;font-size:13.5px;font-weight:500;opacity:.85}.nav a:hover{opacity:1}
+.nav .res{color:#7fb0ef}
+@media(max-width:720px){.brand span{display:none}.nav{gap:0}.nav a:not(.res){display:none}.nav .res{background:var(--blue);color:#fff;padding:8px 16px;border-radius:999px}}
+
+/* cinematic hero — transparent cut-outs on gradient */
+.cine{position:relative;height:100svh;min-height:620px;overflow:hidden;color:#fff;
+  background:radial-gradient(130% 100% at 72% 18%,#1b3a63 0%,#0c1726 42%,#06080d 100%)}
+.stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1}
+.shot{position:absolute;max-width:92%;max-height:62%;object-fit:contain;opacity:0;transform:scale(1.02) translateY(8px);
+  transition:opacity 1s ease,transform 1.4s ease;filter:drop-shadow(0 40px 60px rgba(0,0,0,.5))}
+.shot.on{opacity:1;transform:none}
+.cine::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,rgba(6,8,13,.5),rgba(6,8,13,0) 26%,rgba(6,8,13,0) 55%,rgba(6,8,13,.9))}
+.caps{position:absolute;z-index:3;left:24px;right:24px;top:17%;max-width:var(--maxw);margin:0 auto;text-align:center}
+.cap{position:absolute;left:0;right:0;font-size:clamp(28px,5.6vw,60px);font-weight:800;letter-spacing:-.025em;line-height:1.04;opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform 1.1s cubic-bezier(.2,.7,.2,1);text-shadow:0 2px 40px rgba(0,0,0,.45)}
+.cap.on{opacity:1;transform:none}
+.cine-wrap{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:9vh}
+.final{opacity:0;transform:translateY(20px);transition:opacity 1s ease,transform 1s ease;pointer-events:none;text-align:center;max-width:46ch;margin:0 auto}
+.final.on{opacity:1;transform:none;pointer-events:auto}
+.kick{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8fb6ea;font-weight:700;margin-bottom:14px}
+.final h1{font-size:clamp(28px,4.6vw,54px);line-height:1.05;font-weight:800;letter-spacing:-.02em}
+.final .sub{margin-top:14px;font-size:clamp(15px,2vw,20px);color:#d6dae2}
+.final .cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.final .tagline{margin-top:18px;font-size:13px;color:#9fb0c6;letter-spacing:.02em}
+.final .tagline b{color:#fff}
+.skip{position:absolute;top:64px;right:24px;z-index:5;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.26);color:#fff;border-radius:999px;padding:7px 15px;font-size:12.5px;cursor:pointer;backdrop-filter:blur(8px)}
+.skip:hover{background:rgba(255,255,255,.22)}.skip.hide{display:none}
+.dots{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:4;display:flex;gap:8px}
+.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.32);transition:background .3s,width .3s}
+.dots i.on{background:#fff;width:22px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){.shot{transition:opacity .4s}}
+
+section{padding:clamp(60px,9vw,118px) 0}
+.ey{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700}
+.h2{font-size:clamp(28px,4.2vw,46px);line-height:1.08;font-weight:800;letter-spacing:-.02em;margin-top:12px}
+.lead{font-size:clamp(16px,2vw,20px);color:var(--mut);margin-top:16px;max-width:62ch}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+.manifesto{background:#fff;text-align:center}
+.manifesto p{font-size:clamp(21px,3.3vw,37px);line-height:1.32;font-weight:600;letter-spacing:-.015em;max-width:900px;margin:0 auto;color:var(--ink)}
+.manifesto b{color:var(--blue)}
+
+/* finder */
+.finder{background:var(--soft)}
+.fcard{margin-top:40px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(24px,4vw,44px);box-shadow:0 20px 60px rgba(10,20,40,.06)}
+.fstep{display:none}.fstep.on{display:block;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.fq{font-size:clamp(20px,3vw,28px);font-weight:700;letter-spacing:-.01em}
+.fprog{font-size:12px;color:var(--mut);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.fopts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+@media(max-width:720px){.fopts{grid-template-columns:1fr}}
+.fopt{border:1.5px solid var(--line);border-radius:16px;padding:22px 18px;cursor:pointer;transition:border-color .2s,transform .15s;background:#fff}
+.fopt:hover{border-color:var(--blue);transform:translateY(-2px)}
+.fopt b{display:block;font-size:17px;font-weight:700}.fopt span{display:block;color:var(--mut);font-size:13.5px;margin-top:6px}
+.fresult{display:none;margin-top:8px}.fresult.on{display:block;animation:fade .5s ease}
+.rec{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center}
+@media(max-width:820px){.rec{grid-template-columns:1fr}}
+.rec .ph{background:#f0f2f5;border-radius:18px;aspect-ratio:4/3;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.rec .ph img{width:100%;height:100%;object-fit:contain;padding:6%}
+.rec h3{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em}
+.rec .recspecs{display:flex;gap:24px;margin:16px 0;flex-wrap:wrap}
+.rec .recspecs div b{font-size:22px;font-weight:800;display:block}
+.rec .recspecs div span{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+.restart{margin-top:18px;background:none;border:none;color:var(--blue);font-weight:600;cursor:pointer;font-size:14px}
+
+/* lineup */
+.grid{margin-top:46px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(10,20,40,.1)}
+.card .pic{position:relative;aspect-ratio:4/3;background:linear-gradient(170deg,#f3f5f8,#e9edf2);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.card .pic img{width:100%;height:100%;object-fit:contain;padding:7% 7% 10%}
+.card .noimg{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#aab2bd;background:linear-gradient(170deg,#1a2230,#0f1622);width:100%;height:100%}
+.card .noimg b{color:#e7edf5;font-size:22px;font-weight:800;letter-spacing:-.01em}
+.card .noimg span{font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.flag{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
+.flag.hero{background:var(--blue)}
+.avail{position:absolute;top:12px;right:12px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px}
+.avail.ok{background:#e7f6ee;color:var(--green)}
+.avail.pre{background:#fdf3e2;color:var(--amber)}
+.card .body{padding:20px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:21px;font-weight:800;letter-spacing:-.01em}
+.card .blurb{color:var(--mut);font-size:14px;margin-top:8px;flex:1}
+.card .specrow{display:flex;gap:16px;margin:16px 0 14px;border-top:1px solid var(--line);padding-top:14px;flex-wrap:wrap}
+.card .specrow div b{font-size:16px;font-weight:800;display:block}
+.card .specrow div span{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.swatches{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.sw{width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,.18)}
+.card .foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.price{font-size:20px;font-weight:800}.price small{font-size:12px;color:var(--mut);font-weight:500}
+
+/* comparison */
+.compare{background:var(--soft)}
+.cmp-grid{margin-top:46px;display:grid;gap:20px}
+.cmp{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px 26px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;box-shadow:0 14px 40px rgba(10,20,40,.05)}
+@media(max-width:760px){.cmp{grid-template-columns:1fr;gap:16px;text-align:center}}
+.cmp .side h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:700}
+.cmp .side .mn{font-size:20px;font-weight:800;margin-top:5px}
+.cmp .side .pr{font-size:clamp(26px,4vw,34px);font-weight:800;margin-top:8px}
+.cmp .ours .pr{color:var(--blue)}
+.cmp .rival .pr{color:#9aa0a8;text-decoration:line-through;text-decoration-thickness:2px}
+.cmp .side .sp{font-size:13px;color:var(--mut);margin-top:7px}
+.cmp .save{display:inline-block;background:var(--blue);color:#fff;border-radius:16px;padding:14px 20px;line-height:1.05}
+.cmp .save b{font-size:26px;font-weight:800;display:block}
+.cmp .save span{font-size:11px;font-weight:600;opacity:.92;text-transform:uppercase;letter-spacing:.06em;margin-top:3px;display:block}
+.cmp-note{margin-top:22px;font-size:12px;color:var(--mut);line-height:1.6;max-width:72ch}
+
+/* reserve */
+.reserve{background:var(--dark);color:#fff}
+.reserve .lead{color:#aab2c0}
+.rgrid{margin-top:46px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:860px){.rgrid{grid-template-columns:1fr;gap:32px}}
+.scarbox{background:linear-gradient(160deg,#10131a,#0a0c11);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:26px}
+.scarbox h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#7fe0a8;font-weight:700;margin-bottom:6px}
+.scarrow{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:14.5px}
+.scarrow:last-child{border-bottom:none}
+.scarrow .c{color:#dfe4ec}.scarrow .n{font-weight:800;color:#fff}
+form .fld{margin-bottom:16px}
+form label{display:block;font-size:12.5px;font-weight:600;color:#aab2c0;margin-bottom:7px}
+.reserve input,.reserve select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:#fff;font-size:15px;font-family:inherit}
+.reserve input:focus,.reserve select:focus{outline:none;border-color:var(--blue);background:rgba(255,255,255,.07)}
+.reserve option{color:#111}
+.statusline{font-size:13px;margin:-6px 0 14px;font-weight:600}
+.statusline.ok{color:#7fe0a8}.statusline.pre{color:#ffcf8a}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.two{grid-template-columns:1fr}}
+.note{font-size:12px;color:#7c8696;margin-top:10px}
+.ok{display:none;background:rgba(42,120,214,.14);border:1px solid rgba(42,120,214,.5);border-radius:14px;padding:18px;color:#cfe0f6;font-size:15px;margin-top:6px}
+.ok.on{display:block;animation:fade .4s ease}
+
+/* dealer */
+.dealer{background:var(--soft)}
+.dcard{margin-top:40px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(24px,4vw,40px);max-width:760px}
+.dealer input,.dealer textarea{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:15px;font-family:inherit}
+.dealer textarea{min-height:110px;resize:vertical}
+.dealer label{display:block;font-size:12.5px;font-weight:600;color:var(--mut);margin-bottom:7px}
+.dealer .fld{margin-bottom:16px}
+.dealer input:focus,.dealer textarea:focus{outline:none;border-color:var(--blue)}
+.dok{display:none;background:#eaf4ff;border:1px solid #bcdcff;border-radius:14px;padding:18px;color:#1f5fb0;font-size:15px;margin-top:6px}
+.dok.on{display:block}
+
+footer{background:#0b0c0f;color:#8a93a3;padding:60px 0 40px;font-size:13px;line-height:1.7}
+footer .fgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;margin-bottom:34px}
+@media(max-width:720px){footer .fgrid{grid-template-columns:1fr;gap:24px}}
+footer b.fn{color:#fff;font-size:15px;letter-spacing:.1em;font-weight:800;display:block;margin-bottom:12px}
+footer .legal{color:#6b7482}
+footer a:hover{color:#cfd6e0}
+footer .flinks{display:flex;gap:22px;flex-wrap:wrap}
+footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c6572;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#home" class="brand"><b>ENERGEIA</b><span>SFM · Sunra Vertretung Österreich</span></a>
+    <nav class="nav">
+      <a href="#finder">Finder</a>
+      <a href="#modelle">Modelle</a>
+      <a href="#vorteil">Preisvorteil</a>
+      <a href="#reservieren" class="res">Reservieren</a>
+      <a href="#haendler">Händler</a>
+    </nav>
+  </div>
+</header>
+
+<!-- CINEMATIC HERO -->
+<section class="cine" id="home">
+  <div class="stage">
+    <img class="shot" src="assets-v2/dream7/a.webp" alt="Dream 7">
+    <img class="shot" src="assets-v2/dream7/c.webp" alt="Dream 7">
+    <img class="shot" src="assets-v2/dream7/d.webp" alt="Dream 7">
+    <img class="shot" src="assets-v2/dream7/b.webp" alt="Dream 7">
+  </div>
+  <div class="caps">
+    <h2 class="cap" data-i="0">Eine neue Ära<br>der Elektromobilität.</h2>
+    <h2 class="cap" data-i="1">Spitzenleistung.<br>Ehrlicher Preis.</h2>
+    <h2 class="cap" data-i="2">Gebaut, um die Branche<br>zu verändern.</h2>
+  </div>
+  <div class="cine-wrap wrap">
+    <div class="final">
+      <div class="kick">Jetzt in Österreich</div>
+      <h1>Der Elektroroller, den der Westen noch nicht kennt.</h1>
+      <p class="sub">Spitzenleistung zum ehrlichen Preis — sofort lieferbare Modelle und Vorbestellung.</p>
+      <div class="cta">
+        <a href="#finder" class="btn btn-primary btn-lg">Dein Modell finden</a>
+        <a href="#reservieren" class="btn btn-ghost btn-lg">Jetzt reservieren</a>
+      </div>
+      <div class="tagline"><b>Dream 7</b> · 110 km/h · ab 5.999 € · sofort lieferbar</div>
+    </div>
+  </div>
+  <button class="skip" id="skip">Überspringen ›</button>
+  <div class="dots" id="dots"></div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="wrap">
+    <p class="reveal">Eine neue Generation Elektroroller — <b>sauber, schnell, bezahlbar.</b> Entwickelt in einer der größten E-Roller-Fabriken der Welt. Zum ersten Mal in Österreich. Der Anfang einer neuen Art, sich zu bewegen.</p>
+  </div>
+</section>
+
+<!-- FINDER -->
+<section class="finder" id="finder">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="ey">In 3 Fragen</div>
+      <h2 class="h2">Finde deinen Roller.</h2>
+      <p class="lead">Drei kurze Fragen — wir empfehlen dir das passende Modell aus der Palette.</p>
+    </div>
+    <div class="fcard reveal">
+      <div class="fstep on" data-step="1">
+        <div class="fprog">Frage 1 von 3</div>
+        <div class="fq">Wie weit bist du meistens unterwegs?</div>
+        <div class="fopts">
+          <div class="fopt" data-k="dist" data-v="short"><b>Kurze Wege</b><span>In der Stadt, ein paar Kilometer</span></div>
+          <div class="fopt" data-k="dist" data-v="daily"><b>Täglich pendeln</b><span>Zur Arbeit und zurück</span></div>
+          <div class="fopt" data-k="dist" data-v="long"><b>Längere Strecken</b><span>Auch übers Umland</span></div>
+        </div>
+      </div>
+      <div class="fstep" data-step="2">
+        <div class="fprog">Frage 2 von 3</div>
+        <div class="fq">Wie schnell möchtest du sein?</div>
+        <div class="fopts">
+          <div class="fopt" data-k="speed" data-v="45"><b>Entspannt</b><span>Bis 45 km/h · Klasse AM</span></div>
+          <div class="fopt" data-k="speed" data-v="80"><b>Zügig</b><span>Bis 80 km/h · Klasse A1</span></div>
+          <div class="fopt" data-k="speed" data-v="110"><b>Maximal</b><span>Bis 110 km/h · das Flaggschiff</span></div>
+        </div>
+      </div>
+      <div class="fstep" data-step="3">
+        <div class="fprog">Frage 3 von 3</div>
+        <div class="fq">Was ist dir beim Budget wichtig?</div>
+        <div class="fopts">
+          <div class="fopt" data-k="budget" data-v="low"><b>So günstig wie möglich</b><span>Bester Einstiegspreis</span></div>
+          <div class="fopt" data-k="budget" data-v="mid"><b>Gutes Mittelfeld</b><span>Preis und Leistung</span></div>
+          <div class="fopt" data-k="budget" data-v="open"><b>Offen</b><span>Das Beste zählt</span></div>
+        </div>
+      </div>
+      <div class="fresult" data-step="result">
+        <div class="fprog">Deine Empfehlung</div>
+        <div class="rec">
+          <div class="ph"><img id="rec-img" src="" alt=""></div>
+          <div>
+            <h3 id="rec-name"></h3>
+            <p class="lead" id="rec-blurb" style="margin-top:10px"></p>
+            <div class="recspecs">
+              <div><b id="rec-speed"></b><span>km/h</span></div>
+              <div><b id="rec-price"></b><span>UVP inkl. MwSt.</span></div>
+            </div>
+            <a href="#reservieren" class="btn btn-dark" id="rec-reserve">Dieses Modell reservieren</a>
+            <div><button class="restart" id="rec-restart">↺ Neu starten</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINEUP -->
+<section id="modelle">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="ey">Die Palette</div>
+      <h2 class="h2">Zehn Modelle. Für jede Strecke das richtige.</h2>
+      <p class="lead">Vom 110-km/h-Flaggschiff bis zum günstigen Stadtflitzer. <b>Grün = sofort lieferbar</b>, der Rest auf Vorbestellung. Alle Preise UVP inkl. 20 % MwSt.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare" id="vorteil">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="ey">Der Preisvorteil</div>
+      <h2 class="h2">Gleiche Klasse. Deutlich weniger Geld.</h2>
+      <p class="lead">Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.</p>
+    </div>
+    <div class="cmp-grid reveal">
+      <div class="cmp">
+        <div class="side ours"><h4>Unser Modell</h4><div class="mn">Future Sport</div><div class="pr">3.499 €</div><div class="sp">80 km/h · 72 V / 50 Ah · CBS</div></div>
+        <div class="mid"><div class="save"><b>−24 %</b><span>≈ 1.100 € gespart</span></div></div>
+        <div class="side rival"><h4>Vergleichbar</h4><div class="mn">NIU NQi GT</div><div class="pr">4.599 €</div><div class="sp">70 km/h · Reichweite 91 km</div></div>
+      </div>
+      <div class="cmp">
+        <div class="side ours"><h4>Unser Modell</h4><div class="mn">E2H Sport</div><div class="pr">2.999 €</div><div class="sp">80 km/h · 2× 72 V / 24 Ah · CBS</div></div>
+        <div class="mid"><div class="save"><b>−25 %</b><span>≈ 1.000 € gespart</span></div></div>
+        <div class="side rival"><h4>Vergleichbar</h4><div class="mn">NIU NQi GTS</div><div class="pr">3.999 €</div><div class="sp">80 km/h · Reichweite 60–70 km</div></div>
+      </div>
+      <div class="cmp">
+        <div class="side ours"><h4>Unser Modell</h4><div class="mn">Future City</div><div class="pr">2.299 €</div><div class="sp">45 km/h · 72 V / 26 Ah</div></div>
+        <div class="mid"><div class="save"><b>−23 %</b><span>≈ 700 € gespart</span></div></div>
+        <div class="side rival"><h4>Vergleichbar</h4><div class="mn">NIU NQi Sport</div><div class="pr">3.000 €</div><div class="sp">45 km/h · Reichweite 50–80 km</div></div>
+      </div>
+    </div>
+    <p class="cmp-note">Vergleichswerte: NIU NQi GT lt. ADAC (4.599 €, 70 km/h, 91 km); NQi GTS (ab 3.999 €, 80 km/h) und NQi Sport (ab ca. 3.000 €, 45 km/h) lt. Hersteller/Fachhandel, Stand 2026. Alle Preise unverbindliche Preisempfehlungen inkl. MwSt. Richtwerte zum Vergleich, ohne Gewähr.</p>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section class="reserve" id="reservieren">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="ey" style="color:#7fb0ef">Vorbestellung &amp; Reservierung</div>
+      <h2 class="h2">Sichere dir deinen Roller.</h2>
+      <p class="lead">Sofort lieferbare Modelle sind streng limitiert — reserviere, bevor sie weg sind. Vorbestellungen sichern dir die erste Lieferung zum Vorzugspreis. Unverbindlich, noch keine Zahlung.</p>
+    </div>
+    <div class="rgrid reveal">
+      <div class="scarbox">
+        <h4>● Jetzt sofort lieferbar</h4>
+        <div id="scar"></div>
+        <p class="note">Bestände Stand 09.10.2026. Weitere Modelle auf Vorbestellung.</p>
+      </div>
+      <div>
+        <form id="resform">
+          <div class="fld"><label for="r-model">Modell</label><select id="r-model" required></select></div>
+          <div class="statusline" id="r-status"></div>
+          <div class="fld"><label for="r-color">Farbe</label><select id="r-color" required></select></div>
+          <div class="two">
+            <div class="fld"><label for="r-name">Name</label><input id="r-name" type="text" placeholder="Vor- und Nachname" required></div>
+            <div class="fld"><label for="r-phone">Telefon</label><input id="r-phone" type="tel" placeholder="+43 …"></div>
+          </div>
+          <div class="fld"><label for="r-email">E-Mail</label><input id="r-email" type="email" placeholder="du@beispiel.at" required></div>
+          <button class="btn btn-primary btn-lg" type="submit" style="width:100%">Jetzt reservieren</button>
+          <p class="note">Unverbindlich. Keine Zahlung. Du erhältst eine Bestätigung per E-Mail. Deine Daten werden vertraulich behandelt.</p>
+        </form>
+        <div class="ok" id="resok"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALER -->
+<section class="dealer" id="haendler">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="ey">Für den Handel</div>
+      <h2 class="h2">Händler werden in Österreich.</h2>
+      <p class="lead">Sie betreiben ein Geschäft und möchten SFM-Elektroroller führen? Hinterlassen Sie uns Ihre Daten — wir melden uns mit den Konditionen.</p>
+    </div>
+    <div class="dcard reveal">
+      <form id="dealform">
+        <div class="two">
+          <div class="fld"><label for="d-shop">Firma / Geschäft</label><input id="d-shop" type="text" required></div>
+          <div class="fld"><label for="d-city">Ort</label><input id="d-city" type="text" required></div>
+        </div>
+        <div class="two">
+          <div class="fld"><label for="d-name">Ansprechpartner</label><input id="d-name" type="text" required></div>
+          <div class="fld"><label for="d-phone">Telefon</label><input id="d-phone" type="tel"></div>
+        </div>
+        <div class="fld"><label for="d-email">E-Mail</label><input id="d-email" type="email" required></div>
+        <div class="fld"><label for="d-msg">Nachricht (optional)</label><textarea id="d-msg" placeholder="Interesse, Standort, bestehende Marken …"></textarea></div>
+        <button class="btn btn-dark btn-lg" type="submit">Anfrage senden</button>
+      </form>
+      <div class="dok" id="dealok"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <b class="fn">ENERGEIA</b>
+        Offizielle Vertretung von SFM · Sunra Elektrorollern in Österreich.<br>
+        Ein Shop. Viele Marken — das Haus hinter Kaiser Natron und Kammergut Tiergenuss.
+      </div>
+      <div class="legal">
+        <b style="color:#fff;font-weight:700;display:block;margin-bottom:8px">Energeia Vertriebs GmbH</b>
+        Aigenstraße 46, 4600 Thalheim bei Wels, Österreich<br>
+        Vertreten durch: Daniel Grenzner<br>
+        Tel: +43 664 5550175 · service@energeia-shop.at<br>
+        Firmenbuch: FN 687378 a, Landesgericht Wels<br>
+        UID: ATU83660717
+      </div>
+    </div>
+    <div class="cr">
+      <div class="flinks">
+        <a href="https://energeia-shop.at/impressum" target="_blank" rel="noopener">Impressum</a>
+        <a href="https://energeia-shop.at/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+        <a href="#haendler">Händler werden</a>
+      </div>
+      <div>© 2026 Energeia Vertriebs GmbH. Alle Rechte vorbehalten.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== DATA — SFM 2027 Preisliste + Bestände 09.10.2026 ===== */
+const MODELS=[
+ {id:'dream7',name:'Dream 7',tag:'Flaggschiff',hero:true,speed:110,power:'6 kW',batt:'72 V / 72 Ah',price:5999,
+  colors:[['Schwarz','#1b1b1d'],['Grau','#8a8f98'],['Orange','#e8651f']],img:'assets-v2/dream7/c.webp',
+  status:'available',stock:{'Schwarz':12,'Grau':12,'Orange':12},blurb:'110 km/h, 6 kW, TFT-Farbdisplay. Die Speerspitze der Palette.'},
+ {id:'legend',name:'Legend',tag:'Sport-Retro',speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
+  colors:[['Schwarz','#1b1b1d']],img:null,status:'available',stock:{'Schwarz':50},blurb:'80 km/h, großer 50-Ah-Akku, CBS-Bremssystem. Retro-Haltung mit Kraft.'},
+ {id:'futuresport',name:'Future Sport',tag:'Sportlich',speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
+  colors:[['Rot','#c0392b'],['Schwarz','#1b1b1d'],['Türkis','#2bb3a3']],img:null,status:'available',
+  stock:{'Schwarz':30,'Rot':30,'Türkis':10},blurb:'80 km/h, 50-Ah-Akku, CBS. Der dynamische Allrounder.'},
+ {id:'e2hsport',name:'E2H Sport',tag:'Sportlich',speed:80,power:'2,5 kW (Spitze 5 kW)',batt:'2× 72 V / 24 Ah',price:2999,
+  colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d']],img:'assets-v2/e2h/a.webp',status:'available',stock:{},
+  blurb:'80 km/h, Doppelakku, CBS-Bremssystem. Der schnelle Pendler.'},
+ {id:'futurecity',name:'Future City',tag:'Stadt',speed:45,power:'2 kW (Spitze 3,3 kW)',batt:'72 V / 26 Ah',price:2299,
+  colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Grün','#3a7d44']],img:'assets-v2/futurecity/a.webp',status:'available',
+  stock:{'Weiss':30,'Schwarz':40,'Grün':10},blurb:'45 km/h, 12-Zoll-Räder, souverän durch die Stadt.'},
+ {id:'e2h',name:'E2H',tag:'Komfort',speed:45,power:'1,5 kW (Spitze 3 kW)',batt:'72 V / 24 Ah',price:2399,
+  colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Blau','#2a5cd6']],img:'assets-v2/e2h/a.webp',status:'preorder',stock:{},
+  blurb:'25 oder 45 km/h, 165 Nm, NFC-Zugang, LED-Display.'},
+ {id:'futurelight',name:'Future Light',tag:'Einstieg City',speed:45,power:'1,2 kW (Spitze 2 kW)',batt:'60 V / 21 Ah',price:1799,
+  colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Türkis','#2bb3a3'],['Rot','#c0392b']],img:'assets-v2/futurelight/a.webp',status:'preorder',stock:{},
+  blurb:'25 oder 45 km/h, leicht und wendig. Der stilvolle Einstieg.'},
+ {id:'em1',name:'EM1',tag:'Einstieg',speed:45,power:'1 kW',batt:'60 V / 24 Ah',price:1699,
+  colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Grün','#3a7d44']],img:'assets-v2/em1/a.webp',status:'preorder',stock:{},
+  blurb:'25 oder 45 km/h. Der einfachste Weg, elektrisch zu fahren.'},
+ {id:'urbano',name:'Urbano',tag:'Praktisch',speed:45,power:'1,5 kW',batt:'72 V / 26 Ah (Graphen)',price:1499,
+  colors:[['Schwarz','#1b1b1d']],img:null,status:'available',stock:{'Schwarz':50},blurb:'45 km/h, Graphen-Akku, robust und praktisch.'},
+ {id:'primaeclassic',name:'Prima E Classic',tag:'Charakter',speed:45,power:'500 W (Spitze 800 W)',batt:'48 V / 20 Ah',price:1299,
+  colors:[['Grau','#8a8f98']],img:'assets-v2/primaeclassic/a.webp',status:'available',stock:{'Grau':150},blurb:'45 km/h, Retro-Design, ehrlicher Einstiegspreis.'},
+];
+/* backend endpoint — Apps Script Web App (writes to the Bestand sheet) */
+const API_BASE="https://script.google.com/macros/s/AKfycbwHaSkq8pUaKQNWr12upl-A_aVWAsiH170VpTXVxCBFTEydvAB5JXTm6OkWfC_QMmmc/exec";
+const euro=n=>n.toLocaleString('de-DE')+' €';
+
+/* ===== LINEUP ===== */
+const grid=document.getElementById('grid');
+MODELS.forEach(m=>{
+  const sw=m.colors.map(c=>`<span class="sw" title="${c[0]}" style="background:${c[1]}"></span>`).join('');
+  const avail=m.status==='available'?`<div class="avail ok" data-av="${m.name}">● Sofort lieferbar</div>`:`<div class="avail pre" data-av="${m.name}">Vorbestellung</div>`;
+  const pic=m.img?`<div class="pic"><img src="${m.img}" alt="${m.name}" loading="lazy"></div>`
+    :`<div class="pic"><div class="noimg"><b>${m.name}</b><span>Foto folgt</span></div></div>`;
+  grid.insertAdjacentHTML('beforeend',`
+    <div class="card reveal">
+      ${pic.replace('<div class="pic">',`<div class="pic"><div class="flag ${m.hero?'hero':''}">${m.tag}</div>${avail}`)}
+      <div class="body">
+        <h3>${m.name}</h3>
+        <p class="blurb">${m.blurb}</p>
+        <div class="specrow">
+          <div><b>${m.speed}</b><span>km/h</span></div>
+          <div><b>${m.power.split(' ')[0]} ${m.power.includes('kW')?'kW':'W'}</b><span>Leistung</span></div>
+          <div><b>${m.batt.split(' / ')[1]||m.batt}</b><span>Akku</span></div>
+        </div>
+        <div class="swatches">${sw}</div>
+        <div class="foot">
+          <div class="price">${euro(m.price)} <small>UVP</small></div>
+          <a href="#reservieren" class="btn btn-dark" onclick="preselect('${m.id}')">Reservieren</a>
+        </div>
+      </div>
+    </div>`);
+});
+
+/* ===== FINDER ===== */
+const answers={};let step=1;
+const steps=document.querySelectorAll('.fstep');const result=document.querySelector('.fresult');
+document.querySelectorAll('.fopt').forEach(o=>o.addEventListener('click',()=>{
+  answers[o.dataset.k]=o.dataset.v;
+  if(step<3){steps[step-1].classList.remove('on');step++;steps[step-1].classList.add('on');}
+  else showResult();
+}));
+function pickModel(){
+  const {speed,budget}=answers;
+  if(speed==='110')return 'dream7';
+  if(speed==='80')return budget==='low'?'e2hsport':'futuresport';
+  if(budget==='low')return 'em1';
+  return 'futurecity';
+}
+function showResult(){
+  steps.forEach(s=>s.classList.remove('on'));
+  const m=MODELS.find(x=>x.id===pickModel());
+  const img=document.getElementById('rec-img');
+  if(m.img){img.src=m.img;img.style.display='block';}else{img.style.display='none';}
+  img.alt=m.name;
+  document.getElementById('rec-name').textContent=m.name;
+  document.getElementById('rec-blurb').textContent=m.blurb;
+  document.getElementById('rec-speed').textContent=m.speed;
+  document.getElementById('rec-price').textContent=euro(m.price);
+  document.getElementById('rec-reserve').setAttribute('onclick',`preselect('${m.id}')`);
+  result.classList.add('on');
+}
+document.getElementById('rec-restart').addEventListener('click',()=>{
+  step=1;for(const k in answers)delete answers[k];
+  result.classList.remove('on');steps.forEach(s=>s.classList.remove('on'));steps[0].classList.add('on');
+});
+
+/* ===== RESERVE ===== */
+const rModel=document.getElementById('r-model'),rColor=document.getElementById('r-color'),rStatus=document.getElementById('r-status');
+MODELS.forEach(m=>rModel.insertAdjacentHTML('beforeend',`<option value="${m.id}">${m.name} — ${euro(m.price)}</option>`));
+let LIVE=null; /* {modelName:{byColor:{color:n}, total, available}} — filled from the sheet feed */
+function liveFor(m){ return LIVE && LIVE[m.name] ? LIVE[m.name] : null; }
+function fillColors(){
+  const m=MODELS.find(x=>x.id===rModel.value);
+  const lv=liveFor(m);
+  rColor.innerHTML=m.colors.map(c=>{
+    const n=lv&&lv.byColor&&(c[0] in lv.byColor)?lv.byColor[c[0]]:null;
+    const sold=n!==null&&n<=0&&lv&&lv.available;
+    const note=n!==null?(n>0?' — '+n+' verfügbar':(lv&&lv.available?' — ausverkauft':'')):'';
+    return `<option value="${c[0]}"${sold?' disabled':''}>${c[0]}${note}</option>`;
+  }).join('');
+  const avail = lv ? lv.available : (m.status==='available');
+  if(avail){rStatus.className='statusline ok';rStatus.textContent='● Sofort lieferbar';}
+  else{rStatus.className='statusline pre';rStatus.textContent='Vorbestellung — Lieferung nach Markteinführung';}
+}
+rModel.addEventListener('change',fillColors);
+window.preselect=function(id){rModel.value=id;fillColors();};
+rModel.value='dream7';fillColors();
+
+/* live-available panel */
+(function(){
+  const box=document.getElementById('scar');let html='';
+  MODELS.filter(m=>m.status==='available').forEach(m=>{
+    const total=Object.values(m.stock||{}).reduce((a,b)=>a+b,0);
+    html+=`<div class="scarrow"><span class="c">${m.name}</span><span class="n">${total?total+' Stück':'verfügbar'}</span></div>`;
+  });
+  box.innerHTML=html;
+})();
+
+/* ===== LIVE AVAILABILITY — reads the Bestand sheet via Apps Script doGet ===== */
+async function syncLive(){
+  if(!API_BASE)return;
+  let rows;
+  try{const r=await fetch(API_BASE,{method:'GET'});rows=await r.json();}catch(err){return;}
+  if(!Array.isArray(rows)||!rows.length)return;
+  const map={};
+  rows.forEach(row=>{
+    const name=row.model,col=row.color,n=+row.verfuegbar||0;
+    const avail=/lieferbar/i.test(row.status||'');
+    if(!map[name])map[name]={byColor:{},total:0,available:false};
+    map[name].byColor[col]=n; map[name].total+=n;
+    if(avail&&n>0)map[name].available=true;
+  });
+  LIVE=map;
+  document.querySelectorAll('[data-av]').forEach(el=>{
+    const lv=map[el.getAttribute('data-av')]; if(!lv)return;
+    if(lv.available){el.className='avail ok';el.textContent='● Sofort lieferbar';}
+    else{el.className='avail pre';el.textContent='Vorbestellung';}
+  });
+  const box=document.getElementById('scar');
+  if(box){
+    let html='';
+    Object.keys(map).forEach(name=>{
+      const lv=map[name]; if(!lv.available||lv.total<=0)return;
+      html+=`<div class="scarrow"><span class="c">${name}</span><span class="n">${lv.total} Stück</span></div>`;
+    });
+    if(html)box.innerHTML=html;
+  }
+  fillColors();
+}
+syncLive();
+
+document.getElementById('resform').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const m=MODELS.find(x=>x.id===rModel.value);
+  const data={type:m.status==='available'?'reservation':'preorder',model:m.name,model_id:m.id,color:rColor.value,
+    name:r_name.value,email:r_email.value,phone:r_phone.value,submitted_at:new Date().toISOString()};
+  await send(data);
+  const ok=document.getElementById('resok');
+  ok.innerHTML=`✓ ${data.type==='preorder'?'Vorbestellung':'Reservierung'} erhalten — <b>${data.model}, ${data.color}</b>. Wir senden dir in Kürze eine Bestätigung an ${data.email}.`;
+  ok.classList.add('on');e.target.reset();rModel.value=data.model_id;fillColors();
+  ok.scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+/* ===== DEALER ===== */
+document.getElementById('dealform').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const data={type:'dealer',shop:d_shop.value,city:d_city.value,name:d_name.value,email:d_email.value,phone:d_phone.value,message:d_msg.value,submitted_at:new Date().toISOString()};
+  await send(data);
+  const ok=document.getElementById('dealok');
+  ok.innerHTML=`✓ Danke, ${data.name}. Ihre Anfrage für <b>${data.shop}</b> ist eingegangen — wir melden uns bei ${data.email}.`;
+  ok.classList.add('on');e.target.reset();ok.scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+async function send(data){
+  if(!API_BASE)return;
+  try{await fetch(API_BASE,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)});}catch(err){}
+}
+
+/* ===== CINEMATIC HERO ===== */
+(function(){
+  const shots=[...document.querySelectorAll('.shot')];
+  const caps=[...document.querySelectorAll('.cap')];
+  const finalEl=document.querySelector('.final');
+  const dotsWrap=document.getElementById('dots');const skip=document.getElementById('skip');
+  if(!shots.length)return;
+  const SEQ=caps.length,DUR=2600;let i=0,timer=null,done=false;
+  shots.forEach(()=>dotsWrap.appendChild(document.createElement('i')));
+  const dots=[...dotsWrap.children];
+  function paint(n){
+    shots.forEach((f,k)=>f.classList.toggle('on',k===n));
+    dots.forEach((d,k)=>d.classList.toggle('on',k===n));
+    caps.forEach((c,k)=>c.classList.toggle('on',k===n&&n<SEQ&&!done));
+  }
+  function finish(){
+    if(done)return;done=true;clearTimeout(timer);
+    const last=shots.length-1;
+    shots.forEach((f,k)=>f.classList.toggle('on',k===last));
+    dots.forEach((d,k)=>d.classList.toggle('on',k===last));
+    caps.forEach(c=>c.classList.remove('on'));
+    finalEl.classList.add('on');skip.classList.add('hide');
+  }
+  function stepF(){paint(i);if(i>=SEQ){finish();return;}i++;timer=setTimeout(stepF,DUR);}
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)finish();else stepF();
+  skip.addEventListener('click',finish);
+  window.addEventListener('scroll',()=>{if(window.scrollY>40)finish();},{passive:true});
+})();
+
+/* ===== SCROLL REVEAL ===== */
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
