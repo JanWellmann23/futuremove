@@ -363,6 +363,38 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
 .vradar.seen svg .r-sfm circle{opacity:1}
 .vradar.seen svg .r-comp{opacity:1}
 @media(prefers-reduced-motion:reduce){.glow-bg i,.sdiv i{animation:none}.wcard.in .wi svg{animation:none}.vradar svg .r-sfm,.vradar svg .r-comp,.vradar svg .r-sfm circle{opacity:1;transform:none;transition:none}}
+/* product pop-up */
+body.noscroll{overflow:hidden}
+.foot-btns{display:flex;gap:8px;align-items:center}
+.btn-light{background:#eef1f6;color:var(--ink)}.btn-light:hover{background:#e3e8f0}
+.detailsbtn{font-weight:700;cursor:pointer}
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.on{display:flex}
+.modal-back{position:absolute;inset:0;background:rgba(8,12,20,.62);backdrop-filter:blur(4px)}
+.modal-card{position:relative;background:#fff;border-radius:22px;max-width:760px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 40px 100px -20px rgba(0,0,0,.5);animation:pmin .3s cubic-bezier(.2,.7,.2,1)}
+@keyframes pmin{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+.modal-x{position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;border-radius:50%;border:none;background:rgba(10,15,25,.06);color:#333;font-size:24px;line-height:1;cursor:pointer;transition:background .2s}
+.modal-x:hover{background:rgba(10,15,25,.12)}
+.modal-body{padding:clamp(22px,3vw,34px)}
+.pm-top{display:grid;grid-template-columns:1.05fr 1fr;gap:24px;align-items:center}
+.pm-img{background:var(--soft);border-radius:16px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pm-img img{width:100%;height:100%;object-fit:contain;padding:10px}
+.pm-img.np{background:linear-gradient(145deg,#eef3fb,#e2ecfb)}
+.pm-tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}
+.pm-head h3{font-size:clamp(24px,3.4vw,32px);font-weight:800;letter-spacing:-.02em;margin:6px 0 10px}
+.pm-sub{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.pm-price{font-size:20px;font-weight:800}.pm-price small{font-size:12px;color:var(--mut);font-weight:600}
+.pm-avail{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+.pm-avail.ok{background:#e7f6ee;color:var(--green)}.pm-avail.pre{background:#fdf3e2;color:var(--amber)}
+.pm-blurb{color:var(--mut);font-size:14.5px;line-height:1.55;margin-bottom:14px}
+.pm-colors{display:flex;gap:7px;margin-bottom:18px}
+.pm-cta{width:100%;justify-content:center}
+.pm-specs{width:100%;border-collapse:collapse;margin-top:26px;font-size:14.5px}
+.pm-specs td{padding:12px 4px;border-top:1px solid var(--line)}
+.pm-specs td:first-child{color:var(--mut);width:46%}
+.pm-specs td:last-child{font-weight:700;text-align:right}
+.pm-note{margin-top:16px;font-size:11.5px;color:#8a93a3;line-height:1.5}
+@media(max-width:620px){.pm-top{grid-template-columns:1fr;gap:16px}.pm-specs td:first-child{width:52%}.foot-btns{flex-direction:column;align-items:stretch;width:100%}}
 </style>
 </head>
 <body>
@@ -671,6 +703,19 @@ const MODELS=[
   colors:[['Grau','#8a8f98']],img:'assets-v2/primaeclassic/a.webp',status:'available',stock:{'Grau':150},
   blurb:{de:'45 km/h, Retro-Design, ehrlicher Einstiegspreis.',en:'45 km/h, retro design, an honest entry price.'}},
 ];
+/* detailed specs for the product pop-up — verified vs SFM data sheets + 2027 Energeia price list (BaseLinker field structure) */
+const SPECS={
+ dream7:{kwh:'5,18 kWh',chem:'BYD LFP',rem:1,range:150,brakes:{de:'Scheibe v+h · ABS+TCS',en:'Disc f+r · ABS+TCS'},cls:'L3e',seats:2},
+ legend:{kwh:'3,60 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe · CBS',en:'Disc · CBS'},cls:'L3e-A1',seats:2},
+ futuresport:{kwh:'3,60 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe · CBS',en:'Disc · CBS'},cls:'L3e-A1',seats:2},
+ e2hsport:{kwh:'3,46 kWh',chem:{de:'2 Akkus · Li-Ion',en:'2 packs · Li-Ion'},rem:1,range:75,brakes:{de:'Scheibe v+h',en:'Disc f+r'},cls:'L3e-A1',torque:'33 Nm',weight:'106 kg',charge:{de:'4–5,5 h',en:'4–5.5 h'},seats:2},
+ futurecity:{kwh:'1,87 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe v+h',en:'Disc f+r'},cls:'L1e-B',seats:2},
+ e2h:{kwh:'1,73 kWh',chem:'LiFePO4',rem:1,brakes:{de:'Scheibe v+h',en:'Disc f+r'},cls:'L1e-B',torque:'165 Nm',seats:2},
+ futurelight:{kwh:'1,26 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe v+h',en:'Disc f+r'},cls:'L1e-B',seats:2},
+ em1:{kwh:'1,44 kWh',chem:'LiMn',rem:1,range:70,brakes:{de:'Scheibe v+h',en:'Disc f+r'},cls:'L1e-B',torque:'80 Nm',weight:'65 kg',charge:{de:'6,5–7,5 h',en:'6.5–7.5 h'},seats:2},
+ urbano:{kwh:'1,87 kWh',chem:'Graphene',rem:1,brakes:{de:'Scheibe · CBS',en:'Disc · CBS'},cls:'L1e-B',seats:2},
+ primaeclassic:{kwh:'0,96 kWh',chem:'Li-Ion',rem:1,range:40,brakes:{de:'Scheibe v / Trommel h',en:'Disc front / Drum rear'},cls:'L1e-B',charge:{de:'5 h',en:'5 h'},seats:2}
+};
 
 /* ===== I18N ===== */
 const T={
@@ -748,6 +793,7 @@ const T={
   copyright:'© 2026 Energeia Vertriebs GmbH. Alle Rechte vorbehalten.',
   /* render-only */
   availOk:'● Sofort lieferbar',availPre:'Vorbestellung',photo:'Foto folgt',power:'Leistung',batt:'Akku',rrp:'UVP',reserveShort:'Reservieren',
+  details:'Details',mSpeed:'Höchstgeschwindigkeit',mPower:'Leistung',mBatt:'Akku',mRemov:'Herausnehmbarer Akku',mRange:'Reichweite',mBrakes:'Bremsen',mTorque:'Drehmoment',mWeight:'Gewicht',mCharge:'Ladezeit',mClass:'Fahrzeugklasse',mSeats:'Sitzplätze',mNote:'Angaben lt. SFM-Datenblättern & Preisliste 2027. Reichweite je nach Fahrweise, Zuladung und Bedingungen — Richtwerte.',
   statusPre:'Vorbestellung — Lieferung nach Markteinführung',availableWord:'verfügbar',soldOut:'ausverkauft',pcs:'Stück'
  },
  en:{
@@ -824,6 +870,7 @@ const T={
   copyright:'© 2026 Energeia Vertriebs GmbH. All rights reserved.',
   /* render-only */
   availOk:'● In stock now',availPre:'Pre-order',photo:'Photo coming',power:'Power',batt:'Battery',rrp:'RRP',reserveShort:'Reserve',
+  details:'Details',mSpeed:'Top speed',mPower:'Power',mBatt:'Battery',mRemov:'Removable battery',mRange:'Range',mBrakes:'Brakes',mTorque:'Torque',mWeight:'Weight',mCharge:'Charge time',mClass:'Licence class',mSeats:'Seats',mNote:'Data per SFM data sheets & 2027 price list. Range varies with riding style, load and conditions — reference values.',
   statusPre:'Pre-order — delivery after launch',availableWord:'available',soldOut:'sold out',pcs:'units'
  }
 };
@@ -852,9 +899,9 @@ function renderLineup(){
       :`<div class="noimg"><b>${m.name}</b><span>${d.photo}</span></div>`;
     grid.insertAdjacentHTML('beforeend',`
       <div class="card reveal">
-        <div class="pic"><div class="flag ${m.hero?'hero':''}">${tag}</div><div class="avail ${availCls}" data-av="${m.name}">${availTxt}</div>${picInner}</div>
+        <div class="pic" onclick="openModal('${m.id}')" style="cursor:pointer"><div class="flag ${m.hero?'hero':''}">${tag}</div><div class="avail ${availCls}" data-av="${m.name}">${availTxt}</div>${picInner}</div>
         <div class="body">
-          <h3>${m.name}</h3>
+          <h3 onclick="openModal('${m.id}')" style="cursor:pointer">${m.name}</h3>
           <p class="blurb">${blurb}</p>
           <div class="specrow">
             <div><b>${m.speed}</b><span>km/h</span></div>
@@ -864,7 +911,7 @@ function renderLineup(){
           <div class="swatches">${sw}</div>
           <div class="foot">
             <div class="price">${euro(m.price)} <small>${d.rrp}</small></div>
-            <a href="#reservieren" class="btn btn-dark" onclick="preselect('${m.id}')">${d.reserveShort}</a>
+            <div class="foot-btns"><button type="button" class="btn btn-light detailsbtn" onclick="openModal('${m.id}')">${d.details}</button><a href="#reservieren" class="btn btn-dark" onclick="preselect('${m.id}')">${d.reserveShort}</a></div>
           </div>
         </div>
       </div>`);
@@ -950,6 +997,46 @@ function fillColors(){
 }
 rModel.addEventListener('change',fillColors);
 window.preselect=function(id){rModel.value=id;fillColors();};
+
+/* ===== product spec pop-up ===== */
+window.openModal=function(id){
+  const m=MODELS.find(x=>x.id===id); if(!m)return; const d=T[LANG]; const s=SPECS[id]||{};
+  const L=v=>v&&typeof v==='object'?(v[LANG]||v.de):v;
+  const tag=m.tag[LANG]||m.tag.de, blurb=m.blurb[LANG]||m.blurb.de;
+  const img=m.img?`<img src="${m.img}" alt="${m.name}">`:`<div class="noimg"><b>${m.name}</b><span>${d.photo}</span></div>`;
+  const availCls=m.status==='available'?'ok':'pre', availTxt=m.status==='available'?d.availOk:d.availPre;
+  const kwh=s.kwh?s.kwh.replace(',',LANG==='en'?'.':','):'';
+  const rows=[];const add=(lab,val)=>{if(val)rows.push(`<tr><td>${lab}</td><td>${val}</td></tr>`);};
+  add(d.mSpeed, m.speed+' km/h');
+  add(d.mPower, m.power);
+  add(d.mBatt, [m.batt,kwh,L(s.chem)].filter(Boolean).join(' · '));
+  add(d.mRemov, s.rem? d.yes : null);
+  add(d.mRange, s.range? (LANG==='en'?'up to '+s.range+' km':'bis '+s.range+' km') : null);
+  add(d.mBrakes, L(s.brakes));
+  add(d.mTorque, s.torque);
+  add(d.mWeight, s.weight);
+  add(d.mCharge, L(s.charge));
+  add(d.mClass, s.cls);
+  add(d.mSeats, s.seats);
+  const colors=m.colors.map(c=>`<span class="sw" title="${c[0]}" style="background:${c[1]}"></span>`).join('');
+  document.getElementById('pmbody').innerHTML=`
+    <div class="pm-top">
+      <div class="pm-img ${m.img?'':'np'}">${img}</div>
+      <div class="pm-head">
+        <div class="pm-tag">${tag}</div>
+        <h3>${m.name}</h3>
+        <div class="pm-sub"><span class="pm-price">${euro(m.price)} <small>${d.rrp}</small></span><span class="pm-avail ${availCls}">${availTxt}</span></div>
+        <p class="pm-blurb">${blurb}</p>
+        <div class="pm-colors">${colors}</div>
+        <a href="#reservieren" class="btn btn-dark btn-lg pm-cta" onclick="preselect('${m.id}');closeModal()">${d.reserveShort}</a>
+      </div>
+    </div>
+    <table class="pm-specs"><tbody>${rows.join('')}</tbody></table>
+    <p class="pm-note">${d.mNote}</p>`;
+  const md=document.getElementById('pmodal'); md.classList.add('on'); md.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll');
+};
+window.closeModal=function(){const md=document.getElementById('pmodal'); md.classList.remove('on'); md.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll');};
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 
 /* static stock panel (fallback before/without live feed) */
 function renderScar(){
@@ -1232,5 +1319,12 @@ syncLive();
     el.style.animationDuration=(2.6+Math.random()*2.4)+'s';el.style.animationDelay=(-Math.random()*4)+'s';el.style.width=(90+Math.random()*120)+'px';s.appendChild(el);}});
 })();
 </script>
+<div class="modal" id="pmodal" aria-hidden="true">
+  <div class="modal-back" onclick="closeModal()"></div>
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <button class="modal-x" type="button" onclick="closeModal()" aria-label="Close">&times;</button>
+    <div class="modal-body" id="pmbody"></div>
+  </div>
+</div>
 </body>
 </html>
