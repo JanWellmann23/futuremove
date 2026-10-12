@@ -406,6 +406,12 @@ body.noscroll{overflow:hidden}
 .pm-specs td:last-child{font-weight:700;text-align:right}
 .pm-note{margin-top:16px;font-size:11.5px;color:#8a93a3;line-height:1.5}
 @media(max-width:620px){.pm-top{grid-template-columns:1fr;gap:16px}.pm-specs td:first-child{width:52%}.foot-btns{flex-direction:column;align-items:stretch;width:100%}}
+.filmband{position:relative;width:100%;aspect-ratio:1664/720;max-height:64vh;overflow:hidden;background:#06080d}
+.filmband video{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .8s ease}
+.filmband.ready video{opacity:1}
+.filmband::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(6,8,13,.28),rgba(6,8,13,0) 22%,rgba(6,8,13,0) 70%,rgba(6,8,13,.42))}
+.filmcap{position:absolute;left:clamp(16px,4vw,40px);bottom:clamp(12px,3vw,22px);z-index:2;color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;opacity:.9;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+@media(max-width:620px){.filmband{aspect-ratio:16/10;max-height:none}.filmcap{font-size:12px}}
 </style>
 </head>
 <body>
@@ -559,6 +565,12 @@ body.noscroll{overflow:hidden}
     </div>
   </div>
 </section>
+
+<!-- FILM BAND -->
+<div class="filmband" id="filmband" data-mp4="assets-v2/film/band.mp4" data-webm="assets-v2/film/band.webm">
+  <video id="filmvid" muted loop playsinline preload="none" poster="assets-v2/film/band_poster.jpg"></video>
+  <div class="filmcap"><span data-i18n="filmCap">Dream 7 — unterwegs in Österreich</span></div>
+</div>
 
 <div class="sdiv"></div>
 
@@ -759,7 +771,7 @@ const T={
   lEy:'Die Palette',lH2:'Zehn Modelle. Für jede Strecke das richtige.',
   lLead:'Vom 110-km/h-Flaggschiff bis zum günstigen Stadtflitzer. <b>Grün = sofort lieferbar</b>, der Rest auf Vorbestellung. Alle Preise UVP inkl. 20 % MwSt.',
   navWhy:'Ausstattung',
-  wEy:'Warum SFM Sunra',wH2:'Was in jedem Modell steckt.',
+  wEy:'Warum SFM Sunra',filmCap:'Dream 7 — unterwegs in Österreich',wH2:'Was in jedem Modell steckt.',
   wLead:'Keine Kompromisse bei dem, was zählt — durchdachte Technik und Alltagstauglichkeit, zum ehrlichen Preis.',
   wf1t:'Herausnehmbarer Akku',wf1p:'Akku mit nach oben nehmen und an jeder Steckdose laden — keine Garage, kein Kabel quer über den Hof. Über fast die ganze Palette.',
   wf2t:'Für jede Führerscheinklasse',wf2p:'Vom 25 km/h Mofa (ab 15 Jahren) bis zum 110 km/h A1-Flaggschiff — eine Marke, die mitwächst.',
@@ -836,7 +848,7 @@ const T={
   lEy:'The range',lH2:'Ten models. The right one for every route.',
   lLead:'From the 110 km/h flagship to the affordable city runabout. <b>Green = in stock now</b>, the rest on pre-order. All prices RRP incl. 20% VAT.',
   navWhy:'Features',
-  wEy:'Why SFM Sunra',wH2:"What's in every model.",
+  wEy:'Why SFM Sunra',filmCap:'Dream 7 — out and about in Austria',wH2:"What's in every model.",
   wLead:'No compromise on what matters — thoughtful engineering and everyday usability, at an honest price.',
   wf1t:'Removable battery',wf1p:'Take the battery upstairs and charge it at any socket — no garage, no cable across the yard. Across almost the whole range.',
   wf2t:'A model for every licence',wf2p:'From a 25 km/h moped (from age 15) to the 110 km/h A1 flagship — one brand that grows with you.',
@@ -1368,5 +1380,24 @@ syncLive();
     <div class="modal-body" id="pmbody"></div>
   </div>
 </div>
+<script>
+(function(){
+  const band=document.getElementById('filmband');if(!band)return;
+  const v=document.getElementById('filmvid');let loaded=false;
+  function load(){
+    if(loaded)return;loaded=true;
+    const sw=document.createElement('source');sw.src=band.dataset.webm;sw.type='video/webm';
+    const sm=document.createElement('source');sm.src=band.dataset.mp4;sm.type='video/mp4';
+    v.appendChild(sw);v.appendChild(sm);v.load();
+    v.addEventListener('loadeddata',()=>band.classList.add('ready'),{once:true});
+    const p=v.play();if(p&&p.catch)p.catch(()=>{});
+  }
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{
+    if(e.isIntersecting){load();v.play&&v.play().catch(()=>{});}
+    else if(loaded){v.pause&&v.pause();}
+  });},{rootMargin:'200px 0px'});
+  io.observe(band);
+})();
+</script>
 </body>
 </html>
