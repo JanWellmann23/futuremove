@@ -72,7 +72,7 @@ a{color:inherit;text-decoration:none}
 .cine-wrap{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:9vh}
 .final{opacity:0;transform:translateY(20px);transition:opacity 1s ease,transform 1s ease;pointer-events:none;text-align:center;max-width:46ch;margin:0 auto}
 .final.on{opacity:1;transform:none;pointer-events:auto}
-.kick{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8fb6ea;font-weight:700;margin-bottom:14px}
+.kick{display:inline-block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#fff;font-weight:700;margin-bottom:14px;background:rgba(10,16,28,.52);padding:5px 13px;border-radius:999px;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
 .final h1{font-size:clamp(28px,4.6vw,54px);line-height:1.05;font-weight:800;letter-spacing:-.02em}
 .final .sub{margin-top:14px;font-size:clamp(15px,2vw,20px);color:#d6dae2}
 .fcta{position:absolute;bottom:5vh;left:24px;right:24px;z-index:4;max-width:46ch;margin:0 auto;text-align:center;opacity:0;transform:translateY(12px);transition:opacity .8s ease,transform .8s ease;pointer-events:none}
@@ -435,10 +435,10 @@ body.noscroll{overflow:hidden}
 <!-- CINEMATIC HERO -->
 <section class="cine" id="home">
   <div class="stage">
-    <picture><source media="(max-width:720px)" srcset="assets-v2/dream7/g_a_m.webp"><img class="shot" src="assets-v2/dream7/g_a.webp" alt="Dream 7" fetchpriority="high" decoding="async"></picture>
-    <picture><source media="(max-width:720px)" srcset="assets-v2/dream7/g_c_m.webp"><img class="shot" src="assets-v2/dream7/g_c.webp" alt="Dream 7"></picture>
-    <picture><source media="(max-width:720px)" srcset="assets-v2/dream7/g_d_m.webp"><img class="shot" src="assets-v2/dream7/g_d.webp" alt="Dream 7"></picture>
-    <picture><source media="(max-width:720px)" srcset="assets-v2/dream7/g_b_m.webp"><img class="shot" src="assets-v2/dream7/g_b.webp" alt="Dream 7"></picture>
+    <img class="shot" id="shot0" alt="Dream 7" fetchpriority="high" decoding="async">
+    <img class="shot" id="shot1" alt="Dream 7">
+    <img class="shot" id="shot2" alt="Dream 7">
+    <img class="shot" id="shot3" alt="Dream 7">
   </div>
   <div class="caps">
     <h2 class="cap" data-i="0" data-i18n-html="cap0">Eine neue Ära<br>der Elektromobilität.</h2>
@@ -1280,6 +1280,15 @@ syncLive();
   const finalEl=document.querySelector('.final');
   const dotsWrap=document.getElementById('dots');const skip=document.getElementById('skip');
   if(!shots.length)return;
+  // --- random still carousel: 3 distinct characters (random variant) + product 4th ---
+  const _b='assets-v2/car/';
+  const _isM=window.matchMedia('(max-width:720px)').matches;
+  const _P=_isM?{alpine:['v01','v09'],city:['v02','v11'],lake:['v03','v10'],oldtown:['v04','v12'],field:['v05','v13'],rain:['v06','v14'],vineyard:['v07','v15'],coast:['v08','v16']}
+               :{alpine:['d01','d09'],city:['d02','d11'],lake:['d03','d10'],oldtown:['d04','d12'],field:['d05','d13'],rain:['d06','d14'],vineyard:['d07','d15'],coast:['d08','d16']};
+  const _prod=_isM?'assets-v2/hero/end_m.webp':'assets-v2/hero/end.webp';
+  const _chars=Object.keys(_P).sort(function(){return Math.random()-0.5;}).slice(0,3);
+  _chars.forEach(function(c,idx){var v=_P[c];shots[idx].src=_b+v[Math.floor(Math.random()*v.length)]+'.webp';});
+  shots[3].src=_prod;
   const SEQ=caps.length,DUR=2600;let i=0,timer=null,done=false;
   const cineEl=document.querySelector('.cine');
   setTimeout(()=>cineEl&&cineEl.classList.add('showcta'),1500);
