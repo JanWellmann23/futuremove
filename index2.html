@@ -108,6 +108,18 @@ section{padding:clamp(60px,9vw,118px) 0}
 .rec .recspecs div b{font-size:22px;font-weight:800;display:block}
 .rec .recspecs div span{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
 .restart{margin-top:18px;background:none;border:none;color:var(--blue);font-weight:600;cursor:pointer;font-size:14px}
+.recalts{margin-top:30px;border-top:1px solid var(--line);padding-top:22px}
+.recalt-h{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-weight:700;margin-bottom:14px}
+.altrow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:620px){.altrow{grid-template-columns:1fr}}
+.altcard{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}
+.altcard .ap{width:80px;height:60px;flex:0 0 auto;border-radius:10px;background:linear-gradient(170deg,#f3f5f8,#e9edf2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.altcard .ap img{width:100%;height:100%;object-fit:contain;padding:6%}
+.altcard .ap .an{font-size:10px;color:#8a94a1;text-align:center;padding:4px;font-weight:600}
+.altcard .am{flex:1;min-width:0}
+.altcard .am b{font-size:15px;font-weight:800;display:block}
+.altcard .am span{font-size:12.5px;color:var(--mut)}
+.altcard .ab{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--blue);white-space:nowrap}
 
 /* lineup */
 .grid{margin-top:46px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -135,6 +147,16 @@ section{padding:clamp(60px,9vw,118px) 0}
 .sw{width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,.18)}
 .card .foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .price{font-size:20px;font-weight:800}.price small{font-size:12px;color:var(--mut);font-weight:500}
+
+/* why / features */
+.why{background:#fff}
+.whygrid{margin-top:46px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.whygrid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.whygrid{grid-template-columns:1fr}}
+.wcard{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:26px 24px}
+.wcard .wi{width:46px;height:46px;border-radius:12px;background:#eaf1fb;color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.wcard h3{font-size:18px;font-weight:800;letter-spacing:-.01em}
+.wcard p{color:var(--mut);font-size:14.5px;margin-top:8px;line-height:1.55}
 
 /* comparison */
 .compare{background:var(--soft)}
@@ -205,6 +227,7 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
       <nav class="nav">
         <a href="#finder" data-i18n="navFinder">Finder</a>
         <a href="#modelle" data-i18n="navModels">Modelle</a>
+        <a href="#warum" data-i18n="navWhy">Warum SFM</a>
         <a href="#reservieren" class="res" data-i18n="navReserve">Reservieren</a>
         <a href="#haendler" data-i18n="navDealers">Händler</a>
       </nav>
@@ -302,7 +325,27 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
             <div><button class="restart" id="rec-restart" data-i18n="recRestart">↺ Neu starten</button></div>
           </div>
         </div>
+        <div class="recalts" id="rec-alts"></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY / FEATURES -->
+<section class="why" id="warum">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="ey" data-i18n="wEy">Warum SFM</div>
+      <h2 class="h2" data-i18n="wH2">Was in jedem Modell steckt.</h2>
+      <p class="lead" data-i18n="wLead">Keine Kompromisse bei dem, was zählt — durchdachte Technik und Alltagstauglichkeit, zum ehrlichen Preis.</p>
+    </div>
+    <div class="whygrid reveal">
+      <div class="wcard"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="2" y="7" width="16" height="10" rx="2"/><path d="M20 10v4"/><path d="M6 10.5v3"/><path d="M9.5 10.5v3"/></svg></div><h3 data-i18n="wf1t">Herausnehmbarer Akku</h3><p data-i18n="wf1p">Akku mit nach oben nehmen und an jeder Steckdose laden — keine Garage, kein Kabel quer über den Hof. Über fast die ganze Palette.</p></div>
+      <div class="wcard"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M13 10h5M13 14h5M5.5 16c.3-1.4 4.2-1.4 5 0"/></svg></div><h3 data-i18n="wf2t">Für jede Führerscheinklasse</h3><p data-i18n="wf2p">Vom 25 km/h Mofa (ab 15 Jahren) bis zum 110 km/h A1-Flaggschiff — eine Marke, die mitwächst.</p></div>
+      <div class="wcard"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div><h3 data-i18n="wf3t">Spitzenleistung</h3><p data-i18n="wf3p">Das Dream 7 Flaggschiff: 110 km/h, 6 kW, 72-V-/72-Ah-Akku, TFT-Farbdisplay und ABS + TCS.</p></div>
+      <div class="wcard"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20.6 13.4 12.4 21.6a1.4 1.4 0 0 1-2 0L3 14.2V4h10.2l7.4 7.4a1.4 1.4 0 0 1 0 2Z"/><circle cx="7.6" cy="7.6" r="1.2"/></svg></div><h3 data-i18n="wf4t">Ehrlicher Preis</h3><p data-i18n="wf4p">Spitzenleistung ohne Premium-Aufschlag. Alle Preise als unverbindliche Empfehlung inkl. MwSt.</p></div>
+      <div class="wcard"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3 data-i18n="wf5t">Lokal in Österreich</h3><p data-i18n="wf5p">Energeia ist die offizielle SFM-/Sunra-Vertretung in Österreich — Ansprechpartner und Service vor Ort.</p></div>
+      <div class="wcard"><div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h3 data-i18n="wf6t">Zehn Modelle</h3><p data-i18n="wf6p">Vom günstigen Stadtflitzer bis zum autobahntauglichen Flaggschiff — für jeden Weg das passende Modell.</p></div>
     </div>
   </div>
 </section>
@@ -472,6 +515,16 @@ const T={
   fResTitle:'Deine Empfehlung',recPriceLabel:'UVP inkl. MwSt.',recReserve:'Dieses Modell reservieren',recRestart:'↺ Neu starten',
   lEy:'Die Palette',lH2:'Zehn Modelle. Für jede Strecke das richtige.',
   lLead:'Vom 110-km/h-Flaggschiff bis zum günstigen Stadtflitzer. <b>Grün = sofort lieferbar</b>, der Rest auf Vorbestellung. Alle Preise UVP inkl. 20 % MwSt.',
+  navWhy:'Ausstattung',
+  wEy:'Warum SFM',wH2:'Was in jedem Modell steckt.',
+  wLead:'Keine Kompromisse bei dem, was zählt — durchdachte Technik und Alltagstauglichkeit, zum ehrlichen Preis.',
+  wf1t:'Herausnehmbarer Akku',wf1p:'Akku mit nach oben nehmen und an jeder Steckdose laden — keine Garage, kein Kabel quer über den Hof. Über fast die ganze Palette.',
+  wf2t:'Für jede Führerscheinklasse',wf2p:'Vom 25 km/h Mofa (ab 15 Jahren) bis zum 110 km/h A1-Flaggschiff — eine Marke, die mitwächst.',
+  wf3t:'Spitzenleistung',wf3p:'Das Dream 7 Flaggschiff: 110 km/h, 6 kW, 72-V-/72-Ah-Akku, TFT-Farbdisplay und ABS + TCS.',
+  wf4t:'Ehrlicher Preis',wf4p:'Spitzenleistung ohne Premium-Aufschlag. Alle Preise als unverbindliche Empfehlung inkl. MwSt.',
+  wf5t:'Lokal in Österreich',wf5p:'Energeia ist die offizielle SFM-/Sunra-Vertretung in Österreich — Ansprechpartner und Service vor Ort.',
+  wf6t:'Zehn Modelle',wf6p:'Vom günstigen Stadtflitzer bis zum autobahntauglichen Flaggschiff — für jeden Weg das passende Modell.',
+  recAlt:'Ebenfalls passend',
   cEy:'Der Preisvorteil',cH2:'Gleiche Klasse. Deutlich weniger Geld.',
   cLead:'Dieselbe Leistung wie beim Marktführer — zu einem ehrlichen Preis. Ein direkter Vergleich, Klasse für Klasse.',
   cmpOurs:'Unser Modell',cmpComp:'Vergleichbar',
@@ -522,6 +575,16 @@ const T={
   fResTitle:'Your recommendation',recPriceLabel:'RRP incl. VAT',recReserve:'Reserve this model',recRestart:'↺ Start over',
   lEy:'The range',lH2:'Ten models. The right one for every route.',
   lLead:'From the 110 km/h flagship to the affordable city runabout. <b>Green = in stock now</b>, the rest on pre-order. All prices RRP incl. 20% VAT.',
+  navWhy:'Features',
+  wEy:'Why SFM',wH2:"What's in every model.",
+  wLead:'No compromise on what matters — thoughtful engineering and everyday usability, at an honest price.',
+  wf1t:'Removable battery',wf1p:'Take the battery upstairs and charge it at any socket — no garage, no cable across the yard. Across almost the whole range.',
+  wf2t:'A model for every licence',wf2p:'From a 25 km/h moped (from age 15) to the 110 km/h A1 flagship — one brand that grows with you.',
+  wf3t:'Peak performance',wf3p:'The Dream 7 flagship: 110 km/h, 6 kW, 72 V / 72 Ah battery, TFT colour display and ABS + TCS.',
+  wf4t:'Honest price',wf4p:'Peak performance without the premium markup. All prices are recommended retail incl. VAT.',
+  wf5t:'Local in Austria',wf5p:'Energeia is the official SFM/Sunra representative in Austria — local contact and service.',
+  wf6t:'Ten models',wf6p:'From the affordable city runabout to the motorway-capable flagship — the right model for every route.',
+  recAlt:'Also a good fit',
   cEy:'The price advantage',cH2:'Same class. Noticeably less money.',
   cLead:'The same performance as the market leader — at an honest price. A direct comparison, class by class.',
   cmpOurs:'Our model',cmpComp:'Comparable',
@@ -602,16 +665,26 @@ document.querySelectorAll('.fopt').forEach(o=>o.addEventListener('click',()=>{
   if(step<3){steps[step-1].classList.remove('on');step++;steps[step-1].classList.add('on');}
   else showResult();
 }));
-function pickModel(){
+function rankModels(){
   const {speed,budget}=answers;
-  if(speed==='110')return 'dream7';
-  if(speed==='80')return budget==='low'?'e2hsport':'futuresport';
-  if(budget==='low')return 'em1';
-  return 'futurecity';
+  let order;
+  if(speed==='110'){
+    order=['dream7','futuresport','e2hsport'];
+  } else if(speed==='80'){
+    if(budget==='low') order=['e2hsport','futuresport','legend'];
+    else if(budget==='open') order=['futuresport','legend','e2hsport'];
+    else order=['futuresport','e2hsport','legend'];
+  } else {
+    if(budget==='low') order=['em1','primaeclassic','futurelight'];
+    else if(budget==='open') order=['futurecity','e2h','futurelight'];
+    else order=['futurecity','futurelight','em1'];
+  }
+  return order.filter((id,i)=>order.indexOf(id)===i);
 }
 function showResult(){
   steps.forEach(s=>s.classList.remove('on'));
-  const m=MODELS.find(x=>x.id===pickModel());
+  const order=rankModels(),d=T[LANG];
+  const m=MODELS.find(x=>x.id===order[0]);
   const img=document.getElementById('rec-img');
   if(m.img){img.src=m.img;img.style.display='block';}else{img.style.display='none';}
   img.alt=m.name;
@@ -620,6 +693,17 @@ function showResult(){
   document.getElementById('rec-speed').textContent=m.speed;
   document.getElementById('rec-price').textContent=euro(m.price);
   document.getElementById('rec-reserve').setAttribute('onclick',`preselect('${m.id}')`);
+  const box=document.getElementById('rec-alts');
+  const alts=order.slice(1,3).map(id=>MODELS.find(x=>x.id===id)).filter(Boolean);
+  if(box){
+    if(alts.length){
+      box.innerHTML=`<div class="recalt-h">${d.recAlt}</div><div class="altrow">`+alts.map(a=>{
+        const pic=a.img?`<div class="ap"><img src="${a.img}" alt="${a.name}"></div>`:`<div class="ap"><span class="an">${a.name}</span></div>`;
+        return `<div class="altcard">${pic}<div class="am"><b>${a.name}</b><span>${a.speed} km/h · ${euro(a.price)}</span></div><a href="#reservieren" class="ab" onclick="preselect('${a.id}')">${d.reserveShort} →</a></div>`;
+      }).join('')+`</div>`;
+      box.style.display='';
+    } else box.style.display='none';
+  }
   result.classList.add('on');
 }
 document.getElementById('rec-restart').addEventListener('click',()=>{
