@@ -93,6 +93,7 @@ a{color:inherit;text-decoration:none}
 .final .kick{text-shadow:0 1px 12px rgba(0,0,0,.55)}
 .final .tagline{text-shadow:0 1px 10px rgba(0,0,0,.75)}
 @media(max-width:720px){
+  .groundimg{background-image:url('assets-v2/hero/end_m.webp')}
   .cine.ended .fhead{top:9vh;max-width:92vw}
   .cine.ended .final h1{font-size:clamp(24px,6.4vw,34px)}
   .cine.ended .fcta .cta{flex-wrap:nowrap;gap:8px;justify-content:center}
@@ -430,10 +431,10 @@ body.noscroll{overflow:hidden}
 <!-- CINEMATIC HERO -->
 <section class="cine" id="home">
   <div class="stage">
-    <img class="shot" src="assets-v2/dream7/g_a.webp" alt="Dream 7" fetchpriority="high" decoding="async">
-    <img class="shot" src="assets-v2/dream7/g_c.webp" alt="Dream 7">
-    <img class="shot" src="assets-v2/dream7/g_d.webp" alt="Dream 7">
-    <img class="shot" src="assets-v2/dream7/g_b.webp" alt="Dream 7">
+    <picture><source media="(max-width:720px)" srcset="assets-v2/dream7/g_a_m.webp"><img class="shot" src="assets-v2/dream7/g_a.webp" alt="Dream 7" fetchpriority="high" decoding="async"></picture>
+    <picture><source media="(max-width:720px)" srcset="assets-v2/dream7/g_c_m.webp"><img class="shot" src="assets-v2/dream7/g_c.webp" alt="Dream 7"></picture>
+    <picture><source media="(max-width:720px)" srcset="assets-v2/dream7/g_d_m.webp"><img class="shot" src="assets-v2/dream7/g_d.webp" alt="Dream 7"></picture>
+    <picture><source media="(max-width:720px)" srcset="assets-v2/dream7/g_b_m.webp"><img class="shot" src="assets-v2/dream7/g_b.webp" alt="Dream 7"></picture>
   </div>
   <div class="caps">
     <h2 class="cap" data-i="0" data-i18n-html="cap0">Eine neue Ära<br>der Elektromobilität.</h2>
@@ -557,6 +558,20 @@ body.noscroll{overflow:hidden}
 
 <div class="sdiv"></div>
 
+<!-- LINEUP -->
+<section id="modelle">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="ey" data-i18n="lEy">Die Palette</div>
+      <h2 class="h2" data-i18n="lH2">Zehn Modelle. Für jede Strecke das richtige.</h2>
+      <p class="lead" data-i18n-html="lLead">Vom 110-km/h-Flaggschiff bis zum günstigen Stadtflitzer. <b>Grün = sofort lieferbar</b>, der Rest auf Vorbestellung. Alle Preise UVP inkl. 20 % MwSt.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
 <!-- COMPARISON (verified, sourced) -->
 <section class="compare2" id="vergleich">
   <div class="wrap">
@@ -567,18 +582,6 @@ body.noscroll{overflow:hidden}
     </div>
     <div class="vgl reveal" id="vgl"></div>
     <p class="vnote reveal" data-i18n="vNote">Preise & Daten: UVP inkl. MwSt. Stand: Oktober 2026.</p>
-  </div>
-</section>
-
-<!-- LINEUP -->
-<section id="modelle">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="ey" data-i18n="lEy">Die Palette</div>
-      <h2 class="h2" data-i18n="lH2">Zehn Modelle. Für jede Strecke das richtige.</h2>
-      <p class="lead" data-i18n-html="lLead">Vom 110-km/h-Flaggschiff bis zum günstigen Stadtflitzer. <b>Grün = sofort lieferbar</b>, der Rest auf Vorbestellung. Alle Preise UVP inkl. 20 % MwSt.</p>
-    </div>
-    <div class="grid" id="grid"></div>
   </div>
 </section>
 
