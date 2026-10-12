@@ -56,7 +56,7 @@ a{color:inherit;text-decoration:none}
   background:radial-gradient(130% 100% at 72% 18%,#1b3a63 0%,#0c1726 42%,#06080d 100%)}
 .stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1}
 .shot{position:absolute;max-width:92%;max-height:62%;object-fit:contain;opacity:0;transform:scale(1.02) translateY(8px);
-  transition:opacity 1s ease,transform 1.4s ease;filter:drop-shadow(0 40px 60px rgba(0,0,0,.5))}
+  transition:opacity 1s ease,transform 1.2s ease,max-height 1s ease;filter:drop-shadow(0 40px 60px rgba(0,0,0,.5))}
 .shot.on{opacity:1;transform:none}
 .cine::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(180deg,rgba(6,8,13,.5),rgba(6,8,13,0) 26%,rgba(6,8,13,0) 55%,rgba(6,8,13,.9))}
@@ -73,7 +73,8 @@ a{color:inherit;text-decoration:none}
 .final .tagline{margin-top:18px;font-size:13px;color:#9fb0c6;letter-spacing:.02em}
 .final .tagline b{color:#fff}
 /* end-screen legibility: lift the product up, dark scrim + shadows behind the message */
-.cine.ended .shot.on{transform:translateY(-17%) scale(.82)}
+.cine.ended .stage{align-items:flex-start;padding-top:6vh}
+.cine.ended .shot.on{max-height:26vh;transform:none}
 .final{position:relative;z-index:1}
 .final::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:170vw;height:200%;z-index:-1;pointer-events:none;
@@ -81,7 +82,7 @@ a{color:inherit;text-decoration:none}
 .final h1{text-shadow:0 2px 28px rgba(0,0,0,.6),0 1px 4px rgba(0,0,0,.55)}
 .final .sub{text-shadow:0 1px 16px rgba(0,0,0,.6)}
 .final .kick{text-shadow:0 1px 12px rgba(0,0,0,.55)}
-@media(max-width:720px){.cine.ended .shot.on{transform:translateY(-20%) scale(.76)}}
+@media(max-width:720px){.cine.ended .stage{padding-top:9vh}.cine.ended .shot.on{max-height:24vh}}
 .skip{position:absolute;top:64px;right:24px;z-index:5;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.26);color:#fff;border-radius:999px;padding:7px 15px;font-size:12.5px;cursor:pointer;backdrop-filter:blur(8px)}
 .skip:hover{background:rgba(255,255,255,.22)}.skip.hide{display:none}
 .dots{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:4;display:flex;gap:8px}
@@ -328,7 +329,14 @@ footer .cr{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;color:#5c
 .sdiv{position:relative;height:1px;background:var(--line);overflow:visible;z-index:5}
 .sdiv i{position:absolute;top:-1px;height:3px;width:130px;left:-18%;border-radius:3px;background:linear-gradient(90deg,transparent,var(--blue),transparent);animation:zip 3.4s linear infinite;opacity:.5}
 @keyframes zip{to{transform:translateX(760%)}}
-@media(prefers-reduced-motion:reduce){.glow-bg i,.sdiv i{animation:none}.wcard.in .wi svg{animation:none}}
+/* radar draw-in on scroll */
+.vradar svg .r-sfm{opacity:0;transform:scale(.72);transform-origin:50% 50%;transform-box:fill-box;transition:transform 1s cubic-bezier(.2,.8,.2,1) .08s,opacity .6s ease .08s}
+.vradar svg .r-sfm circle{opacity:0;transition:opacity .4s ease .5s}
+.vradar svg .r-comp{opacity:0;transition:opacity .7s ease}
+.vradar.seen svg .r-sfm{opacity:1;transform:none}
+.vradar.seen svg .r-sfm circle{opacity:1}
+.vradar.seen svg .r-comp{opacity:1}
+@media(prefers-reduced-motion:reduce){.glow-bg i,.sdiv i{animation:none}.wcard.in .wi svg{animation:none}.vradar svg .r-sfm,.vradar svg .r-comp,.vradar svg .r-sfm circle{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
@@ -626,7 +634,7 @@ const MODELS=[
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Grün','#3a7d44']],img:'assets-v2/em1/a.webp',status:'preorder',stock:{},
   blurb:{de:'25 oder 45 km/h. Der einfachste Weg, elektrisch zu fahren.',en:'25 or 45 km/h. The simplest way to go electric.'}},
  {id:'urbano',name:'Urbano',tag:{de:'Praktisch',en:'Practical'},speed:45,power:'1,5 kW',batt:'72 V / 26 Ah (Graphen)',price:1499,
-  colors:[['Schwarz','#1b1b1d']],img:null,status:'available',stock:{'Schwarz':50},
+  colors:[['Schwarz','#1b1b1d']],img:'assets-v2/urbano/a.webp',status:'available',stock:{'Schwarz':50},
   blurb:{de:'45 km/h, Graphen-Akku, robust und praktisch.',en:'45 km/h, graphene battery, robust and practical.'}},
  {id:'primaeclassic',name:'Prima E Classic',tag:{de:'Charakter',en:'Character'},speed:45,power:'500 W (Spitze 800 W)',batt:'48 V / 20 Ah',price:1299,
   colors:[['Grau','#8a8f98']],img:'assets-v2/primaeclassic/a.webp',status:'available',stock:{'Grau':150},
@@ -969,7 +977,7 @@ function radarSVG(axes,sfm,comp){
   });
   const poly=(v,fl,s,w,dash)=>`<polygon points="${v.map((x,i)=>pt(i,Math.max(0.06,x)).map(f).join(',')).join(' ')}" fill="${fl}" stroke="${s}" stroke-width="${w}"${dash?` stroke-dasharray="${dash}"`:''} stroke-linejoin="round"/>`;
   const dots=(v,fill)=>v.map((x,i)=>{const[dx,dy]=pt(i,Math.max(0.06,x));return `<circle cx="${f(dx)}" cy="${f(dy)}" r="3.3" fill="${fill}"/>`;}).join('');
-  return `<svg viewBox="-74 -26 ${S+148} ${S+52}" class="radar">${grid}${ax}${poly(comp,'rgba(150,160,172,.12)','#aab0b8',2,'4 3')}${poly(sfm,'rgba(42,120,214,.30)','#1f6fd0',2.8)}${dots(sfm,'#1f6fd0')}</svg>`;
+  return `<svg viewBox="-74 -26 ${S+148} ${S+52}" class="radar">${grid}${ax}<g class="r-comp">${poly(comp,'rgba(150,160,172,.12)','#aab0b8',2,'4 3')}</g><g class="r-sfm">${poly(sfm,'rgba(42,120,214,.30)','#1f6fd0',2.8)}${dots(sfm,'#1f6fd0')}</g></svg>`;
 }
 function radarVals(key,sfmId){
   // SFM side reflects the actual model shown (battery/speed/price per model);
@@ -1014,7 +1022,10 @@ function renderVgl(){
     const rec=focusHere?`<div class="vrec">${d.recMark}: <b>${sfm.name.replace('SFM ','')}</b></div>`:'';
     return `<div class="vblock${focusHere?' focus':''}" data-cls="${b.key}"><div class="vcls">${d[b.key]}</div>${rec}<div class="vtop">${radar}<div class="vtwrap"><table class="vtable"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div></div><div class="vtake">${d[b.take]}</div>${moreLine}</div>`;
   }).join('');
+  observeRadars();
 }
+const radarObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');radarObs.unobserve(e.target);}});},{threshold:.35});
+function observeRadars(){document.querySelectorAll('.vradar').forEach(function(v){if(!v.classList.contains('seen'))radarObs.observe(v);});}
 window.showCompare=function(id){
   VGL_FOCUS=id; renderVgl();
   const sec=document.getElementById('vergleich'); if(!sec)return;
