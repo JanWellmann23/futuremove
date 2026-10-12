@@ -878,13 +878,18 @@ const VGL=[
 ];
 let VGL_FOCUS=null;
 function radarSVG(axes,sfm,comp){
-  const S=280,c=S/2,R=S*0.36;
-  const pt=(i,r)=>{const a=(Math.PI*2*i/axes.length)-Math.PI/2;return[(c+Math.cos(a)*R*r).toFixed(1),(c+Math.sin(a)*R*r).toFixed(1)];};
-  let grid='';[0.25,0.5,0.75,1].forEach(g=>{grid+=`<polygon points="${axes.map((_,i)=>pt(i,g).join(',')).join(' ')}" fill="none" stroke="#e4e8ef" stroke-width="1"/>`;});
-  let ax='';axes.forEach((lab,i)=>{const[x,y]=pt(i,1);ax+=`<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="#e4e8ef" stroke-width="1"/>`;const[lx,ly]=pt(i,1.18);ax+=`<text x="${lx}" y="${ly}" font-size="11.5" font-weight="700" fill="#5b6472" text-anchor="middle" dominant-baseline="middle">${lab}</text>`;});
-  const poly=(v,f,s,w,dash)=>`<polygon points="${v.map((x,i)=>pt(i,Math.max(0.06,x)).join(',')).join(' ')}" fill="${f}" stroke="${s}" stroke-width="${w}"${dash?` stroke-dasharray="${dash}"`:''} stroke-linejoin="round"/>`;
-  const dots=(v,fill)=>v.map((x,i)=>{const[dx,dy]=pt(i,Math.max(0.06,x));return `<circle cx="${dx}" cy="${dy}" r="3.3" fill="${fill}"/>`;}).join('');
-  return `<svg viewBox="-34 -22 ${S+68} ${S+44}" class="radar">${grid}${ax}${poly(comp,'rgba(150,160,172,.12)','#aab0b8',2,'4 3')}${poly(sfm,'rgba(42,120,214,.30)','#1f6fd0',2.8)}${dots(sfm,'#1f6fd0')}</svg>`;
+  const S=280,c=S/2,R=S*0.33,f=n=>n.toFixed(1);
+  const pt=(i,r)=>{const a=(Math.PI*2*i/axes.length)-Math.PI/2;return[c+Math.cos(a)*R*r,c+Math.sin(a)*R*r];};
+  let grid='';[0.25,0.5,0.75,1].forEach(g=>{grid+=`<polygon points="${axes.map((_,i)=>pt(i,g).map(f).join(',')).join(' ')}" fill="none" stroke="#e4e8ef" stroke-width="1"/>`;});
+  let ax='';axes.forEach((lab,i)=>{
+    const ang=(Math.PI*2*i/axes.length)-Math.PI/2,cos=Math.cos(ang);
+    const[x,y]=pt(i,1);ax+=`<line x1="${c}" y1="${c}" x2="${f(x)}" y2="${f(y)}" stroke="#e4e8ef" stroke-width="1"/>`;
+    const[lx,ly]=pt(i,1.30);const anchor=cos>0.25?'start':cos<-0.25?'end':'middle';
+    ax+=`<text x="${f(lx)}" y="${f(ly)}" font-size="12.5" font-weight="800" fill="#2b3340" stroke="#fff" stroke-width="3.4" paint-order="stroke" stroke-linejoin="round" text-anchor="${anchor}" dominant-baseline="middle">${lab}</text>`;
+  });
+  const poly=(v,fl,s,w,dash)=>`<polygon points="${v.map((x,i)=>pt(i,Math.max(0.06,x)).map(f).join(',')).join(' ')}" fill="${fl}" stroke="${s}" stroke-width="${w}"${dash?` stroke-dasharray="${dash}"`:''} stroke-linejoin="round"/>`;
+  const dots=(v,fill)=>v.map((x,i)=>{const[dx,dy]=pt(i,Math.max(0.06,x));return `<circle cx="${f(dx)}" cy="${f(dy)}" r="3.3" fill="${fill}"/>`;}).join('');
+  return `<svg viewBox="-74 -26 ${S+148} ${S+52}" class="radar">${grid}${ax}${poly(comp,'rgba(150,160,172,.12)','#aab0b8',2,'4 3')}${poly(sfm,'rgba(42,120,214,.30)','#1f6fd0',2.8)}${dots(sfm,'#1f6fd0')}</svg>`;
 }
 function radarVals(key){
   const s=SFM_R[key],c=COMP[key].r,cp=COMP[key].price,sp=SFM_R[key].price;
