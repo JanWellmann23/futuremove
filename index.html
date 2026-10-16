@@ -408,13 +408,14 @@ body.noscroll{overflow:hidden}
 .filmband-bg{position:absolute;inset:0;z-index:0;background-color:#06080d;background-position:center;background-size:cover;background-repeat:no-repeat}
 .filmband-bg iframe{position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%) scale(1.02);border:0;opacity:0;transition:opacity 1s ease}
 .filmband.ready .filmband-bg iframe{opacity:1}
-.filmband-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;width:74px;height:74px;border-radius:50%;background:rgba(10,14,22,.42);backdrop-filter:blur(3px);border:1.5px solid rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center;transition:transform .25s ease,background .25s ease;pointer-events:none}
-.filmband-play svg{margin-left:3px}
-.filmband:hover .filmband-play,.filmband:focus-visible .filmband-play{transform:translate(-50%,-50%) scale(1.09);background:rgba(10,14,22,.62)}
+.filmband-cta{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;display:inline-flex;align-items:center;gap:11px;padding:10px 20px 10px 11px;border-radius:999px;background:rgba(10,14,22,.46);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:14.5px;font-weight:700;letter-spacing:.02em;white-space:nowrap;box-shadow:0 10px 30px -12px rgba(0,0,0,.6);transition:transform .25s ease,background .25s ease;pointer-events:none}
+.filmband-cta .pic{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.5);flex:none}
+.filmband-cta .pic svg{margin-left:2px}
+.filmband:hover .filmband-cta,.filmband:focus-visible .filmband-cta{transform:translate(-50%,-50%) scale(1.05);background:rgba(10,14,22,.62)}
 .filmband:focus-visible{outline:2px solid #4f8bff;outline-offset:3px}
 .filmband::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(6,8,13,.28),rgba(6,8,13,0) 22%,rgba(6,8,13,0) 70%,rgba(6,8,13,.42))}
 .filmcap{position:absolute;left:clamp(16px,4vw,40px);bottom:clamp(12px,3vw,22px);z-index:3;color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;opacity:.9;text-shadow:0 1px 8px rgba(0,0,0,.7)}
-@media(max-width:620px){.filmband{aspect-ratio:16/9;max-height:none}.filmcap{font-size:12px}.filmband-play{width:60px;height:60px}}
+@media(max-width:620px){.filmband{aspect-ratio:16/9;max-height:none}.filmcap{font-size:12px}.filmband-cta{font-size:13px;padding:8px 16px 8px 9px;gap:9px}.filmband-cta .pic{width:30px;height:30px}}
 /* full-film lightbox */
 .filmmodal{padding:clamp(14px,4vw,52px)}
 .filmmodal-card{position:relative;width:100%;max-width:1200px;background:#000;border-radius:16px;box-shadow:0 40px 100px -20px rgba(0,0,0,.6);aspect-ratio:16/9;overflow:hidden;animation:pmin .3s cubic-bezier(.2,.7,.2,1)}
@@ -579,8 +580,8 @@ body.noscroll{overflow:hidden}
 
 <!-- FILM BAND -->
 <div class="filmband" id="filmband" data-vimeo-de="1236474942" data-vimeo-en="1236474943" role="button" tabindex="0" aria-label="Film ansehen">
-  <div class="filmband-bg" id="filmbandbg" style="background-image:url(assets-v2/film/band_poster.jpg)"></div>
-  <div class="filmband-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+  <div class="filmband-bg" id="filmbandbg" style="background-image:url(assets-v2/film/band_hero.jpg)"></div>
+  <div class="filmband-cta" aria-hidden="true"><span class="pic"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span><span data-i18n="filmWatch">Film ansehen · mit Ton</span></div>
   <div class="filmcap"><span data-i18n="filmCap">Dream 7 — unterwegs in Österreich</span></div>
 </div>
 
@@ -783,7 +784,7 @@ const T={
   lEy:'Die Palette',lH2:'Zehn Modelle. Für jede Strecke das richtige.',
   lLead:'Vom 110-km/h-Flaggschiff bis zum günstigen Stadtflitzer. <b>Grün = sofort lieferbar</b>, der Rest auf Vorbestellung. Alle Preise UVP inkl. 20 % MwSt.',
   navWhy:'Ausstattung',
-  wEy:'Warum SFM Sunra',filmCap:'Dream 7 — unterwegs in Österreich',wH2:'Was in jedem Modell steckt.',
+  wEy:'Warum SFM Sunra',filmCap:'Dream 7 — unterwegs in Österreich',filmWatch:'Film ansehen · mit Ton',wH2:'Was in jedem Modell steckt.',
   wLead:'Keine Kompromisse bei dem, was zählt — durchdachte Technik und Alltagstauglichkeit, zum ehrlichen Preis.',
   wf1t:'Herausnehmbarer Akku',wf1p:'Akku mit nach oben nehmen und an jeder Steckdose laden — keine Garage, kein Kabel quer über den Hof. Über fast die ganze Palette.',
   wf2t:'Für jede Führerscheinklasse',wf2p:'Vom 25 km/h Mofa (ab 15 Jahren) bis zum 110 km/h A1-Flaggschiff — eine Marke, die mitwächst.',
@@ -860,7 +861,7 @@ const T={
   lEy:'The range',lH2:'Ten models. The right one for every route.',
   lLead:'From the 110 km/h flagship to the affordable city runabout. <b>Green = in stock now</b>, the rest on pre-order. All prices RRP incl. 20% VAT.',
   navWhy:'Features',
-  wEy:'Why SFM Sunra',filmCap:'Dream 7 — out and about in Austria',wH2:"What's in every model.",
+  wEy:'Why SFM Sunra',filmCap:'Dream 7 — out and about in Austria',filmWatch:'Watch the film · with sound',wH2:"What's in every model.",
   wLead:'No compromise on what matters — thoughtful engineering and everyday usability, at an honest price.',
   wf1t:'Removable battery',wf1p:'Take the battery upstairs and charge it at any socket — no garage, no cable across the yard. Across almost the whole range.',
   wf2t:'A model for every licence',wf2p:'From a 25 km/h moped (from age 15) to the 110 km/h A1 flagship — one brand that grows with you.',
