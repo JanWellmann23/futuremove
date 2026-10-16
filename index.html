@@ -389,6 +389,12 @@ body.noscroll{overflow:hidden}
 .pm-img{background:var(--soft);border-radius:16px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .pm-img img{width:100%;height:100%;object-fit:contain;padding:10px}
 .pm-img.np{background:linear-gradient(145deg,#eef3fb,#e2ecfb)}
+.pm-media{display:flex;flex-direction:column;gap:10px}
+.pm-thumbs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.pm-thumb{width:58px;height:58px;border-radius:10px;border:1.5px solid rgba(10,15,25,.1);background:var(--soft);padding:4px;cursor:pointer;transition:border-color .2s,transform .15s}
+.pm-thumb:hover{transform:translateY(-1px)}
+.pm-thumb.on{border-color:#2b6cff}
+.pm-thumb img{width:100%;height:100%;object-fit:contain;display:block;padding:0}
 .pm-tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}
 .pm-head h3{font-size:clamp(24px,3.4vw,32px);font-weight:800;letter-spacing:-.02em;margin:6px 0 10px}
 .pm-sub{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
@@ -712,7 +718,8 @@ const MODELS=[
   colors:[['Schwarz','#1b1b1d']],img:'assets-v2/legend/a.webp',status:'available',stock:{'Schwarz':50},
   blurb:{de:'80 km/h, großer 50-Ah-Akku, CBS-Bremssystem. Retro-Haltung mit Kraft.',en:'80 km/h, big 50 Ah battery, CBS braking. Retro attitude with muscle.'}},
  {id:'futuresport',name:'Future Sport',tag:{de:'Sportlich',en:'Sporty'},speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
-  colors:[['Rot','#c0392b'],['Schwarz','#1b1b1d'],['Türkis','#2bb3a3']],img:'assets-v2/futurelight/a.webp',status:'available',
+  colors:[['Rot','#c0392b'],['Schwarz','#1b1b1d'],['Türkis','#2bb3a3']],img:'assets-v2/futuresport/gal_red.webp',status:'available',
+  gallery:[['assets-v2/futuresport/gal_red.webp','Rot'],['assets-v2/futuresport/gal_black.webp','Schwarz'],['assets-v2/futuresport/gal_turquoise.webp','Türkis']],
   stock:{'Schwarz':30,'Rot':30,'Türkis':10},
   blurb:{de:'80 km/h, 50-Ah-Akku, CBS. Der dynamische Allrounder.',en:'80 km/h, 50 Ah battery, CBS. The dynamic all-rounder.'}},
  {id:'e2hsport',name:'E2H Sport',tag:{de:'Sportlich',en:'Sporty'},speed:80,power:'2,5 kW (Spitze 5 kW)',batt:'2× 72 V / 24 Ah',price:2999,
@@ -1038,7 +1045,10 @@ window.openModal=function(id){
   const m=MODELS.find(x=>x.id===id); if(!m)return; const d=T[LANG]; const s=SPECS[id]||{};
   const L=v=>v&&typeof v==='object'?(v[LANG]||v.de):v;
   const tag=m.tag[LANG]||m.tag.de, blurb=m.blurb[LANG]||m.blurb.de;
-  const img=m.img?`<img src="${m.img}" alt="${m.name}">`:`<div class="noimg"><b>${m.name}</b><span>${d.photo}</span></div>`;
+  const gal=m.gallery&&m.gallery.length?m.gallery:(m.img?[[m.img,'']]:[]);
+  const mainSrc=gal.length?gal[0][0]:m.img;
+  const img=mainSrc?`<img id="pmMainImg" src="${mainSrc}" alt="${m.name}">`:`<div class="noimg"><b>${m.name}</b><span>${d.photo}</span></div>`;
+  const thumbs=gal.length>1?`<div class="pm-thumbs">`+gal.map((g,i)=>`<button type="button" class="pm-thumb${i===0?' on':''}" title="${g[1]}" onclick="pmGal('${g[0]}',this)"><img src="${g[0]}" alt="${g[1]}" loading="lazy"></button>`).join('')+`</div>`:'';
   const availCls=m.status==='available'?'ok':'pre', availTxt=m.status==='available'?d.availOk:d.availPre;
   const kwh=s.kwh?s.kwh.replace(',',LANG==='en'?'.':','):'';
   const rows=[];const add=(lab,val)=>{if(val)rows.push(`<tr><td>${lab}</td><td>${val}</td></tr>`);};
@@ -1056,7 +1066,7 @@ window.openModal=function(id){
   const colors=m.colors.map(c=>`<span class="sw" title="${c[0]}" style="background:${c[1]}"></span>`).join('');
   document.getElementById('pmbody').innerHTML=`
     <div class="pm-top">
-      <div class="pm-img ${m.img?'':'np'}">${img}</div>
+      <div class="pm-media"><div class="pm-img ${mainSrc?'':'np'}">${img}</div>${thumbs}</div>
       <div class="pm-head">
         <div class="pm-tag">${tag}</div>
         <h3>${m.name}</h3>
@@ -1071,6 +1081,7 @@ window.openModal=function(id){
   const md=document.getElementById('pmodal'); md.classList.add('on'); md.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll');
 };
 window.closeModal=function(){const md=document.getElementById('pmodal'); md.classList.remove('on'); md.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll');};
+window.pmGal=function(src,el){const im=document.getElementById('pmMainImg');if(im)im.src=src;document.querySelectorAll('.pm-thumb').forEach(b=>b.classList.remove('on'));if(el)el.classList.add('on');};
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 
 /* static stock panel (fallback before/without live feed) */
