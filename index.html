@@ -404,12 +404,25 @@ body.noscroll{overflow:hidden}
 .pm-specs td:last-child{font-weight:700;text-align:right}
 .pm-note{margin-top:16px;font-size:11.5px;color:#8a93a3;line-height:1.5}
 @media(max-width:620px){.pm-top{grid-template-columns:1fr;gap:16px}.pm-specs td:first-child{width:52%}.foot-btns{flex-direction:column;align-items:stretch;width:100%}}
-.filmband{position:relative;width:100%;max-width:1180px;margin:0 auto;aspect-ratio:16/9;overflow:hidden;background:#06080d;border-radius:16px}
-.filmband video{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .8s ease}
-.filmband.ready video{opacity:1}
-.filmband::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(6,8,13,.28),rgba(6,8,13,0) 22%,rgba(6,8,13,0) 70%,rgba(6,8,13,.42))}
-.filmcap{position:absolute;left:clamp(16px,4vw,40px);bottom:clamp(12px,3vw,22px);z-index:2;color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;opacity:.9;text-shadow:0 1px 8px rgba(0,0,0,.7)}
-@media(max-width:620px){.filmband{aspect-ratio:16/9;max-height:none}.filmcap{font-size:12px}}
+.filmband{position:relative;width:100%;max-width:1180px;margin:0 auto;aspect-ratio:16/9;overflow:hidden;background:#06080d;border-radius:16px;cursor:pointer}
+.filmband-bg{position:absolute;inset:0;z-index:0;background-color:#06080d;background-position:center;background-size:cover;background-repeat:no-repeat}
+.filmband-bg iframe{position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%) scale(1.02);border:0;opacity:0;transition:opacity 1s ease}
+.filmband.ready .filmband-bg iframe{opacity:1}
+.filmband-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;width:74px;height:74px;border-radius:50%;background:rgba(10,14,22,.42);backdrop-filter:blur(3px);border:1.5px solid rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center;transition:transform .25s ease,background .25s ease;pointer-events:none}
+.filmband-play svg{margin-left:3px}
+.filmband:hover .filmband-play,.filmband:focus-visible .filmband-play{transform:translate(-50%,-50%) scale(1.09);background:rgba(10,14,22,.62)}
+.filmband:focus-visible{outline:2px solid #4f8bff;outline-offset:3px}
+.filmband::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(6,8,13,.28),rgba(6,8,13,0) 22%,rgba(6,8,13,0) 70%,rgba(6,8,13,.42))}
+.filmcap{position:absolute;left:clamp(16px,4vw,40px);bottom:clamp(12px,3vw,22px);z-index:3;color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;opacity:.9;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+@media(max-width:620px){.filmband{aspect-ratio:16/9;max-height:none}.filmcap{font-size:12px}.filmband-play{width:60px;height:60px}}
+/* full-film lightbox */
+.filmmodal{padding:clamp(14px,4vw,52px)}
+.filmmodal-card{position:relative;width:100%;max-width:1200px;background:#000;border-radius:16px;box-shadow:0 40px 100px -20px rgba(0,0,0,.6);aspect-ratio:16/9;overflow:hidden;animation:pmin .3s cubic-bezier(.2,.7,.2,1)}
+.filmmodal-frame{position:absolute;inset:0}
+.filmmodal-frame iframe{width:100%;height:100%;border:0;display:block}
+.filmmodal-x{position:absolute;top:-46px;right:0;width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:24px;line-height:1;cursor:pointer;transition:background .2s;z-index:4}
+.filmmodal-x:hover{background:rgba(255,255,255,.3)}
+@media(max-width:620px){.filmmodal-x{top:-40px}}
 </style>
 </head>
 <body>
@@ -565,8 +578,9 @@ body.noscroll{overflow:hidden}
 </section>
 
 <!-- FILM BAND -->
-<div class="filmband" id="filmband" data-mp4="assets-v2/film/band.mp4" data-webm="assets-v2/film/band.webm">
-  <video id="filmvid" muted loop playsinline preload="none" poster="assets-v2/film/band_poster.jpg"></video>
+<div class="filmband" id="filmband" data-vimeo-de="1236474942" data-vimeo-en="1236474943" role="button" tabindex="0" aria-label="Film ansehen">
+  <div class="filmband-bg" id="filmbandbg" style="background-image:url(assets-v2/film/band_poster.jpg)"></div>
+  <div class="filmband-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
   <div class="filmcap"><span data-i18n="filmCap">Dream 7 — unterwegs in Österreich</span></div>
 </div>
 
@@ -1262,6 +1276,7 @@ function applyLang(l){
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.getAttribute('data-i18n-ph');if(d[k]!=null)el.placeholder=d[k];});
   document.querySelectorAll('#langtog button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
   renderLineup();fillModelOptions();fillColors();renderScar();renderVgl();applyLiveToDOM();
+  if(window.__filmbandRelang)window.__filmbandRelang();
   if(result.classList.contains('on'))showResult();
 }
 document.querySelectorAll('#langtog button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.l)));
@@ -1388,23 +1403,43 @@ syncLive();
     <div class="modal-body" id="pmbody"></div>
   </div>
 </div>
+<div class="modal filmmodal" id="filmmodal" aria-hidden="true">
+  <div class="modal-back" onclick="closeFilm()"></div>
+  <div class="filmmodal-card" role="dialog" aria-modal="true" aria-label="Film">
+    <button class="filmmodal-x" type="button" onclick="closeFilm()" aria-label="Close">&times;</button>
+    <div class="filmmodal-frame" id="filmmodalframe"></div>
+  </div>
+</div>
 <script>
 (function(){
   const band=document.getElementById('filmband');if(!band)return;
-  const v=document.getElementById('filmvid');let loaded=false;
+  const bg=document.getElementById('filmbandbg');let loaded=false;
+  const VSRC='https://player.vimeo.com/video/';
+  function vid(){return (typeof LANG!=='undefined'&&LANG==='en')?band.dataset.vimeoEn:band.dataset.vimeoDe;}
+  function bgURL(){return VSRC+vid()+'?background=1&autoplay=1&loop=1&muted=1&dnt=1';}
   function load(){
     if(loaded)return;loaded=true;
-    const sw=document.createElement('source');sw.src=band.dataset.webm;sw.type='video/webm';
-    const sm=document.createElement('source');sm.src=band.dataset.mp4;sm.type='video/mp4';
-    v.appendChild(sw);v.appendChild(sm);v.load();
-    v.addEventListener('loadeddata',()=>band.classList.add('ready'),{once:true});
-    const p=v.play();if(p&&p.catch)p.catch(()=>{});
+    const f=document.createElement('iframe');
+    f.id='filmbandiframe';f.src=bgURL();
+    f.setAttribute('allow','autoplay');f.setAttribute('frameborder','0');
+    f.setAttribute('tabindex','-1');f.setAttribute('aria-hidden','true');
+    f.addEventListener('load',()=>band.classList.add('ready'),{once:true});
+    bg.appendChild(f);
   }
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{
-    if(e.isIntersecting){load();v.play&&v.play().catch(()=>{});}
-    else if(loaded){v.pause&&v.pause();}
-  });},{rootMargin:'200px 0px'});
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){load();}});},{rootMargin:'300px 0px'});
   io.observe(band);
+  // re-point the silent background loop when the language toggle flips
+  window.__filmbandRelang=function(){const f=document.getElementById('filmbandiframe');if(f)f.src=bgURL();};
+  // open the full film, with sound, in a lightbox
+  function openFilm(){
+    const modal=document.getElementById('filmmodal'),frame=document.getElementById('filmmodalframe');if(!modal||!frame)return;
+    frame.innerHTML='<iframe src="'+VSRC+vid()+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1&pip=1" allow="autoplay;fullscreen;picture-in-picture" allowfullscreen></iframe>';
+    modal.classList.add('on');modal.setAttribute('aria-hidden','false');document.body.classList.add('noscroll');
+  }
+  window.closeFilm=function(){const modal=document.getElementById('filmmodal'),frame=document.getElementById('filmmodalframe');if(!modal)return;modal.classList.remove('on');modal.setAttribute('aria-hidden','true');if(frame)frame.innerHTML='';document.body.classList.remove('noscroll');};
+  band.addEventListener('click',openFilm);
+  band.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openFilm();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeFilm();});
 })();
 </script>
 </body>
