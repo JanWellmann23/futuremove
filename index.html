@@ -424,6 +424,9 @@ body.noscroll{overflow:hidden}
 .filmband::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(6,8,13,.28),rgba(6,8,13,0) 22%,rgba(6,8,13,0) 70%,rgba(6,8,13,.42))}
 .filmcap{position:absolute;left:clamp(16px,4vw,40px);bottom:clamp(12px,3vw,22px);z-index:3;color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;opacity:.9;text-shadow:0 1px 8px rgba(0,0,0,.7)}
 @media(max-width:620px){.filmband{aspect-ratio:16/9;max-height:none}.filmcap{font-size:12px}.filmsound{width:36px;height:36px}.filmsound svg{width:16px;height:16px}}
+.ecobanner{background:linear-gradient(90deg,#167a46,#2a78d6);color:#fff;text-align:center;font-size:14px;line-height:1.5;padding:11px 0}
+.ecobanner .wrap{padding:0 24px}
+.ecobanner b{color:#fff;font-weight:800}
 </style>
 </head>
 <body>
@@ -441,7 +444,7 @@ body.noscroll{overflow:hidden}
         <a href="#haendler" data-i18n="navDealers">Händler</a>
       </nav>
       <div class="langtog" id="langtog" role="group" aria-label="Language">
-        <button data-l="de" type="button">DE</button><button data-l="en" type="button">EN</button>
+        <button data-l="de" type="button">DE</button><button data-l="en" type="button">EN</button><button data-l="it" type="button">IT</button><button data-l="es" type="button">ES</button>
       </div>
       <button class="burger" id="burger" type="button" aria-label="Menü" aria-expanded="false" aria-controls="nav">
         <span></span><span></span><span></span>
@@ -483,6 +486,8 @@ body.noscroll{overflow:hidden}
   <button class="skip" id="skip" data-i18n="skip">Überspringen ›</button>
   <div class="dots" id="dots"></div>
 </section>
+
+<div class="ecobanner" id="ecobanner" style="display:none"><div class="wrap"><span data-i18n-html="ecoBanner"></span></div></div>
 
 <!-- MANIFESTO -->
 <section class="manifesto glowwrap">
@@ -710,54 +715,54 @@ body.noscroll{overflow:hidden}
 <script>
 /* ===== DATA — SFM 2027 Preisliste + Bestände 09.10.2026 ===== */
 const MODELS=[
- {id:'dream7',name:'Dream Sport',tag:{de:'Flaggschiff',en:'Flagship'},hero:true,speed:110,power:'6 kW',batt:'72 V / 72 Ah',price:5999,
+ {id:'dream7',name:'Dream Sport',tag:{de:'Flaggschiff',en:'Flagship',it:'Ammiraglia',es:'Buque insignia'},hero:true,speed:110,power:'6 kW',batt:'72 V / 72 Ah',price:5999,
   colors:[['Schwarz','#1b1b1d'],['Grau','#8a8f98'],['Orange','#e8651f']],img:'assets-v2/dream7/c.webp',
   status:'available',stock:{'Schwarz':12,'Grau':12,'Orange':12},
-  blurb:{de:'110 km/h, 6 kW, TFT-Farbdisplay. Die Speerspitze der Palette.',en:'110 km/h, 6 kW, TFT colour display. The spearhead of the range.'}},
- {id:'legend',name:'Legend',tag:{de:'Sport-Retro',en:'Sport retro'},speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
+  blurb:{de:'110 km/h, 6 kW, TFT-Farbdisplay. Die Speerspitze der Palette.',en:'110 km/h, 6 kW, TFT colour display. The spearhead of the range.',it:'110 km/h, 6 kW, display TFT a colori. La punta di diamante della gamma.',es:'110 km/h, 6 kW, pantalla TFT a color. La punta de lanza de la gama.'}},
+ {id:'legend',name:'Legend',tag:{de:'Sport-Retro',en:'Sport retro',it:'Sport retrò',es:'Retro deportivo'},speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
   colors:[['Schwarz','#1b1b1d']],img:'assets-v2/legend/a.webp',status:'available',stock:{'Schwarz':50},
-  blurb:{de:'80 km/h, großer 50-Ah-Akku, CBS-Bremssystem. Retro-Haltung mit Kraft.',en:'80 km/h, big 50 Ah battery, CBS braking. Retro attitude with muscle.'}},
- {id:'futuresport',name:'Future Sport',tag:{de:'Sportlich',en:'Sporty'},speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
+  blurb:{de:'80 km/h, großer 50-Ah-Akku, CBS-Bremssystem. Retro-Haltung mit Kraft.',en:'80 km/h, big 50 Ah battery, CBS braking. Retro attitude with muscle.',it:'80 km/h, grande batteria da 50 Ah, freni CBS. Carattere retrò con grinta.',es:'80 km/h, gran batería de 50 Ah, frenos CBS. Actitud retro con fuerza.'}},
+ {id:'futuresport',name:'Future Sport',tag:{de:'Sportlich',en:'Sporty',it:'Sportivo',es:'Deportivo'},speed:80,power:'3 kW (Spitze 5,7 kW)',batt:'72 V / 50 Ah',price:3499,
   colors:[['Rot','#c0392b'],['Schwarz','#1b1b1d'],['Grün','#3a7d44']],img:'assets-v2/futuresport/gal_red.webp',status:'available',
   gallery:[['assets-v2/futuresport/gal_red.webp','Rot'],['assets-v2/futuresport/gal_black.webp','Schwarz'],['assets-v2/futuresport/gal_turquoise.webp','Grün']],
   stock:{'Schwarz':30,'Rot':30,'Grün':10},
-  blurb:{de:'80 km/h, 50-Ah-Akku, CBS. Der dynamische Allrounder.',en:'80 km/h, 50 Ah battery, CBS. The dynamic all-rounder.'}},
- {id:'e2hsport',name:'E2H Sport',tag:{de:'Sportlich',en:'Sporty'},speed:80,power:'2,5 kW (Spitze 5 kW)',batt:'2× 72 V / 24 Ah',price:2999,
+  blurb:{de:'80 km/h, 50-Ah-Akku, CBS. Der dynamische Allrounder.',en:'80 km/h, 50 Ah battery, CBS. The dynamic all-rounder.',it:'80 km/h, batteria 50 Ah, CBS. Il tuttofare dinamico.',es:'80 km/h, batería 50 Ah, CBS. El todoterreno dinámico.'}},
+ {id:'e2hsport',name:'E2H Sport',tag:{de:'Sportlich',en:'Sporty',it:'Sportivo',es:'Deportivo'},speed:80,power:'2,5 kW (Spitze 5 kW)',batt:'2× 72 V / 24 Ah',price:2999,
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d']],img:'assets-v2/e2h/a.webp',status:'available',stock:{},
-  blurb:{de:'80 km/h, Doppelakku, CBS-Bremssystem. Der schnelle Pendler.',en:'80 km/h, dual battery, CBS braking. The fast commuter.'}},
- {id:'futurecity',name:'Future City',tag:{de:'Stadt',en:'City'},speed:45,power:'2 kW (Spitze 3,3 kW)',batt:'72 V / 26 Ah',price:2299,
+  blurb:{de:'80 km/h, Doppelakku, CBS-Bremssystem. Der schnelle Pendler.',en:'80 km/h, dual battery, CBS braking. The fast commuter.',it:'80 km/h, doppia batteria, freni CBS. Il pendolare veloce.',es:'80 km/h, doble batería, frenos CBS. El viajero rápido.'}},
+ {id:'futurecity',name:'Future City',tag:{de:'Stadt',en:'City',it:'Città',es:'Ciudad'},speed:45,power:'2 kW (Spitze 3,3 kW)',batt:'72 V / 26 Ah',price:2299,
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Grün','#3a7d44']],img:'assets-v2/futurecity/a.webp',status:'available',
   stock:{'Weiss':30,'Schwarz':40,'Grün':10},
-  blurb:{de:'45 km/h, 12-Zoll-Räder, souverän durch die Stadt.',en:'45 km/h, 12-inch wheels, effortless through the city.'}},
- {id:'e2h',name:'E2H',tag:{de:'Komfort',en:'Comfort'},speed:45,power:'1,5 kW (Spitze 3 kW)',batt:'72 V / 24 Ah',price:2399,
+  blurb:{de:'45 km/h, 12-Zoll-Räder, souverän durch die Stadt.',en:'45 km/h, 12-inch wheels, effortless through the city.',it:'45 km/h, ruote da 12 pollici, disinvolto in città.',es:'45 km/h, ruedas de 12 pulgadas, soltura por la ciudad.'}},
+ {id:'e2h',name:'E2H',tag:{de:'Komfort',en:'Comfort',it:'Comfort',es:'Confort'},speed:45,power:'1,5 kW (Spitze 3 kW)',batt:'72 V / 24 Ah',price:2399,
   colors:[['Blau','#8fc3ef'],['Weiss','#eef0f2'],['Schwarz','#1b1b1d']],img:'assets-v2/e2h/blue.webp',status:'preorder',stock:{},
-  blurb:{de:'25 oder 45 km/h, 165 Nm, NFC-Zugang, LED-Display.',en:'25 or 45 km/h, 165 Nm, NFC access, LED display.'}},
- {id:'futurelight',name:'Future Light',tag:{de:'Einstieg City',en:'City entry'},speed:45,power:'1,2 kW (Spitze 2 kW)',batt:'60 V / 21 Ah',price:1799,
+  blurb:{de:'25 oder 45 km/h, 165 Nm, NFC-Zugang, LED-Display.',en:'25 or 45 km/h, 165 Nm, NFC access, LED display.',it:'25 o 45 km/h, 165 Nm, accesso NFC, display LED.',es:'25 o 45 km/h, 165 Nm, acceso NFC, pantalla LED.'}},
+ {id:'futurelight',name:'Future Light',tag:{de:'Einstieg City',en:'City entry',it:'Città entry',es:'Acceso ciudad'},speed:45,power:'1,2 kW (Spitze 2 kW)',batt:'60 V / 21 Ah',price:1799,
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Grün','#3a7d44'],['Rot','#c0392b']],img:'assets-v2/futurelight/a.webp',status:'preorder',stock:{},
-  blurb:{de:'25 oder 45 km/h, leicht und wendig. Der stilvolle Einstieg.',en:'25 or 45 km/h, light and agile. The stylish way in.'}},
- {id:'em1',name:'EM1',tag:{de:'Einstieg',en:'Entry'},speed:45,power:'1 kW',batt:'60 V / 24 Ah',price:1699,
+  blurb:{de:'25 oder 45 km/h, leicht und wendig. Der stilvolle Einstieg.',en:'25 or 45 km/h, light and agile. The stylish way in.',it:'25 o 45 km/h, leggero e agile. L\'ingresso con stile.',es:'25 o 45 km/h, ligero y ágil. El acceso con estilo.'}},
+ {id:'em1',name:'EM1',tag:{de:'Einstieg',en:'Entry',it:'Entry',es:'Acceso'},speed:45,power:'1 kW',batt:'60 V / 24 Ah',price:1699,
   colors:[['Weiss','#eef0f2'],['Schwarz','#1b1b1d'],['Grün','#3a7d44']],img:'assets-v2/em1/a.webp',status:'preorder',stock:{},
-  blurb:{de:'25 oder 45 km/h. Der einfachste Weg, elektrisch zu fahren.',en:'25 or 45 km/h. The simplest way to go electric.'}},
- {id:'urbano',name:'Urbano',tag:{de:'Praktisch',en:'Practical'},speed:45,power:'1,5 kW',batt:'72 V / 26 Ah (Graphen)',price:1499,
+  blurb:{de:'25 oder 45 km/h. Der einfachste Weg, elektrisch zu fahren.',en:'25 or 45 km/h. The simplest way to go electric.',it:'25 o 45 km/h. Il modo più semplice di andare elettrico.',es:'25 o 45 km/h. La forma más simple de ir en eléctrico.'}},
+ {id:'urbano',name:'Urbano',tag:{de:'Praktisch',en:'Practical',it:'Pratico',es:'Práctico'},speed:45,power:'1,5 kW',batt:'72 V / 26 Ah (Graphen)',price:1499,
   colors:[['Aubergine','#4a2c3a']],img:'assets-v2/urbano/a.webp',status:'available',stock:{'Aubergine':50},
-  blurb:{de:'45 km/h, Graphen-Akku, robust und praktisch.',en:'45 km/h, graphene battery, robust and practical.'}},
- {id:'primaeclassic',name:'Prima E Classic',tag:{de:'Charakter',en:'Character'},speed:25,power:'500 W (Spitze 800 W)',batt:'48 V / 20 Ah',price:1299,
+  blurb:{de:'45 km/h, Graphen-Akku, robust und praktisch.',en:'45 km/h, graphene battery, robust and practical.',it:'45 km/h, batteria al grafene, robusto e pratico.',es:'45 km/h, batería de grafeno, robusto y práctico.'}},
+ {id:'primaeclassic',name:'Prima E Classic',tag:{de:'Charakter',en:'Character',it:'Carattere',es:'Carácter'},speed:25,power:'500 W (Spitze 800 W)',batt:'48 V / 20 Ah',price:1299,
   colors:[['Grau','#8a8f98']],img:'assets-v2/primaeclassic/a.webp',status:'available',stock:{'Grau':150},
   gallery:[['assets-v2/primaeclassic/a.webp',''],['assets-v2/primaeclassic/gal_side.webp',''],['assets-v2/primaeclassic/gal_rear3q.webp',''],['assets-v2/primaeclassic/gal_rear.webp',''],['assets-v2/primaeclassic/gal_front.webp','']],
-  blurb:{de:'25 km/h, Retro-Design, ehrlicher Einstiegspreis.',en:'25 km/h, retro design, an honest entry price.'}},
+  blurb:{de:'25 km/h, Retro-Design, ehrlicher Einstiegspreis.',en:'25 km/h, retro design, an honest entry price.',it:'25 km/h, design retrò, prezzo d\'ingresso onesto.',es:'25 km/h, diseño retro, precio de entrada honesto.'}},
 ];
 /* detailed specs for the product pop-up — verified vs SFM data sheets + 2027 Energeia price list (BaseLinker field structure) */
 const SPECS={
- dream7:{kwh:'5,18 kWh',chem:'BYD LFP',rem:1,range:150,brakes:{de:'Scheibe v+h · ABS+TCS',en:'Disc f+r · ABS+TCS'},cls:'L3e',seats:2},
- legend:{kwh:'3,60 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe · CBS',en:'Disc · CBS'},cls:'L3e-A1',seats:2},
- futuresport:{kwh:'3,60 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe · CBS',en:'Disc · CBS'},cls:'L3e-A1',seats:2},
- e2hsport:{kwh:'3,46 kWh',chem:{de:'2 Akkus · Li-Ion',en:'2 packs · Li-Ion'},rem:1,range:75,brakes:{de:'Scheibe v+h',en:'Disc f+r'},cls:'L3e-A1',torque:'33 Nm',weight:'106 kg',charge:{de:'4–5,5 h',en:'4–5.5 h'},seats:2},
- futurecity:{kwh:'1,87 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe v+h',en:'Disc f+r'},cls:'L1e-B',seats:2},
- e2h:{kwh:'1,73 kWh',chem:'LiFePO4',rem:1,brakes:{de:'Scheibe v+h',en:'Disc f+r'},cls:'L1e-B',torque:'165 Nm',seats:2},
- futurelight:{kwh:'1,26 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe v+h',en:'Disc f+r'},cls:'L1e-B',seats:2},
- em1:{kwh:'1,44 kWh',chem:'LiMn',rem:1,range:70,brakes:{de:'Scheibe v+h',en:'Disc f+r'},cls:'L1e-B',torque:'80 Nm',weight:'65 kg',charge:{de:'6,5–7,5 h',en:'6.5–7.5 h'},seats:2},
- urbano:{kwh:'1,87 kWh',chem:'Graphene',rem:1,brakes:{de:'Scheibe · CBS',en:'Disc · CBS'},cls:'L1e-B',seats:2},
- primaeclassic:{kwh:'0,96 kWh',chem:'Li-Ion',rem:1,range:40,brakes:{de:'Scheibe v / Trommel h',en:'Disc front / Drum rear'},cls:'L1e-B',charge:{de:'5 h',en:'5 h'},seats:2}
+ dream7:{kwh:'5,18 kWh',chem:'BYD LFP',rem:1,range:150,brakes:{de:'Scheibe v+h · ABS+TCS',en:'Disc f+r · ABS+TCS',it:'Disco ant+post · ABS+TCS',es:'Disco del+tras · ABS+TCS'},cls:'L3e',seats:2},
+ legend:{kwh:'3,60 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe · CBS',en:'Disc · CBS',it:'Disco · CBS',es:'Disco · CBS'},cls:'L3e-A1',seats:2},
+ futuresport:{kwh:'3,60 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe · CBS',en:'Disc · CBS',it:'Disco · CBS',es:'Disco · CBS'},cls:'L3e-A1',seats:2},
+ e2hsport:{kwh:'3,46 kWh',chem:{de:'2 Akkus · Li-Ion',en:'2 packs · Li-Ion',it:'2 batterie · Li-Ion',es:'2 baterías · Li-Ion'},rem:1,range:75,brakes:{de:'Scheibe v+h',en:'Disc f+r',it:'Disco ant+post',es:'Disco del+tras'},cls:'L3e-A1',torque:'33 Nm',weight:'106 kg',charge:{de:'4–5,5 h',en:'4–5.5 h',it:'4–5,5 h',es:'4–5,5 h'},seats:2},
+ futurecity:{kwh:'1,87 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe v+h',en:'Disc f+r',it:'Disco ant+post',es:'Disco del+tras'},cls:'L1e-B',seats:2},
+ e2h:{kwh:'1,73 kWh',chem:'LiFePO4',rem:1,brakes:{de:'Scheibe v+h',en:'Disc f+r',it:'Disco ant+post',es:'Disco del+tras'},cls:'L1e-B',torque:'165 Nm',seats:2},
+ futurelight:{kwh:'1,26 kWh',chem:'Li-Ion',rem:1,brakes:{de:'Scheibe v+h',en:'Disc f+r',it:'Disco ant+post',es:'Disco del+tras'},cls:'L1e-B',seats:2},
+ em1:{kwh:'1,44 kWh',chem:'LiMn',rem:1,range:70,brakes:{de:'Scheibe v+h',en:'Disc f+r',it:'Disco ant+post',es:'Disco del+tras'},cls:'L1e-B',torque:'80 Nm',weight:'65 kg',charge:{de:'6,5–7,5 h',en:'6.5–7.5 h',it:'6,5–7,5 h',es:'6,5–7,5 h'},seats:2},
+ urbano:{kwh:'1,87 kWh',chem:'Graphene',rem:1,brakes:{de:'Scheibe · CBS',en:'Disc · CBS',it:'Disco · CBS',es:'Disco · CBS'},cls:'L1e-B',seats:2},
+ primaeclassic:{kwh:'0,96 kWh',chem:'Li-Ion',rem:1,range:40,brakes:{de:'Scheibe v / Trommel h',en:'Disc front / Drum rear',it:'Disco ant / Tamburo post',es:'Disco del / Tambor tras'},cls:'L1e-B',charge:{de:'5 h',en:'5 h'},seats:2}
 };
 
 /* ===== I18N ===== */
@@ -915,6 +920,159 @@ const T={
   availOk:'● In stock now',availPre:'Pre-order',photo:'Photo coming',power:'Power',batt:'Battery',rrp:'RRP',reserveShort:'Reserve',
   details:'Details',mSpeed:'Top speed',mPower:'Power',mBatt:'Battery',mRemov:'Removable battery',mRange:'Range',mBrakes:'Brakes',mTorque:'Torque',mWeight:'Weight',mCharge:'Charge time',mClass:'Licence class',mSeats:'Seats',mNote:'Data per SFM data sheets & 2027 price list. Range varies with riding style, load and conditions — reference values.',
   statusPre:'Pre-order — delivery after launch',availableWord:'available',soldOut:'sold out',pcs:'units'
+ },
+ it:{
+  title:'Energeia · Scooter elettrici SFM Sunra',
+  brandSub:'Scooter elettrici SFM Sunra',
+  navFinder:'Trova',navModels:'Modelli',navAdv:'Prezzo',navReserve:'Prenota',navDealers:'Rivenditori',
+  cap0:'Una nuova era<br>della mobilità elettrica.',cap1:'Prestazioni al top.<br>Prezzo onesto.',cap2:'Fatto per cambiare<br>il settore.',
+  heroKick:'Ora in Italia',heroH1:'Lo scooter elettrico che l\'Occidente non conosce ancora.',
+  heroSub:'Prestazioni al top a un prezzo onesto — modelli disponibili e preordine.',
+  heroCta1:'Trova il tuo modello',heroCta2:'Prenota ora',
+  heroTag:'<b>Dream Sport</b> · 110 km/h · da € 5.999 · disponibile',skip:'Salta ›',
+  manifesto:'Una nuova generazione di scooter elettrici — <b>puliti, veloci, accessibili.</b> Costruiti in una delle più grandi fabbriche di scooter elettrici al mondo. Per la prima volta in Italia. L\'inizio di un nuovo modo di muoversi.',
+  st1:'Velocità max · Dream Sport',st2:'Autonomia',st3:'Batteria BYD LFP',st4:'Modelli',
+  fEy:'In 3 domande',fH2:'Trova il tuo scooter.',fLead:'Tre domande veloci — ti consigliamo il modello giusto della gamma.',
+  fProg1:'Domanda 1 di 3',fProg2:'Domanda 2 di 3',fProg3:'Domanda 3 di 3',
+  fQ1:'Di solito quanta strada fai?',fQ2:'Quanto vuoi andare veloce?',fQ3:'Cosa conta di più per il budget?',
+  fo_dist_short_b:'Tragitti brevi',fo_dist_short_s:'In città, pochi chilometri',
+  fo_dist_daily_b:'Pendolare quotidiano',fo_dist_daily_s:'Al lavoro e ritorno',
+  fo_dist_long_b:'Distanze più lunghe',fo_dist_long_s:'Anche fuori città',
+  fo_speed_45_b:'Rilassato',fo_speed_45_s:'Fino a 45 km/h · patente AM',
+  fo_speed_80_b:'Deciso',fo_speed_80_s:'Fino a 80 km/h · patente A1 / B',
+  fo_speed_110_b:'Massimo',fo_speed_110_s:'Fino a 110 km/h · l\'ammiraglia',
+  fo_budget_low_b:'Il più economico possibile',fo_budget_low_s:'Miglior prezzo d\'ingresso',
+  fo_budget_mid_b:'Buona via di mezzo',fo_budget_mid_s:'Prezzo e prestazioni',
+  fo_budget_open_b:'Aperto',fo_budget_open_s:'Conta solo il meglio',
+  fResTitle:'Il tuo consiglio',recPriceLabel:'Prezzo consigliato IVA incl.',recReserve:'Prenota questo modello',recRestart:'↺ Ricomincia',
+  lEy:'La gamma',lH2:'Dieci modelli. Quello giusto per ogni percorso.',
+  lLead:'Dall\'ammiraglia da 110 km/h allo scooter urbano accessibile. <b>Verde = disponibile</b>, il resto in preordine. Tutti i prezzi sono indicativi, IVA 22% inclusa.',
+  navWhy:'Caratteristiche',
+  wEy:'Perché SFM Sunra',filmCap:'Dream Sport — in viaggio',filmWatch:'Guarda il film · con audio',wH2:'Cosa c\'è in ogni modello.',
+  wLead:'Nessun compromesso su ciò che conta — tecnica ben pensata e praticità quotidiana, a un prezzo onesto.',
+  wf1t:'Batteria estraibile',wf1p:'Porti la batteria in casa e la ricarichi da qualsiasi presa — niente garage, niente cavi nel cortile. Su quasi tutta la gamma.',
+  wf2t:'Una patente per ogni modello',wf2p:'Dal ciclomotore 45 km/h (patente AM, dai 14 anni) all\'ammiraglia 110 km/h — e in Italia con la patente B guidi tutta la gamma.',
+  wf3t:'Prestazioni al top',wf3p:'L\'ammiraglia Dream Sport: 110 km/h, 6 kW, batteria 72 V / 72 Ah, display TFT a colori e ABS + TCS.',
+  wf4t:'Prezzo onesto',wf4p:'Prestazioni al top senza sovrapprezzo premium. Tutti i prezzi sono consigliati, IVA inclusa.',
+  wf5t:'Incentivi Ecobonus',wf5p:'In Italia gli scooter elettrici rientrano nell\'Ecobonus: fino al 40% di sconto (fino a € 4.000) con rottamazione — mentre i fondi sono disponibili.',
+  wf6t:'Dieci modelli',wf6p:'Dallo scooter urbano accessibile all\'ammiraglia più veloce — il modello giusto per ogni percorso.',
+  recAlt:'Anche adatto',
+  navCmp:'Confronto',
+  vEy:'Confronto onesto',vH2:'Stessa categoria. Prezzi trasparenti.',
+  vLead:'Stessa categoria di patente, confrontata con la media di modelli comparabili (valori indicativi, ottobre 2026). Decidi tu.',
+  cls45:'45 km/h · ciclomotore L1e',
+  cls80:'80–95 km/h · L3e (patente A1 / B in Italia)',
+  cls110:'110 km/h · L3e (ammiraglia)',
+  fPrice:'Prezzo',fSpeed:'Velocità max',fBatt:'Batteria',fRange:'Autonomia',fRemov:'Estraibile',fBrakes:'Freni',fClass:'Categoria',yes:'Sì',
+  vRange:'Altri modelli SFM in questa categoria',
+  recCompare:'Guarda nel confronto →',
+  vChartT:'Prezzo a confronto',recMark:'La tua scelta',
+  axSpeed:'Velocità',axBatt:'Batteria',axRange:'Autonomia',axPrice:'Valore',compName:'Modelli comparabili (media)',
+  take45:'In questa categoria da € 1.299 — ben sotto la media dei modelli comparabili (media ~€ 3.200). I modelli al grafene (es. Urbano, Future City) reggono o superano la concorrenza sulla batteria.',
+  take80:'In questa categoria da € 2.999 — nettamente sotto la media dei modelli comparabili (media ~€ 3.900), con la batteria più grande della categoria e quindi più autonomia reale. Solo in velocità di punta i modelli comparabili vanno appena più forte.',
+  take110:'L\'ammiraglia gioca in un campionato a parte: 110 km/h, batteria 5,18 kWh, fino a 150 km, ABS + TCS — più veloce, più batteria e più autonomia della media dei top comparabili, e a circa € 3.000 in meno del loro prezzo medio.',
+  vNote:'Valori di confronto = media di modelli comparabili della stessa categoria di patente (listini e dati dei costruttori di marchi leader, ottobre 2026). Valori SFM da schede tecniche SFM e listino 2027. Autonomia variabile secondo guida, carico e condizioni. Valori indicativi, salvo errori.',
+  cEy:'Il vantaggio di prezzo',cH2:'Stessa categoria. Decisamente meno.',
+  cLead:'Le stesse prestazioni del leader di mercato — a un prezzo onesto. Un confronto diretto, categoria per categoria.',
+  cmpOurs:'Il nostro modello',cmpComp:'Comparabile',
+  p1:'€ 3.499',p2:'€ 4.599',p3:'€ 2.999',p4:'€ 3.999',p5:'€ 2.299',p6:'€ 3.000',
+  s1:'≈ € 1.100 risparmiati',s2:'≈ € 1.000 risparmiati',s3:'≈ € 700 risparmiati',
+  r1:'70 km/h · autonomia 91 km',r2:'80 km/h · autonomia 60–70 km',r3:'45 km/h · autonomia 50–80 km',
+  cmpNote:'Valori di confronto: NIU NQi GT (€ 4.599, 70 km/h, 91 km); NQi GTS (da € 3.999, 80 km/h) e NQi Sport (da ca. € 3.000, 45 km/h) secondo costruttore/rivenditori, 2026. Tutti i prezzi sono consigliati, IVA inclusa. Valori indicativi per il confronto, salvo errori.',
+  rEy:'Preordine & prenotazione',rH2:'Assicurati il tuo scooter.',
+  rLead:'I modelli disponibili sono limitati — prenota prima che finiscano. Il preordine ti assicura la prima consegna al prezzo dedicato. Senza impegno, nessun pagamento.',
+  scarTitle:'● Disponibili ora',scarNote:'Disponibilità indicativa. Altri modelli in preordine.',
+  lblModel:'Modello',lblColor:'Colore',lblName:'Nome',lblPhone:'Telefono',lblEmail:'E-mail',
+  phName:'Nome e cognome',phEmail:'tu@esempio.it',
+  resBtn:'Prenota ora',resNote:'Senza impegno. Nessun pagamento. Riceverai una conferma via e-mail. I tuoi dati sono trattati in modo riservato.',
+  dEy:'Per i rivenditori',dH2:'Diventa rivenditore.',
+  dLead:'Hai un negozio e vuoi trattare gli scooter elettrici SFM? Lasciaci i tuoi dati — ti ricontattiamo con le condizioni.',
+  lblShop:'Azienda / negozio',lblCity:'Città',lblContact:'Referente',lblMsg:'Messaggio (facoltativo)',
+  phMsg:'Interesse, sede, marchi già trattati …',dealBtn:'Invia richiesta',
+  footTag:'Scooter elettrici SFM Sunra.',
+  footLine2:'Un negozio. Tanti marchi.',
+  footRepBy:'Rappresentata da:',linkImprint:'Note legali',linkPrivacy:'Privacy',linkDealer:'Diventa rivenditore',
+  copyright:'© 2026 Energeia Vertriebs GmbH. Tutti i diritti riservati.',
+  availOk:'● Disponibile',availPre:'Preordine',photo:'Foto in arrivo',power:'Potenza',batt:'Batteria',rrp:'Prezzo',reserveShort:'Prenota',
+  details:'Dettagli',mSpeed:'Velocità max',mPower:'Potenza',mBatt:'Batteria',mRemov:'Batteria estraibile',mRange:'Autonomia',mBrakes:'Freni',mTorque:'Coppia',mWeight:'Peso',mCharge:'Tempo di ricarica',mClass:'Categoria',mSeats:'Posti',mNote:'Dati secondo schede tecniche SFM e listino 2027. Autonomia variabile secondo guida, carico e condizioni — valori indicativi.',
+  statusPre:'Preordine — consegna dopo il lancio',availableWord:'disponibili',soldOut:'esaurito',pcs:'pz',
+  ecoBanner:'<b>Ecobonus 2026:</b> fino al <b>40% di sconto</b> sugli scooter elettrici — 30% fino a € 3.000 sull\'acquisto, 40% fino a € 4.000 con rottamazione (Euro 3 o precedente). Privati e aziende, <b>mentre i fondi sono disponibili.</b>'
+ },
+ es:{
+  title:'Energeia · Scooters eléctricos SFM Sunra',
+  brandSub:'Scooters eléctricos SFM Sunra',
+  navFinder:'Buscador',navModels:'Modelos',navAdv:'Precio',navReserve:'Reservar',navDealers:'Distribuidores',
+  cap0:'Una nueva era<br>de la movilidad eléctrica.',cap1:'Máximo rendimiento.<br>Precio honesto.',cap2:'Hecho para cambiar<br>el sector.',
+  heroKick:'Próximamente',heroH1:'El scooter eléctrico que Occidente aún no conoce.',
+  heroSub:'Máximo rendimiento a un precio honesto — modelos disponibles y prerreserva.',
+  heroCta1:'Encuentra tu modelo',heroCta2:'Reservar ahora',
+  heroTag:'<b>Dream Sport</b> · 110 km/h · desde € 5.999',skip:'Saltar ›',
+  manifesto:'Una nueva generación de scooters eléctricos — <b>limpios, rápidos, accesibles.</b> Fabricados en una de las mayores fábricas de scooters eléctricos del mundo. Una nueva forma de moverse.',
+  st1:'Velocidad máx · Dream Sport',st2:'Autonomía',st3:'Batería BYD LFP',st4:'Modelos',
+  fEy:'En 3 preguntas',fH2:'Encuentra tu scooter.',fLead:'Tres preguntas rápidas — te recomendamos el modelo ideal de la gama.',
+  fProg1:'Pregunta 1 de 3',fProg2:'Pregunta 2 de 3',fProg3:'Pregunta 3 de 3',
+  fQ1:'¿Cuánta distancia sueles recorrer?',fQ2:'¿Qué tan rápido quieres ir?',fQ3:'¿Qué es lo más importante en tu presupuesto?',
+  fo_dist_short_b:'Trayectos cortos',fo_dist_short_s:'Por la ciudad, pocos kilómetros',
+  fo_dist_daily_b:'Viaje diario',fo_dist_daily_s:'Al trabajo y de vuelta',
+  fo_dist_long_b:'Distancias más largas',fo_dist_long_s:'También por las afueras',
+  fo_speed_45_b:'Relajado',fo_speed_45_s:'Hasta 45 km/h',
+  fo_speed_80_b:'Ágil',fo_speed_80_s:'Hasta 80 km/h',
+  fo_speed_110_b:'Máximo',fo_speed_110_s:'Hasta 110 km/h · el buque insignia',
+  fo_budget_low_b:'Lo más económico posible',fo_budget_low_s:'Mejor precio de entrada',
+  fo_budget_mid_b:'Buen punto medio',fo_budget_mid_s:'Precio y rendimiento',
+  fo_budget_open_b:'Abierto',fo_budget_open_s:'Solo lo mejor',
+  fResTitle:'Tu recomendación',recPriceLabel:'Precio orientativo',recReserve:'Reservar este modelo',recRestart:'↺ Empezar de nuevo',
+  lEy:'La gama',lH2:'Diez modelos. El indicado para cada ruta.',
+  lLead:'Desde el buque insignia de 110 km/h hasta el ágil scooter urbano. <b>Verde = disponible</b>, el resto en prerreserva. Todos los precios son orientativos.',
+  navWhy:'Características',
+  wEy:'Por qué SFM Sunra',filmCap:'Dream Sport — en ruta',filmWatch:'Ver el video · con sonido',wH2:'Lo que lleva cada modelo.',
+  wLead:'Sin concesiones en lo que importa — ingeniería bien pensada y uso diario, a un precio honesto.',
+  wf1t:'Batería extraíble',wf1p:'Llévate la batería y cárgala en cualquier enchufe — sin garaje, sin cables por el patio. En casi toda la gama.',
+  wf2t:'Una licencia para cada modelo',wf2p:'Desde el ciclomotor de 45 km/h hasta el buque insignia de 110 km/h — una marca que crece contigo (según la normativa de cada país).',
+  wf3t:'Máximo rendimiento',wf3p:'El buque insignia Dream Sport: 110 km/h, 6 kW, batería 72 V / 72 Ah, pantalla TFT a color y ABS + TCS.',
+  wf4t:'Precio honesto',wf4p:'Máximo rendimiento sin recargo premium. Todos los precios son orientativos.',
+  wf5t:'Gama completa',wf5p:'Diez modelos, desde el acceso urbano hasta el buque insignia — una sola marca.',
+  wf6t:'Diez modelos',wf6p:'Desde el ágil scooter urbano hasta el buque insignia más veloz — el modelo ideal para cada ruta.',
+  recAlt:'También encaja',
+  navCmp:'Comparar',
+  vEy:'Una comparación honesta',vH2:'Misma categoría. Precios transparentes.',
+  vLead:'Misma categoría, comparado con el promedio de modelos equivalentes (valores de referencia, octubre 2026). Tú decides.',
+  cls45:'45 km/h · ciclomotor',
+  cls80:'80–95 km/h',
+  cls110:'110 km/h · buque insignia',
+  fPrice:'Precio',fSpeed:'Velocidad máx',fBatt:'Batería',fRange:'Autonomía',fRemov:'Extraíble',fBrakes:'Frenos',fClass:'Categoría',yes:'Sí',
+  vRange:'Más modelos SFM en esta categoría',
+  recCompare:'Ver en la comparación →',
+  vChartT:'Precio en comparación',recMark:'Tu elección',
+  axSpeed:'Velocidad',axBatt:'Batería',axRange:'Autonomía',axPrice:'Valor',compName:'Modelos equivalentes (prom.)',
+  take45:'En esta categoría desde € 1.299 — muy por debajo del promedio de modelos equivalentes (prom. ~€ 3.200). Los modelos con grafeno (p. ej. Urbano, Future City) igualan o superan a la competencia en batería.',
+  take80:'En esta categoría desde € 2.999 — claramente por debajo del promedio de modelos equivalentes (prom. ~€ 3.900), con la batería más grande de la categoría y más autonomía real. Solo en velocidad punta los equivalentes van algo más rápido.',
+  take110:'El buque insignia juega en otra liga: 110 km/h, batería 5,18 kWh, hasta 150 km, ABS + TCS — más veloz, más batería y más autonomía que el promedio de los tope de gama equivalentes, y a unos € 3.000 menos que su precio promedio.',
+  vNote:'Valores de comparación = promedio de modelos equivalentes de la misma categoría (precios de lista y datos de fabricantes de marcas líderes, octubre 2026). Valores SFM según fichas técnicas SFM y lista 2027. Autonomía variable según conducción, carga y condiciones. Valores de referencia, orientativos.',
+  cEy:'La ventaja de precio',cH2:'Misma categoría. Bastante menos dinero.',
+  cLead:'El mismo rendimiento que el líder del mercado — a un precio honesto. Una comparación directa, categoría por categoría.',
+  cmpOurs:'Nuestro modelo',cmpComp:'Equivalente',
+  p1:'€ 3.499',p2:'€ 4.599',p3:'€ 2.999',p4:'€ 3.999',p5:'€ 2.299',p6:'€ 3.000',
+  s1:'≈ € 1.100 de ahorro',s2:'≈ € 1.000 de ahorro',s3:'≈ € 700 de ahorro',
+  r1:'70 km/h · autonomía 91 km',r2:'80 km/h · autonomía 60–70 km',r3:'45 km/h · autonomía 50–80 km',
+  cmpNote:'Valores de comparación: NIU NQi GT (€ 4.599, 70 km/h, 91 km); NQi GTS (desde € 3.999, 80 km/h) y NQi Sport (desde ~€ 3.000, 45 km/h) según fabricante/distribución, 2026. Precios orientativos. Valores de referencia para comparar.',
+  rEy:'Prerreserva & reserva',rH2:'Asegura tu scooter.',
+  rLead:'Los modelos disponibles son limitados — reserva antes de que se agoten. La prerreserva te asegura la primera entrega. Sin compromiso, sin pago.',
+  scarTitle:'● Disponibles ahora',scarNote:'Disponibilidad orientativa. Más modelos en prerreserva.',
+  lblModel:'Modelo',lblColor:'Color',lblName:'Nombre',lblPhone:'Teléfono',lblEmail:'Correo',
+  phName:'Nombre y apellido',phEmail:'tu@ejemplo.com',
+  resBtn:'Reservar ahora',resNote:'Sin compromiso. Sin pago. Recibirás una confirmación por correo. Tus datos se tratan de forma confidencial.',
+  dEy:'Para distribuidores',dH2:'Conviértete en distribuidor.',
+  dLead:'¿Tienes un local y quieres ofrecer los scooters eléctricos SFM? Déjanos tus datos — te contactamos con las condiciones.',
+  lblShop:'Empresa / local',lblCity:'Ciudad',lblContact:'Contacto',lblMsg:'Mensaje (opcional)',
+  phMsg:'Interés, ubicación, marcas que ya trabajas …',dealBtn:'Enviar solicitud',
+  footTag:'Scooters eléctricos SFM Sunra.',
+  footLine2:'Una tienda. Muchas marcas.',
+  footRepBy:'Representada por:',linkImprint:'Aviso legal',linkPrivacy:'Privacidad',linkDealer:'Ser distribuidor',
+  copyright:'© 2026 Energeia Vertriebs GmbH. Todos los derechos reservados.',
+  availOk:'● Disponible',availPre:'Prerreserva',photo:'Foto próximamente',power:'Potencia',batt:'Batería',rrp:'Precio',reserveShort:'Reservar',
+  details:'Detalles',mSpeed:'Velocidad máx',mPower:'Potencia',mBatt:'Batería',mRemov:'Batería extraíble',mRange:'Autonomía',mBrakes:'Frenos',mTorque:'Par',mWeight:'Peso',mCharge:'Tiempo de carga',mClass:'Categoría',mSeats:'Plazas',mNote:'Datos según fichas técnicas SFM y lista 2027. Autonomía variable según conducción, carga y condiciones — valores de referencia.',
+  statusPre:'Prerreserva — entrega tras el lanzamiento',availableWord:'disponibles',soldOut:'agotado',pcs:'uds'
  }
 };
 
@@ -923,7 +1081,7 @@ const API_BASE="https://script.google.com/macros/s/AKfycbwEOkhF3Qdi3kYxLM-QlXKce
 
 let LANG='de';
 let LIVE=null; /* {modelName:{byColor:{color:n}, total, available}} — filled from the sheet feed */
-const euro=n=>LANG==='en'?'€'+n.toLocaleString('en-US'):n.toLocaleString('de-DE')+' €';
+const euro=n=>LANG==='en'?'€'+n.toLocaleString('en-US'):(LANG==='it'||LANG==='es')?'€ '+n.toLocaleString('de-DE'):n.toLocaleString('de-DE')+' €';
 
 /* scroll reveal observer */
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.12});
@@ -1098,7 +1256,7 @@ function renderScar(){
 /* ===== VERIFIED COMPARISON (feature table, by licence class) =====
    SFM specs from SFM Datenblätter; prices from Preisliste 2027.
    Competitor specs from official/manufacturer sources (see footnote). Verified Oct 2026. */
-const DISC={de:'Scheibe v+h',en:'Disc, f+r'},DISCCBS={de:'Scheibe · CBS',en:'Disc · CBS'},DISCABS={de:'Scheibe · ABS+TCS',en:'Disc · ABS+TCS'};
+const DISC={de:'Scheibe v+h',en:'Disc, f+r',it:'Disco ant+post',es:'Disco del+tras'},DISCCBS={de:'Scheibe · CBS',en:'Disc · CBS',it:'Disco · CBS',es:'Disco · CBS'},DISCABS={de:'Scheibe · ABS+TCS',en:'Disc · ABS+TCS',it:'Disco · ABS+TCS',es:'Disco · ABS+TCS'};
 /* nominal battery energy per SFM model (V × Ah) */
 const SFM_KWH={dream7:'5,18',legend:'3,60',futuresport:'3,60',e2hsport:'3,46',futurecity:'1,87',e2h:'1,73',futurelight:'1,26',em1:'1,44',urbano:'1,87',primaeclassic:'0,96'};
 /* range from SFM Datenblätter where the model name matches exactly */
@@ -1109,18 +1267,20 @@ function sfmSpec(id){
   const kd=SFM_KWH[id]||'–', ke=kd.replace(',','.');
   const exDe=id==='dream7'?' · BYD LFP':(DUAL[id]?' · 2 Akkus':'');
   const exEn=id==='dream7'?' · BYD LFP':(DUAL[id]?' · 2 packs':'');
+  const exIt=id==='dream7'?' · BYD LFP':(DUAL[id]?' · 2 batterie':'');
+  const exEs=id==='dream7'?' · BYD LFP':(DUAL[id]?' · 2 baterías':'');
   const r=SFM_RANGE[id];
   return {name:'SFM '+m.name,price:m.price,speed:m.speed+' km/h',
-    batt:{de:kd+' kWh'+exDe,en:ke+' kWh'+exEn},
-    range:r?{de:'bis '+r+' km',en:'up to '+r+' km'}:{de:'auf Anfrage',en:'on request'},
+    batt:{de:kd+' kWh'+exDe,en:ke+' kWh'+exEn,it:kd+' kWh'+exIt,es:kd+' kWh'+exEs},
+    range:r?{de:'bis '+r+' km',en:'up to '+r+' km',it:'fino a '+r+' km',es:'hasta '+r+' km'}:{de:'auf Anfrage',en:'on request',it:'su richiesta',es:'a pedido'},
     removable:true,brakes:id==='dream7'?DISCABS:DISC,
     vclass:m.speed>=110?'L3e':(m.speed>=80?'L3e-A1':'L1e')};
 }
 /* nearest comparable model per class — real data (NIU / Horwin / Super Soco), shown anonymised */
 const COMP={
-  cls45:{speed:'~45 km/h',batt:{de:'~1,7 kWh',en:'~1.7 kWh'},range:{de:'~70 km',en:'~70 km'},removable:{de:'teils',en:'some'},brakes:DISCCBS,vclass:'L1e-B',price:3200,r:{speed:45,batt:1.7,range:70}},
-  cls80:{speed:'~84 km/h',batt:{de:'~2,8 kWh',en:'~2.8 kWh'},range:{de:'~72 km',en:'~72 km'},removable:{de:'teils',en:'some'},brakes:DISCCBS,vclass:'L3e-A1',price:3900,r:{speed:84,batt:2.8,range:72}},
-  cls110:{speed:'~105 km/h',batt:{de:'~5,0 kWh',en:'~5.0 kWh'},range:{de:'~120 km',en:'~120 km'},removable:{de:'teils',en:'some'},brakes:{de:'Scheibe · CBS/ABS',en:'Disc · CBS/ABS'},vclass:'L3e',price:8900,r:{speed:105,batt:5.0,range:120}}
+  cls45:{speed:'~45 km/h',batt:{de:'~1,7 kWh',en:'~1.7 kWh'},range:{de:'~70 km',en:'~70 km'},removable:{de:'teils',en:'some',it:'parziale',es:'parcial'},brakes:DISCCBS,vclass:'L1e-B',price:3200,r:{speed:45,batt:1.7,range:70}},
+  cls80:{speed:'~84 km/h',batt:{de:'~2,8 kWh',en:'~2.8 kWh'},range:{de:'~72 km',en:'~72 km'},removable:{de:'teils',en:'some',it:'parziale',es:'parcial'},brakes:DISCCBS,vclass:'L3e-A1',price:3900,r:{speed:84,batt:2.8,range:72}},
+  cls110:{speed:'~105 km/h',batt:{de:'~5,0 kWh',en:'~5.0 kWh'},range:{de:'~120 km',en:'~120 km'},removable:{de:'teils',en:'some',it:'parziale',es:'parcial'},brakes:{de:'Scheibe · CBS/ABS',en:'Disc · CBS/ABS',it:'Disco · CBS/ABS',es:'Disco · CBS/ABS'},vclass:'L3e',price:8900,r:{speed:105,batt:5.0,range:120}}
 };
 /* SFM radar reference (class hero — full verified data incl. range) */
 const SFM_R={cls45:{speed:45,batt:1.44,range:70,price:1699},cls80:{speed:80,batt:3.46,range:75,price:2999},cls110:{speed:110,batt:5.18,range:150,price:5999}};
@@ -1269,11 +1429,14 @@ async function send(data){
 
 /* ===== LANGUAGE ===== */
 function detectLang(){
-  try{const s=localStorage.getItem('fm_lang');if(s==='de'||s==='en')return s;}catch(e){}
+  try{const s=localStorage.getItem('fm_lang');if(s==='de'||s==='en'||s==='it'||s==='es')return s;}catch(e){}
   const navs=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en']).map(x=>(x||'').toLowerCase());
   if(navs.some(x=>x.startsWith('de')))return 'de';
+  if(navs.some(x=>x.startsWith('it')))return 'it';
+  if(navs.some(x=>x.startsWith('es')))return 'es';
   try{const tz=(Intl.DateTimeFormat().resolvedOptions().timeZone)||'';
-    if(/Vienna|Berlin|Zurich|Zürich|Vaduz|Busingen/i.test(tz))return 'de';}catch(e){}
+    if(/Vienna|Berlin|Zurich|Zürich|Vaduz|Busingen/i.test(tz))return 'de';
+    if(/Europe\/Rome|Rome/i.test(tz))return 'it';}catch(e){}
   return 'en';
 }
 function applyLang(l){
@@ -1285,6 +1448,7 @@ function applyLang(l){
   document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(d[k]!=null)el.innerHTML=d[k];});
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.getAttribute('data-i18n-ph');if(d[k]!=null)el.placeholder=d[k];});
   document.querySelectorAll('#langtog button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  var _eb=document.getElementById('ecobanner');if(_eb)_eb.style.display=(l==='it')?'':'none';
   renderLineup();fillModelOptions();fillColors();renderScar();renderVgl();applyLiveToDOM();
   if(window.__filmbandRelang)window.__filmbandRelang();
   if(result.classList.contains('on'))showResult();
@@ -1419,9 +1583,9 @@ syncLive();
   const bg=document.getElementById('filmbandbg'),btn=document.getElementById('filmsound');
   let loaded=false,player=null,soundOn=false;
   const VSRC='https://player.vimeo.com/video/';
-  function vid(){return (typeof LANG!=='undefined'&&LANG==='en')?band.dataset.vimeoEn:band.dataset.vimeoDe;}
+  function vid(){return (typeof LANG!=='undefined'&&LANG!=='de')?band.dataset.vimeoEn:band.dataset.vimeoDe;}
   function srcURL(){return VSRC+vid()+'?autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1';}
-  function label(){return soundOn?(LANG==='en'?'Mute':'Ton ausschalten'):(LANG==='en'?'Unmute':'Ton einschalten');}
+  function label(){if(LANG==='en')return soundOn?'Mute':'Unmute';if(LANG==='it')return soundOn?'Disattiva audio':'Attiva audio';if(LANG==='es')return soundOn?'Silenciar':'Activar sonido';return soundOn?'Ton ausschalten':'Ton einschalten';}
   function apply(){if(!player)return;player.setMuted(!soundOn).then(()=>{if(soundOn)player.setVolume(1);}).catch(()=>{});}
   function bindPlayer(f){if(!window.Vimeo||!window.Vimeo.Player)return;player=new Vimeo.Player(f);player.ready().then(apply).catch(()=>{});}
   function withSDK(cb){
